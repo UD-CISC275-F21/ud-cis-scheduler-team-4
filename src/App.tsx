@@ -9,7 +9,8 @@ function App(): JSX.Element {
                 <img src={logo} className="App-logo" alt="logo" />
                 UD CIS Scheduler
                 <p>
-                    Edit <code>src/App.tsx</code> anHGKYJGHFhjgjfJGFHDJYTHd save to reload.
+                    Edit <code>src/App.tsx</code> save to reload.
+                    Luke Halko
                 </p>
             </header>
         </div>
