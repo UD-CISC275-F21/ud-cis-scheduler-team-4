@@ -12,9 +12,9 @@ function App(): JSX.Element {
                     Edit <code>src/App.tsx</code> save to reload.
                     Luke Halko
                 </p>
-		<p>
+                <p>
 			Added my name here : cthacker
-		</p>
+                </p>
                 <div>Kurt Hammen!</div>
             </header>
         </div>
