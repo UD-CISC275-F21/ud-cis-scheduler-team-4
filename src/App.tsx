@@ -11,6 +11,7 @@ function App(): JSX.Element {
                 <p>
                     Edit <code>src/App.tsx</code> anHGKYJGHFhjgjfJGFHDJYTHd save to reload.
                 </p>
+                <div>Kurt Hammen!</div>
             </header>
         </div>
     );
