@@ -11,6 +11,9 @@ function App(): JSX.Element {
                 <p>
                     Edit <code>src/App.tsx</code> anHGKYJGHFhjgjfJGFHDJYTHd save to reload.
                 </p>
+				<p>
+					Added my name here : cthacker
+				</p>
             </header>
         </div>
     );
