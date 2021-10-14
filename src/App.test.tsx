@@ -4,6 +4,6 @@ import App from "./App";
 
 test("renders UD CIS Scheduler text", () => {
     render(<App />);
-    const linkElement = screen.getByText(/UD CIS Scheduler/i);
+    const linkElement = screen.getByText(/Course Scheduler/i);
     expect(linkElement).toBeInTheDocument();
 });

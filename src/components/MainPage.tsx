@@ -9,7 +9,7 @@ export const MainPage = (): JSX.Element => {
         <Container>
             <Row>
                 <Col>
-                    
+                    Course Scheduler
                 </Col>
                 <Col>
                     <Row>
