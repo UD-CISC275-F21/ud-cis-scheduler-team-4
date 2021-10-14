@@ -13,6 +13,9 @@ function App(): JSX.Element {
                     Luke Halko
                 </p>
                 <p>
+					Added my name here : cthacker
+                </p>
+                <p>
 			Added my name here : cthacker
                 </p>
                 <div>Kurt Hammen!</div>
