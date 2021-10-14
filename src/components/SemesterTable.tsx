@@ -1,11 +1,11 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Table } from 'react-bootstrap';
+import React from 'react';
 
 export const SemesterTable = (): JSX.Element => {
-
+ 
 	return (
 		<Table striped bordered hover>
-
 			<thead>
 				<tr>
 					<th>
