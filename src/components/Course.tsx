@@ -1,7 +1,12 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 
-export const Course = () => {
+export const Course = (): JSX.Element => {
 
-    console.log('course rendering');
+    return(
+
+        <>
+        </>
+
+    );
 
 };

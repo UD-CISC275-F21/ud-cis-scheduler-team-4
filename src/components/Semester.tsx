@@ -1,7 +1,10 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 
-export const Semester = () => {
+export const Semester = (): JSX.Element => {
 
-    console.log('semester printing');
+    return(
+        <>
+        </>
+    );
 
 };
