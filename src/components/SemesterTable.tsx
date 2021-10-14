@@ -1,6 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Table } from "react-bootstrap";
-import React from 'react';
+import React from "react";
 
 export const SemesterTable = (): JSX.Element => {
 
@@ -40,4 +40,4 @@ export const SemesterTable = (): JSX.Element => {
         </Table>
     );
 
-    };
+};
