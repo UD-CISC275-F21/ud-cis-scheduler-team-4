@@ -1,0 +1,168 @@
+[
+    {
+
+        "name": "CISC101",
+        "section": 10,
+        "prereqs": [],
+        "coreqs": [],
+        "credits": 3,
+        "lab": true
+
+    },
+
+    {
+
+        "name": "CISC101",
+        "section": 70,
+        "prereqs": [],
+        "coreqs": [],
+        "credits": 3,
+        "lab": true
+
+    },
+
+    {
+
+        "name": "CISC106",
+        "section": 10,
+        "prereqs": [],
+        "coreqs": ["MATH241"],
+        "credits": 3,
+        "lab": true
+
+    },
+
+    {
+
+        "name": "CISC106",
+        "section": 11,
+        "prereqs": [],
+        "coreqs": ["MATH241"],
+        "credits": 3,
+        "lab": true
+
+    },
+
+    {
+
+        "name": "CISC106",
+        "section": 12,
+        "prereqs": [],
+        "coreqs": ["MATH241"],
+        "credits": 3,
+        "lab": true
+
+    },
+
+    {
+
+        "name": "CISC106",
+        "section": 13,
+        "prereqs": [],
+        "coreqs": ["MATH241"],
+        "credits": 3,
+        "lab": true
+
+    },
+
+    {
+
+        "name": "CISC106",
+        "section": 14,
+        "prereqs": [],
+        "coreqs": ["MATH241"],
+        "credits": 3,
+        "lab": true
+
+    },
+
+    {
+
+        "name": "CISC106",
+        "section": 15,
+        "prereqs": [],
+        "coreqs": ["MATH241"],
+        "credits": 3,
+        "lab": true
+
+    },
+
+    {
+
+        "name": "CISC106",
+        "section": 18,
+        "prereqs": [],
+        "coreqs": ["MATH241"],
+        "credits": 3,
+        "lab": true
+
+    },
+
+    {
+
+        "name": "CISC181",
+        "section": 10,
+        "prereqs": ["CISC108","CISC106"],
+        "coreqs": ["MATH241"],
+        "credits": 3,
+        "lab": true
+
+    },
+
+    {
+
+        "name": "CISC181",
+        "section": 11,
+        "prereqs": ["CISC108","CISC106"],
+        "coreqs": ["MATH241"],
+        "credits": 3,
+        "lab": true
+
+    },
+
+    {
+
+        "name": "CISC275",
+        "section": 10,
+        "prereqs": ["CISC181","CISC210"],
+        "coreqs": [],
+        "credits": 3,
+        "lab": true
+
+    },
+
+    {
+
+        "name": "CISC275",
+        "section": 11,
+        "prereqs": ["CISC181", "CISC210"],
+        "coreqs": [],
+        "credits": 3,
+        "lab": true
+
+    },
+
+    {
+
+        "name": "CISC260",
+        "section": 10,
+        "prereqs": ["CISC210"],
+        "coreqs": [],
+        "credits": 3,
+        "lab": false
+
+    },
+
+    {
+
+        "name": "CISC260",
+        "section": 10,
+        "prereqs": ["CISC210"],
+        "coreqs": [],
+        "credits": 3,
+        "lab": false
+
+    }
+
+
+]
