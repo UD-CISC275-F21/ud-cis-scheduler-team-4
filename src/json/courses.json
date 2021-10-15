@@ -98,6 +98,85 @@
 
     },
 
+	{
+
+        "name": "CISC106",
+        "section": 80,
+        "prereqs": [],
+        "coreqs": ["MATH241"],
+        "credits": 3,
+        "lab": true
+
+    },
+
+	
+	{
+
+        "name": "CISC106",
+        "section": 81,
+        "prereqs": [],
+        "coreqs": ["MATH241"],
+        "credits": 3,
+        "lab": true
+
+    },
+
+	{
+
+        "name": "CISC106",
+        "section": 82,
+        "prereqs": [],
+        "coreqs": ["MATH241"],
+        "credits": 3,
+        "lab": true
+
+    },
+
+	
+	{
+
+        "name": "CISC108",
+        "section": 10,
+        "prereqs": [],
+        "coreqs": ["MATH115","MATH117"],
+        "credits": 3,
+        "lab": true
+
+    },
+
+	{
+
+        "name": "CISC108",
+        "section": 11,
+        "prereqs": [],
+        "coreqs": ["MATH115","MATH117"],
+        "credits": 3,
+        "lab": true
+
+    },
+
+	{
+
+        "name": "CISC108",
+        "section": 12,
+        "prereqs": [],
+        "coreqs": ["MATH115","MATH117"],
+        "credits": 3,
+        "lab": true
+
+    },
+
+	{
+
+        "name": "CISC108",
+        "section": 80,
+        "prereqs": [],
+        "coreqs": ["MATH115","MATH117"],
+        "credits": 3,
+        "lab": true
+
+    },
+
     {
 
         "name": "CISC181",
@@ -119,6 +198,90 @@
         "lab": true
 
     },
+
+	{
+
+		"name": "CISC210",
+		"section": 10,
+		"prereqs": ["CISC106","CISC108"],
+		"coreqs": ["MATH221","MATH241"],
+		"credits": 3,
+		"lab": true
+
+	},
+
+	{
+
+		"name": "CISC210",
+		"section": 11,
+		"prereqs": ["CISC106","CISC108"],
+		"coreqs": ["MATH221","MATH241"],
+		"credits": 3,
+		"lab": true
+
+	},
+
+	{
+
+		"name": "CISC220",
+		"section": 11,
+		"prereqs": [],
+		"coreqs": ["MATH210","MATH241"],
+		"credits": 3,
+		"lab": true
+
+	},
+
+	{
+
+		"name": "CISC220",
+		"section": 12,
+		"prereqs": [],
+		"coreqs": ["MATH210","MATH241"],
+		"credits": 3,
+		"lab": true
+
+	},
+
+	{
+
+		"name": "CISC220",
+		"section": 13,
+		"prereqs": [],
+		"coreqs": ["MATH210","MATH241"],
+		"credits": 3,
+		"lab": true
+
+	},
+
+	{
+
+		"name": "CISC220",
+		"section": 80,
+		"prereqs": [],
+		"coreqs": ["MATH210","MATH241"],
+		"credits": 3,
+		"lab": true
+
+	},
+
+	{
+		"name": "CISC260",
+		"section": 10,
+		"prereqs": ["CISC210"],
+		"coreqs": [],
+		"credits": 3,
+		"lab": false
+	},
+
+	{
+		"name": "CISC260",
+		"section": 11,
+		"prereqs": ["CISC210"],
+		"coreqs": [],
+		"credits": 3,
+		"lab": false
+	},
 
     {
 
@@ -142,27 +305,457 @@
 
     },
 
-    {
+	{
+		"name": "CISC303",
+		"section": 10,
+		"prereqs": ["MATH210","CISC220"],
+		"coreqs": [],
+		"credits": 3,
+		"lab": false
+	},
 
-        "name": "CISC260",
-        "section": 10,
-        "prereqs": ["CISC210"],
-        "coreqs": [],
-        "credits": 3,
-        "lab": false
+	{
 
-    },
+		"name": "CISC304",
+		"section": 10,
+		"prereqs": ["CISC220","MATH210"],
+		"coreqs": [],
+		"credits": 3,
+		"lab": false
 
-    {
+	},
 
-        "name": "CISC260",
-        "section": 10,
-        "prereqs": ["CISC210"],
-        "coreqs": [],
-        "credits": 3,
-        "lab": false
+	{
 
-    }
+		"name": "CISC320",
+		"section": 10,
+		"prereqs": ["MATH210","CISC220"],
+		"coreqs": [],
+		"credits": 3,
+		"lab": false
+
+	},
+
+	{
+
+		"name": "CISC320",
+		"section": 11,
+		"prereqs": ["MATH210","CISC220"],
+		"coreqs": [],
+		"credits": 3,
+		"lab": false
+
+	},
+
+	{
+
+		"name": "CISC355",
+		"section": 10,
+		"prereqs": [],
+		"coreqs": [],
+		"credits": 3,
+		"lab": false
+
+	},
+
+	{
+
+		"name": "CISC357",
+		"section": 10,
+		"prereqs": ["CISC101","CISC103","CISC106","CISC108"],
+		"coreqs": [],
+		"credits": 3,
+		"lab": false
+
+	},
+
+	{
+
+		"name": "CISC361",
+		"section": 10,
+		"prereqs": ["CISC220","CISC260"],
+		"coreqs": [],
+		"credits": 3,
+		"lab": false
+
+	},
+
+	{
+
+		"name": "CISC361",
+		"section": 11,
+		"prereqs": ["CISC220","CISC260"],
+		"coreqs": [],
+		"credits": 3,
+		"lab": false
+
+	},
+
+	{
+
+		"name": "CISC367",
+		"section": 10,
+		"prereqs": ["CISC220"],
+		"coreqs": [],
+		"credits": 3,
+		"lab": false
+
+
+	},
+
+	{
+
+		"name": "CISC367",
+		"section": 11,
+		"prereqs": [],
+		"coreqs": [],
+		"credits": 3,
+		"lab": false
+
+
+	},
+
+	{
+
+		"name": "CISC372",
+		"section": 10,
+		"prereqs": ["CISC220","CISC260"],
+		"coreqs": [],
+		"credits": 3,
+		"lab": false
+
+	},
+
+	{
+
+		"name": "CISC372",
+		"section": 11,
+		"prereqs": ["CISC220","CISC260"],
+		"coreqs": [],
+		"credits": 3,
+		"lab": false
+
+	},
+
+	{
+		
+		"name": "CISC404",
+		"section": 10,
+		"prereqs": ["CISC304"],
+		"coreqs": [],
+		"credits": 3,
+		"lab": false
+
+	},
+
+	{
+
+		"name": "CISC410",
+		"section": 10,
+		"prereqs": ["MATH305","MATH351","MATH349"],
+		"coreqs": [],
+		"credits": 3,
+		"lab": false
+
+	},
+
+	{
+
+		"name": "CISC410",
+		"section": 11,
+		"prereqs": ["MATH305","MATH351","MATH349"],
+		"coreqs": [],
+		"credits": 3,
+		"lab": false
+
+	},
+
+	{
+
+		"name": "CISC437",
+		"section": 10,
+		"prereqs": ["CISC220"],
+		"coreqs": [],
+		"credits": 3,
+		"lab": false
+
+	},
+
+	{
+
+		"name": "CISC442",
+		"section": "10",
+		"prereqs": ["CISC220"],
+		"coreqs": [],
+		"credits": 3,
+		"lab": false
+
+	},
+
+	{
+
+		"name": "CISC449",
+		"section": "10",
+		"prereqs": ["CISC220"],
+		"coreqs": [],
+		"credits": 3,
+		"lab": false
+
+	},
+
+	{
+
+		"name": "CISC450",
+		"section": "10",
+		"prereqs": ["CISC260"],
+		"coreqs": [],
+		"credits": 3,
+		"lab": false
+
+	},
+
+	{
+
+		"name": "CISC472",
+		"section": "10",
+		"prereqs": [],
+		"coreqs": [],
+		"credits": 3,
+		"lab": false
+
+	},
+
+	{
+
+		"name": "CISC474",
+		"section": 10,
+		"prereqs": ["CISC275"],
+		"coreqs": [],
+		"credits": 3,
+		"lab": false
+
+	},
+
+	{
+
+		"name": "CISC475",
+		"section": 10,
+		"prereqs": ["CISC275"],
+		"coreqs": [],
+		"credits": 3,
+		"lab": true
+
+	},
+
+	{
+
+		"name": "CISC475",
+		"section": 11,
+		"prereqs": ["CISC275"],
+		"coreqs": [],
+		"credits": 3,
+		"lab": true
+
+	},
+
+	{
+
+		"name": "CISC475",
+		"section": 12,
+		"prereqs": ["CISC275"],
+		"coreqs": [],
+		"credits": 3,
+		"lab": true
+
+	},
+
+	{
+
+		"name": "CISC475",
+		"section": 80,
+		"prereqs": ["CISC275"],
+		"coreqs": [],
+		"credits": 3,
+		"lab": true
+
+	},
+
+	{
+
+		"name": "CISC481",
+		"section": 10,
+		"prereqs": ["CISC220","CISC304"],
+		"coreqs": [],
+		"credits": 3,
+		"lab": false
+
+	},
+
+	{
+
+		"name": "CISC482",
+		"section": 10,
+		"prereqs": ["CISC275"],
+		"coreqs": [],
+		"credits": 3,
+		"lab": false
+
+	},
+
+	{
+
+		"name": "CISC483",
+		"section": 10,
+		"prereqs": ["MATH205","CISC220"],
+		"coreqs": [],
+		"credits": 3,
+		"lab": false
+
+	},
+
+	{
+
+		"name": "CISC484",
+		"section": 10,
+		"prereqs": ["MATH205","CISC220"],
+		"coreqs": [],
+		"credits": 3,
+		"lab": false
+
+	},
+
+	{
+
+		"name": "CISC498",
+		"section": 10,
+		"prereqs": ["CISC275","CISC320"],
+		"coreqs": [],
+		"credits": 3,
+		"lab": true
+
+	},
+
+	{
+
+		"name": "CISC498",
+		"section": 11,
+		"prereqs": ["CISC275","CISC320"],
+		"coreqs": [],
+		"credits": 3,
+		"lab": true
+
+	},
+
+	{
+
+		"name": "CISC498",
+		"section": 12,
+		"prereqs": ["CISC275","CISC320"],
+		"coreqs": [],
+		"credits": 3,
+		"lab": true
+
+	},
+
+	{
+
+		"name": "CISC498",
+		"section": 80,
+		"prereqs": ["CISC275","CISC320"],
+		"coreqs": [],
+		"credits": 3,
+		"lab": true
+
+	},
+
+	{
+
+		"name": "CISC604",
+		"section": 10,
+		"prereqs": ["CISC304"],
+		"coreqs": [],
+		"credits": 3,
+		"lab": false
+
+	},
+
+	{
+
+		"name": "CISC605",
+		"section": 10,
+		"prereqs": [],
+		"coreqs": [],
+		"credits": 3,
+		"lab": false
+
+	},
+
+	{
+
+		"name": "CISC615",
+		"section": 10,
+		"prereqs": [],
+		"coreqs": [],
+		"credits": 3,
+		"lab": false
+
+	},
+
+	{
+
+		"name": "CISC621",
+		"section": 10,
+		"prereqs": [],
+		"coreqs": [],
+		"credits": 3,
+		"lab": false
+
+	},
+
+	{
+
+		"name": "CISC642",
+		"section": 10,
+		"prereqs": ["CISC220"],
+		"coreqs": [],
+		"credits": 3,
+		"lab": false
+
+
+	},
+
+	{
+
+		"name": "CISC650",
+		"section": 10,
+		"prereqs": ["CISC650"],
+		"coreqs": [],
+		"credits": 3,
+		"lab": false
+
+	},
+
+	{
+
+		"name": "CISC681",
+		"section": 10,
+		"prereqs": ["CISC220"],
+		"coreqs": [],
+		"credits": 3,
+		"lab": false
+
+	},
+
+	{
+
+		"name": "CISC859",
+		"section": 10,
+		"prereqs": ["CISC650"],
+		"coreqs": [],
+		"credits": 3,
+		"lab": false
+
+	}
 
 
 ]
