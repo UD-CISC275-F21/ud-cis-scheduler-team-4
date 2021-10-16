@@ -1,6 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Dropdown } from "react-bootstrap";
 import { SemesterTable } from "./SemesterTable";
+import {DropdownMenu} from "./DropdownMenu";
 import React from "react";
 
 export const MainPage = (): JSX.Element => {
@@ -12,6 +13,9 @@ export const MainPage = (): JSX.Element => {
                     Course Scheduler
                 </Col>
                 <Col>
+                    <Row>
+                        <DropdownMenu></DropdownMenu>
+                    </Row>
                     <Row>
                         <Col>
                             {/* concentration list */}
