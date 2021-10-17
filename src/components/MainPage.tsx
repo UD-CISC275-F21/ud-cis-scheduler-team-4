@@ -1,9 +1,12 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Dropdown } from "react-bootstrap";
 import { SemesterTable } from "./SemesterTable";
-import React from "react";
+import {DropdownMenu} from "./DropdownMenu";
+import React, {useState} from "react";
+import { DisplayCourseList } from "./DisplayCourseList";
 
 export const MainPage = (): JSX.Element => {
+    const [concentration, setConcentration] = useState<string>("");
 
     return(
         <Container>
@@ -13,13 +16,11 @@ export const MainPage = (): JSX.Element => {
                 </Col>
                 <Col>
                     <Row>
-                        <Col>
-                            {/* concentration list */}
-                        </Col>
+                        <DropdownMenu concentration={concentration} setConcentration={setConcentration}></DropdownMenu>
                     </Row>
                     <Row>
                         <Col>
-                            {/* reqs */}
+                            <DisplayCourseList concentration={concentration}></DisplayCourseList>
                         </Col>
                     </Row>
                 </Col>
