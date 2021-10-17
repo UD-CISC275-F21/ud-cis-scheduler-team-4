@@ -1,8 +1,8 @@
 import { Dropdown } from "react-bootstrap";
 import React from "react";
 
-export function DropdownMenu({concentration, setConcentration}:
-    {concentration:string, setConcentration: (concentration:string)=>void}): JSX.Element{
+export function DropdownMenu({setConcentration}:
+    {setConcentration: (concentration:string)=>void}): JSX.Element{
     
     return <div>
         <Dropdown>

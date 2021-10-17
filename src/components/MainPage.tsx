@@ -1,5 +1,5 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Container, Row, Col, Dropdown } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import { SemesterTable } from "./SemesterTable";
 import {DropdownMenu} from "./DropdownMenu";
 import React, {useState} from "react";
@@ -16,7 +16,7 @@ export const MainPage = (): JSX.Element => {
                 </Col>
                 <Col>
                     <Row>
-                        <DropdownMenu concentration={concentration} setConcentration={setConcentration}></DropdownMenu>
+                        <DropdownMenu setConcentration={setConcentration}></DropdownMenu>
                     </Row>
                     <Row>
                         <Col>
