@@ -1,31 +1,69 @@
 [
     {
         "name":"AI and Robotics",
-        "core":["CISC108","CISC181","CISC210","CISC220","CISC260","CISC275","CISC303","CISC320","MATH210",
-        ]
+        "core":["CISC108","CISC181","CISC210","CISC220","CISC260","CISC275","CISC303","CISC320","MATH210","MATH241"],
+        "capstone":["CISC498","CISC499"],
+        "lab":[["BISC207", "BISC208"],["CHEM103","CHEM104"],["CHEM107","CHEM108"],["GEOL105","GEOL115","GEOL107"],["GEOL107","GEOL110"],["PHYS207","PHYS208"]],
+        "additional":["CISC355",["ENGL312","ENGL410"]],
+        "concentration":""
     },
 
     {
-        "name":"Bioinformatics"
+        "name":"Bioinformatics",
+        "core":["CISC108","CISC181","CISC210","CISC220","CISC260","CISC275","CISC303","CISC320","MATH210","MATH241"],
+        "capstone":["CISC498","CISC499"],
+        "lab":[["BISC207", "BISC208"],["CHEM103","CHEM104"],["CHEM107","CHEM108"],["GEOL105","GEOL115","GEOL107"],["GEOL107","GEOL110"],["PHYS207","PHYS208"]],
+        "additional":["CISC355",["ENGL312","ENGL410"]],
+        "concentration":""
+
     },
 
     {
-        "name":"Cybersecurity"
+        "name":"Cybersecurity",
+        "core":["CISC108","CISC181","CISC210","CISC220","CISC260","CISC275","CISC303","CISC320","MATH210","MATH241"],
+        "capstone":["CISC498","CISC499"],
+        "lab":[["BISC207", "BISC208"],["CHEM103","CHEM104"],["CHEM107","CHEM108"],["GEOL105","GEOL115","GEOL107"],["GEOL107","GEOL110"],["PHYS207","PHYS208"]],
+        "additional":["CISC355",["ENGL312","ENGL410"]],
+        "concentration":""
+
     },
 
     {
-        "name":"Data Science"
+        "name":"Data Science",
+        "core":["CISC108","CISC181","CISC210","CISC220","CISC260","CISC275","CISC303","CISC320","MATH210","MATH241"],
+        "capstone":["CISC498","CISC499"],
+        "lab":[["BISC207", "BISC208"],["CHEM103","CHEM104"],["CHEM107","CHEM108"],["GEOL105","GEOL115","GEOL107"],["GEOL107","GEOL110"],["PHYS207","PHYS208"]],
+        "additional":["CISC355",["ENGL312","ENGL410"]],
+        "concentration":""
     },
 
     {
-        "name":"High-Performance Computing"
+        "name":"High-Performance Computing",
+        "core":["CISC108","CISC181","CISC210","CISC220","CISC260","CISC275","CISC303","CISC320","MATH210","MATH241"],
+        "capstone":["CISC498","CISC499"],
+        "lab":[["BISC207", "BISC208"],["CHEM103","CHEM104"],["CHEM107","CHEM108"],["GEOL105","GEOL115","GEOL107"],["GEOL107","GEOL110"],["PHYS207","PHYS208"]],
+        "additional":["CISC355",["ENGL312","ENGL410"]],
+        "concentration":""
+
     },
 
     {
-        "name":"Networks and Systems"
+        "name":"Networks and Systems",
+        "core":["CISC108","CISC181","CISC210","CISC220","CISC260","CISC275","CISC303","CISC320","MATH210","MATH241"],
+        "capstone":["CISC498","CISC499"],
+        "lab":[["BISC207", "BISC208"],["CHEM103","CHEM104"],["CHEM107","CHEM108"],["GEOL105","GEOL115","GEOL107"],["GEOL107","GEOL110"],["PHYS207","PHYS208"]],
+        "additional":["CISC355",["ENGL312","ENGL410"]],
+        "concentration":""
+
     },
 
     {
-        "name":"Theory of Computation"
+        "name":"Theory of Computation",
+        "core":["CISC108","CISC181","CISC210","CISC220","CISC260","CISC275","CISC303","CISC320","MATH210","MATH241"],
+        "capstone":["CISC498","CISC499"],
+        "lab":[["BISC207", "BISC208"],["CHEM103","CHEM104"],["CHEM107","CHEM108"],["GEOL105","GEOL115","GEOL107"],["GEOL107","GEOL110"],["PHYS207","PHYS208"]],
+        "additional":["CISC355",["ENGL312","ENGL410"]],
+        "concentration":""
+
     }
 ]
