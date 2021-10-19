@@ -15,19 +15,19 @@
 
     {
         "name":"Bioinformatics",
-        "core":["CISC108","CISC181","CISC210","CISC220","CISC260","CISC275","CISC303","CISC320","MATH210","MATH241"],
+        "core":["CISC108","CISC181","CISC210","CISC220","CISC260","CISC275","CISC303","CISC320","MATH210","MATH241","CISC355"],
         "capstone":["CISC498","CISC499"],
-        "lab":[["CHEM103","CHEM133"],["CHEM104","CHEM134"]],
+        "lab":["CHEM103","CHEM104"],
         "writing":["ENGL312","ENGL410"], 
         "conc":{
-
+            
         }
 
     },
 
     {
         "name":"Cybersecurity",
-        "core":["CISC108","CISC181","CISC210","CISC220","CISC260","CISC275","CISC303","CISC320","MATH210","MATH241"],
+        "core":["CISC108","CISC181","CISC210","CISC220","CISC260","CISC275","CISC303","CISC320","MATH210","MATH241","CISC355"],
         "capstone":["CISC498","CISC499"],
         "lab":[["BISC207", "BISC208"],["CHEM103","CHEM104"],["CHEM107","CHEM108"],["GEOL105","GEOL115","GEOL107"],["GEOL107","GEOL110"],["PHYS207","PHYS208"]],
         "writing":["ENGL312","ENGL410"], 
@@ -37,7 +37,7 @@
 
     {
         "name":"Data Science",
-        "core":["CISC108","CISC181","CISC210","CISC220","CISC260","CISC275","CISC303","CISC320","MATH210","MATH241"],
+        "core":["CISC108","CISC181","CISC210","CISC220","CISC260","CISC275","CISC303","CISC320","MATH210","MATH241","CISC355"],
         "capstone":["CISC498","CISC499"],
         "lab":[["BISC207", "BISC208"],["CHEM103","CHEM104"],["CHEM107","CHEM108"],["GEOL105","GEOL115","GEOL107"],["GEOL107","GEOL110"],["PHYS207","PHYS208"]],
         "writing":["ENGL312","ENGL410"], 
@@ -46,7 +46,7 @@
 
     {
         "name":"High-Performance Computing",
-        "core":["CISC108","CISC181","CISC210","CISC220","CISC260","CISC275","CISC303","CISC320","MATH210","MATH241"],
+        "core":["CISC108","CISC181","CISC210","CISC220","CISC260","CISC275","CISC303","CISC320","MATH210","MATH241","CISC355"],
         "capstone":["CISC498","CISC499"],
         "lab":[["BISC207", "BISC208"],["CHEM103","CHEM104"],["CHEM107","CHEM108"],["GEOL105","GEOL115","GEOL107"],["GEOL107","GEOL110"],["PHYS207","PHYS208"]],
         "writing":["ENGL312","ENGL410"], 
@@ -56,7 +56,7 @@
 
     {
         "name":"Networks and Systems",
-        "core":["CISC108","CISC181","CISC210","CISC220","CISC260","CISC275","CISC303","CISC320","MATH210","MATH241"],
+        "core":["CISC108","CISC181","CISC210","CISC220","CISC260","CISC275","CISC303","CISC320","MATH210","MATH241","CISC355"],
         "capstone":["CISC498","CISC499"],
         "lab":[["BISC207", "BISC208"],["CHEM103","CHEM104"],["CHEM107","CHEM108"],["GEOL105","GEOL115","GEOL107"],["GEOL107","GEOL110"],["PHYS207","PHYS208"]],
         "writing":["ENGL312","ENGL410"], 
