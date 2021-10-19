@@ -1,6 +1,8 @@
 [
     {
-        "name":"AI and Robotics"
+        "name":"AI and Robotics",
+        "core":["CISC108","CISC181","CISC210","CISC220","CISC260","CISC275","CISC303","CISC320","MATH210",
+        ]
     },
 
     {
