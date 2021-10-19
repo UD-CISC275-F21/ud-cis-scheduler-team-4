@@ -80,7 +80,7 @@
         "lab":[["BISC207", "BISC208"],["CHEM103","CHEM104"],["CHEM107","CHEM108"],["GEOL105","GEOL115","GEOL107"],["GEOL107","GEOL110"],["PHYS207","PHYS208"]],
         "writing":["ENGL312","ENGL410"], 
         "conc":{
-            "general":[],
+            "general":["CISC360","CISC361","CISC372","CISC450","CISC471","MATH242","MATH243"],
             "stats":[],
             "systems":[],
             "elective":[],
@@ -106,7 +106,7 @@
             "ochem":[],
             "data":[],
             "cybersecurity":["CISC464","CISC465","CPEG470","CPEG473","CPEG475","CPEG476","CPEG497"],
-            "track":[]
+            "track":["Track 1", "Track 2", "Track 3", "Track 4", "Track 5"]
         }
 
     },
