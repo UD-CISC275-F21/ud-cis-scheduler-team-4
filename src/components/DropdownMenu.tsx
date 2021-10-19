@@ -1,8 +1,10 @@
 import { Dropdown } from "react-bootstrap";
+import { Concentration } from "../interfaces/concentration";
+import CONCENTRATIONS from "../json/concentrations.json";
 import React from "react";
 
 export function DropdownMenu({setConcentration}:
-    {setConcentration: (concentration:string)=>void}): JSX.Element{
+    {setConcentration: (concentration:Concentration)=>void}): JSX.Element{
     
     return <div>
         <Dropdown>
@@ -11,13 +13,13 @@ export function DropdownMenu({setConcentration}:
             </Dropdown.Toggle>
 
             <Dropdown.Menu>
-                <Dropdown.Item as="button" onClick={()=>setConcentration("AI")}>AI and Robotics</Dropdown.Item>
-                <Dropdown.Item as="button" onClick={()=>setConcentration("Bio")}>Bioinformatics</Dropdown.Item>
-                <Dropdown.Item as="button" onClick={()=>setConcentration("Security")}>Cybersecurity</Dropdown.Item>
-                <Dropdown.Item as="button" onClick={()=>setConcentration("Data Science")}>Data Science</Dropdown.Item>
-                <Dropdown.Item as="button" onClick={()=>setConcentration("HPC")}>High-Performance Computing</Dropdown.Item>
-                <Dropdown.Item as="button" onClick={()=>setConcentration("Networks")}>Networks and Systems</Dropdown.Item>
-                <Dropdown.Item as="button" onClick={()=>setConcentration("Theory")}>Theory</Dropdown.Item>
+                <Dropdown.Item as="button" onClick={()=>setConcentration(CONCENTRATIONS[0])}>AI and Robotics</Dropdown.Item>
+                <Dropdown.Item as="button" onClick={()=>setConcentration(CONCENTRATIONS[1])}>Bioinformatics</Dropdown.Item>
+                <Dropdown.Item as="button" onClick={()=>setConcentration(CONCENTRATIONS[2])}>Cybersecurity</Dropdown.Item>
+                <Dropdown.Item as="button" onClick={()=>setConcentration(CONCENTRATIONS[3])}>Data Science</Dropdown.Item>
+                <Dropdown.Item as="button" onClick={()=>setConcentration(CONCENTRATIONS[4])}>High-Performance Computing</Dropdown.Item>
+                <Dropdown.Item as="button" onClick={()=>setConcentration(CONCENTRATIONS[5])}>Networks and Systems</Dropdown.Item>
+                <Dropdown.Item as="button" onClick={()=>setConcentration(CONCENTRATIONS[6])}>Theory</Dropdown.Item>
             </Dropdown.Menu>
         </Dropdown>
     </div>;
