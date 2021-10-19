@@ -4,9 +4,11 @@ import { SemesterTable } from "./SemesterTable";
 import {DropdownMenu} from "./DropdownMenu";
 import React, {useState} from "react";
 import { DisplayCourseList } from "./DisplayCourseList";
+import { Concentration } from "../interfaces/concentration";
+import CONCENTRATIONS from "../json/concentrations.json";
 
 export const MainPage = (): JSX.Element => {
-    const [concentration, setConcentration] = useState<string>("");
+    const [concentration, setConcentration] = useState<Concentration>(CONCENTRATIONS[0] as Concentration);
 
     return(
         <Container>
