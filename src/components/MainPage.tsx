@@ -56,7 +56,7 @@ export const MainPage = (): JSX.Element => {
                             <br />
                             <Row>
                                 <Col>
-                                    {display && <WelcomeToast />}
+                                    {<WelcomeToast display={display}/>}
                                 </Col>
                             </Row>
                             <Row>
