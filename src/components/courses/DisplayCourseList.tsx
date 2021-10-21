@@ -1,7 +1,7 @@
 import React from "react";
-import { Concentration } from "../interfaces/concentration";
+import { Concentration } from "../../interfaces/concentration";
 import { AIConc, BioConc, SecurityConc, DataScienceConc, HPCConc, NetworksConc, TheoryConc } from "./CourseLists";
-import CONCENTRATIONS from "../json/concentrations.json";
+import CONCENTRATIONS from "../../json/concentrations.json";
 
 export function DisplayCourseList({concentration}:{concentration:Concentration}): JSX.Element{
     if (concentration==CONCENTRATIONS[0]){

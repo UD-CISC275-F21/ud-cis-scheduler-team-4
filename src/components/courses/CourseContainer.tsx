@@ -2,7 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { ListGroup } from "react-bootstrap";
 import { Course } from "./Course";
 import { Droppable } from "react-beautiful-dnd";
-import { CourseContext } from "../context/CourseContext";
+import { CourseContext } from "../../context/CourseContext";
 import React from "react";
 
 export const CourseContainer = (): JSX.Element =>

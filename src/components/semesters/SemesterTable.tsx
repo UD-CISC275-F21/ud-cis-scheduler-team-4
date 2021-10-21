@@ -2,8 +2,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Table, ListGroup } from "react-bootstrap";
 import React from "react";
 import { Droppable, DroppableProvided } from "react-beautiful-dnd";
-import { SemesterCourseContext } from "../context/SemesterCourseContext";
-import { Course } from "./Course";
+import { SemesterCourseContext } from "../../context/SemesterCourseContext";
+import { Course } from "../courses/Course";
 
 export const getSemesterStr = (semesterNum: number): string => {
     switch (semesterNum % 10) {
