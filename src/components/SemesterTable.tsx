@@ -32,15 +32,17 @@ export const SemesterTable = (): JSX.Element =>
                         </thead>
                         <tbody {...prov.droppableProps} ref={prov.innerRef}>
                             <tr>
-                                <ListGroup>
-                                    {
-                                        value.map((e, i) =>
-                                            <ListGroup.Item key={i}>
-                                                <Course name={`${e.name}-${e.section}`} ind={i}/>
-                                            </ListGroup.Item>
-                                        )
-                                    }
-                                </ListGroup>
+                                <td>
+                                    <ListGroup>
+                                        {
+                                            value.map((e, i) =>
+                                                <ListGroup.Item key={i}>
+                                                    <Course name={`${e.name}-${e.section}`} ind={i}/>
+                                                </ListGroup.Item>
+                                            )
+                                        }
+                                    </ListGroup>
+                                </td>
                             </tr>
                         </tbody>
                     </Table>
