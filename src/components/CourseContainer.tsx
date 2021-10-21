@@ -1,19 +1,19 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { ListGroup } from "react-bootstrap";
-import React, { MouseEvent, useState } from "react";
+import { MouseEvent, useState } from "react";
 import { Course } from "./Course";
-import { Droppable, Draggable, DroppableProvided } from "react-beautiful-dnd";
+import { Droppable, Draggable } from "react-beautiful-dnd";
 import { CourseContext } from "../context/CourseContext";
-import { Course as CourseType } from "../interfaces/course";
+import React from "react";
 
-export const CourseContainer = (props: { deleteFunc: (arg: string) => void}): JSX.Element =>
+export const CourseContainer = (): JSX.Element =>
     <>
         <CourseContext.Consumer>
             {value =>
                 <Droppable droppableId="coursecontainer">
-                    {(prov: DroppableProvided) =>
+                    {(prov) =>
                         <ListGroup {...prov.droppableProps} ref={prov.innerRef}>
-                            {value.map((e: CourseType, i: number) => <Course name={`${e.name}-${e.section}`} ind={i} deleteFunc={props.deleteFunc} key={i} />)}
+                            {value.map((e, i) => <Course name={`${e.name}-${e.section}`} ind={i} key={i} />)}
                             {prov.placeholder}
                         </ListGroup>
                     }
