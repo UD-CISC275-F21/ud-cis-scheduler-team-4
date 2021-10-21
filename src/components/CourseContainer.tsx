@@ -1,8 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { ListGroup } from "react-bootstrap";
-import { MouseEvent, useState } from "react";
 import { Course } from "./Course";
-import { Droppable, Draggable } from "react-beautiful-dnd";
+import { Droppable } from "react-beautiful-dnd";
 import { CourseContext } from "../context/CourseContext";
 import React from "react";
 

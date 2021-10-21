@@ -12,12 +12,10 @@ import { Course as CourseType } from "../interfaces/course";
 import { SemesterCourseContext } from "../context/SemesterCourseContext";
 import { Concentration } from "../interfaces/concentration";
 import CONCENTRATIONS from "../json/concentrations.json";
-import { Course } from "../interfaces/course";
 
 export const MainPage = (): JSX.Element => {
     const [concentration, setConcentration] = useState<Concentration>(CONCENTRATIONS[0] as Concentration);
     const [courses, setCourses] = useState<CourseType[]>(COURSES as CourseType[]);
-    const [selectedCourses, setSelectedCourses] = useState<string>("");
     const [semesterCourses, setSemesterCourses] = useState<CourseType[]>([]);
 
     const onDragEnd = (result: DropResult) => {

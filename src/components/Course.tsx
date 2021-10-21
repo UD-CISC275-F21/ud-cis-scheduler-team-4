@@ -7,10 +7,10 @@ import { ListGroup } from "react-bootstrap";
 export const Course = (props: { name: string, ind: number }): JSX.Element =>
     <>
         <Draggable draggableId={props.name} index={props.ind} key={props.name}>
-            {(prov) => (
+            {(prov) => 
                 <>
                     <ListGroup.Item ref={prov.innerRef} {...prov.draggableProps} {...prov.dragHandleProps}>{`${props.name}`}</ListGroup.Item>
                 </>
-            )}
+            }
         </Draggable>
     </>;

@@ -1,6 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Table, ListGroup } from "react-bootstrap";
-import React, { useState } from "react";
+import React from "react";
 import { Droppable, DroppableProvided } from "react-beautiful-dnd";
 import { SemesterCourseContext } from "../context/SemesterCourseContext";
 import { Course } from "./Course";
@@ -18,37 +18,33 @@ export const getSemesterStr = (semesterNum: number): string => {
     }
 };
 
-export const SemesterTable = (): JSX.Element => {
-    const [semesters, setSemesters] = useState<number>(1);
-    return (
-        <SemesterCourseContext.Consumer>
-            {value =>
-                <Droppable droppableId="semester-table">
-                    {(prov: DroppableProvided) => (
+export const SemesterTable = (): JSX.Element =>
+    <SemesterCourseContext.Consumer>
+        {value =>
+            <Droppable droppableId="semester-table">
+                {(prov: DroppableProvided) =>
 
-                        <Table >
-                            <thead>
-                                <tr>
-                                    {new Array(semesters).fill(0).map((e, i) => <th key={i}>{`${getSemesterStr(i + 1)} semester`}</th>)}
-                                </tr>
-                            </thead>
-                            <tbody {...prov.droppableProps} ref={prov.innerRef}>
-                                <tr>
-                                    <ListGroup>
-                                        {
-                                            value.map((e, i) =>
-                                                <ListGroup.Item key={i}>
-                                                    <Course name={`${e.name}-${e.section}`} ind={i}/>
-                                                </ListGroup.Item>
-                                            )
-                                        }
-                                    </ListGroup>
-                                </tr>
-                            </tbody>
-                        </Table>
-                    )}
-                </Droppable>
-            }
-        </SemesterCourseContext.Consumer>
-    );
-};
+                    <Table >
+                        <thead>
+                            <tr>
+                                {new Array(1).fill(0).map((e, i) => <th key={i}>{`${getSemesterStr(i + 1)} semester`}</th>)}
+                            </tr>
+                        </thead>
+                        <tbody {...prov.droppableProps} ref={prov.innerRef}>
+                            <tr>
+                                <ListGroup>
+                                    {
+                                        value.map((e, i) =>
+                                            <ListGroup.Item key={i}>
+                                                <Course name={`${e.name}-${e.section}`} ind={i}/>
+                                            </ListGroup.Item>
+                                        )
+                                    }
+                                </ListGroup>
+                            </tr>
+                        </tbody>
+                    </Table>
+                }
+            </Droppable>
+        }
+    </SemesterCourseContext.Consumer>;
