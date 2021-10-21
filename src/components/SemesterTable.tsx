@@ -1,43 +1,50 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Table } from "react-bootstrap";
+import { Table, ListGroup } from "react-bootstrap";
 import React from "react";
+import { Droppable, DroppableProvided } from "react-beautiful-dnd";
+import { SemesterCourseContext } from "../context/SemesterCourseContext";
+import { Course } from "./Course";
 
-export const SemesterTable = (): JSX.Element => {
-
-    return (
-        <Table striped bordered hover>
-            <thead>
-                <tr>
-                    <th>
-                        1st semester
-                    </th>
-                    <th>
-                        2nd semester
-                    </th>
-                    <th>
-                        3rd semester
-                    </th>
-                    <th>
-                        4th semester
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    this
-                </tr>
-                <tr>
-                    is
-                </tr>
-                <tr>
-                    a
-                </tr>
-                <tr>
-                    table
-                </tr>
-            </tbody>
-            
-        </Table>
-    );
-
+export const getSemesterStr = (semesterNum: number): string => {
+    switch (semesterNum % 10) {
+    case 1:
+        return `${semesterNum}st`;
+    case 2:
+        return `${semesterNum}nd`;
+    case 3:
+        return `${semesterNum}rd`;
+    default:
+        return `${semesterNum}th`;
+    }
 };
+
+export const SemesterTable = (): JSX.Element =>
+    <SemesterCourseContext.Consumer>
+        {value =>
+            <Droppable droppableId="semester-table">
+                {(prov: DroppableProvided) =>
+
+                    <Table >
+                        <thead>
+                            <tr>
+                                {new Array(1).fill(0).map((e, i) => <th key={i}>{`${getSemesterStr(i + 1)} semester`}</th>)}
+                            </tr>
+                        </thead>
+                        <tbody {...prov.droppableProps} ref={prov.innerRef}>
+                            <tr>
+                                <ListGroup>
+                                    {
+                                        value.map((e, i) =>
+                                            <ListGroup.Item key={i}>
+                                                <Course name={`${e.name}-${e.section}`} ind={i}/>
+                                            </ListGroup.Item>
+                                        )
+                                    }
+                                </ListGroup>
+                            </tr>
+                        </tbody>
+                    </Table>
+                }
+            </Droppable>
+        }
+    </SemesterCourseContext.Consumer>;
