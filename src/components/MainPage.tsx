@@ -1,7 +1,8 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Badge } from "react-bootstrap";
+import { WelcomeToast } from "./Notifications";
 import { SemesterTable } from "./SemesterTable";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {DropdownMenu} from "./DropdownMenu";
 import { DisplayCourseList } from "./DisplayCourseList";
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
@@ -17,6 +18,14 @@ export const MainPage = (): JSX.Element => {
     const [concentration, setConcentration] = useState<Concentration>(CONCENTRATIONS[0] as Concentration);
     const [courses, setCourses] = useState<CourseType[]>(COURSES as CourseType[]);
     const [semesterCourses, setSemesterCourses] = useState<CourseType[]>([]);
+    const [display, setDisplay] = useState<boolean>(false);
+
+    useEffect(() => {
+        setDisplay(true);
+        setTimeout(() => {
+            setDisplay(false);
+        },5000);
+    },[]);
 
     const onDragEnd = (result: DropResult) => {
         if (!result.destination) {
@@ -44,16 +53,26 @@ export const MainPage = (): JSX.Element => {
                         onDragEnd={onDragEnd}
                     >
                         <Container>
+                            <br />
                             <Row>
                                 <Col>
-                                    Course Scheduler
+                                    {display && <WelcomeToast />}
                                 </Col>
+                            </Row>
+                            <Row>
+                                <Col>
+                                    <Badge bg="primary"><h1>Course Scheduler</h1></Badge>
+                                </Col>
+                            </Row>
+                            <br />
+                            <Row>
                                 <Col>
                                     <Row>
                                         <Col>
                                             <DropdownMenu setConcentration={setConcentration}></DropdownMenu>
                                         </Col>
                                     </Row>
+                                    <br />
                                     <Row>
                                         <Col>
                                             <DisplayCourseList concentration={concentration}></DisplayCourseList>
@@ -61,6 +80,8 @@ export const MainPage = (): JSX.Element => {
                                     </Row>
                                 </Col>
                             </Row>
+                            <br />
+                            <br />
                             <Row>
                                 <Col>
                                     <CourseContainer />
