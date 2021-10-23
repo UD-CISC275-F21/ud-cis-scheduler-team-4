@@ -24,25 +24,66 @@ export const MainPage = (): JSX.Element => {
         setDisplay(true);
         setTimeout(() => {
             setDisplay(false);
-        },5000);
+        },4500);
     },[]);  
 
     const onDragEnd = (result: DropResult) => {
         if (!result.destination) {
             return;
         }
+
+        if(result.source.droppableId == "coursecontainer" && result.destination?.droppableId == "semester-table"){
+            // dragging course from course container to semester table
+            const theCourses = courses;
+            const theCourse = theCourses.splice(result.source.index, 1)[0];
+            setCourses(theCourses);
+            const tmpSemesterCourses = semesterCourses;
+            tmpSemesterCourses.splice(result.destination?.index,0,theCourse);
+            setSemesterCourses(tmpSemesterCourses);
+
+        } else if(result.source.droppableId == "coursecontainer" && result.destination?.droppableId == "coursecontainer"){
+
+            // dropping within same container
+            if(result.source.index == result.destination?.index){
+                // do nothing
+            } else {
+                const tmpCourses = courses;
+                const theCourse = courses.splice(result.source.index,1)[0];
+                tmpCourses.splice(result.destination?.index,0,theCourse);
+                setCourses(tmpCourses);
+            }
+
+        } else if(result.source.droppableId == "semester-table" && result.destination?.droppableId == "semester-table"){
+            // dropping within same semester-table
+            if(result.source.index == result.destination.index){
+                // do nothing
+            } else{
+                // edit order
+                const tmpSemesterCourses = semesterCourses;
+                // take course out of old spot
+                const theCourse = tmpSemesterCourses.splice(result.source.index,1)[0];
+                // place course in new spot
+                tmpSemesterCourses.splice(result.destination?.index,0,theCourse);
+                setSemesterCourses(tmpSemesterCourses);
+            }
+        }
+
+        /*
         console.log(result);
         const theCourses = courses;
         const theCourse = theCourses.splice(result.source.index, 1)[0];
+        console.log(`the course = ${Object.values(theCourse)}`);
         if (result.destination.droppableId === "coursecontainer") {
             theCourses.splice(result.destination?.index, 0, theCourse);
             setCourses(theCourses);
         } else if (result.destination.droppableId === "semester-table") {
-            const tmpSemesterCourses = [...semesterCourses, theCourse];
+            const tmpSemesterCourses = semesterCourses;
+            tmpSemesterCourses.splice(result.destination?.index, 0, theCourse);
             setSemesterCourses(tmpSemesterCourses);
             setCourses(theCourses);
             console.log("running proper func");
         }
+        */
     };
 
     return (
