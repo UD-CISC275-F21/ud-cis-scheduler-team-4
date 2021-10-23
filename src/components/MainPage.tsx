@@ -1,12 +1,12 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Row, Col, Badge } from "react-bootstrap";
-import { WelcomeToast } from "./Notifications";
-import { SemesterTable } from "./SemesterTable";
+import { WelcomeToast } from "./util/Notifications";
+import { SemesterTable } from "./semesters/SemesterTable";
 import React, { useState, useEffect } from "react";
-import {DropdownMenu} from "./DropdownMenu";
-import { DisplayCourseList } from "./DisplayCourseList";
+import {DropdownMenu} from "./util/DropdownMenu";
+import { DisplayCourseList } from "./courses/DisplayCourseList";
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
-import { CourseContainer } from "./CourseContainer";
+import { CourseContainer } from "./courses/CourseContainer";
 import { CourseContext } from "../context/CourseContext";
 import COURSES from "../json/courses.json";
 import { Course as CourseType } from "../interfaces/course";
@@ -25,7 +25,7 @@ export const MainPage = (): JSX.Element => {
         setTimeout(() => {
             setDisplay(false);
         },5000);
-    },[]);
+    },[]);  
 
     const onDragEnd = (result: DropResult) => {
         if (!result.destination) {

@@ -1,6 +1,6 @@
 import { Dropdown } from "react-bootstrap";
-import { Concentration } from "../interfaces/concentration";
-import CONCENTRATIONS from "../json/concentrations.json";
+import { Concentration } from "../../interfaces/concentration";
+import CONCENTRATIONS from "../../json/concentrations.json";
 import React from "react";
 
 export function DropdownMenu({setConcentration}:
