@@ -25,7 +25,7 @@ export const MainPage = (): JSX.Element => {
         setTimeout(() => {
             setDisplay(false);
         },5000);
-    },[]);
+    },[]);  
 
     const onDragEnd = (result: DropResult) => {
         if (!result.destination) {
