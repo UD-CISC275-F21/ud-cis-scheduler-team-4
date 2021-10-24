@@ -62,7 +62,6 @@ export const MainPage = (): JSX.Element => {
             tmpSemester.courseSetter(tmpSemester.courses);
             tmpSemesterCourses.splice(ind,0,tmpSemester);
             setSemesterCourses(tmpSemesterCourses);
-
         } else if(result.source.droppableId == "coursecontainer" && result.destination?.droppableId == "coursecontainer"){
 
             // dropping within same container
