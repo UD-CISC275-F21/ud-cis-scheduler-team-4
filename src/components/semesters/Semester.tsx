@@ -35,7 +35,7 @@ export const Semester = (props: { ind: number, semesterCourses: SemesterType[], 
         if(!props.semesterCourses.find(e => e.semesternum == props.ind+1)){
             // not in list
             const semesters: SemesterType[] = [...props.semesterCourses];
-            semesters.push({semesternum: props.ind+1, courses: []});
+            semesters.push({semesternum: props.ind+1, courses: courses, courseSetter: setCourses});
             props.setSemesterCourses(semesters);
             console.log(semesters);
         }
