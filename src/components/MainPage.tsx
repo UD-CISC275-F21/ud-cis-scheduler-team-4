@@ -40,13 +40,28 @@ export const MainPage = (): JSX.Element => {
         if(result.source.droppableId == "coursecontainer" && result.destination?.droppableId.includes("semester-table")){
             // dragging course from course container to semester table
             console.log("tripped course -> semester");
-            //const theCourses = courses;
-            //const theCourse = theCourses.splice(result.source.index, 1)[0];
-            //setCourses(theCourses);
-            //const tmpSemesterCourses = semesterCourses;
-            //tmpSemesterCourses.splice(result.destination?.index,0,theCourse);
-            //setSemesterCourses(tmpSemesterCourses);
-            //console.log(tmpSemesterCourses);
+            const id = result.destination.droppableId;
+            const num = parseInt(id.substring(id.lastIndexOf("-")+1));
+            let ind = 0;
+            for(let i = 0; i < semesterCourses.length; i++){
+
+                const semester = semesterCourses[i];
+                if(semester.semesternum == num){
+                    ind = i;
+                    break;
+                }
+
+            }
+            const tmpSemesterCourses = semesterCourses;
+            const tmpSemester = tmpSemesterCourses.splice(ind,1)[0];
+            const theCourse = courses.splice(result.source.index,1)[0];
+            console.log(`tmpSemesterCourses = ${tmpSemesterCourses}`);
+            console.log(`tmpSemester = ${tmpSemester}`);
+            console.log(`theCourse = ${theCourse}`);
+            tmpSemester.courses.push(theCourse);
+            tmpSemester.courseSetter(tmpSemester.courses);
+            tmpSemesterCourses.splice(ind,0,tmpSemester);
+            setSemesterCourses(tmpSemesterCourses);
 
         } else if(result.source.droppableId == "coursecontainer" && result.destination?.droppableId == "coursecontainer"){
 

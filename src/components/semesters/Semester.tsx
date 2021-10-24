@@ -1,7 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Table, ListGroup } from "react-bootstrap";
 import React, { useState, useEffect } from "react";
-import { DragDropContext, Droppable, DroppableProvided } from "react-beautiful-dnd";
+import { Droppable, DroppableProvided } from "react-beautiful-dnd";
 import { Course } from "../courses/Course";
 import { Col } from "react-bootstrap";
 import { Course as CourseType } from "../../interfaces/course";

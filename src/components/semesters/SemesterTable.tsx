@@ -1,6 +1,5 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import React, { useState } from "react";
-import { Course as CourseType } from "../../interfaces/course";
+import React from "react";
 import { Semester } from "./Semester";
 import { SemesterType } from "../../interfaces/semester";
 
