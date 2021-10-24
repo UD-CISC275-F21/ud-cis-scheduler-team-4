@@ -11,17 +11,19 @@ import { CourseContainer } from "./courses/CourseContainer";
 import { CourseContext } from "../context/CourseContext";
 import COURSES from "../json/courses.json";
 import { Course as CourseType } from "../interfaces/course";
-import { SemesterCourseContext } from "../context/SemesterCourseContext";
 import { Concentration } from "../interfaces/concentration";
 import CONCENTRATIONS from "../json/concentrations.json";
 import { SemesterCountContext } from "../context/SemesterCountContext";
+import { SemesterType } from "../interfaces/semester";
 
 export const MainPage = (): JSX.Element => {
     const [concentration, setConcentration] = useState<Concentration>(CONCENTRATIONS[0] as Concentration);
     const [courses, setCourses] = useState<CourseType[]>(COURSES as CourseType[]);
-    const [semesterCourses, setSemesterCourses] = useState<CourseType[]>([]);
+    const [semesterCourses, setSemesterCourses] = useState<SemesterType[]>([]);
     const [display, setDisplay] = useState<boolean>(false);
     const [semesters, setSemesters] = useState<number>(1);
+
+    // maybe make an object like indexes are the semesters so {1: ["CISC101","CISC106"]}
 
     useEffect(() => {
         setDisplay(true);
@@ -38,12 +40,13 @@ export const MainPage = (): JSX.Element => {
         if(result.source.droppableId == "coursecontainer" && result.destination?.droppableId.includes("semester-table")){
             // dragging course from course container to semester table
             console.log("tripped course -> semester");
-            const theCourses = courses;
-            const theCourse = theCourses.splice(result.source.index, 1)[0];
-            setCourses(theCourses);
-            const tmpSemesterCourses = semesterCourses;
-            tmpSemesterCourses.splice(result.destination?.index,0,theCourse);
-            setSemesterCourses(tmpSemesterCourses);
+            //const theCourses = courses;
+            //const theCourse = theCourses.splice(result.source.index, 1)[0];
+            //setCourses(theCourses);
+            //const tmpSemesterCourses = semesterCourses;
+            //tmpSemesterCourses.splice(result.destination?.index,0,theCourse);
+            //setSemesterCourses(tmpSemesterCourses);
+            //console.log(tmpSemesterCourses);
 
         } else if(result.source.droppableId == "coursecontainer" && result.destination?.droppableId == "coursecontainer"){
 
@@ -118,7 +121,7 @@ export const MainPage = (): JSX.Element => {
                                 <CourseContainer />
                             </Col>
                             <>
-                                <SemesterTable semesters={semesters} />
+                                <SemesterTable semesters={semesters} semestersCourses={semesterCourses} setSemesterCourses={setSemesterCourses} />
                             </>
                         </Row>
                     </Container>
