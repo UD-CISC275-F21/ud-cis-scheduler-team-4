@@ -77,6 +77,64 @@ export const MainPage = (): JSX.Element => {
         } else if(result.source.droppableId.includes("semester-table") && result.destination?.droppableId.includes("semester-table")){
             // dropping within same semester-table
             console.log("dropping within semester table");
+            if(result.source.droppableId == result.destination.droppableId){
+                // same destination
+                if(result.source.index == result.destination.index){
+                    // do nothing
+                } else{
+
+                    const id1 = result.source.droppableId;
+                    let ind1 = -1;
+                    const num1 = parseInt(id1.substring(id1.lastIndexOf("-")+1));
+                    for(let i = 0; i < semesterCourses.length; i++){
+
+                        if(semesterCourses[i].semesternum == num1){
+                            ind1 = i;
+                            break;
+                        }
+
+                    }
+                    // found where course is located
+                    const tmpSemesterCourses = [...semesterCourses];
+                    const theSemester = tmpSemesterCourses.splice(ind1,1)[0];
+                    const theSemesterCourses = theSemester.courses;
+                    const theCourse = theSemesterCourses.splice(result.source.index,1)[0];
+                    theSemesterCourses.splice(result.destination.index,0,theCourse);
+                    theSemester.courseSetter(theSemesterCourses);
+                    theSemester.courses = theSemesterCourses;
+                    tmpSemesterCourses.splice(ind1,0,theSemester);
+                    setSemesterCourses(tmpSemesterCourses);
+                    //const theCourse = theSemester.splice(result.source.index,1)[0];
+                    //theSemester.splice(result.destination.index,0,theCourse);
+
+
+                    /*
+                    const id1 = result.source.droppableId;
+                    const id2 = result.destination.droppableId;
+                    const num1 = parseInt(id1.substring(id1.lastIndexOf("-")+1));
+                    const num2 = parseInt(id2.substring(id2.lastIndexOf("-")+1));
+                    let ind1 = -1;
+                    let ind2 = -1;
+                    for(let i = 0; i < semesterCourses.length; i++){
+
+                        if(ind1 !== -1 && ind2 !== -1){
+                            break;
+                        } else if(semesterCourses[i].semesternum == num1){
+                            ind1 = i;
+                        } else if(semesterCourses[i].semesternum == num2){
+                            ind2 = i;
+                        }
+
+                    }
+                    // found indexes of both semesters
+
+                    // TODO: May be able to be reused if moving courses from one different semester table to another
+
+                    */
+
+
+                }
+            }
             if(result.source.index == result.destination.index){
                 // do nothing
             } else{
