@@ -76,6 +76,7 @@ export const MainPage = (): JSX.Element => {
 
         } else if(result.source.droppableId.includes("semester-table") && result.destination?.droppableId.includes("semester-table")){
             // dropping within same semester-table
+            console.log("dropping within semester table");
             if(result.source.index == result.destination.index){
                 // do nothing
             } else{
