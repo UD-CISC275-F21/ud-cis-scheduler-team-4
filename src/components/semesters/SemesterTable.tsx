@@ -6,6 +6,13 @@ import { SemesterCourseContext } from "../../context/SemesterCourseContext";
 import { Course } from "../courses/Course";
 import { Col } from "react-bootstrap";
 
+/*
+
+    @param : integer - semester number
+    @return : Returns string representing semester
+
+*/
+
 export const getSemesterStr = (semesterNum: number): string => {
     switch (semesterNum % 10) {
     case 1:
@@ -18,6 +25,13 @@ export const getSemesterStr = (semesterNum: number): string => {
         return `${semesterNum}th`;
     }
 };
+
+/*
+
+    @param - props - object that contains a key of id(number)
+    @return JSX.Element
+
+*/
 
 export const SemesterTable = (props: { id: number }): JSX.Element =>
     <Col>
