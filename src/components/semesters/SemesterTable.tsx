@@ -1,10 +1,10 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Table, ListGroup } from "react-bootstrap";
-import React from "react";
+import React, { useState } from "react";
 import { Droppable, DroppableProvided } from "react-beautiful-dnd";
-import { SemesterCourseContext } from "../../context/SemesterCourseContext";
 import { Course } from "../courses/Course";
 import { Col } from "react-bootstrap";
+import { Course as CourseType } from "../../interfaces/course";
 
 /*
 
@@ -33,37 +33,43 @@ export const getSemesterStr = (semesterNum: number): string => {
 
 */
 
-export const SemesterTable = (props: { id: number }): JSX.Element =>
-    <Col>
-        <SemesterCourseContext.Consumer>
-            {value =>
-                <Droppable droppableId={`semester-table-${props.id}`}>
-                    {(prov: DroppableProvided) =>
+export const SemesterTable = (props: { semesters: number }): JSX.Element => {
+    const [courses, setCourses] = useState<CourseType[]>([]);
 
-                        <Table >
-                            <thead>
-                                <tr>
-                                    {new Array(props.id+1).fill(0).map((e, i) => <th key={i}>{`${getSemesterStr(i + 1)} semester`}</th>)}
-                                </tr>
-                            </thead>
-                            <tbody {...prov.droppableProps} ref={prov.innerRef}>
-                                <tr>
-                                    <td>
-                                        <ListGroup>
-                                            {
-                                                value.map((e, i) =>
-                                                    <ListGroup.Item key={i}>
-                                                        <Course name={`${e.name}-${e.section}`} ind={i}/>
-                                                    </ListGroup.Item>
-                                                )
-                                            }
-                                        </ListGroup>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </Table>
-                    }
-                </Droppable>
+    return(
+        <>
+            {
+                new Array(props.semesters).fill(0).map((elem, ind) =>
+                    <Col key={`semester-table-col-${ind}`}>
+                        <Droppable droppableId={`semester-table-${ind+1}`}>
+                            {(prov: DroppableProvided) =>
+                                <Table key={`semester-table-table-${ind}`}>
+                                    <thead>
+                                        <tr>
+                                            {`${getSemesterStr(ind+1)}`}
+                                        </tr>
+                                    </thead>
+                                    <tbody {...prov.droppableProps} ref={prov.innerRef}>
+                                        <tr>
+                                            <td>
+                                                <ListGroup>
+                                                    {
+                                                        courses.map((e, i) =>
+                                                            <ListGroup.Item key={i}>
+                                                                <Course name={`${e.name}-${e.section}`} ind={i}/>
+                                                            </ListGroup.Item>
+                                                        )
+                                                    }
+                                                </ListGroup>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </Table>
+                            }
+                        </Droppable>
+                    </Col>
+                )
             }
-        </SemesterCourseContext.Consumer>
-    </Col>;
+        </>
+    );
+};

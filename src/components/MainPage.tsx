@@ -37,6 +37,7 @@ export const MainPage = (): JSX.Element => {
         console.log(result);
         if(result.source.droppableId == "coursecontainer" && result.destination?.droppableId.includes("semester-table")){
             // dragging course from course container to semester table
+            console.log("tripped course -> semester");
             const theCourses = courses;
             const theCourse = theCourses.splice(result.source.index, 1)[0];
             setCourses(theCourses);
@@ -75,59 +76,53 @@ export const MainPage = (): JSX.Element => {
     return (
         <>
             <CourseContext.Provider value={courses}>
-                <SemesterCourseContext.Provider value={semesterCourses}>
-                    <SemesterCountContext.Provider value={semesters} />
-                    <DragDropContext
-                        onDragEnd={onDragEnd}
-                    >
-                        <Container>
-                            <br />
-                            <Row>
-                                <Col>
-                                    {<WelcomeToast display={display}/>}
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col>
-                                    <Badge bg="primary"><h1>Course Scheduler</h1></Badge>
-                                </Col>
-                            </Row>
-                            <br />
-                            <Row>
-                                <Col>
-                                    <Row>
-                                        <Col>
-                                            <DropdownMenu setConcentration={setConcentration}></DropdownMenu>
-                                        </Col>
-                                        <Col>
-                                            <AddSemesterButton setSemesters={setSemesters} semesters={semesters} />
-                                        </Col>
-                                    </Row>
-                                    <br />
-                                    <Row>
-                                        <Col>
-                                            <DisplayCourseList concentration={concentration}></DisplayCourseList>
-                                        </Col>
-                                    </Row>
-                                </Col>
-                            </Row>
-                            <br />
-                            <br />
-                            <Row>
-                                <Col>
-                                    <CourseContainer />
-                                </Col>
-                                <>
-                                    {
-
-                                        new Array(semesters).fill(0).map((e,i) => <SemesterTable id={i} key={i} />)
-
-                                    }
-                                </>
-                            </Row>
-                        </Container>
-                    </DragDropContext>
-                </SemesterCourseContext.Provider>
+                <SemesterCountContext.Provider value={semesters} />
+                <DragDropContext
+                    onDragEnd={onDragEnd}
+                >
+                    <Container>
+                        <br />
+                        <Row>
+                            <Col>
+                                {<WelcomeToast display={display}/>}
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col>
+                                <Badge bg="primary"><h1>Course Scheduler</h1></Badge>
+                            </Col>
+                        </Row>
+                        <br />
+                        <Row>
+                            <Col>
+                                <Row>
+                                    <Col>
+                                        <DropdownMenu setConcentration={setConcentration}></DropdownMenu>
+                                    </Col>
+                                    <Col>
+                                        <AddSemesterButton setSemesters={setSemesters} semesters={semesters} />
+                                    </Col>
+                                </Row>
+                                <br />
+                                <Row>
+                                    <Col>
+                                        <DisplayCourseList concentration={concentration}></DisplayCourseList>
+                                    </Col>
+                                </Row>
+                            </Col>
+                        </Row>
+                        <br />
+                        <br />
+                        <Row>
+                            <Col>
+                                <CourseContainer />
+                            </Col>
+                            <>
+                                <SemesterTable semesters={semesters} />
+                            </>
+                        </Row>
+                    </Container>
+                </DragDropContext>
             </CourseContext.Provider>
         </>
     );
