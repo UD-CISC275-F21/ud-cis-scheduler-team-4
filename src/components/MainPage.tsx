@@ -46,6 +46,7 @@ export const MainPage = (): JSX.Element => {
             for(let i = 0; i < semesterCourses.length; i++){
 
                 const semester = semesterCourses[i];
+                console.log(`semester = ${Object.values(semester)}`);
                 if(semester.semesternum == num){
                     ind = i;
                     break;
@@ -55,13 +56,16 @@ export const MainPage = (): JSX.Element => {
             const tmpSemesterCourses = semesterCourses;
             const tmpSemester = tmpSemesterCourses.splice(ind,1)[0];
             const theCourse = courses.splice(result.source.index,1)[0];
+
             console.log(`tmpSemesterCourses = ${tmpSemesterCourses}`);
             console.log(`tmpSemester = ${tmpSemester}`);
             console.log(`theCourse = ${theCourse}`);
+
             tmpSemester.courses.push(theCourse);
             tmpSemester.courseSetter(tmpSemester.courses);
             tmpSemesterCourses.splice(ind,0,tmpSemester);
             setSemesterCourses(tmpSemesterCourses);
+            
         } else if(result.source.droppableId == "coursecontainer" && result.destination?.droppableId == "coursecontainer"){
 
             // dropping within same container
@@ -77,7 +81,10 @@ export const MainPage = (): JSX.Element => {
         } else if(result.source.droppableId.includes("semester-table") && result.destination?.droppableId.includes("semester-table")){
             // dropping within same semester-table
             console.log("dropping within semester table");
-            if(result.source.droppableId == result.destination.droppableId){
+            // issue occurs here when we move semesters around in the same table and then try introducing another course, method fails
+            if(result.source.droppableId == result.destination.droppableId){ // dropping in exact same container
+                console.log("Dropping in same exact container");
+                console.log(`Semester courses = ${Object.values(semesterCourses)}`);
                 // same destination
                 if(result.source.index == result.destination.index){
                     // do nothing
@@ -94,7 +101,7 @@ export const MainPage = (): JSX.Element => {
                         }
 
                     }
-                    // found where course is located
+                    // found where semester is located
                     const tmpSemesterCourses = [...semesterCourses];
                     const theSemester = tmpSemesterCourses.splice(ind1,1)[0];
                     const theSemesterCourses = theSemester.courses;
@@ -104,34 +111,6 @@ export const MainPage = (): JSX.Element => {
                     theSemester.courses = theSemesterCourses;
                     tmpSemesterCourses.splice(ind1,0,theSemester);
                     setSemesterCourses(tmpSemesterCourses);
-                    //const theCourse = theSemester.splice(result.source.index,1)[0];
-                    //theSemester.splice(result.destination.index,0,theCourse);
-
-
-                    /*
-                    const id1 = result.source.droppableId;
-                    const id2 = result.destination.droppableId;
-                    const num1 = parseInt(id1.substring(id1.lastIndexOf("-")+1));
-                    const num2 = parseInt(id2.substring(id2.lastIndexOf("-")+1));
-                    let ind1 = -1;
-                    let ind2 = -1;
-                    for(let i = 0; i < semesterCourses.length; i++){
-
-                        if(ind1 !== -1 && ind2 !== -1){
-                            break;
-                        } else if(semesterCourses[i].semesternum == num1){
-                            ind1 = i;
-                        } else if(semesterCourses[i].semesternum == num2){
-                            ind2 = i;
-                        }
-
-                    }
-                    // found indexes of both semesters
-
-                    // TODO: May be able to be reused if moving courses from one different semester table to another
-
-                    */
-
 
                 }
             }
