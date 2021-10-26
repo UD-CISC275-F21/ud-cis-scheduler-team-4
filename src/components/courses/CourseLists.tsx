@@ -1,8 +1,31 @@
 import React from "react";
+import CONCENTRATIONS from "../../json/concentrations.json";
+import COURSES from "../../json/courses.json";
+import { Course } from "../../interfaces/course";
+import { CourseContainer } from "./CourseContainer";
+import { Course as CourseType } from "../../interfaces/course";
+
+export function DisplayCourseList({concentration}:{concentration:Concentration}): JSX.Element{
+
+    function StringsToCourses(stringCourses: string[]): CourseType[]{
+        let courses = [];
+        const allCourses: CourseType[] = COURSES as CourseType[];
+        for(let i = 0; i < stringCourses.length; i++){
+
+            for(let i = 0; i < allCourses.length; i++){
+
+                const theCourse = allCourses[i];
+
+            }
+
+        }
+    }
+
 
 export function AIConc(): JSX.Element{
     return <div>
         <h2>Artificial Intelligence and Robotics</h2>
+        <CourseContainer courses={CONCENTRATIONS[0].core}/>
         <p>CISC Core and Concentration:</p>
         <p>College of Engineering Requirements:</p>
         <p>Choose One Lab Sequence:</p>
