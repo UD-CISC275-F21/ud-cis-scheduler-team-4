@@ -21,14 +21,14 @@
         "name":"Bioinformatics",
         "core":["CISC108","CISC181","CISC210","CISC220","CISC260","CISC275","CISC303","CISC320","MATH210","MATH241","CISC355"],
         "capstone":["CISC498","CISC499"],
-        "lab":["CHEM103","CHEM104"],
+        "lab":[["CHEM103","CHEM104"],[]],
         "writing":["ENGL312","ENGL410"], 
         "conc":{
             "general":["BISC207","BISC208","BISC401","CISC372","CISC436","MATH242","MATH349"],
             "stats":["MATH205","MATH350"],
             "systems":[],
             "elective":["Resctricted Elective 1","Restricted Elective 2"],
-            "ochem":[["CHEM213","CHEM215"],["CHEM321","CHEM325"]],
+            "ochem":["CHEM213","CHEM215","CHEM321","CHEM325"],
             "data":["CISC483","CISC484"],
             "cybersecurity":[],
             "track":[]
