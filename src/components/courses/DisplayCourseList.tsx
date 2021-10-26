@@ -8,15 +8,24 @@ import { Course as CourseType } from "../../interfaces/course";
 export function DisplayCourseList({concentration}:{concentration:Concentration}): JSX.Element{
 
     function StringsToCourses(stringCourses: string[]): CourseType[]{
-        let courses = [];
-        for courseName in stringCourses{
-            
+        /**Takes a list of strings, and returns a list of courses by looking in courses.json for matching names. 
+         * Will need to be optimized to not be O^n, since it currently just loops through the entire json.
+         */
+        const courses = [];
+        const allCourses = COURSES as CourseType[];
+        for (const courseName in stringCourses){
+            for (let i=0; i<allCourses.length; i++){
+                const course = allCourses[i];
+                if (courseName === course.name){
+                    courses.push(course);
+                }
+            }
         }
-        return courses
+        return courses;
     }
 
     if (concentration==CONCENTRATIONS[0]){
-        return <AIConc></AIConc>;
+        return <AIConc StringsToCourses={StringsToCourses}></AIConc>;
     } else if (concentration==CONCENTRATIONS[1]){
         return <BioConc></BioConc>;
     } else if (concentration==CONCENTRATIONS[2]){
