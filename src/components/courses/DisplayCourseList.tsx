@@ -34,17 +34,17 @@ export function DisplayCourseList({concentration}:{concentration:Concentration})
     if (concentration==CONCENTRATIONS[0]){
         return <AIConc StringsToCourses={StringsToCourses}></AIConc>;
     } else if (concentration==CONCENTRATIONS[1]){
-        return <BioConc></BioConc>;
+        return <BioConc StringsToCourses={StringsToCourses}></BioConc>;
     } else if (concentration==CONCENTRATIONS[2]){
-        return <SecurityConc></SecurityConc>;
+        return <SecurityConc StringsToCourses={StringsToCourses}></SecurityConc>;
     } else if (concentration==CONCENTRATIONS[3]){
-        return <DataScienceConc></DataScienceConc>;
+        return <DataScienceConc StringsToCourses={StringsToCourses}></DataScienceConc>;
     } else if (concentration==CONCENTRATIONS[4]){
-        return <HPCConc></HPCConc>;
+        return <HPCConc StringsToCourses={StringsToCourses}></HPCConc>;
     } else if (concentration==CONCENTRATIONS[5]){
-        return <NetworksConc></NetworksConc>;
+        return <NetworksConc StringsToCourses={StringsToCourses}></NetworksConc>;
     } else if (concentration==CONCENTRATIONS[6]){
-        return <TheoryConc></TheoryConc>;
+        return <TheoryConc StringsToCourses={StringsToCourses}></TheoryConc>;
     } else {
         return <div></div>;
     }

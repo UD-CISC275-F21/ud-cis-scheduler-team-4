@@ -116,7 +116,6 @@ export const MainPage = (): JSX.Element => {
                                     <br />
                                     <Row>
                                         <Col>
-                                            <DisplayCourseList concentration={concentration}></DisplayCourseList>
                                         </Col>
                                     </Row>
                                 </Col>
@@ -125,7 +124,7 @@ export const MainPage = (): JSX.Element => {
                             <br />
                             <Row>
                                 <Col>
-                                    <CourseContainer courses={[]}/>
+                                    <DisplayCourseList concentration={concentration}></DisplayCourseList>
                                 </Col>
                                 <Col>
                                     <SemesterTable />
