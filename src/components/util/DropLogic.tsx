@@ -86,8 +86,7 @@ export const onDragEnd = (result: DropResult, courses: CourseType[], semesterCou
                 setSemesterCourses(tmpSemesterCourses);
 
             }
-        }
-        if(result.source.index == result.destination.index){
+        } else if(result.source.index == result.destination.index){
             // do nothing
         } else{
             // edit order

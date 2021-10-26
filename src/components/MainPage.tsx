@@ -65,7 +65,7 @@ export const MainPage = (): JSX.Element => {
             tmpSemester.courseSetter(tmpSemester.courses);
             tmpSemesterCourses.splice(ind,0,tmpSemester);
             setSemesterCourses(tmpSemesterCourses);
-            
+
         } else if(result.source.droppableId == "coursecontainer" && result.destination?.droppableId == "coursecontainer"){
 
             // dropping within same container
@@ -87,7 +87,7 @@ export const MainPage = (): JSX.Element => {
                 console.log(`Semester courses = ${Object.values(semesterCourses)}`);
                 // same destination
                 if(result.source.index == result.destination.index){
-                    // do nothing
+                    // do nothing, moving course in same spot
                 } else{
 
                     const id1 = result.source.droppableId;
@@ -95,17 +95,19 @@ export const MainPage = (): JSX.Element => {
                     const num1 = parseInt(id1.substring(id1.lastIndexOf("-")+1));
                     for(let i = 0; i < semesterCourses.length; i++){
 
-                        if(semesterCourses[i].semesternum == num1){
+                        if(semesterCourses[i] !== undefined && semesterCourses[i].semesternum == num1){
                             ind1 = i;
                             break;
                         }
-
+                        
                     }
                     // found where semester is located
                     const tmpSemesterCourses = [...semesterCourses];
                     const theSemester = tmpSemesterCourses.splice(ind1,1)[0];
+
                     const theSemesterCourses = theSemester.courses;
                     const theCourse = theSemesterCourses.splice(result.source.index,1)[0];
+
                     theSemesterCourses.splice(result.destination.index,0,theCourse);
                     theSemester.courseSetter(theSemesterCourses);
                     theSemester.courses = theSemesterCourses;
