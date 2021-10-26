@@ -1,19 +1,17 @@
-import { Course as CourseType } from "../interfaces/course";
-
 export interface Concentration{
     name:string,
-    core:CourseType[],
-    capstone:CourseType[],
-    lab:CourseType[][],
-    writing: CourseType[],
+    core:string[],
+    capstone:string[],
+    lab:string[][],
+    writing: string[],
     conc:{
-        general:CourseType[],
-        stats:CourseType[],
-        systems:CourseType[],
-        elective:CourseType[],
-        ochem:CourseType[],
-        data:CourseType[],
-        cybersecurity:CourseType[],
-        track:CourseType[]
+        general:string[],
+        stats:string[],
+        systems:string[],
+        elective:string[],
+        ochem:string[],
+        data:string[],
+        cybersecurity:string[],
+        track:string[]
     }
 }
