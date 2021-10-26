@@ -2,8 +2,19 @@ import React from "react";
 import { Concentration } from "../../interfaces/concentration";
 import { AIConc, BioConc, SecurityConc, DataScienceConc, HPCConc, NetworksConc, TheoryConc } from "./CourseLists";
 import CONCENTRATIONS from "../../json/concentrations.json";
+import COURSES from "../../json/courses.json";
+import { Course as CourseType } from "../../interfaces/course";
 
 export function DisplayCourseList({concentration}:{concentration:Concentration}): JSX.Element{
+
+    function StringsToCourses(stringCourses: string[]): CourseType[]{
+        let courses = [];
+        for courseName in stringCourses{
+            
+        }
+        return courses
+    }
+
     if (concentration==CONCENTRATIONS[0]){
         return <AIConc></AIConc>;
     } else if (concentration==CONCENTRATIONS[1]){

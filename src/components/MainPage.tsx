@@ -125,7 +125,7 @@ export const MainPage = (): JSX.Element => {
                             <br />
                             <Row>
                                 <Col>
-                                    <CourseContainer />
+                                    <CourseContainer courses={[]}/>
                                 </Col>
                                 <Col>
                                     <SemesterTable />

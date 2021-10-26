@@ -1,8 +1,13 @@
 import React from "react";
+import CONCENTRATIONS from "../../json/concentrations.json";
+import COURSES from "../../json/courses.json";
+import { Course } from "../../interfaces/course";
+import { CourseContainer } from "./CourseContainer";
 
 export function AIConc(): JSX.Element{
     return <div>
         <h2>Artificial Intelligence and Robotics</h2>
+        <CourseContainer courses={CONCENTRATIONS[0].core}/>
         <p>CISC Core and Concentration:</p>
         <p>College of Engineering Requirements:</p>
         <p>Choose One Lab Sequence:</p>
