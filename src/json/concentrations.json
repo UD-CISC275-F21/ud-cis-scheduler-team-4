@@ -10,10 +10,10 @@
             "stats":["MATH205","MATH350"],
             "systems":["CISC361","CISC372"],
             "elective":["CISC436","CISC437","CISC439","CISC889","ELEG404","ELEG387","ELEG418","ELEG487","LING202","LING404","LING418","LING444","LING451","LING455","LING462","MAST632","MATH242","MATH349","MEEG671","PSYC310","PSYC340","PSYC344"],
-            "ochem":[],
-            "data":[],
-            "cybersecurity":[],
-            "track":[]
+            "ochem":[""],
+            "data":[""],
+            "cybersecurity":[""],
+            "track":[""]
         }
     },
 
@@ -21,17 +21,17 @@
         "name":"Bioinformatics",
         "core":["CISC108","CISC181","CISC210","CISC220","CISC260","CISC275","CISC303","CISC320","MATH210","MATH241","CISC355"],
         "capstone":["CISC498","CISC499"],
-        "lab":["CHEM103","CHEM104"],
+        "lab":[["CHEM103","CHEM104"],[""]],
         "writing":["ENGL312","ENGL410"], 
         "conc":{
             "general":["BISC207","BISC208","BISC401","CISC372","CISC436","MATH242","MATH349"],
             "stats":["MATH205","MATH350"],
-            "systems":[],
+            "systems":[""],
             "elective":["Resctricted Elective 1","Restricted Elective 2"],
-            "ochem":[["CHEM213","CHEM215"],["CHEM321","CHEM325"]],
+            "ochem":["CHEM213","CHEM215","CHEM321","CHEM325"],
             "data":["CISC483","CISC484"],
-            "cybersecurity":[],
-            "track":[]
+            "cybersecurity":[""],
+            "track":[""]
         }
 
     },
@@ -45,12 +45,12 @@
         "conc":{
             "general":["CISC361","CISC372","CISC450","CISC464","CISC465","CPEG494"],
             "stats":["MATH205","MATH350"],
-            "systems":[],
+            "systems":[""],
             "elective":["Resctricted Elective 1","Restricted Elective 2"],
-            "ochem":[],
-            "data":[],
+            "ochem":[""],
+            "data":[""],
             "cybersecurity":["CPEG472","CPEG473","CPEG475","CPEG476","CPEG495"],
-            "track":[]
+            "track":[""]
         }
 
     },
@@ -64,12 +64,12 @@
         "conc":{
             "general":["CISC304","CISC372","CISC437","CISC481","MATH205","MATH242","MATH243","MATH349","CISC483"],
             "stats":["CISC410","MATH302","MATH350"],
-            "systems":[],
+            "systems":[""],
             "elective":["Resctricted Elective 1"],
-            "ochem":[],
-            "data":[],
-            "cybersecurity":[],
-            "track":[]
+            "ochem":[""],
+            "data":[""],
+            "cybersecurity":[""],
+            "track":[""]
         }
     },
 
@@ -81,13 +81,13 @@
         "writing":["ENGL312","ENGL410"], 
         "conc":{
             "general":["CISC360","CISC361","CISC372","CISC450","CISC471","MATH242","MATH243"],
-            "stats":[],
-            "systems":[],
-            "elective":[],
-            "ochem":[],
-            "data":[],
-            "cybersecurity":[],
-            "track":[]
+            "stats":[""],
+            "systems":[""],
+            "elective":[""],
+            "ochem":[""],
+            "data":[""],
+            "cybersecurity":[""],
+            "track":[""]
         }
 
     },
@@ -103,8 +103,8 @@
             "stats":["MATH205","MATH350"],
             "systems":["CISC437","CISC453","CISC459","CISC464","CISC474","CISC475","CISC479","CPEG473","CPEG497"],
             "elective":["Resctricted Elective 1","Restricted Elective 2"],
-            "ochem":[],
-            "data":[],
+            "ochem":[""],
+            "data":[""],
             "cybersecurity":["CISC464","CISC465","CPEG470","CPEG473","CPEG475","CPEG476","CPEG497"],
             "track":["Track 1", "Track 2", "Track 3", "Track 4", "Track 5"]
         }
@@ -120,11 +120,11 @@
         "conc":{
             "general":["CISC304","CISC401","MATH242","MATH349"],
             "stats":["MATH205","MATH350"],
-            "systems":[],
-            "elective":[],
-            "ochem":[],
-            "data":[],
-            "cybersecurity":[],
+            "systems":[""],
+            "elective":[""],
+            "ochem":[""],
+            "data":[""],
+            "cybersecurity":[""],
             "track":["Track 1", "Track 2", "Track 3", "Track 4"]
         }
 
