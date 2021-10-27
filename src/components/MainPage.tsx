@@ -6,7 +6,6 @@ import React, { useState, useEffect } from "react";
 import {DropdownMenu} from "./util/DropdownMenu";
 import { DisplayCourseList } from "./courses/DisplayCourseList";
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
-import { CourseContainer } from "./courses/CourseContainer";
 import { CourseContext } from "../context/CourseContext";
 import COURSES from "../json/courses.json";
 import { Course as CourseType } from "../interfaces/course";
@@ -116,7 +115,6 @@ export const MainPage = (): JSX.Element => {
                                     <br />
                                     <Row>
                                         <Col>
-                                            <DisplayCourseList concentration={concentration}></DisplayCourseList>
                                         </Col>
                                     </Row>
                                 </Col>
@@ -125,7 +123,7 @@ export const MainPage = (): JSX.Element => {
                             <br />
                             <Row>
                                 <Col>
-                                    <CourseContainer />
+                                    <DisplayCourseList concentration={concentration}></DisplayCourseList>
                                 </Col>
                                 <Col>
                                     <SemesterTable />
