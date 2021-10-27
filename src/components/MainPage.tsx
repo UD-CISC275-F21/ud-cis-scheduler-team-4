@@ -2,6 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Row, Col, Badge } from "react-bootstrap";
 import { WelcomeToast } from "./util/Notifications";
 import { SemesterTable } from "./semesters/SemesterTable";
+import { AddSemesterButton } from "./semesters/AddSemesterButton";
 import React, { useState, useEffect } from "react";
 import {DropdownMenu} from "./util/DropdownMenu";
 import { DisplayCourseList } from "./courses/DisplayCourseList";
@@ -9,35 +10,59 @@ import { DragDropContext, DropResult } from "react-beautiful-dnd";
 import { CourseContext } from "../context/CourseContext";
 import COURSES from "../json/courses.json";
 import { Course as CourseType } from "../interfaces/course";
-import { SemesterCourseContext } from "../context/SemesterCourseContext";
 import { Concentration } from "../interfaces/concentration";
 import CONCENTRATIONS from "../json/concentrations.json";
+import { SemesterCountContext } from "../context/SemesterCountContext";
+import { SemesterType } from "../interfaces/semester";
 
 export const MainPage = (): JSX.Element => {
     const [concentration, setConcentration] = useState<Concentration>(CONCENTRATIONS[0] as Concentration);
     const [courses, setCourses] = useState<CourseType[]>(COURSES as CourseType[]);
-    const [semesterCourses, setSemesterCourses] = useState<CourseType[]>([]);
+    const [semesterCourses, setSemesterCourses] = useState<SemesterType[]>([]);
     const [display, setDisplay] = useState<boolean>(false);
+    const [semesters, setSemesters] = useState<number>(1);
+
+    // maybe make an object like indexes are the semesters so {1: ["CISC101","CISC106"]}
 
     useEffect(() => {
         setDisplay(true);
         setTimeout(() => {
             setDisplay(false);
-        },4500);
+        },100000);
     },[]);  
 
     const onDragEnd = (result: DropResult) => {
         if (!result.destination) {
             return;
         }
-
-        if(result.source.droppableId == "coursecontainer" && result.destination?.droppableId == "semester-table"){
+        console.log(result);
+        if(result.source.droppableId == "coursecontainer" && result.destination?.droppableId.includes("semester-table")){
             // dragging course from course container to semester table
-            const theCourses = courses;
-            const theCourse = theCourses.splice(result.source.index, 1)[0];
-            setCourses(theCourses);
+            console.log("tripped course -> semester");
+            const id = result.destination.droppableId;
+            const num = parseInt(id.substring(id.lastIndexOf("-")+1));
+            let ind = 0;
+            for(let i = 0; i < semesterCourses.length; i++){
+
+                const semester = semesterCourses[i];
+                console.log(`semester = ${Object.values(semester)}`);
+                if(semester.semesternum == num){
+                    ind = i;
+                    break;
+                }
+
+            }
             const tmpSemesterCourses = semesterCourses;
-            tmpSemesterCourses.splice(result.destination?.index,0,theCourse);
+            const tmpSemester = tmpSemesterCourses.splice(ind,1)[0];
+            const theCourse = courses.splice(result.source.index,1)[0];
+
+            console.log(`tmpSemesterCourses = ${tmpSemesterCourses}`);
+            console.log(`tmpSemester = ${tmpSemester}`);
+            console.log(`theCourse = ${theCourse}`);
+
+            tmpSemester.courses.push(theCourse);
+            tmpSemester.courseSetter(tmpSemester.courses);
+            tmpSemesterCourses.splice(ind,0,tmpSemester);
             setSemesterCourses(tmpSemesterCourses);
 
         } else if(result.source.droppableId == "coursecontainer" && result.destination?.droppableId == "coursecontainer"){
@@ -52,8 +77,44 @@ export const MainPage = (): JSX.Element => {
                 setCourses(tmpCourses);
             }
 
-        } else if(result.source.droppableId == "semester-table" && result.destination?.droppableId == "semester-table"){
+        } else if(result.source.droppableId.includes("semester-table") && result.destination?.droppableId.includes("semester-table")){
             // dropping within same semester-table
+            console.log("dropping within semester table");
+            // issue occurs here when we move semesters around in the same table and then try introducing another course, method fails
+            if(result.source.droppableId == result.destination.droppableId){ // dropping in exact same container
+                console.log("Dropping in same exact container");
+                console.log(`Semester courses = ${Object.values(semesterCourses)}`);
+                // same destination
+                if(result.source.index == result.destination.index){
+                    // do nothing, moving course in same spot
+                } else{
+
+                    const id1 = result.source.droppableId;
+                    let ind1 = -1;
+                    const num1 = parseInt(id1.substring(id1.lastIndexOf("-")+1));
+                    for(let i = 0; i < semesterCourses.length; i++){
+
+                        if(semesterCourses[i] !== undefined && semesterCourses[i].semesternum == num1){
+                            ind1 = i;
+                            break;
+                        }
+                        
+                    }
+                    // found where semester is located
+                    const tmpSemesterCourses = [...semesterCourses];
+                    const theSemester = tmpSemesterCourses.splice(ind1,1)[0];
+
+                    const theSemesterCourses = theSemester.courses;
+                    const theCourse = theSemesterCourses.splice(result.source.index,1)[0];
+
+                    theSemesterCourses.splice(result.destination.index,0,theCourse);
+                    theSemester.courseSetter(theSemesterCourses);
+                    theSemester.courses = theSemesterCourses;
+                    tmpSemesterCourses.splice(ind1,0,theSemester);
+                    setSemesterCourses(tmpSemesterCourses);
+
+                }
+            }
             if(result.source.index == result.destination.index){
                 // do nothing
             } else{
@@ -66,23 +127,6 @@ export const MainPage = (): JSX.Element => {
                 setSemesterCourses(tmpSemesterCourses);
             }
         }
-
-        /*
-        console.log(result);
-        const theCourses = courses;
-        const theCourse = theCourses.splice(result.source.index, 1)[0];
-        console.log(`the course = ${Object.values(theCourse)}`);
-        if (result.destination.droppableId === "coursecontainer") {
-            theCourses.splice(result.destination?.index, 0, theCourse);
-            setCourses(theCourses);
-        } else if (result.destination.droppableId === "semester-table") {
-            const tmpSemesterCourses = semesterCourses;
-            tmpSemesterCourses.splice(result.destination?.index, 0, theCourse);
-            setSemesterCourses(tmpSemesterCourses);
-            setCourses(theCourses);
-            console.log("running proper func");
-        }
-        */
     };
 
     return (
