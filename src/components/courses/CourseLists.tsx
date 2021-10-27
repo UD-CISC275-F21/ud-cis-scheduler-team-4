@@ -78,9 +78,11 @@ export function DataScienceConc({StringsToCourses}:
     </div>;
 }
 
-export function HPCConc(): JSX.Element{
+export function HPCConc({StringsToCourses}:
+    {StringsToCourses: (stringCourses:string[])=>Course[]}): JSX.Element{
     return <div>
         <p>Come back and figure this one out later</p>
+        <CourseContainer courses={StringsToCourses(CONCENTRATIONS[2].writing)}/>
     </div>;
 }
 
