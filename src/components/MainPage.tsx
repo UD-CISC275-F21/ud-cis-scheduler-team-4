@@ -11,8 +11,8 @@ import COURSES from "../json/courses.json";
 import { Course as CourseType } from "../interfaces/course";
 import { Concentration } from "../interfaces/concentration";
 import CONCENTRATIONS from "../json/concentrations.json";
-import { SemesterCourseContext } from "../context/SemesterCourseContext";
 import { SemesterType } from "../interfaces/semester";
+import { AddSemesterButton } from "./semesters/AddSemesterButton";
 
 export const MainPage = (): JSX.Element => {
     const [concentration, setConcentration] = useState<Concentration>(CONCENTRATIONS[0] as Concentration);
@@ -157,6 +157,7 @@ export const MainPage = (): JSX.Element => {
                                 <br />
                                 <Row>
                                     <Col>
+                                        <AddSemesterButton setSemesters={setSemesters} semesters={semesters} />
                                     </Col>
                                 </Row>
                             </Col>
