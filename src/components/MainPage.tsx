@@ -18,14 +18,14 @@ export const MainPage = (): JSX.Element => {
     const [semesterCourses, setSemesterCourses] = useState<SemesterType[]>([]);
     const [display, setDisplay] = useState<boolean>(false);
     const [semesters, setSemesters] = useState<number>(1);
-    const [concentrationContainers, setConcentrationContainers] = useState<ConcentrationContainerType[]>([]);
+    const [concentrationContainers, setConcentrationContainers] = useState<ConcentrationContainerType[]>([]); // is initialized to the first concentration container, contains all of the parts of the concentration, outlined in the comment below
     /*
 
     {
 
-        "name": core
-        courses: []
-        setCourses: []
+        "name": "core" <--- what part of the concentration it is
+        courses: [] <--- the courses in the part
+        setCourses: [] <--- the way to update the courses in the part when we drag into the semester
 
     }
 
