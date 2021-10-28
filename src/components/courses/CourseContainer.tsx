@@ -2,10 +2,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { ListGroup } from "react-bootstrap";
 import { Course } from "./Course";
 import { Droppable } from "react-beautiful-dnd";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Course as CourseType } from "../../interfaces/course";
-import { ConcentrationContainerType } from "../../interfaces/concentrationcontainer";
-
 
 export const CourseContainer = (props: { courses: CourseType[], name: string}): JSX.Element => {
 

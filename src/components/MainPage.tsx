@@ -11,7 +11,6 @@ import CONCENTRATIONS from "../json/concentrations.json";
 import { SemesterType } from "../interfaces/semester";
 import { AddSemesterButton } from "./semesters/AddSemesterButton";
 import { ConcentrationContainerType } from "../interfaces/concentrationcontainer";
-import { Course as CourseType } from "../interfaces/course";
 
 export const MainPage = (): JSX.Element => {
     const [concentration, setConcentration] = useState<Concentration>(CONCENTRATIONS[0] as Concentration);

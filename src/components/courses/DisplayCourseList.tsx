@@ -24,17 +24,17 @@ export function DisplayCourseList(props: {concentration: Concentration, setConce
     if (props.concentration==CONCENTRATIONS[0]){
         return <AIConc StringsToCourses={StringsToCourses} setConcentrationContainers={props.setConcentrationContainers}></AIConc>;
     } else if (props.concentration==CONCENTRATIONS[1]){
-        return <BioConc StringsToCourses={StringsToCourses}></BioConc>;
+        return <BioConc StringsToCourses={StringsToCourses} setConcentrationContainers={props.setConcentrationContainers}></BioConc>;
     } else if (props.concentration==CONCENTRATIONS[2]){
-        return <SecurityConc StringsToCourses={StringsToCourses}></SecurityConc>;
+        return <SecurityConc StringsToCourses={StringsToCourses} setConcentrationContainers={props.setConcentrationContainers} ></SecurityConc>;
     } else if (props.concentration==CONCENTRATIONS[3]){
-        return <DataScienceConc StringsToCourses={StringsToCourses}></DataScienceConc>;
+        return <DataScienceConc StringsToCourses={StringsToCourses} setConcentrationContainers={props.setConcentrationContainers}></DataScienceConc>;
     } else if (props.concentration==CONCENTRATIONS[4]){
-        return <HPCConc StringsToCourses={StringsToCourses}></HPCConc>;
+        return <HPCConc StringsToCourses={StringsToCourses} setConcentrationContainers={props.setConcentrationContainers}></HPCConc>;
     } else if (props.concentration==CONCENTRATIONS[5]){
-        return <NetworksConc StringsToCourses={StringsToCourses}></NetworksConc>;
+        return <NetworksConc StringsToCourses={StringsToCourses} setConcentrationContainers={props.setConcentrationContainers}></NetworksConc>;
     } else if (props.concentration==CONCENTRATIONS[6]){
-        return <TheoryConc StringsToCourses={StringsToCourses}></TheoryConc>;
+        return <TheoryConc StringsToCourses={StringsToCourses} setConcentrationContainers={props.setConcentrationContainers}></TheoryConc>;
     } else {
         return <div></div>;
     }
