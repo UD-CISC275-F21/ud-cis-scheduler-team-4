@@ -4,8 +4,9 @@ import { AIConc, BioConc, SecurityConc, DataScienceConc, HPCConc, NetworksConc, 
 import CONCENTRATIONS from "../../json/concentrations.json";
 import COURSES from "../../json/courses.json";
 import { Course as CourseType } from "../../interfaces/course";
+import { ConcentrationContainerType } from "../../interfaces/concentrationcontainer";
 
-export function DisplayCourseList({concentration}:{concentration:Concentration}): JSX.Element{
+export function DisplayCourseList(props: {concentration: Concentration, concentrationContainers: ConcentrationContainerType[], setConcentrationContainers: React.Dispatch<React.SetStateAction<ConcentrationContainerType[]>> }): JSX.Element{
 
     function StringsToCourses(stringCourses: string[]): CourseType[]{
         /**Takes a list of strings, and returns a list of courses by looking in courses.json for matching names. 
@@ -20,19 +21,19 @@ export function DisplayCourseList({concentration}:{concentration:Concentration})
 
     }
 
-    if (concentration==CONCENTRATIONS[0]){
-        return <AIConc StringsToCourses={StringsToCourses}></AIConc>;
-    } else if (concentration==CONCENTRATIONS[1]){
+    if (props.concentration==CONCENTRATIONS[0]){
+        return <AIConc StringsToCourses={StringsToCourses} concentrationContainers={props.concentrationContainers} setConcentrationContainers={props.setConcentrationContainers}></AIConc>;
+    } else if (props.concentration==CONCENTRATIONS[1]){
         return <BioConc StringsToCourses={StringsToCourses}></BioConc>;
-    } else if (concentration==CONCENTRATIONS[2]){
+    } else if (props.concentration==CONCENTRATIONS[2]){
         return <SecurityConc StringsToCourses={StringsToCourses}></SecurityConc>;
-    } else if (concentration==CONCENTRATIONS[3]){
+    } else if (props.concentration==CONCENTRATIONS[3]){
         return <DataScienceConc StringsToCourses={StringsToCourses}></DataScienceConc>;
-    } else if (concentration==CONCENTRATIONS[4]){
+    } else if (props.concentration==CONCENTRATIONS[4]){
         return <HPCConc StringsToCourses={StringsToCourses}></HPCConc>;
-    } else if (concentration==CONCENTRATIONS[5]){
+    } else if (props.concentration==CONCENTRATIONS[5]){
         return <NetworksConc StringsToCourses={StringsToCourses}></NetworksConc>;
-    } else if (concentration==CONCENTRATIONS[6]){
+    } else if (props.concentration==CONCENTRATIONS[6]){
         return <TheoryConc StringsToCourses={StringsToCourses}></TheoryConc>;
     } else {
         return <div></div>;

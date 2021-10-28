@@ -6,20 +6,30 @@ import React, { useState, useEffect } from "react";
 import {DropdownMenu} from "./util/DropdownMenu";
 import { DisplayCourseList } from "./courses/DisplayCourseList";
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
-import { CourseContext } from "../context/CourseContext";
-import COURSES from "../json/courses.json";
-import { Course as CourseType } from "../interfaces/course";
 import { Concentration } from "../interfaces/concentration";
 import CONCENTRATIONS from "../json/concentrations.json";
 import { SemesterType } from "../interfaces/semester";
 import { AddSemesterButton } from "./semesters/AddSemesterButton";
+import { ConcentrationContainerType } from "../interfaces/concentrationcontainer";
 
 export const MainPage = (): JSX.Element => {
     const [concentration, setConcentration] = useState<Concentration>(CONCENTRATIONS[0] as Concentration);
-    const [courses, setCourses] = useState<CourseType[]>(COURSES as CourseType[]);
     const [semesterCourses, setSemesterCourses] = useState<SemesterType[]>([]);
     const [display, setDisplay] = useState<boolean>(false);
     const [semesters, setSemesters] = useState<number>(1);
+    const [concentrationContainers, setConcentrationContainers] = useState<ConcentrationContainerType[]>([]);
+    /*
+
+    {
+
+        "name": core
+        courses: []
+        setCourses: []
+
+    }
+
+
+    */
 
     // maybe make an object like indexes are the semesters so {1: ["CISC101","CISC106"]}
 
@@ -61,51 +71,49 @@ export const MainPage = (): JSX.Element => {
 
     return (
         <>
-            <CourseContext.Provider value={courses}>
-                <DragDropContext
-                    onDragEnd={onDragEnd}
-                >
-                    <Container>
-                        <br />
-                        <Row>
-                            <Col>
-                                {<WelcomeToast display={display}/>}
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col>
-                                <Badge bg="primary"><h1>Course Scheduler</h1></Badge>
-                            </Col>
-                        </Row>
-                        <br />
-                        <Row>
-                            <Col>
-                                <Row>
-                                    <Col>
-                                        <DropdownMenu setConcentration={setConcentration}></DropdownMenu>
-                                    </Col>
-                                </Row>
-                                <br />
-                                <Row>
-                                    <Col>
-                                        <AddSemesterButton setSemesters={setSemesters} semesters={semesters} />
-                                    </Col>
-                                </Row>
-                            </Col>
-                        </Row>
-                        <br />
-                        <br />
-                        <Row>
-                            <Col>
-                                <DisplayCourseList concentration={concentration}></DisplayCourseList>
-                            </Col>
-                            <Col>
-                                <SemesterTable semesters={semesters} semestersCourses={semesterCourses} setSemesterCourses={setSemesterCourses}/>
-                            </Col>
-                        </Row>
-                    </Container>
-                </DragDropContext>
-            </CourseContext.Provider>
+            <DragDropContext
+                onDragEnd={onDragEnd}
+            >
+                <Container>
+                    <br />
+                    <Row>
+                        <Col>
+                            {<WelcomeToast display={display}/>}
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <Badge bg="primary"><h1>Course Scheduler</h1></Badge>
+                        </Col>
+                    </Row>
+                    <br />
+                    <Row>
+                        <Col>
+                            <Row>
+                                <Col>
+                                    <DropdownMenu setConcentration={setConcentration}></DropdownMenu>
+                                </Col>
+                            </Row>
+                            <br />
+                            <Row>
+                                <Col>
+                                    <AddSemesterButton setSemesters={setSemesters} semesters={semesters} />
+                                </Col>
+                            </Row>
+                        </Col>
+                    </Row>
+                    <br />
+                    <br />
+                    <Row>
+                        <Col>
+                            <DisplayCourseList concentration={concentration} concentrationContainers={concentrationContainers} setConcentrationContainers={setConcentrationContainers} ></DisplayCourseList>
+                        </Col>
+                        <Col>
+                            <SemesterTable semesters={semesters} semestersCourses={semesterCourses} setSemesterCourses={setSemesterCourses}/>
+                        </Col>
+                    </Row>
+                </Container>
+            </DragDropContext>
         </>
     );
 };
