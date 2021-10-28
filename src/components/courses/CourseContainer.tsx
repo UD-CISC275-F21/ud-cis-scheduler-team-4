@@ -7,18 +7,8 @@ import { Course as CourseType } from "../../interfaces/course";
 import { ConcentrationContainerType } from "../../interfaces/concentrationcontainer";
 
 
-export const CourseContainer = (props: { courses: CourseType[], name: string, concentrationContainers: ConcentrationContainerType[], setConcentrationContainers: React.Dispatch<React.SetStateAction<ConcentrationContainerType[]>> }): JSX.Element => {
-    const [containerCourses, setContainerCourses] = useState<CourseType[]>(props.courses);
-    useEffect(() => {
+export const CourseContainer = (props: { courses: CourseType[], name: string}): JSX.Element => {
 
-        console.log(`initializing ${props.name}`);
-        const tmpConContainers = props.concentrationContainers;
-        tmpConContainers.push({name: props.name, courses: containerCourses, setCourses: setContainerCourses});
-
-    },[]);
-    useEffect(() => {
-        console.log("triggered");
-    },containerCourses);
     return(
         <>
             <Droppable droppableId={props.name}>
