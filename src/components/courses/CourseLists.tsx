@@ -7,7 +7,8 @@ import { useState, useEffect } from "react";
 import { Course as CourseType } from "../../interfaces/course";
 
 
-export function AIConc(props: {StringsToCourses: (stringCourses:string[]) => Course[], concentrationContainers: ConcentrationContainerType[], setConcentrationContainers: React.Dispatch<React.SetStateAction<ConcentrationContainerType[]>>} ): JSX.Element{
+export function AIConc(props: {StringsToCourses: (stringCourses:string[]) => Course[], setConcentrationContainers: React.Dispatch<React.SetStateAction<ConcentrationContainerType[]>>} ): JSX.Element{
+    
     const [coreCourses, setCoreCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[0].core));
     const [capstone1Courses,setCapstone1Courses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[0].capstone));
     const [general1Courses,setGeneral1Courses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[0].conc.general));

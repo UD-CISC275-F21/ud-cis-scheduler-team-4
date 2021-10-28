@@ -6,7 +6,7 @@ import COURSES from "../../json/courses.json";
 import { Course as CourseType } from "../../interfaces/course";
 import { ConcentrationContainerType } from "../../interfaces/concentrationcontainer";
 
-export function DisplayCourseList(props: {concentration: Concentration, concentrationContainers: ConcentrationContainerType[], setConcentrationContainers: React.Dispatch<React.SetStateAction<ConcentrationContainerType[]>> }): JSX.Element{
+export function DisplayCourseList(props: {concentration: Concentration, setConcentrationContainers: React.Dispatch<React.SetStateAction<ConcentrationContainerType[]>> }): JSX.Element{
 
     function StringsToCourses(stringCourses: string[]): CourseType[]{
         /**Takes a list of strings, and returns a list of courses by looking in courses.json for matching names. 
@@ -22,7 +22,7 @@ export function DisplayCourseList(props: {concentration: Concentration, concentr
     }
 
     if (props.concentration==CONCENTRATIONS[0]){
-        return <AIConc StringsToCourses={StringsToCourses} concentrationContainers={props.concentrationContainers} setConcentrationContainers={props.setConcentrationContainers}></AIConc>;
+        return <AIConc StringsToCourses={StringsToCourses} setConcentrationContainers={props.setConcentrationContainers}></AIConc>;
     } else if (props.concentration==CONCENTRATIONS[1]){
         return <BioConc StringsToCourses={StringsToCourses}></BioConc>;
     } else if (props.concentration==CONCENTRATIONS[2]){
