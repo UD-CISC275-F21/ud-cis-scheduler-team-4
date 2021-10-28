@@ -74,6 +74,40 @@ export const MainPage = (): JSX.Element => {
             tmpContainer.setCourses(tmpConcCourses);
             tmpConcentrationContainers.splice(ind1,0,tmpContainer)[0];
             setConcentrationContainers(tmpConcentrationContainers);
+            
+            // move spliced course to semester table
+            // get semester number from id
+            const tmpSemesterCourses = [...semesterCourses];
+            const semesterDropId = result.destination.droppableId;
+            const semesterNumber = parseInt(semesterDropId.substring(semesterDropId.lastIndexOf("-")+1));
+            let tmpSemester: SemesterType = [...tmpSemesterCourses][0];
+            let ind2 = -1;
+            for(let i = 0; i < semesterCourses.length; i++){
+
+                if(semesterCourses[i].semesternum == semesterNumber){
+                    tmpSemester = tmpSemesterCourses.splice(i,1)[0];
+                    ind2 = i;
+                    break;
+                }
+
+            }
+            
+            const tmpSemesterCourses2 = [...tmpSemester.courses]; 
+            if(tmpSemesterCourses2.length === 0){
+                tmpSemesterCourses2.push(tmpConcCourse);
+                tmpSemester.courses = tmpSemesterCourses2;
+                tmpSemester.courseSetter(tmpSemesterCourses2);
+                tmpSemesterCourses.splice(ind2,0,tmpSemester);
+                setSemesterCourses(tmpSemesterCourses);
+            } else{
+
+                tmpSemesterCourses2.splice(result.destination.index,0,tmpConcCourse);
+                tmpSemester.courses = tmpSemesterCourses2;
+                tmpSemester.courseSetter(tmpSemesterCourses2);
+                tmpSemesterCourses.splice(ind2,0,tmpSemester);
+                setSemesterCourses(tmpSemesterCourses);
+
+            }
 
         }
     };
