@@ -7,7 +7,6 @@ export function AIConc({StringsToCourses}:
     {StringsToCourses: (stringCourses:string[])=>Course[]}): JSX.Element{
     return <div>
         <h2>Artificial Intelligence and Robotics</h2>
-        <CourseContainer courses={CONCENTRATIONS[0].core}/>
         <p>CISC Core and Concentration:</p>
         <CourseContainer courses={StringsToCourses(CONCENTRATIONS[0].core)}/>
         <CourseContainer courses={StringsToCourses(CONCENTRATIONS[0].capstone)}/>
