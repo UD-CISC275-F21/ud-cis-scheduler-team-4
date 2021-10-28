@@ -12,23 +12,19 @@ export function DisplayCourseList({concentration}:{concentration:Concentration})
          * Will need to be optimized to not be O^n, since it currently just loops through the entire json.
          */
         console.log("Entered conversion function");
-        const courses = [];
+        console.log(`String courses = ${stringCourses}`);
+
+
+
+        const courses: CourseType[] = [];
         const allCourses = COURSES as CourseType[];
-        for (let i=0; i<stringCourses.length; i++){
-            const courseName = stringCourses[i];
-            for (let i=0; i<allCourses.length; i++){
-                console.log("Looping through all courses");
-                const course = allCourses[i];
-                console.log(course.name);
-                console.log(courseName);
-                if (courseName === course.name){
-                    courses.push(course);
-                    console.log("Added a course to courses");
-                }
-            }
-            console.log(courses);
-        }
-        return courses;
+
+        const tmparr: CourseType[] = stringCourses.map(e => [...allCourses.filter(i => i.name == e)]).flat(2);
+
+        console.log(tmparr);
+
+        return tmparr;
+        
     }
 
     if (concentration==CONCENTRATIONS[0]){
