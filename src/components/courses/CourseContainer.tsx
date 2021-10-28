@@ -16,6 +16,9 @@ export const CourseContainer = (props: { courses: CourseType[], name: string, co
         tmpConContainers.push({name: props.name, courses: containerCourses, setCourses: setContainerCourses});
 
     },[]);
+    useEffect(() => {
+        console.log("triggered");
+    },containerCourses);
     return(
         <>
             <Droppable droppableId={props.name}>

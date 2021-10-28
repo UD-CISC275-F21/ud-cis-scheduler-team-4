@@ -11,6 +11,7 @@ import CONCENTRATIONS from "../json/concentrations.json";
 import { SemesterType } from "../interfaces/semester";
 import { AddSemesterButton } from "./semesters/AddSemesterButton";
 import { ConcentrationContainerType } from "../interfaces/concentrationcontainer";
+import { Course as CourseType } from "../interfaces/course";
 
 export const MainPage = (): JSX.Element => {
     const [concentration, setConcentration] = useState<Concentration>(CONCENTRATIONS[0] as Concentration);
@@ -43,6 +44,7 @@ export const MainPage = (): JSX.Element => {
     const onDragEnd = (result: DropResult) => {
         console.log(semesterCourses);
         console.log(result);
+        console.log(concentrationContainers);
 
         if (!result.destination) {
             return;
@@ -50,11 +52,14 @@ export const MainPage = (): JSX.Element => {
             const resDest = result.destination.droppableId;
             const semesterNumber = parseInt(resDest.substring(resDest.lastIndexOf("-")+1));
             let theSemester: SemesterType = semesterCourses[0];
+            let ind2 = 0;
+            const tmpSemesterCourses = semesterCourses;
             for(let i = 0; i < semesterCourses.length; i++){
 
-                theSemester = semesterCourses[i];
-                if(theSemester.semesternum == semesterNumber){
+                if(tmpSemesterCourses[i].semesternum == semesterNumber){
                     // found semester
+                    ind2 = i;
+                    theSemester = tmpSemesterCourses.splice(i,1)[0];
                     break;
                 }
 
@@ -62,9 +67,42 @@ export const MainPage = (): JSX.Element => {
             const foundSemesterCourses = theSemester.courses;
             // got courses from semester found
             // now we have the semester
-            if(result.source.droppableId == "core"){
-                console.log("dragging from the core container");
+            const tmpContainers = concentrationContainers;
+            let container: ConcentrationContainerType = concentrationContainers[0];
+            let ind = 0;
+            for(let i = 0; i < concentrationContainers.length; i++){
+
+                if(concentrationContainers[i].name == result.source.droppableId){
+
+                    ind = i;
+                    container = tmpContainers.splice(ind,1)[0];
+                    break;
+
+                }
+
             }
+
+            // got container
+            const theCourses: CourseType[] = container.courses;
+            // removed course from concentration container
+            const theCourse: CourseType = theCourses.splice(result.source.index,1)[0];
+            // add course to semester table
+            if(theSemester.courses.length == 0){
+                theSemester.courses.push(theCourse);
+            } else{
+                theSemester.courses.splice(result.destination.index,0,theCourse);
+            }
+            // added course to semester table
+            // set concentration containers courses
+            container.setCourses(theCourses);
+            // add container back into tmpContainers
+            tmpContainers.splice(ind,0,container);
+            // set concentration containers
+            setConcentrationContainers(tmpContainers);
+            // set semester course
+            tmpSemesterCourses.splice(ind2,0,theSemester);
+            setSemesterCourses(tmpSemesterCourses);
+
             
         }
     };
