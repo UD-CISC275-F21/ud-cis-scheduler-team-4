@@ -2105,7 +2105,268 @@
 		"credits": 3,
 		"lab": false
 
-	}
+	},
+    {
+        "name": "MATH010",
+        "section": 10,
+        "prereqs": [],
+        "coreqs": [],
+        "credits": 3,
+        "lab": false
+    },
+    {
+        "name": "MATH115",
+        "section": 10,
+        "prereqs": [
+            {
+                "name": "MATH010",
+                "section": 10,
+                "prereqs": [],
+                "coreqs": [],
+                "credits": 3,
+                "lab": false
+            }
+        ],
+        "coreqs": [],
+        "credits": 3,
+        "lab": false
+    },
+    {
+
+        "name": "MATH117",
+        "section": 10,
+        "prereqs": [
+            {
+                "name": "MATH010",
+                "section": 10,
+                "prereqs": [],
+                "coreqs": [],
+                "credits": 3,
+                "lab": false
+            }
+        ],
+        "coreqs": [],
+        "credits": 3,
+        "lab": false
+
+
+    },
+    {
+
+        "name": "MATH210",
+        "section": 10,
+        "prereqs": [],
+        "coreqs": [
+            {
+
+                "name": "MATH241",
+                "section": 11,
+                "prereqs": [
+                    {
+        
+                        "name": "MATH117",
+                        "section": 10,
+                        "prereqs": [
+                            {
+                                "name": "MATH010",
+                                "section": 10,
+                                "prereqs": [],
+                                "coreqs": [],
+                                "credits": 3,
+                                "lab": false
+                            }
+                        ],
+                        "coreqs": [],
+                        "credits": 3,
+                        "lab": false
+                
+                
+                    }
+                ],
+                "coreqs": [],
+                "credits": 3,
+                "lab": true
+        
+        
+            },
+            {
+
+                "name": "MATH242",
+                "section": 10,
+                "prereqs": [
+                    {
+                        "name": "MATH232",
+                        "section": 10,
+                        "prereqs": [
+                            "MATH231"
+                        ],
+                        "coreqs": [],
+                        "credits": 3,
+                        "lab": false
+                    },
+                    {
+        
+                        "name": "MATH241",
+                        "section": 11,
+                        "prereqs": [
+                            {
+                
+                                "name": "MATH117",
+                                "section": 10,
+                                "prereqs": [
+                                    {
+                                        "name": "MATH010",
+                                        "section": 10,
+                                        "prereqs": [],
+                                        "coreqs": [],
+                                        "credits": 3,
+                                        "lab": false
+                                    }
+                                ],
+                                "coreqs": [],
+                                "credits": 3,
+                                "lab": false
+                        
+                        
+                            }
+                        ],
+                        "coreqs": [],
+                        "credits": 3,
+                        "lab": true
+                
+                
+                    }
+                ],
+                "coreqs": [],
+                "credits": 3,
+                "lab": true
+        
+            },
+            {
+                "name": "MATH232",
+                "section": 10,
+                "prereqs": [
+                    "MATH231"
+                ],
+                "coreqs": [],
+                "credits": 3,
+                "lab": false
+            }
+        ],
+        "credits": 3,
+        "lab": true
+
+    }
+    ,
+    {
+
+        "name": "MATH221",
+        "section": 11,
+        "prereqs": [
+            "MATH115",
+            "MATH117"
+        ],
+        "coreqs": [],
+        "credits": 3,
+        "lab": true
+
+    },
+    {
+        "name": "MATH232",
+        "section": 10,
+        "prereqs": [
+            "MATH231"
+        ],
+        "coreqs": [],
+        "credits": 3,
+        "lab": false
+    }
+    ,
+    {
+
+        "name": "MATH241",
+        "section": 11,
+        "prereqs": [
+            {
+
+                "name": "MATH117",
+                "section": 10,
+                "prereqs": [
+                    {
+                        "name": "MATH010",
+                        "section": 10,
+                        "prereqs": [],
+                        "coreqs": [],
+                        "credits": 3,
+                        "lab": false
+                    }
+                ],
+                "coreqs": [],
+                "credits": 3,
+                "lab": false
+        
+        
+            }
+        ],
+        "coreqs": [],
+        "credits": 3,
+        "lab": true
+
+
+    },
+    {
+
+        "name": "MATH242",
+        "section": 10,
+        "prereqs": [
+            {
+                "name": "MATH232",
+                "section": 10,
+                "prereqs": [
+                    "MATH231"
+                ],
+                "coreqs": [],
+                "credits": 3,
+                "lab": false
+            },
+            {
+
+                "name": "MATH241",
+                "section": 11,
+                "prereqs": [
+                    {
+        
+                        "name": "MATH117",
+                        "section": 10,
+                        "prereqs": [
+                            {
+                                "name": "MATH010",
+                                "section": 10,
+                                "prereqs": [],
+                                "coreqs": [],
+                                "credits": 3,
+                                "lab": false
+                            }
+                        ],
+                        "coreqs": [],
+                        "credits": 3,
+                        "lab": false
+                
+                
+                    }
+                ],
+                "coreqs": [],
+                "credits": 3,
+                "lab": true
+        
+        
+            }
+        ],
+        "coreqs": [],
+        "credits": 3,
+        "lab": true
+
+    }
 
 
 ]

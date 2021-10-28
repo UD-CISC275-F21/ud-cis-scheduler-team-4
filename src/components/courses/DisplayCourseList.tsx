@@ -11,20 +11,13 @@ export function DisplayCourseList({concentration}:{concentration:Concentration})
         /**Takes a list of strings, and returns a list of courses by looking in courses.json for matching names. 
          * Will need to be optimized to not be O^n, since it currently just loops through the entire json.
          */
-        console.log("Entered conversion function");
-        console.log(`String courses = ${stringCourses}`);
 
-
-
-        const courses: CourseType[] = [];
         const allCourses = COURSES as CourseType[];
 
         const tmparr: CourseType[] = stringCourses.map(e => [...allCourses.filter(i => i.name == e)]).flat(2);
 
-        console.log(tmparr);
-
         return tmparr;
-        
+
     }
 
     if (concentration==CONCENTRATIONS[0]){
