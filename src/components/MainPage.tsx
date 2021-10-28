@@ -6,20 +6,30 @@ import React, { useState, useEffect } from "react";
 import {DropdownMenu} from "./util/DropdownMenu";
 import { DisplayCourseList } from "./courses/DisplayCourseList";
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
-import { CourseContext } from "../context/CourseContext";
-import COURSES from "../json/courses.json";
-import { Course as CourseType } from "../interfaces/course";
 import { Concentration } from "../interfaces/concentration";
 import CONCENTRATIONS from "../json/concentrations.json";
 import { SemesterType } from "../interfaces/semester";
 import { AddSemesterButton } from "./semesters/AddSemesterButton";
+import { ConcentrationContainerType } from "../interfaces/concentrationcontainer";
 
 export const MainPage = (): JSX.Element => {
     const [concentration, setConcentration] = useState<Concentration>(CONCENTRATIONS[0] as Concentration);
-    const [courses, setCourses] = useState<CourseType[]>(COURSES as CourseType[]);
     const [semesterCourses, setSemesterCourses] = useState<SemesterType[]>([]);
     const [display, setDisplay] = useState<boolean>(false);
     const [semesters, setSemesters] = useState<number>(1);
+    const [concentrationContainers, setConcentrationContainers] = useState<ConcentrationContainerType[]>([]); // is initialized to the first concentration container, contains all of the parts of the concentration, outlined in the comment below
+    /*
+
+    {
+
+        "name": "core" <--- what part of the concentration it is
+        courses: [] <--- the courses in the part
+        setCourses: [] <--- the way to update the courses in the part when we drag into the semester
+
+    }
+
+
+    */
 
     // maybe make an object like indexes are the semesters so {1: ["CISC101","CISC106"]}
 
@@ -27,154 +37,125 @@ export const MainPage = (): JSX.Element => {
         setDisplay(true);
         setTimeout(() => {
             setDisplay(false);
-        },100000);
+        },1);
     },[]);  
 
+    useEffect(() => {
+        console.log("updating concentration containers??");
+        console.log(concentrationContainers);
+    },[concentrationContainers]);
+
     const onDragEnd = (result: DropResult) => {
+        console.log(semesterCourses);
+        console.log(result);
+        console.log(concentrationContainers);
+
         if (!result.destination) {
             return;
-        }
-        console.log(result);
-        if(result.source.droppableId == "coursecontainer" && result.destination?.droppableId.includes("semester-table")){
-            // dragging course from course container to semester table
-            console.log("tripped course -> semester");
-            const id = result.destination.droppableId;
-            const num = parseInt(id.substring(id.lastIndexOf("-")+1));
-            let ind = 0;
-            for(let i = 0; i < semesterCourses.length; i++){
+        }if(result.destination.droppableId.includes("semester-table")){
+            
+            const tmpConcentrationContainers = [...concentrationContainers];
 
-                const semester = semesterCourses[i];
-                console.log(`semester = ${Object.values(semester)}`);
-                if(semester.semesternum == num){
-                    ind = i;
+            let tmpContainer: ConcentrationContainerType = tmpConcentrationContainers[0];
+            let ind1 = -1;
+            for(let i = 0; i < concentrationContainers.length; i++){ // finding container , ex: core, capstone
+
+                if(concentrationContainers[i].name === result.source.droppableId){
+                    tmpContainer = tmpConcentrationContainers.splice(i,1)[0];
+                    ind1 = i;
                     break;
                 }
 
             }
-            const tmpSemesterCourses = semesterCourses;
-            const tmpSemester = tmpSemesterCourses.splice(ind,1)[0];
-            const theCourse = courses.splice(result.source.index,1)[0];
 
-            console.log(`tmpSemesterCourses = ${tmpSemesterCourses}`);
-            console.log(`tmpSemester = ${tmpSemester}`);
-            console.log(`theCourse = ${theCourse}`);
+            const tmpConcCourses = tmpContainer.courses;
+            const tmpConcCourse = tmpConcCourses.splice(result.source.index,1)[0];
+            tmpContainer.setCourses(tmpConcCourses);
+            tmpConcentrationContainers.splice(ind1,0,tmpContainer)[0];
+            setConcentrationContainers(tmpConcentrationContainers);
+            
+            // move spliced course to semester table
+            // get semester number from id
+            const tmpSemesterCourses = [...semesterCourses];
+            const semesterDropId = result.destination.droppableId;
+            const semesterNumber = parseInt(semesterDropId.substring(semesterDropId.lastIndexOf("-")+1));
+            let tmpSemester: SemesterType = [...tmpSemesterCourses][0];
+            let ind2 = -1;
+            for(let i = 0; i < semesterCourses.length; i++){
 
-            tmpSemester.courses.push(theCourse);
-            tmpSemester.courseSetter(tmpSemester.courses);
-            tmpSemesterCourses.splice(ind,0,tmpSemester);
-            setSemesterCourses(tmpSemesterCourses);
-
-        } else if(result.source.droppableId == "coursecontainer" && result.destination?.droppableId == "coursecontainer"){
-
-            // dropping within same container
-            if(result.source.index == result.destination?.index){
-                // do nothing
-            } else {
-                const tmpCourses = courses;
-                const theCourse = courses.splice(result.source.index,1)[0];
-                tmpCourses.splice(result.destination?.index,0,theCourse);
-                setCourses(tmpCourses);
-            }
-
-        } else if(result.source.droppableId.includes("semester-table") && result.destination?.droppableId.includes("semester-table")){
-            // dropping within same semester-table
-            console.log("dropping within semester table");
-            // issue occurs here when we move semesters around in the same table and then try introducing another course, method fails
-            if(result.source.droppableId == result.destination.droppableId){ // dropping in exact same container
-                console.log("Dropping in same exact container");
-                console.log(`Semester courses = ${Object.values(semesterCourses)}`);
-                // same destination
-                if(result.source.index == result.destination.index){
-                    // do nothing, moving course in same spot
-                } else{
-
-                    const id1 = result.source.droppableId;
-                    let ind1 = -1;
-                    const num1 = parseInt(id1.substring(id1.lastIndexOf("-")+1));
-                    for(let i = 0; i < semesterCourses.length; i++){
-
-                        if(semesterCourses[i] !== undefined && semesterCourses[i].semesternum == num1){
-                            ind1 = i;
-                            break;
-                        }
-                        
-                    }
-                    // found where semester is located
-                    const tmpSemesterCourses = [...semesterCourses];
-                    const theSemester = tmpSemesterCourses.splice(ind1,1)[0];
-
-                    const theSemesterCourses = theSemester.courses;
-                    const theCourse = theSemesterCourses.splice(result.source.index,1)[0];
-
-                    theSemesterCourses.splice(result.destination.index,0,theCourse);
-                    theSemester.courseSetter(theSemesterCourses);
-                    theSemester.courses = theSemesterCourses;
-                    tmpSemesterCourses.splice(ind1,0,theSemester);
-                    setSemesterCourses(tmpSemesterCourses);
-
+                if(semesterCourses[i].semesternum == semesterNumber){
+                    tmpSemester = tmpSemesterCourses.splice(i,1)[0];
+                    ind2 = i;
+                    break;
                 }
+
             }
-            if(result.source.index == result.destination.index){
-                // do nothing
-            } else{
-                // edit order
-                const tmpSemesterCourses = semesterCourses;
-                // take course out of old spot
-                const theCourse = tmpSemesterCourses.splice(result.source.index,1)[0];
-                // place course in new spot
-                tmpSemesterCourses.splice(result.destination?.index,0,theCourse);
+            
+            const tmpSemesterCourses2 = [...tmpSemester.courses]; 
+            if(tmpSemesterCourses2.length === 0){
+                tmpSemesterCourses2.push(tmpConcCourse);
+                tmpSemester.courses = tmpSemesterCourses2;
+                tmpSemester.courseSetter(tmpSemesterCourses2);
+                tmpSemesterCourses.splice(ind2,0,tmpSemester);
                 setSemesterCourses(tmpSemesterCourses);
+            } else{
+
+                tmpSemesterCourses2.splice(result.destination.index,0,tmpConcCourse);
+                tmpSemester.courses = tmpSemesterCourses2;
+                tmpSemester.courseSetter(tmpSemesterCourses2);
+                tmpSemesterCourses.splice(ind2,0,tmpSemester);
+                setSemesterCourses(tmpSemesterCourses);
+
             }
+
         }
     };
 
     return (
         <>
-            <CourseContext.Provider value={courses}>
-                <DragDropContext
-                    onDragEnd={onDragEnd}
-                >
-                    <Container>
-                        <br />
-                        <Row>
-                            <Col>
-                                {<WelcomeToast display={display}/>}
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col>
-                                <Badge bg="primary"><h1>Course Scheduler</h1></Badge>
-                            </Col>
-                        </Row>
-                        <br />
-                        <Row>
-                            <Col>
-                                <Row>
-                                    <Col>
-                                        <DropdownMenu setConcentration={setConcentration}></DropdownMenu>
-                                    </Col>
-                                </Row>
-                                <br />
-                                <Row>
-                                    <Col>
-                                        <AddSemesterButton setSemesters={setSemesters} semesters={semesters} />
-                                    </Col>
-                                </Row>
-                            </Col>
-                        </Row>
-                        <br />
-                        <br />
-                        <Row>
-                            <Col>
-                                <DisplayCourseList concentration={concentration}></DisplayCourseList>
-                            </Col>
-                            <Col>
-                                <SemesterTable semesters={semesters} semestersCourses={semesterCourses} setSemesterCourses={setSemesterCourses}/>
-                            </Col>
-                        </Row>
-                    </Container>
-                </DragDropContext>
-            </CourseContext.Provider>
+            <DragDropContext
+                onDragEnd={onDragEnd}
+            >
+                <Container>
+                    <br />
+                    <Row>
+                        <Col>
+                            {<WelcomeToast display={display}/>}
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <Badge bg="primary"><h1>Course Scheduler</h1></Badge>
+                        </Col>
+                    </Row>
+                    <br />
+                    <Row>
+                        <Col>
+                            <Row>
+                                <Col>
+                                    <DropdownMenu setConcentration={setConcentration}></DropdownMenu>
+                                </Col>
+                            </Row>
+                            <br />
+                            <Row>
+                                <Col>
+                                    <AddSemesterButton setSemesters={setSemesters} semesters={semesters} />
+                                </Col>
+                            </Row>
+                        </Col>
+                    </Row>
+                    <br />
+                    <br />
+                    <Row>
+                        <Col>
+                            <DisplayCourseList concentration={concentration} setConcentrationContainers={setConcentrationContainers} ></DisplayCourseList>
+                        </Col>
+                        <Col>
+                            <SemesterTable semesters={semesters} semestersCourses={semesterCourses} setSemesterCourses={setSemesterCourses}/>
+                        </Col>
+                    </Row>
+                </Container>
+            </DragDropContext>
         </>
     );
 };

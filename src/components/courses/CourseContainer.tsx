@@ -5,15 +5,18 @@ import { Droppable } from "react-beautiful-dnd";
 import React from "react";
 import { Course as CourseType } from "../../interfaces/course";
 
+export const CourseContainer = (props: { courses: CourseType[], name: string}): JSX.Element => {
 
-export const CourseContainer = (props: { courses: CourseType[] }): JSX.Element =>
-    <>
-        <Droppable droppableId="coursecontainer">
-            {(prov) =>
-                <ListGroup {...prov.droppableProps} ref={prov.innerRef}>
-                    {props.courses.map((e, i) => <Course name={`${e.name}-${e.section}`} ind={i} key={i} />)}
-                    {prov.placeholder}
-                </ListGroup>
-            }
-        </Droppable>
-    </>;
+    return(
+        <>
+            <Droppable droppableId={props.name}>
+                {(prov) =>
+                    <ListGroup {...prov.droppableProps} ref={prov.innerRef}>
+                        {props.courses.map((e, i) => <Course name={`${e.name}-${e.section}`} ind={i} key={i} />)}
+                        {prov.placeholder}
+                    </ListGroup>
+                }
+            </Droppable>
+        </>
+    );
+};

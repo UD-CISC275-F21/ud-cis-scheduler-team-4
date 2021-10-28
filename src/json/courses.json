@@ -1556,197 +1556,6 @@
 	{
 
 		"name": "CISC498",
-		"section": 10,
-		"prereqs": [{
-
-            "name": "CISC275",
-            "section": 10,
-            "prereqs": [    {
-    
-                "name": "CISC181",
-                "section": 10,
-                "prereqs": 
-                [{
-        
-                    "name": "CISC108",
-                    "section": 10,
-                    "prereqs": [],
-                    "coreqs": [{
-                        "name": "MATH115",
-                        "section": 10,
-                        "prereqs": [],
-                        "coreqs": [],
-                        "credits": 3,
-                        "lab": true
-                        },
-                        {
-                        "name": "MATH117",
-                        "section": 10,
-                        "prereqs": [],
-                        "coreqs": [],
-                        "credits": 3,
-                        "lab": true
-                    }],
-                    "credits": 3,
-                    "lab": true
-            
-                },    
-                {
-                    "name": "CISC106",
-                    "section": 10,
-                    "prereqs": [],
-                    "coreqs": [{
-                        "name": "MATH241",
-                        "section": 10,
-                        "prereqs": [],
-                        "coreqs": [],
-                        "credits": 3,
-                        "lab": true
-                        }],
-                    "credits": 3,
-                    "lab": true
-            
-                }],
-                "coreqs": 
-                [{
-                    "name": "MATH241",
-                    "section": 10,
-                    "prereqs": [],
-                    "coreqs": [],
-                    "credits": 3,
-                    "lab": true
-                }],
-                "credits": 3,
-                "lab": true
-        
-            },{
-    
-                "name": "CISC210",
-                "section": 10,
-                "prereqs": [{
-        
-                    "name": "CISC108",
-                    "section": 10,
-                    "prereqs": [],
-                    "coreqs": [{
-                        "name": "MATH115",
-                        "section": 10,
-                        "prereqs": [],
-                        "coreqs": [],
-                        "credits": 3,
-                        "lab": true
-                        },
-                        {
-                        "name": "MATH117",
-                        "section": 10,
-                        "prereqs": [],
-                        "coreqs": [],
-                        "credits": 3,
-                        "lab": true
-                    }],
-                    "credits": 3,
-                    "lab": true
-            
-                },    
-                {
-                    "name": "CISC106",
-                    "section": 10,
-                    "prereqs": [],
-                    "coreqs": [{
-                        "name": "MATH241",
-                        "section": 10,
-                        "prereqs": [],
-                        "coreqs": [],
-                        "credits": 3,
-                        "lab": true
-                        }],
-                    "credits": 3,
-                    "lab": true
-            
-                }],
-                "coreqs": [{
-                    "name": "MATH221",
-                    "section": 10,
-                    "prereqs": [],
-                    "coreqs": [],
-                    "credits": 3,
-                    "lab": true
-                },{
-                    "name": "MATH241",
-                    "section": 10,
-                    "prereqs": [],
-                    "coreqs": [],
-                    "credits": 3,
-                    "lab": true
-                }],
-                "credits": 3,
-                "lab": true
-        
-            }],
-            "coreqs": [],
-            "credits": 3,
-            "lab": true
-    
-        },"CISC320"],
-		"coreqs": [],
-		"credits": 3,
-		"lab": true
-
-	},
-
-	{
-
-		"name": "CISC498",
-		"section": 11,
-		"prereqs": ["CISC275",{
-
-		"name": "CISC320",
-		"section": 10,
-		"prereqs": [{
-            "name": "MATH210",
-            "section": 10,
-            "prereqs": [],
-            "coreqs": [],
-            "credits": 3,
-            "lab": true
-        },	{
-
-            "name": "CISC220",
-            "section": 11,
-            "prereqs": [],
-            "coreqs": [{
-                "name": "MATH210",
-                "section": 10,
-                "prereqs": [],
-                "coreqs": [],
-                "credits": 3,
-                "lab": true
-            },{
-                "name": "MATH241",
-                "section": 10,
-                "prereqs": [],
-                "coreqs": [],
-                "credits": 3,
-                "lab": true
-            }],
-            "credits": 3,
-            "lab": true
-    
-        }],
-		"coreqs": [],
-		"credits": 3,
-		"lab": false
-
-	}],
-		"coreqs": [],
-		"credits": 3,
-		"lab": true
-
-	},
-
-	{
-
-		"name": "CISC498",
 		"section": 12,
 		"prereqs": [{
 
@@ -2105,7 +1914,268 @@
 		"credits": 3,
 		"lab": false
 
-	}
+	},
+    {
+        "name": "MATH010",
+        "section": 10,
+        "prereqs": [],
+        "coreqs": [],
+        "credits": 3,
+        "lab": false
+    },
+    {
+        "name": "MATH115",
+        "section": 10,
+        "prereqs": [
+            {
+                "name": "MATH010",
+                "section": 10,
+                "prereqs": [],
+                "coreqs": [],
+                "credits": 3,
+                "lab": false
+            }
+        ],
+        "coreqs": [],
+        "credits": 3,
+        "lab": false
+    },
+    {
+
+        "name": "MATH117",
+        "section": 10,
+        "prereqs": [
+            {
+                "name": "MATH010",
+                "section": 10,
+                "prereqs": [],
+                "coreqs": [],
+                "credits": 3,
+                "lab": false
+            }
+        ],
+        "coreqs": [],
+        "credits": 3,
+        "lab": false
+
+
+    },
+    {
+
+        "name": "MATH210",
+        "section": 10,
+        "prereqs": [],
+        "coreqs": [
+            {
+
+                "name": "MATH241",
+                "section": 11,
+                "prereqs": [
+                    {
+        
+                        "name": "MATH117",
+                        "section": 10,
+                        "prereqs": [
+                            {
+                                "name": "MATH010",
+                                "section": 10,
+                                "prereqs": [],
+                                "coreqs": [],
+                                "credits": 3,
+                                "lab": false
+                            }
+                        ],
+                        "coreqs": [],
+                        "credits": 3,
+                        "lab": false
+                
+                
+                    }
+                ],
+                "coreqs": [],
+                "credits": 3,
+                "lab": true
+        
+        
+            },
+            {
+
+                "name": "MATH242",
+                "section": 10,
+                "prereqs": [
+                    {
+                        "name": "MATH232",
+                        "section": 10,
+                        "prereqs": [
+                            "MATH231"
+                        ],
+                        "coreqs": [],
+                        "credits": 3,
+                        "lab": false
+                    },
+                    {
+        
+                        "name": "MATH241",
+                        "section": 11,
+                        "prereqs": [
+                            {
+                
+                                "name": "MATH117",
+                                "section": 10,
+                                "prereqs": [
+                                    {
+                                        "name": "MATH010",
+                                        "section": 10,
+                                        "prereqs": [],
+                                        "coreqs": [],
+                                        "credits": 3,
+                                        "lab": false
+                                    }
+                                ],
+                                "coreqs": [],
+                                "credits": 3,
+                                "lab": false
+                        
+                        
+                            }
+                        ],
+                        "coreqs": [],
+                        "credits": 3,
+                        "lab": true
+                
+                
+                    }
+                ],
+                "coreqs": [],
+                "credits": 3,
+                "lab": true
+        
+            },
+            {
+                "name": "MATH232",
+                "section": 10,
+                "prereqs": [
+                    "MATH231"
+                ],
+                "coreqs": [],
+                "credits": 3,
+                "lab": false
+            }
+        ],
+        "credits": 3,
+        "lab": true
+
+    }
+    ,
+    {
+
+        "name": "MATH221",
+        "section": 11,
+        "prereqs": [
+            "MATH115",
+            "MATH117"
+        ],
+        "coreqs": [],
+        "credits": 3,
+        "lab": true
+
+    },
+    {
+        "name": "MATH232",
+        "section": 10,
+        "prereqs": [
+            "MATH231"
+        ],
+        "coreqs": [],
+        "credits": 3,
+        "lab": false
+    }
+    ,
+    {
+
+        "name": "MATH241",
+        "section": 11,
+        "prereqs": [
+            {
+
+                "name": "MATH117",
+                "section": 10,
+                "prereqs": [
+                    {
+                        "name": "MATH010",
+                        "section": 10,
+                        "prereqs": [],
+                        "coreqs": [],
+                        "credits": 3,
+                        "lab": false
+                    }
+                ],
+                "coreqs": [],
+                "credits": 3,
+                "lab": false
+        
+        
+            }
+        ],
+        "coreqs": [],
+        "credits": 3,
+        "lab": true
+
+
+    },
+    {
+
+        "name": "MATH242",
+        "section": 10,
+        "prereqs": [
+            {
+                "name": "MATH232",
+                "section": 10,
+                "prereqs": [
+                    "MATH231"
+                ],
+                "coreqs": [],
+                "credits": 3,
+                "lab": false
+            },
+            {
+
+                "name": "MATH241",
+                "section": 11,
+                "prereqs": [
+                    {
+        
+                        "name": "MATH117",
+                        "section": 10,
+                        "prereqs": [
+                            {
+                                "name": "MATH010",
+                                "section": 10,
+                                "prereqs": [],
+                                "coreqs": [],
+                                "credits": 3,
+                                "lab": false
+                            }
+                        ],
+                        "coreqs": [],
+                        "credits": 3,
+                        "lab": false
+                
+                
+                    }
+                ],
+                "coreqs": [],
+                "credits": 3,
+                "lab": true
+        
+        
+            }
+        ],
+        "coreqs": [],
+        "credits": 3,
+        "lab": true
+
+    }
 
 
 ]
