@@ -150,7 +150,7 @@ export const MainPage = (): JSX.Element => {
                     console.log("----after----");
                     courses.forEach(e => console.log(Object.values(e)));
                     tmpSemester.courseSetter([...courses]);
-                    console.log(tmpSemester);
+                    tmpSemester.courses = [...courses];
                     console.log("----after setting----");
                     tmpSemester.courses.forEach(e => console.log(Object.values(e)));
                     tmpSemesters.splice(ind,0,tmpSemester);
