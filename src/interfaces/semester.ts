@@ -1,5 +1,4 @@
 import { Course } from "./course";
-import React from "react";
 
 export interface SemesterType{
 
