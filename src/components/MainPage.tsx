@@ -11,6 +11,7 @@ import CONCENTRATIONS from "../json/concentrations.json";
 import { SemesterType } from "../interfaces/semester";
 import { AddSemesterButton } from "./semesters/AddSemesterButton";
 import { ConcentrationContainerType } from "../interfaces/concentrationcontainer";
+import { Course as CourseType } from "../interfaces/course";
 
 export const MainPage = (): JSX.Element => {
     const [concentration, setConcentration] = useState<Concentration>(CONCENTRATIONS[0] as Concentration);
@@ -41,9 +42,10 @@ export const MainPage = (): JSX.Element => {
     },[]);  
 
     useEffect(() => {
-        console.log("updating concentration containers??");
-        console.log(concentrationContainers);
-    },[concentrationContainers]);
+
+        semesterCourses.forEach(e => console.log(Object.entries(e)));
+
+    },[semesterCourses]);
 
     const onDragEnd = (result: DropResult) => {
         console.log(semesterCourses);
@@ -54,57 +56,110 @@ export const MainPage = (): JSX.Element => {
             return;
         }if(result.destination.droppableId.includes("semester-table")){
             
-            const tmpConcentrationContainers = [...concentrationContainers];
+            if(!result.source.droppableId.includes("semester-table")){
+                const tmpConcentrationContainers = [...concentrationContainers];
 
-            let tmpContainer: ConcentrationContainerType = tmpConcentrationContainers[0];
-            let ind1 = -1;
-            for(let i = 0; i < concentrationContainers.length; i++){ // finding container , ex: core, capstone
+                let tmpContainer: ConcentrationContainerType = tmpConcentrationContainers[0];
+                let ind1 = -1;
+                for(let i = 0; i < concentrationContainers.length; i++){ // finding container , ex: core, capstone
 
-                if(concentrationContainers[i].name === result.source.droppableId){
-                    tmpContainer = tmpConcentrationContainers.splice(i,1)[0];
-                    ind1 = i;
-                    break;
+                    if(concentrationContainers[i].name === result.source.droppableId){
+                        tmpContainer = tmpConcentrationContainers.splice(i,1)[0];
+                        ind1 = i;
+                        break;
+                    }
+
                 }
 
-            }
+                const tmpConcCourses = tmpContainer.courses;
+                const tmpConcCourse = tmpConcCourses.splice(result.source.index,1)[0];
+                tmpContainer.setCourses(tmpConcCourses);
+                tmpConcentrationContainers.splice(ind1,0,tmpContainer)[0];
+                setConcentrationContainers(tmpConcentrationContainers);
+                
+                // move spliced course to semester table
+                // get semester number from id
+                const tmpSemesterCourses = [...semesterCourses];
+                const semesterDropId = result.destination.droppableId;
+                const semesterNumber = parseInt(semesterDropId.substring(semesterDropId.lastIndexOf("-")+1));
+                let tmpSemester: SemesterType = [...tmpSemesterCourses][0];
+                let ind2 = -1;
+                for(let i = 0; i < semesterCourses.length; i++){
 
-            const tmpConcCourses = tmpContainer.courses;
-            const tmpConcCourse = tmpConcCourses.splice(result.source.index,1)[0];
-            tmpContainer.setCourses(tmpConcCourses);
-            tmpConcentrationContainers.splice(ind1,0,tmpContainer)[0];
-            setConcentrationContainers(tmpConcentrationContainers);
-            
-            // move spliced course to semester table
-            // get semester number from id
-            const tmpSemesterCourses = [...semesterCourses];
-            const semesterDropId = result.destination.droppableId;
-            const semesterNumber = parseInt(semesterDropId.substring(semesterDropId.lastIndexOf("-")+1));
-            let tmpSemester: SemesterType = [...tmpSemesterCourses][0];
-            let ind2 = -1;
-            for(let i = 0; i < semesterCourses.length; i++){
+                    if(semesterCourses[i].semesternum == semesterNumber){
+                        tmpSemester = tmpSemesterCourses.splice(i,1)[0];
+                        ind2 = i;
+                        break;
+                    }
 
-                if(semesterCourses[i].semesternum == semesterNumber){
-                    tmpSemester = tmpSemesterCourses.splice(i,1)[0];
-                    ind2 = i;
-                    break;
+                }
+                
+                const tmpSemesterCourses2 = [...tmpSemester.courses]; 
+                if(tmpSemesterCourses2.length === 0){
+                    tmpSemesterCourses2.push(tmpConcCourse);
+                    tmpSemester.courses = tmpSemesterCourses2;
+                    tmpSemester.courseSetter(tmpSemesterCourses2);
+                    tmpSemesterCourses.splice(ind2,0,tmpSemester);
+                    setSemesterCourses(tmpSemesterCourses);
+                } else{
+
+                    tmpSemesterCourses2.splice(result.destination.index,0,tmpConcCourse);
+                    tmpSemester.courses = tmpSemesterCourses2;
+                    tmpSemester.courseSetter(tmpSemesterCourses2);
+                    tmpSemesterCourses.splice(ind2,0,tmpSemester);
+                    setSemesterCourses(tmpSemesterCourses);
+
+                }
+            } else if(result.source.droppableId === result.destination.droppableId){
+
+                // dropping in same table
+
+                if(result.source.droppableId.includes("semester-table")){
+                    
+                    console.log("within same semester table");
+
+                    const semesterNum = parseInt(result.source.droppableId.substring(result.source.droppableId.lastIndexOf("-")+1));
+
+                    //const tmpSemesters: SemesterType[] = [...semesterCourses];
+                    const tmpSemesters: SemesterType[] = semesterCourses;
+                    
+                    let tmpSemester: SemesterType = tmpSemesters[0];
+
+                    let ind = 0;
+
+                    for(let i = 0; i < tmpSemesters.length; i++){
+
+                        if(tmpSemesters[i].semesternum == semesterNum){
+                            // found semester
+                            //tmpSemester = tmpSemesters.splice(i,1)[0];
+                            tmpSemester = tmpSemesters[i];
+                            ind = i;
+                            break;
+                        }
+
+                    }
+
+                    console.log(Object.entries(tmpSemester));
+
+                    const courses: CourseType[] = [...tmpSemester.courses];
+                    console.log("----before any splicing----");
+                    courses.forEach(e => console.log(Object.values(e)));
+                    const theCourse: CourseType = courses.splice(result.source.index,1)[0]; // gets 108
+                    console.log("----before----");
+                    courses.forEach(e => console.log(Object.values(e)));
+                    courses.splice(result.destination.index,0,theCourse);
+                    console.log("----after----");
+                    courses.forEach(e => console.log(Object.values(e)));
+                    tmpSemester.courseSetter([...courses]);
+                    console.log("----after setting----");
+                    tmpSemester.courses.forEach(e => console.log(Object.values(e)));
+                    tmpSemesters.splice(ind,0,tmpSemester);
+                    console.log("----before setting semesters----");
+                    setSemesterCourses(tmpSemesters);
+
                 }
 
-            }
-            
-            const tmpSemesterCourses2 = [...tmpSemester.courses]; 
-            if(tmpSemesterCourses2.length === 0){
-                tmpSemesterCourses2.push(tmpConcCourse);
-                tmpSemester.courses = tmpSemesterCourses2;
-                tmpSemester.courseSetter(tmpSemesterCourses2);
-                tmpSemesterCourses.splice(ind2,0,tmpSemester);
-                setSemesterCourses(tmpSemesterCourses);
-            } else{
 
-                tmpSemesterCourses2.splice(result.destination.index,0,tmpConcCourse);
-                tmpSemester.courses = tmpSemesterCourses2;
-                tmpSemester.courseSetter(tmpSemesterCourses2);
-                tmpSemesterCourses.splice(ind2,0,tmpSemester);
-                setSemesterCourses(tmpSemesterCourses);
 
             }
 

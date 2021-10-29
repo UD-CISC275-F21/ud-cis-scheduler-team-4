@@ -32,15 +32,23 @@ export const Semester = (props: { ind: number, semesterCourses: SemesterType[], 
 
     useEffect(() => {
 
+        console.log("rendering semester");
         if(!props.semesterCourses.find(e => e.semesternum == props.ind+1)){
             // not in list
             const semesters: SemesterType[] = [...props.semesterCourses];
             semesters.push({semesternum: props.ind+1, courses: courses, courseSetter: setCourses});
             props.setSemesterCourses(semesters);
-            console.log(semesters);
+            //console.log(semesters);
         }
 
     }, []);
+
+    useEffect(() => {
+
+        console.log("----courses are now----");
+        courses.forEach(e => console.log(Object.values(e)));
+
+    }, [courses]);
 
     return(
         <Col key={`semester-table-col-${props.ind}`}>
