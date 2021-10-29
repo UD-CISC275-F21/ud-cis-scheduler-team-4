@@ -5,6 +5,6 @@ export interface SemesterType{
 
     semesternum: number
     courses: Course[]
-    courseSetter: React.Dispatch<React.SetStateAction<Course[]>>
+    courseSetter: (courses: Course[]) => void
 
 }

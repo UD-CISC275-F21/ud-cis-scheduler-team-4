@@ -120,8 +120,7 @@ export const MainPage = (): JSX.Element => {
 
                     const semesterNum = parseInt(result.source.droppableId.substring(result.source.droppableId.lastIndexOf("-")+1));
 
-                    //const tmpSemesters: SemesterType[] = [...semesterCourses];
-                    const tmpSemesters: SemesterType[] = semesterCourses;
+                    const tmpSemesters: SemesterType[] = [...semesterCourses];
                     
                     let tmpSemester: SemesterType = tmpSemesters[0];
 
@@ -131,8 +130,7 @@ export const MainPage = (): JSX.Element => {
 
                         if(tmpSemesters[i].semesternum == semesterNum){
                             // found semester
-                            //tmpSemester = tmpSemesters.splice(i,1)[0];
-                            tmpSemester = tmpSemesters[i];
+                            tmpSemester = tmpSemesters.splice(i,1)[0];
                             ind = i;
                             break;
                         }
@@ -145,12 +143,14 @@ export const MainPage = (): JSX.Element => {
                     console.log("----before any splicing----");
                     courses.forEach(e => console.log(Object.values(e)));
                     const theCourse: CourseType = courses.splice(result.source.index,1)[0]; // gets 108
+                    console.log(`---spliced course--- : ${Object.values(theCourse)}`);
                     console.log("----before----");
                     courses.forEach(e => console.log(Object.values(e)));
                     courses.splice(result.destination.index,0,theCourse);
                     console.log("----after----");
                     courses.forEach(e => console.log(Object.values(e)));
                     tmpSemester.courseSetter([...courses]);
+                    console.log(tmpSemester);
                     console.log("----after setting----");
                     tmpSemester.courses.forEach(e => console.log(Object.values(e)));
                     tmpSemesters.splice(ind,0,tmpSemester);
