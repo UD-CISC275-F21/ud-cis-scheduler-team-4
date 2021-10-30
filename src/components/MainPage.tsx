@@ -161,6 +161,90 @@ export const MainPage = (): JSX.Element => {
 
 
 
+            } else if(result.source.droppableId.includes("semester-table") && result.destination.droppableId.includes("semester-table")){
+
+                // dropping from one semester table to the next
+
+                //console.log("dropping from one semester table to the next");
+
+                const semesterNum1Id = result.source.droppableId;
+                const semesterNum2Id = result.destination.droppableId;
+
+                //console.log(`semesterNum1Id = ${semesterNum1Id}`);
+                //console.log(`semesterNum2Id = ${semesterNum2Id}`);
+
+                const semesterNum1 = parseInt(semesterNum1Id.substring(semesterNum1Id.lastIndexOf("-")+1));
+
+                const semesterNum2 = parseInt(semesterNum2Id.substring(semesterNum2Id.lastIndexOf("-")+1));
+
+                // got the numbers of semester1 and semester2
+
+                const tmpSemesters = [...semesterCourses];
+
+                let oneFound = false;
+                let twoFound = false;
+                let semester1 = tmpSemesters[0];
+                let semester2 = tmpSemesters[0];
+                //console.log(`semester1# = ${semesterNum1}`);
+                //console.log(`semester2# = ${semesterNum2}`);
+
+                let i = 0;
+
+                let ind1 = 0;
+                let ind2 = 0;
+
+                for(i = 0; !oneFound || !twoFound ;){
+
+                    const theSemester = tmpSemesters[i];
+                    if(theSemester){
+                        //console.log(`the semester = ${Object.entries(theSemester)}, onefound = ${oneFound} and twofound = ${twoFound}, semesterstatus = ${theSemester === null || theSemester == undefined}`);
+                    } else{
+                        //console.log("semester is null");
+                    }
+
+
+                    if(oneFound && twoFound){
+                        break;
+                    } else if(!oneFound && theSemester.semesternum == semesterNum1){
+                        //console.log("splicing first semester");
+                        oneFound = true;
+                        semester1 = tmpSemesters.splice(i,1)[0];
+                        ind1 = i;
+                        i = 0;
+                        continue;
+                    } else if(!twoFound && theSemester.semesternum == semesterNum2){
+                        //console.log("splicing second semester");
+                        twoFound = true;
+                        semester2 = tmpSemesters.splice(i,1)[0];
+                        ind2 = i;
+                        i = 0;
+                        continue;
+                    } else{
+                        i++;
+                    }
+                    //console.log("else");
+                    //console.log(Object.values(tmpSemesters));
+
+                }
+
+                // got both semesters
+
+                // splice from source
+
+                const semester1Courses: CourseType[] = [...semester1.courses];
+                const sourceCourse = semester1Courses.splice(result.source.index,1)[0];
+                semester1.courseSetter(semester1Courses);
+                semester1.courses = [...semester1Courses];
+
+                const semester2Courses: CourseType[] = [...semester2.courses];
+                semester2Courses.splice(result.destination.index,0,sourceCourse);
+                semester2.courses = [...semester2Courses];
+                semester2.courseSetter([...semester2Courses]);
+
+                tmpSemesters.splice(ind1,0,semester1);
+                tmpSemesters.splice(ind2,0,semester2);
+                setSemesterCourses(tmpSemesters);
+
             }
 
         }
