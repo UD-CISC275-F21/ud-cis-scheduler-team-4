@@ -165,7 +165,7 @@ export const MainPage = (): JSX.Element => {
 
                 // dropping from one semester table to the next
 
-                //console.log("dropping from one semester table to the next");
+                console.log("semestertable --> semestertable");
 
                 const semesterNum1Id = result.source.droppableId;
                 const semesterNum2Id = result.destination.droppableId;
@@ -244,6 +244,76 @@ export const MainPage = (): JSX.Element => {
                 tmpSemesters.splice(ind1,0,semester1);
                 tmpSemesters.splice(ind2,0,semester2);
                 setSemesterCourses(tmpSemesters);
+
+            }
+        } else{
+
+            if ( result.source.droppableId.includes("semester-table") && !result.destination.droppableId.includes("semester-table") ) {
+                
+                const tmpSemesters: SemesterType[] = [...semesterCourses];
+
+                const sourceId: string = result.source.droppableId;
+                const semesterNum: number = parseInt(sourceId.substring(sourceId.lastIndexOf("-")));
+                let tmpSemester: SemesterType = tmpSemesters[0];
+                let ind = -1;
+
+                for(let i = 0; i < tmpSemesters.length; i++){
+
+                    if(tmpSemesters[i].semesternum === semesterNum){
+                        // found semester
+                        tmpSemester = tmpSemesters.splice(i,1)[0];
+                        ind = i;
+                        break;
+                    }
+
+                }
+
+                const tmpSemesterCourses: CourseType[] = [...tmpSemester.courses];
+                const theCourse: CourseType = tmpSemesterCourses.splice(result.source.index,1)[0];
+
+                tmpSemester.courses = [...tmpSemesterCourses];
+                tmpSemester.courseSetter([...tmpSemesterCourses]);
+
+                tmpSemesters.splice(ind,0,tmpSemester);
+
+                setSemesterCourses(tmpSemesters);
+
+                // semester updated
+
+
+                const tmpConcContainers = [...concentrationContainers];
+
+                let tmpConcContainer: ConcentrationContainerType = tmpConcContainers[0];
+
+                let ind2 = -1;
+
+                for(let i = 0; i < tmpConcContainers.length; i++){
+
+                    if(tmpConcContainers[i].name === result.destination.droppableId){
+                        // found concentration container
+                        tmpConcContainer = tmpConcContainers.splice(i,1)[0];
+                        ind2 = i;
+                        break;
+                    }
+
+                }
+
+                const tmpConcContainerCourses = [...tmpConcContainer.courses];
+
+                tmpConcContainerCourses.splice(result.destination.index,1,theCourse);
+
+                tmpConcContainer.courses = [...tmpConcContainerCourses];
+                
+                tmpConcContainer.setCourses([...tmpConcContainerCourses]);
+
+                // found concentration container
+
+                tmpConcContainers.splice(ind2,0,tmpConcContainer);
+
+                setConcentrationContainers(tmpConcContainers);
+
+
+
 
             }
 
