@@ -57,6 +57,9 @@ export const MainPage = (): JSX.Element => {
         }if(result.destination.droppableId.includes("semester-table")){
             
             if(!result.source.droppableId.includes("semester-table")){
+
+                console.log("from conc container");
+
                 const tmpConcentrationContainers = [...concentrationContainers];
 
                 let tmpContainer: ConcentrationContainerType = tmpConcentrationContainers[0];
@@ -113,6 +116,7 @@ export const MainPage = (): JSX.Element => {
             } else if(result.source.droppableId === result.destination.droppableId){
 
                 // dropping in same table
+                console.log("dropping in same table");
 
                 if(result.source.droppableId.includes("semester-table")){
                     
@@ -165,7 +169,7 @@ export const MainPage = (): JSX.Element => {
 
                 // dropping from one semester table to the next
 
-                //console.log("dropping from one semester table to the next");
+                console.log("semestertable --> semestertable");
 
                 const semesterNum1Id = result.source.droppableId;
                 const semesterNum2Id = result.destination.droppableId;
@@ -244,6 +248,163 @@ export const MainPage = (): JSX.Element => {
                 tmpSemesters.splice(ind1,0,semester1);
                 tmpSemesters.splice(ind2,0,semester2);
                 setSemesterCourses(tmpSemesters);
+
+            }
+        } else{
+
+            if ( result.source.droppableId.includes("semester-table") && !result.destination.droppableId.includes("semester-table") ) {
+                
+                const tmpSemesters: SemesterType[] = [...semesterCourses];
+
+                const sourceId: string = result.source.droppableId;
+                const semesterNum: number = parseInt(sourceId.substring(sourceId.lastIndexOf("-")));
+                let tmpSemester: SemesterType = tmpSemesters[0];
+                let ind = -1;
+
+                for(let i = 0; i < tmpSemesters.length; i++){
+
+                    if(tmpSemesters[i].semesternum === semesterNum){
+                        // found semester
+                        tmpSemester = tmpSemesters.splice(i,1)[0];
+                        ind = i;
+                        break;
+                    }
+
+                }
+
+                const tmpSemesterCourses: CourseType[] = [...tmpSemester.courses];
+                const theCourse: CourseType = tmpSemesterCourses.splice(result.source.index,1)[0];
+
+                tmpSemester.courses = [...tmpSemesterCourses];
+                tmpSemester.courseSetter([...tmpSemesterCourses]);
+
+                tmpSemesters.splice(ind,0,tmpSemester);
+
+                setSemesterCourses(tmpSemesters);
+
+                // semester updated
+
+
+                const tmpConcContainers = [...concentrationContainers];
+
+                let tmpConcContainer: ConcentrationContainerType = tmpConcContainers[0];
+
+                let ind2 = -1;
+
+                for(let i = 0; i < tmpConcContainers.length; i++){
+
+                    if(tmpConcContainers[i].name === result.destination.droppableId){
+                        // found concentration container
+                        tmpConcContainer = tmpConcContainers.splice(i,1)[0];
+                        ind2 = i;
+                        break;
+                    }
+
+                }
+
+                const tmpConcContainerCourses = [...tmpConcContainer.courses];
+
+                tmpConcContainerCourses.splice(result.destination.index,0,theCourse);
+
+                tmpConcContainer.courses = [...tmpConcContainerCourses];
+                
+                tmpConcContainer.setCourses([...tmpConcContainerCourses]);
+
+                // found concentration container
+
+                tmpConcContainers.splice(ind2,0,tmpConcContainer);
+
+                setConcentrationContainers(tmpConcContainers);
+
+
+
+
+            } else if(result.source.droppableId !== result.destination.droppableId && !result.source.droppableId.includes("semester-table") && !result.destination.droppableId.includes("semester-table")){
+                // dropping from core --> language for instance
+                const tmpConcentrationContainers: ConcentrationContainerType[] = [...concentrationContainers];
+
+                let tmpConcContainer1: ConcentrationContainerType = tmpConcentrationContainers[0];
+
+                let tmpConcContainer2: ConcentrationContainerType = tmpConcentrationContainers[0];
+
+                let ind1 = -1;
+
+                let ind2 = -1;
+
+                for(let i = 0; i < tmpConcentrationContainers.length; i++){
+
+                    if(ind1 !== -1 && ind2 !== -1){
+                        break;
+                    } else if(tmpConcentrationContainers[i].name == result.source.droppableId){
+                        tmpConcContainer1 = tmpConcentrationContainers[i];
+                        ind1 = i;
+                        continue;
+                    } else if(tmpConcentrationContainers[i].name == result.destination.droppableId){
+                        tmpConcContainer2 = tmpConcentrationContainers[i];
+                        ind2 = i;
+                        continue;
+                    }
+
+                }
+
+                const tmpConc1Courses: CourseType[] = [...tmpConcContainer1.courses];
+
+                const tmpConc2Courses: CourseType[] = [...tmpConcContainer2.courses];
+
+                const tmpConc1Course: CourseType = tmpConc1Courses.splice(result.source.index,1)[0];
+
+                tmpConcContainer1.courses = [...tmpConc1Courses];
+
+                tmpConcContainer1.setCourses([...tmpConc1Courses]);
+
+                tmpConc2Courses.splice(result.destination.index,0,tmpConc1Course);
+
+                tmpConcContainer2.courses = [...tmpConc2Courses];
+
+                tmpConcContainer2.setCourses([...tmpConc2Courses]);
+
+                tmpConcentrationContainers.splice(ind1,0,tmpConcContainer1);
+
+                tmpConcentrationContainers.splice(ind2,0,tmpConcContainer2);
+
+                setConcentrationContainers([...tmpConcentrationContainers]);
+
+            } else {
+
+                console.log("container --> container");
+
+                const tmpConcentrationContainers: ConcentrationContainerType[] = [...concentrationContainers];
+
+                let tmpConcContainer: ConcentrationContainerType = tmpConcentrationContainers[0];
+
+                let ind1 = -1;
+                
+                for(let i = 0; i < tmpConcentrationContainers.length; i++){
+
+                    if(tmpConcentrationContainers[i].name == result.destination.droppableId){
+                        // found container
+                        tmpConcContainer = tmpConcentrationContainers.splice(i,1)[0];
+                        ind1 = i;
+                        break;
+                    }
+
+                }
+
+                const tmpConcCourses: CourseType[] = [...tmpConcContainer.courses];
+
+                const tmpConcCourse: CourseType = tmpConcCourses.splice(result.source.index,1)[0];
+
+                // spliced course, now place course
+
+                tmpConcCourses.splice(result.destination.index,0,tmpConcCourse);
+
+                tmpConcContainer.courses = tmpConcCourses;
+
+                tmpConcContainer.setCourses([...tmpConcCourses]);
+
+                tmpConcentrationContainers.splice(ind1,0,tmpConcContainer);
+
+                setConcentrationContainers(tmpConcentrationContainers);
 
             }
 
