@@ -57,6 +57,9 @@ export const MainPage = (): JSX.Element => {
         }if(result.destination.droppableId.includes("semester-table")){
             
             if(!result.source.droppableId.includes("semester-table")){
+
+                console.log("from conc container");
+
                 const tmpConcentrationContainers = [...concentrationContainers];
 
                 let tmpContainer: ConcentrationContainerType = tmpConcentrationContainers[0];
@@ -113,6 +116,7 @@ export const MainPage = (): JSX.Element => {
             } else if(result.source.droppableId === result.destination.droppableId){
 
                 // dropping in same table
+                console.log("dropping in same table");
 
                 if(result.source.droppableId.includes("semester-table")){
                     
@@ -314,6 +318,43 @@ export const MainPage = (): JSX.Element => {
 
 
 
+
+            } else {
+
+                console.log("container --> container");
+
+                const tmpConcentrationContainers: ConcentrationContainerType[] = [...concentrationContainers];
+
+                let tmpConcContainer: ConcentrationContainerType = tmpConcentrationContainers[0];
+
+                let ind1 = -1;
+                
+                for(let i = 0; i < tmpConcentrationContainers.length; i++){
+
+                    if(tmpConcentrationContainers[i].name == result.destination.droppableId){
+                        // found container
+                        tmpConcContainer = tmpConcentrationContainers.splice(i,1)[0];
+                        ind1 = i;
+                        break;
+                    }
+
+                }
+
+                const tmpConcCourses: CourseType[] = [...tmpConcContainer.courses];
+
+                const tmpConcCourse: CourseType = tmpConcCourses.splice(result.source.index,1)[0];
+
+                // spliced course, now place course
+
+                tmpConcCourses.splice(result.destination.index,0,tmpConcCourse);
+
+                tmpConcContainer.courses = tmpConcCourses;
+
+                tmpConcContainer.setCourses([...tmpConcCourses]);
+
+                tmpConcentrationContainers.splice(ind1,0,tmpConcContainer);
+
+                setConcentrationContainers(tmpConcentrationContainers);
 
             }
 
