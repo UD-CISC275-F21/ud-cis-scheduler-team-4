@@ -300,7 +300,7 @@ export const MainPage = (): JSX.Element => {
 
                 const tmpConcContainerCourses = [...tmpConcContainer.courses];
 
-                tmpConcContainerCourses.splice(result.destination.index,1,theCourse);
+                tmpConcContainerCourses.splice(result.destination.index,0,theCourse);
 
                 tmpConcContainer.courses = [...tmpConcContainerCourses];
                 
