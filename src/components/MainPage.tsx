@@ -319,6 +319,56 @@ export const MainPage = (): JSX.Element => {
 
 
 
+            } else if(result.source.droppableId !== result.destination.droppableId && !result.source.droppableId.includes("semester-table") && !result.destination.droppableId.includes("semester-table")){
+                // dropping from core --> language for instance
+                const tmpConcentrationContainers: ConcentrationContainerType[] = [...concentrationContainers];
+
+                let tmpConcContainer1: ConcentrationContainerType = tmpConcentrationContainers[0];
+
+                let tmpConcContainer2: ConcentrationContainerType = tmpConcentrationContainers[0];
+
+                let ind1 = -1;
+
+                let ind2 = -1;
+
+                for(let i = 0; i < tmpConcentrationContainers.length; i++){
+
+                    if(ind1 !== -1 && ind2 !== -1){
+                        break;
+                    } else if(tmpConcentrationContainers[i].name == result.source.droppableId){
+                        tmpConcContainer1 = tmpConcentrationContainers[i];
+                        ind1 = i;
+                        continue;
+                    } else if(tmpConcentrationContainers[i].name == result.destination.droppableId){
+                        tmpConcContainer2 = tmpConcentrationContainers[i];
+                        ind2 = i;
+                        continue;
+                    }
+
+                }
+
+                const tmpConc1Courses: CourseType[] = [...tmpConcContainer1.courses];
+
+                const tmpConc2Courses: CourseType[] = [...tmpConcContainer2.courses];
+
+                const tmpConc1Course: CourseType = tmpConc1Courses.splice(result.source.index,1)[0];
+
+                tmpConcContainer1.courses = [...tmpConc1Courses];
+
+                tmpConcContainer1.setCourses([...tmpConc1Courses]);
+
+                tmpConc2Courses.splice(result.destination.index,0,tmpConc1Course);
+
+                tmpConcContainer2.courses = [...tmpConc2Courses];
+
+                tmpConcContainer2.setCourses([...tmpConc2Courses]);
+
+                tmpConcentrationContainers.splice(ind1,0,tmpConcContainer1);
+
+                tmpConcentrationContainers.splice(ind2,0,tmpConcContainer2);
+
+                setConcentrationContainers([...tmpConcentrationContainers]);
+
             } else {
 
                 console.log("container --> container");
