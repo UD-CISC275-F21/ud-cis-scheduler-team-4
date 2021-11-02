@@ -44,6 +44,7 @@ export const MainPage = (): JSX.Element => {
 
     useEffect(() => {
 
+        console.log("edited semesterCourses from MainPage.tsx");
         semesterCourses.forEach(e => console.log(Object.entries(e)));
 
     },[semesterCourses]);
