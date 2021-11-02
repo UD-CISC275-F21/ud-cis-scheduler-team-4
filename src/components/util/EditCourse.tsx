@@ -41,12 +41,8 @@ export const EditCourse = (props: {display: boolean, setDisplay: React.Dispatch<
                             tmpSemester.courses[i].name = nameText;
                         }
                     }
-                    
                     tmpSemesters.splice(ind1,0,tmpSemester);
                     props.setSemesterCourses([...tmpSemesters]);
-                    
-
-                    console.log(props.course.name);
                 }}>END EDIT</Button>
             </Modal.Footer>
         </Modal>
