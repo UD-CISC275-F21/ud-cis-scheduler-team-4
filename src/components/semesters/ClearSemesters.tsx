@@ -5,7 +5,7 @@ import { SemesterType } from "../../interfaces/semester";
 export const ClearSemesters = (props:{ setSemesterCourses: React.Dispatch<React.SetStateAction<SemesterType[]>>}): JSX.Element =>{
     return (
         <Button onClick = {()=>{
-            props.setSemesterCourses([]);
+            props.setSemesterCourses;
         }
         }>
             Clear
