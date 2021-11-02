@@ -440,7 +440,7 @@ export const MainPage = (): JSX.Element => {
                             <br />
                             <Row>
                                 <Col>
-                                    <ClearSemesters setSemesterCourses={setSemesterCourses}></ClearSemesters>
+                                    <ClearSemesters semesters={semesterCourses} setSemesterCourses={setSemesterCourses}></ClearSemesters>
                                     <AddSemesterButton setSemesters={setSemesters} semesters={semesters} />
                                 </Col>
                             </Row>
