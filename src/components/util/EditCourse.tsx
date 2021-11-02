@@ -1,9 +1,7 @@
-import { countReset } from "console";
 import React, { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 import { Course as CourseType } from "../../interfaces/course";
 import { SemesterType } from "../../interfaces/semester";
-import { Course } from "../courses/Course";
 
 export const EditCourse = (props: {display: boolean, setDisplay: React.Dispatch<React.SetStateAction<boolean>>, course: CourseType, setCourses: React.Dispatch<React.SetStateAction<CourseType[]>>, semesterNumber: number, semesterCourses: SemesterType[], setSemesterCourses: React.Dispatch<React.SetStateAction<SemesterType[]>> }): JSX.Element => {
     const [nameText, setNameText] = useState(props.course.name);
