@@ -87,7 +87,33 @@ export const Semester = (props: { ind: number, semesterCourses: SemesterType[], 
                                                                 <Course name={`${e.name}-${e.section}`} ind={i}/>
                                                             </Col>
                                                             <Col xs lg="1">
-                                                                <Button variant="danger"></Button>
+                                                                <Button variant="danger" onClick={() => {
+                                                                    const tmpCourses: CourseType[] = [...courses];
+                                                                    for(let i = 0; i < tmpCourses.length; i++){
+                                                                        const theCourse: CourseType = tmpCourses[i];
+                                                                        if(theCourse.name === e.name){
+                                                                            // found course
+                                                                            tmpCourses.splice(i,1);
+                                                                        }
+                                                                    }
+                                                                    setCourses([...tmpCourses]);
+                                                                    const tmpSemesters: SemesterType[] = props.semesterCourses;
+                                                                    let tmpSemester: SemesterType = tmpSemesters[0];
+                                                                    for(let i = 0; i < tmpSemesters.length; i++){
+                                                                        tmpSemester = tmpSemesters[i];
+                                                                        if(tmpSemester.semesternum === props.ind+1){
+                                                                            // found semester
+                                                                            tmpSemester = tmpSemesters.splice(i,1)[0];
+                                                                            tmpSemester.courses = [...tmpCourses];
+                                                                            tmpSemester.courseSetter([...tmpCourses]);
+                                                                            tmpSemesters.splice(i,0,tmpSemester);
+                                                                            props.setSemesterCourses([...tmpSemesters]);
+                                                                            return e.name;
+                                                                        }
+                                                                    }
+
+                                                                    return e.name;
+                                                                }}></Button>
                                                             </Col>
                                                         </Row>
                                                     </ListGroup.Item>
