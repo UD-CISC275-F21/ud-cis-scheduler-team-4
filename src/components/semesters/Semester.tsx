@@ -6,6 +6,7 @@ import { Course } from "../courses/Course";
 import { Col, Button, Row } from "react-bootstrap";
 import { Course as CourseType } from "../../interfaces/course";
 import { SemesterType } from "../../interfaces/semester";
+import { EditCourse } from "../util/EditCourse";
 
 /*
 
@@ -29,6 +30,7 @@ export const getSemesterStr = (semesterNum: number): string => {
 
 export const Semester = (props: { ind: number, semesterCourses: SemesterType[], setSemesterCourses: React.Dispatch<React.SetStateAction<SemesterType[]>> }): JSX.Element => {
     const [courses, setCourses] = useState<CourseType[]>([]);
+    const [display, setDisplay] = useState<boolean>(false);
 
     const func1 = (courses: CourseType[]) => {
 
@@ -114,6 +116,11 @@ export const Semester = (props: { ind: number, semesterCourses: SemesterType[], 
 
                                                                     return e.name;
                                                                 }}></Button>
+                                                                <Button variant="warning" onClick={()=>{
+                                                                    setDisplay(!display);
+                                                                }}>
+                                                                </Button>
+                                                                {display && <EditCourse display={display} setDisplay={setDisplay} course={e} setCourses={setCourses} semesterNumber={props.ind+1} semesterCourses={props.semesterCourses} setSemesterCourses={props.setSemesterCourses} ></EditCourse>}
                                                             </Col>
                                                         </Row>
                                                     </ListGroup.Item>
