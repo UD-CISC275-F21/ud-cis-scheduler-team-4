@@ -3,7 +3,7 @@ import { Table, ListGroup } from "react-bootstrap";
 import React, { useState, useEffect } from "react";
 import { Droppable, DroppableProvided } from "react-beautiful-dnd";
 import { Course } from "../courses/Course";
-import { Col } from "react-bootstrap";
+import { Col, Button, Row } from "react-bootstrap";
 import { Course as CourseType } from "../../interfaces/course";
 import { SemesterType } from "../../interfaces/semester";
 
@@ -80,9 +80,18 @@ export const Semester = (props: { ind: number, semesterCourses: SemesterType[], 
                                     <ListGroup>
                                         {
                                             courses.map((e, i) =>
-                                                <ListGroup.Item key={i}>
-                                                    <Course name={`${e.name}-${e.section}`} ind={i}/>
-                                                </ListGroup.Item>
+                                                <>
+                                                    <ListGroup.Item key={i}>
+                                                        <Row>
+                                                            <Col>
+                                                                <Course name={`${e.name}-${e.section}`} ind={i}/>
+                                                            </Col>
+                                                            <Col xs lg="1">
+                                                                <Button variant="danger"></Button>
+                                                            </Col>
+                                                        </Row>
+                                                    </ListGroup.Item>
+                                                </>
                                             )
                                         }
                                     </ListGroup>
