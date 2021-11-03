@@ -6,16 +6,12 @@ import { SemesterType } from "../../interfaces/semester";
 export const EditCourse = (props: {display: boolean, setDisplay: React.Dispatch<React.SetStateAction<boolean>>, course: CourseType, setCourses: React.Dispatch<React.SetStateAction<CourseType[]>>, semesterNumber: number, semesterCourses: SemesterType[], setSemesterCourses: React.Dispatch<React.SetStateAction<SemesterType[]>> }): JSX.Element => {
     const [nameText, setNameText] = useState(props.course.name);
     return (
-        <Modal show={true}>
-            <Row>
-                <Col>
-                    <Modal.Header style={{ display: "block", textAlign: "center" }}>
-                        <Modal.Title>
-                            <Badge bg="primary">Edit Course Details</Badge>
-                        </Modal.Title>
-                    </Modal.Header>
-                </Col>
-            </Row>
+        <Modal show={true} onHide={() => props.setDisplay(false)}>
+            <Modal.Header closeButton>
+                <Modal.Title>
+                    <Badge bg="primary">Edit Course Details</Badge>
+                </Modal.Title>
+            </Modal.Header>
             <Modal.Body>
                 <Row>
                     <Col>
