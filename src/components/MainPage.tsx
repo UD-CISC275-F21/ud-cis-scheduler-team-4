@@ -434,7 +434,7 @@ export const MainPage = (): JSX.Element => {
                         <Col>
                             <Row>
                                 <Col>
-                                    <DropdownMenu setConcentration={setConcentration}></DropdownMenu>
+                                    <DropdownMenu setConcentration={setConcentration} semesterCourses={semesterCourses} setSemesterCourses={setSemesterCourses}></DropdownMenu>
                                 </Col>
                             </Row>
                             <br />
