@@ -142,6 +142,11 @@ export function BioConc(props: {StringsToCourses: (stringCourses:string[]) => Co
                     "name": "data science",
                     "courses": dataCourses,
                     "setCourses": setDataCourses
+                },
+                {
+                    "name": "ochem",
+                    "courses": ochemCourses,
+                    "setCourses": setOchemCourses
                 }
 
             ]
