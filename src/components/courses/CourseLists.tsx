@@ -16,6 +16,7 @@ export function AIConc(props: {StringsToCourses: (stringCourses:string[]) => Cou
     const [capstone2Courses,setCapstone2Courses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[0].conc.stats));
     const [general2Courses,setGeneral2Courses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[0].conc.systems));
     const [electiveCourses,setElectiveCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[0].conc.elective));
+    const [labCourses,setLabCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[0].lab));
 
     useEffect(() => {
         props.setConcentrationContainers(
@@ -56,6 +57,11 @@ export function AIConc(props: {StringsToCourses: (stringCourses:string[]) => Cou
                     "name": "elective",
                     "courses": electiveCourses,
                     "setCourses": setElectiveCourses
+                },
+                {
+                    "name": "lab",
+                    "courses": labCourses,
+                    "setCourses": setLabCourses
                 }
 
             ]
@@ -69,8 +75,8 @@ export function AIConc(props: {StringsToCourses: (stringCourses:string[]) => Cou
         <CourseContainer courses={coreCourses} name={"core"}  />
         <CourseContainer courses={capstone1Courses} name={"capstone-1"} />
         <CourseContainer courses={general1Courses} name={"general-1"} />
-        <p>Choose One Lab Sequence: (Needs fixing)</p>
-        
+        <p>Choose a Two-Course Lab Sequence:</p>
+        <CourseContainer courses={labCourses} name={"lab-1"} />
         <p>Select One Writing Course:</p>
         <CourseContainer courses={writingCourses} name={"writing"} />
         <p>Select One Statistics Course:</p>
@@ -88,7 +94,10 @@ export function BioConc(props: {StringsToCourses: (stringCourses:string[]) => Co
     const [generalCourses,setGeneralCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[1].conc.general));
     const [writingCourses, setWritingCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[1].writing));
     const [statCourses, setStatCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[1].conc.stats));
-    
+    const [labCourses,setLabCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[1].lab));
+    const [ochemCourses,setOchemCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[1].conc.ochem));
+    const [electiveCourses,setElectiveCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[1].conc.elective));
+    const [dataCourses,setDataCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[1].conc.data));
     useEffect(() => {
         props.setConcentrationContainers(
 
@@ -118,6 +127,21 @@ export function BioConc(props: {StringsToCourses: (stringCourses:string[]) => Co
                     "name": "stat",
                     "courses": statCourses,
                     "setCourses": setStatCourses
+                },
+                {
+                    "name": "lab",
+                    "courses": labCourses,
+                    "setCourses": setLabCourses
+                },
+                {
+                    "name": "electives",
+                    "courses": electiveCourses,
+                    "setCourses": setElectiveCourses
+                },
+                {
+                    "name": "data science",
+                    "courses": dataCourses,
+                    "setCourses": setDataCourses
                 }
 
             ]
@@ -132,14 +156,18 @@ export function BioConc(props: {StringsToCourses: (stringCourses:string[]) => Co
             <CourseContainer courses={coreCourses} name="core"/>
             <CourseContainer courses={capstoneCourses} name="capstone"/>
             <CourseContainer courses={generalCourses} name="general"/>
-            <p>Choose One Chem Sequence:</p>
+            <p>Chem Sequence:</p>
+            <CourseContainer courses={labCourses} name={"lab-1"} />
             <p>Choose One Organic Chem Sequence:</p>
+            <CourseContainer courses={ochemCourses} name={"ochem-1"} />
             <p>Select One Writing Course:</p>
             <CourseContainer courses={writingCourses} name="writing"/>
             <p>Select One Statistics Course:</p>
             <CourseContainer courses={statCourses} name="stat"/>
             <p>Select One Data Analysis Course:</p>
+            <CourseContainer courses={dataCourses} name="data"/>
             <p>Select Two from the Following:</p>
+            <CourseContainer courses={electiveCourses} name="electives"/>
         </div>
     );
 }
@@ -150,7 +178,10 @@ export function SecurityConc(props: {StringsToCourses: (stringCourses:string[]) 
     const [generalCourses,setGeneralCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[2].conc.general));
     const [writingCourses, setWritingCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[2].writing));
     const [statCourses, setStatCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[2].conc.stats));
-   
+    const [labCourses,setLabCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[2].lab));
+    const [electiveCourses,setElectiveCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[2].conc.elective));
+    const [secCourses,setSecCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[2].conc.cybersecurity));
+
     useEffect(() => {
         props.setConcentrationContainers(
 
@@ -180,6 +211,21 @@ export function SecurityConc(props: {StringsToCourses: (stringCourses:string[]) 
                     "name": "stat",
                     "courses": statCourses,
                     "setCourses": setStatCourses
+                },
+                {
+                    "name": "lab",
+                    "courses": labCourses,
+                    "setCourses": setLabCourses
+                },
+                {
+                    "name": "electives",
+                    "courses": electiveCourses,
+                    "setCourses": setElectiveCourses
+                },
+                {
+                    "name": "cybersecurity",
+                    "courses": secCourses,
+                    "setCourses": setSecCourses
                 }
 
             ]
@@ -194,13 +240,16 @@ export function SecurityConc(props: {StringsToCourses: (stringCourses:string[]) 
             <CourseContainer courses={coreCourses} name="core"/>
             <CourseContainer courses={capstoneCourses} name="capstone"/>
             <CourseContainer courses={generalCourses} name="general"/>
-            <p>Choose One Lab Sequence:</p>
+            <p>Choose a Two-Course Lab Sequence:</p>
+            <CourseContainer courses={labCourses} name={"lab-1"} />
             <p>Select One Writing Course:</p>
             <CourseContainer courses={writingCourses} name="writing"/>
             <p>Select One Statistics Course:</p>
             <CourseContainer courses={statCourses} name="stats"/>
             <p>Select Two Advanced Reqs:</p>
+            <CourseContainer courses={secCourses} name="security"/>
             <p>Select Two from the Following:</p>
+            <CourseContainer courses={electiveCourses} name="electives"/>
         </div>
     );
 }
@@ -210,7 +259,11 @@ export function DataScienceConc(props: {StringsToCourses: (stringCourses:string[
     const [capstoneCourses, setCapstoneCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[3].capstone));
     const [generalCourses,setGeneralCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[3].conc.general));
     const [writingCourses, setWritingCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[3].writing));
-    
+    const [labCourses,setLabCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[3].lab));
+    const [dataCourses,setDataCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[3].conc.data));
+    const [mathCourses,setMathCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[3].conc.stats));
+    const [electiveCourses,setElectiveCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[3].conc.elective));
+
     useEffect(() => {
         props.setConcentrationContainers(
 
@@ -236,6 +289,26 @@ export function DataScienceConc(props: {StringsToCourses: (stringCourses:string[
                     "courses": writingCourses,
                     "setCourses": setWritingCourses
                 },
+                {
+                    "name": "lab",
+                    "courses": labCourses,
+                    "setCourses": setLabCourses
+                },
+                {
+                    "name": "electives",
+                    "courses": electiveCourses,
+                    "setCourses": setElectiveCourses
+                },
+                {
+                    "name": "data science",
+                    "courses": dataCourses,
+                    "setCourses": setDataCourses
+                },
+                {
+                    "name": "math",
+                    "courses": mathCourses,
+                    "setCourses": setMathCourses
+                }
 
             ]
 
@@ -248,18 +321,36 @@ export function DataScienceConc(props: {StringsToCourses: (stringCourses:string[
         <CourseContainer courses={coreCourses} name="core"/>
         <CourseContainer courses={capstoneCourses} name="capstone"/>
         <CourseContainer courses={generalCourses} name="general"/>
-        <p>Choose One Lab Sequence:</p>
+        <p>Choose a Two-Course Lab Sequence:</p>
+        <CourseContainer courses={labCourses} name={"lab-1"} />
         <p>Select One Writing Course:</p>
         <CourseContainer courses={writingCourses} name="writing"/>
         <p>Select One Advanced Data Science:</p>
+        <CourseContainer courses={dataCourses} name="data science"/>
         <p>Select One Advanced Math:</p>
+        <CourseContainer courses={mathCourses} name="math"/>
         <p>Select One of the Following:</p>
+        <CourseContainer courses={electiveCourses} name="electives"/>
     </div>;
 }
 
 export function HPCConc(props: {StringsToCourses: (stringCourses:string[]) => Course[], setConcentrationContainers: React.Dispatch<React.SetStateAction<ConcentrationContainerType[]>>}): JSX.Element{
-    const [writingCourses, setWritingCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[2].writing));
+    const [coreCourses, setCoreCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[4].core));
+    const [capstoneCourses, setCapstoneCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[4].capstone));
+    const [generalCourses,setGeneralCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[4].conc.general));
+    const [writingCourses, setWritingCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[4].writing));
+    const [labCourses,setLabCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[4].lab));
+    const [statCourses, setStatCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[4].conc.stats));
+    const [electiveCourses,setElectiveCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[4].conc.elective));
+    const [mathCourses,setMathCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[4].conc.data));
+    const [dataCourses,setDataCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[4].conc.track));
+    const [learningCourses,setLearningCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[4].conc.cybersecurity));
+    const [dataTrackCourses,setDataTrackCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[4].conc.ochem));
     
+    
+    //Note: It'd be a real hassle to redesign the json to accomadate everything in here, so the HPC json is kind of
+    //a mess.
+
     useEffect(() => {
 
         props.setConcentrationContainers(
@@ -267,11 +358,62 @@ export function HPCConc(props: {StringsToCourses: (stringCourses:string[]) => Co
             [
 
                 {
+                    "name": "core",
+                    "courses": coreCourses,
+                    "setCourses": setCoreCourses
+                },
+                {
+                    "name": "capstone",
+                    "courses": capstoneCourses,
+                    "setCourses": setCapstoneCourses
+
+                },
+                {
+                    "name": "general",
+                    "courses": generalCourses,
+                    "setCourses": setGeneralCourses
+                },
+                {
 
                     "name": "writing",
                     "courses": writingCourses,
                     "setCourses": setWritingCourses
 
+                },
+                {
+                    "name": "lab",
+                    "courses": labCourses,
+                    "setCourses": setLabCourses
+                },
+                {
+                    "name": "stats",
+                    "courses": statCourses,
+                    "setCourses": setStatCourses
+                },
+                {
+                    "name": "elective",
+                    "courses": electiveCourses,
+                    "setCourses": setElectiveCourses
+                },
+                {
+                    "name": "math",
+                    "courses": mathCourses,
+                    "setCourses": setMathCourses
+                },
+                {
+                    "name": "data",
+                    "courses": dataCourses,
+                    "setCourses": setDataCourses
+                },
+                {
+                    "name": "machine learning",
+                    "courses": learningCourses,
+                    "setCourses": setLearningCourses
+                },
+                {
+                    "name": "data track",
+                    "courses": dataTrackCourses,
+                    "setCourses": setDataTrackCourses
                 }
 
             ]
@@ -282,8 +424,25 @@ export function HPCConc(props: {StringsToCourses: (stringCourses:string[]) => Co
 
 
     return<div>
-        <p>Come back and figure this one out later</p>
+        <h2>High-Performance Computing</h2>
+        <p>CISC Core and Concentration:</p>
+        <CourseContainer courses={coreCourses} name="core"/>
+        <CourseContainer courses={capstoneCourses} name="capstone"/>
+        <CourseContainer courses={generalCourses} name="general"/>
+        <p>Choose a Two-Course Lab Sequence:</p>
+        <CourseContainer courses={labCourses} name={"lab-1"} />
+        <p>Select One Writing Course:</p>
         <CourseContainer courses={writingCourses} name="writing"/>
+        <h5>Choose one of the follwing tracks:</h5>
+        <h5>Applied Math Track</h5>
+        <CourseContainer courses={electiveCourses} name="elecitve"/>
+        <CourseContainer courses={mathCourses} name="elecitve"/>
+        <CourseContainer courses={statCourses} name="MATH"/>
+        <h5>Data Track</h5>
+        <CourseContainer courses={dataCourses} name="data"/>
+        <CourseContainer courses={dataTrackCourses} name="data"/>
+        <p>Choose one Machine Learning Course:</p>
+        <CourseContainer courses={learningCourses} name="data"/>
     </div>;
 }
 
@@ -293,6 +452,10 @@ export function NetworksConc(props: {StringsToCourses: (stringCourses:string[]) 
     const [generalCourses,setGeneralCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[5].conc.general));
     const [writingCourses, setWritingCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[5].writing));
     const [statCourses, setStatCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[5].conc.stats));
+    const [labCourses,setLabCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[5].lab));
+    const [secCourses,setSecCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[5].conc.cybersecurity));
+    const [systemsCourses,setSystemsCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[5].conc.systems));
+    const [electiveCourses,setElectiveCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[5].conc.elective));
 
     useEffect(() => {
         props.setConcentrationContainers(
@@ -323,6 +486,26 @@ export function NetworksConc(props: {StringsToCourses: (stringCourses:string[]) 
                     "name": "stat",
                     "courses": statCourses,
                     "setCourses": setStatCourses
+                },
+                {
+                    "name": "lab",
+                    "courses": labCourses,
+                    "setCourses": setLabCourses
+                },
+                {
+                    "name": "security",
+                    "courses": secCourses,
+                    "setCourses": setSecCourses
+                },
+                {
+                    "name": "systems",
+                    "courses": systemsCourses,
+                    "setCourses": setSystemsCourses
+                },
+                {
+                    "name": "electives",
+                    "courses": electiveCourses,
+                    "setCourses": setElectiveCourses
                 }
 
             ]
@@ -338,14 +521,18 @@ export function NetworksConc(props: {StringsToCourses: (stringCourses:string[]) 
             <CourseContainer courses={coreCourses} name="core"/>
             <CourseContainer courses={capstoneCourses} name="capstone"/>
             <CourseContainer courses={generalCourses} name="general"/>
-            <p>Choose One Lab Sequence:</p>
+            <p>Choose a Two-Course Lab Sequence:</p>
+            <CourseContainer courses={labCourses} name={"lab-1"} />
             <p>Select One Writing Course:</p>
             <CourseContainer courses={writingCourses} name="writing"/>
             <p>Select One Statistics Course:</p>
             <CourseContainer courses={statCourses} name="stat"/>
             <p>Select One Security Requirement:</p>
+            <CourseContainer courses={secCourses} name="stat"/>
             <p>Select Two Systems Requirements:</p>
+            <CourseContainer courses={systemsCourses} name="stat"/>
             <p>Select Two of the Following:</p>
+            <CourseContainer courses={electiveCourses} name="stat"/>
         </div>
     );
 }
@@ -356,6 +543,9 @@ export function TheoryConc(props: {StringsToCourses: (stringCourses:string[]) =>
     const [generalCourses,setGeneralCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[6].conc.general));
     const [writingCourses, setWritingCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[6].writing));
     const [statCourses, setStatCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[6].conc.stats));
+    const [labCourses,setLabCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[6].lab));
+    const [discCourses,setDiscCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[6].conc.track));
+    const [contCourses,setContCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[6].conc.cybersecurity));
 
     useEffect(() => {
         props.setConcentrationContainers(
@@ -386,6 +576,23 @@ export function TheoryConc(props: {StringsToCourses: (stringCourses:string[]) =>
                     "name": "stat",
                     "courses": statCourses,
                     "setCourses": setStatCourses
+                },
+                {
+                    "name": "lab",
+                    "courses": labCourses,
+                    "setCourses": setLabCourses
+                }
+                ,
+                {
+                    "name": "discTrack",
+                    "courses": discCourses,
+                    "setCourses": setDiscCourses
+                }
+                ,
+                {
+                    "name": "contTrack",
+                    "courses": contCourses,
+                    "setCourses": setContCourses
                 }
 
             ]
@@ -400,13 +607,18 @@ export function TheoryConc(props: {StringsToCourses: (stringCourses:string[]) =>
             <CourseContainer courses={coreCourses} name="core"/>
             <CourseContainer courses={capstoneCourses} name="capstone"/>
             <CourseContainer courses={generalCourses} name="general"/>
-            <p>Choose One Lab Sequence:</p>
+            <p>Choose a Two-Course Lab Sequence:</p>
+            <CourseContainer courses={labCourses} name={"lab-1"} />
             <p>Select One Writing Course:</p>
             <CourseContainer courses={writingCourses} name="writing"/>
             <p>Select One Statistics Course:</p>
             <CourseContainer courses={statCourses} name="stat"/>
-            <p>Select One of the Following Tracks:</p>
-            <p>Select Two of the Following:</p>
+            <h5>Select One of the Following Four-Course Tracks:</h5>
+            <p>Discrete:</p>
+            <CourseContainer courses={discCourses} name="stat"/>
+            <p>Continuous:</p>
+            <CourseContainer courses={contCourses} name="stat"/>
+
         </div>
     );
 }
