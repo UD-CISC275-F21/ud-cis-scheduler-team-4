@@ -1,9 +1,8 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Table, ListGroup } from "react-bootstrap";
+import { Table, ListGroup, Accordion, Col, Button, Row } from "react-bootstrap";
 import React, { useState, useEffect } from "react";
 import { Droppable, DroppableProvided } from "react-beautiful-dnd";
 import { Course } from "../courses/Course";
-import { Col, Button, Row } from "react-bootstrap";
 import { Course as CourseType } from "../../interfaces/course";
 import { SemesterType } from "../../interfaces/semester";
 import { EditCourse } from "../util/EditCourse";
@@ -67,74 +66,115 @@ export const Semester = (props: { ind: number, semesterCourses: SemesterType[], 
     }, [courses]);
 
     return(
-        <Col key={`semester-table-col-${props.ind}`}>
-            <Droppable droppableId={`semester-table-${props.ind+1}`}>
-                {(prov: DroppableProvided) =>
-                    <Table key={`semester-table-table-${props.ind}`}>
-                        <thead>
-                            <tr>
-                                <td>{`${getSemesterStr(props.ind+1)}`}</td>
-                            </tr>
-                        </thead>
-                        <tbody {...prov.droppableProps} ref={prov.innerRef}>
-                            <tr>
-                                <td>
-                                    <ListGroup>
-                                        {
-                                            courses.map((e, i) =>
-                                                <>
-                                                    <ListGroup.Item key={i}>
-                                                        <Row>
-                                                            <Col>
-                                                                <Course name={`${e.name}-${e.section}`} ind={i}/>
-                                                            </Col>
-                                                            <Col xs lg="1">
-                                                                <Button variant="danger" onClick={() => {
-                                                                    const tmpCourses: CourseType[] = [...courses];
-                                                                    for(let i = 0; i < tmpCourses.length; i++){
-                                                                        const theCourse: CourseType = tmpCourses[i];
-                                                                        if(theCourse.name === e.name){
-                                                                            // found course
-                                                                            tmpCourses.splice(i,1);
-                                                                        }
-                                                                    }
-                                                                    setCourses([...tmpCourses]);
-                                                                    const tmpSemesters: SemesterType[] = props.semesterCourses;
-                                                                    let tmpSemester: SemesterType = tmpSemesters[0];
-                                                                    for(let i = 0; i < tmpSemesters.length; i++){
-                                                                        tmpSemester = tmpSemesters[i];
-                                                                        if(tmpSemester.semesternum === props.ind+1){
-                                                                            // found semester
-                                                                            tmpSemester = tmpSemesters.splice(i,1)[0];
-                                                                            tmpSemester.courses = [...tmpCourses];
-                                                                            tmpSemester.courseSetter([...tmpCourses]);
-                                                                            tmpSemesters.splice(i,0,tmpSemester);
-                                                                            props.setSemesterCourses([...tmpSemesters]);
-                                                                            return e.name;
-                                                                        }
-                                                                    }
+        <Accordion key={`accordion ${props.ind}`} defaultActiveKey="0">
+            <Accordion.Item eventKey="0">
+                <Accordion.Header>
+                    <Col xs={2}>
+                        {`Semester ${props.ind+1}`}
+                    </Col>
+                    <Col>
+                        <Button variant="danger" onClick={() => {
+                        
+                            const tmpSemesterCourses = [...props.semesterCourses];
 
-                                                                    return e.name;
-                                                                }}></Button>
-                                                                <Button variant="warning" onClick={()=>{
-                                                                    setDisplay(!display);
-                                                                }}>
-                                                                </Button>
-                                                                {display && <EditCourse display={display} setDisplay={setDisplay} course={e} setCourses={setCourses} semesterNumber={props.ind+1} semesterCourses={props.semesterCourses} setSemesterCourses={props.setSemesterCourses} ></EditCourse>}
-                                                            </Col>
-                                                        </Row>
-                                                    </ListGroup.Item>
-                                                </>
-                                            )
-                                        }
-                                    </ListGroup>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </Table>
-                }
-            </Droppable>
-        </Col>
+                            let theSemester = tmpSemesterCourses[0];
+
+                            let ind1 = 0;
+
+                            for(let i = 0; i < tmpSemesterCourses.length; i++){
+
+                                if(tmpSemesterCourses[i].semesternum === props.ind+1){
+                                    // found semester
+                                    ind1 = i;
+                                    theSemester = tmpSemesterCourses.splice(i,1)[0];
+                                    break;
+                                }
+
+                            }
+
+                            theSemester.courses = [];
+                            theSemester.courseSetter([]);
+
+                            tmpSemesterCourses.splice(ind1,0,theSemester);
+
+                            props.setSemesterCourses([...tmpSemesterCourses]);
+
+
+                        }}></Button>
+                    </Col>
+                </Accordion.Header>
+                <Accordion.Body>
+                    <Col key={`semester-table-col-${props.ind}`}>
+                        <Droppable droppableId={`semester-table-${props.ind+1}`}>
+                            {(prov: DroppableProvided) =>
+                                <Table key={`semester-table-table-${props.ind}`}>
+                                    <thead>
+                                        <tr>
+                                            <td>{`${getSemesterStr(props.ind+1)}`}</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody {...prov.droppableProps} ref={prov.innerRef}>
+                                        <tr>
+                                            <td>
+                                                <ListGroup>
+                                                    {
+                                                        courses.map((e, i) =>
+                                                            <>
+                                                                <ListGroup.Item key={i}>
+                                                                    <Row>
+                                                                        <Col>
+                                                                            <Course name={`${e.name}-${e.section}`} ind={i}/>
+                                                                        </Col>
+                                                                        <Col xs lg="1">
+                                                                            <Button variant="danger" onClick={() => {
+                                                                                const tmpCourses: CourseType[] = [...courses];
+                                                                                for(let i = 0; i < tmpCourses.length; i++){
+                                                                                    const theCourse: CourseType = tmpCourses[i];
+                                                                                    if(theCourse.name === e.name){
+                                                                                        // found course
+                                                                                        tmpCourses.splice(i,1);
+                                                                                    }
+                                                                                }
+                                                                                setCourses([...tmpCourses]);
+                                                                                const tmpSemesters: SemesterType[] = props.semesterCourses;
+                                                                                let tmpSemester: SemesterType = tmpSemesters[0];
+                                                                                for(let i = 0; i < tmpSemesters.length; i++){
+                                                                                    tmpSemester = tmpSemesters[i];
+                                                                                    if(tmpSemester.semesternum === props.ind+1){
+                                                                                        // found semester
+                                                                                        tmpSemester = tmpSemesters.splice(i,1)[0];
+                                                                                        tmpSemester.courses = [...tmpCourses];
+                                                                                        tmpSemester.courseSetter([...tmpCourses]);
+                                                                                        tmpSemesters.splice(i,0,tmpSemester);
+                                                                                        props.setSemesterCourses([...tmpSemesters]);
+                                                                                        return e.name;
+                                                                                    }
+                                                                                }
+
+                                                                                return e.name;
+                                                                            }}></Button>
+                                                                            <Button variant="warning" onClick={()=>{
+                                                                                setDisplay(!display);
+                                                                            }}>
+                                                                            </Button>
+                                                                            {display && <EditCourse display={display} setDisplay={setDisplay} course={e} setCourses={setCourses} semesterNumber={props.ind+1} semesterCourses={props.semesterCourses} setSemesterCourses={props.setSemesterCourses} ></EditCourse>}
+                                                                        </Col>
+                                                                    </Row>
+                                                                </ListGroup.Item>
+                                                            </>
+                                                        )
+                                                    }
+                                                </ListGroup>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </Table>
+                            }
+                        </Droppable>
+                    </Col>
+                </Accordion.Body>
+            </Accordion.Item>
+        </Accordion>
     );
 
 
