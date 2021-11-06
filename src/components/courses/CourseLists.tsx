@@ -5,9 +5,10 @@ import { CourseContainer } from "./CourseContainer";
 import { ConcentrationContainerType } from "../../interfaces/concentrationcontainer";
 import { useState, useEffect } from "react";
 import { Course as CourseType } from "../../interfaces/course";
+import { SavedSemesterType } from "../../interfaces/savedsemester";
 
 
-export function AIConc(props: {StringsToCourses: (stringCourses:string[]) => Course[], setConcentrationContainers: React.Dispatch<React.SetStateAction<ConcentrationContainerType[]>>} ): JSX.Element{
+export function AIConc(props: {StringsToCourses: (stringCourses:string[]) => Course[], setConcentrationContainers: React.Dispatch<React.SetStateAction<ConcentrationContainerType[]>>, savedSemesters: SavedSemesterType[] } ): JSX.Element{
     
     const [coreCourses, setCoreCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[0].core));
     const [capstone1Courses,setCapstone1Courses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[0].capstone));
@@ -18,49 +19,88 @@ export function AIConc(props: {StringsToCourses: (stringCourses:string[]) => Cou
     const [electiveCourses,setElectiveCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[0].conc.elective));
 
     useEffect(() => {
-        props.setConcentrationContainers(
 
-            [   
-                {
-                    "name": "core",
-                    "courses": coreCourses,
-                    "setCourses": setCoreCourses
-                },
-                {
-                    "name": "capstone-1",
-                    "courses": capstone1Courses,
-                    "setCourses": setCapstone1Courses
-
-                },
-                {
-                    "name": "general-1",
-                    "courses": general1Courses,
-                    "setCourses": setGeneral1Courses
-                },
-                {
-                    "name": "writing",
-                    "courses": writingCourses,
-                    "setCourses": setWritingCourses
-                },
-                {
-                    "name": "capstone-2",
-                    "courses": capstone2Courses,
-                    "setCourses": setCapstone2Courses
-                },
-                {
-                    "name": "general-2",
-                    "courses": general2Courses,
-                    "setCourses": setGeneral2Courses
-                },
-                {
-                    "name": "elective",
-                    "courses": electiveCourses,
-                    "setCourses": setElectiveCourses
+        if(props.savedSemesters.some(e => e.concentrationNumber === 0)){
+            // specific for AIConc
+            const savedSemester = props.savedSemesters.find(e => e.concentrationNumber === 0);
+            if(savedSemester !== undefined){
+                props.setConcentrationContainers(savedSemester.concContainers);
+                const savedSemesterCoreCourses = savedSemester.concContainers.find(e => e.name === "core");
+                if(savedSemesterCoreCourses !== undefined){
+                    setCoreCourses([...savedSemesterCoreCourses.courses]);
+                }
+                const savedSemesterCapstoneCourses = savedSemester.concContainers.find(e => e.name === "capstone-1");
+                if(savedSemesterCapstoneCourses !== undefined){
+                    setCoreCourses([...savedSemesterCapstoneCourses.courses]);
+                }
+                const savedSemesterGeneralCourses = savedSemester.concContainers.find(e => e.name === "general-1");
+                if(savedSemesterGeneralCourses !== undefined){
+                    setCoreCourses([...savedSemesterGeneralCourses.courses]);
+                }
+                const savedSemesterWritingCourses = savedSemester.concContainers.find(e => e.name === "writing");
+                if(savedSemesterWritingCourses !== undefined){
+                    setCoreCourses([...savedSemesterWritingCourses.courses]);
+                }
+                const savedSemesterCapstone2Courses = savedSemester.concContainers.find(e => e.name === "capstone-2");
+                if(savedSemesterCapstone2Courses !== undefined){
+                    setCoreCourses([...savedSemesterCapstone2Courses.courses]);
+                }
+                const savedSemesterGeneral2Courses = savedSemester.concContainers.find(e => e.name === "general-2");
+                if(savedSemesterGeneral2Courses !== undefined){
+                    setCoreCourses([...savedSemesterGeneral2Courses.courses]);
+                }
+                const savedSemesterElectiveCourses = savedSemester.concContainers.find(e => e.name === "elective");
+                if(savedSemesterElectiveCourses !== undefined){
+                    setCoreCourses([...savedSemesterElectiveCourses.courses]);
                 }
 
-            ]
+            }
+        } else{
 
-        );
+            props.setConcentrationContainers(
+
+                [   
+                    {
+                        "name": "core",
+                        "courses": coreCourses,
+                        "setCourses": setCoreCourses
+                    },
+                    {
+                        "name": "capstone-1",
+                        "courses": capstone1Courses,
+                        "setCourses": setCapstone1Courses
+
+                    },
+                    {
+                        "name": "general-1",
+                        "courses": general1Courses,
+                        "setCourses": setGeneral1Courses
+                    },
+                    {
+                        "name": "writing",
+                        "courses": writingCourses,
+                        "setCourses": setWritingCourses
+                    },
+                    {
+                        "name": "capstone-2",
+                        "courses": capstone2Courses,
+                        "setCourses": setCapstone2Courses
+                    },
+                    {
+                        "name": "general-2",
+                        "courses": general2Courses,
+                        "setCourses": setGeneral2Courses
+                    },
+                    {
+                        "name": "elective",
+                        "courses": electiveCourses,
+                        "setCourses": setElectiveCourses
+                    }
+
+                ]
+
+            );
+        }
     },[]);
 
     return<div>

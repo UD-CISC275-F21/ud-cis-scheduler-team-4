@@ -5,8 +5,10 @@ import CONCENTRATIONS from "../../json/concentrations.json";
 import COURSES from "../../json/courses.json";
 import { Course as CourseType } from "../../interfaces/course";
 import { ConcentrationContainerType } from "../../interfaces/concentrationcontainer";
+import { SavedSemesterType } from "../../interfaces/savedsemester";
+import { concentrationNumberLookup } from "../MainPage";
 
-export function DisplayCourseList(props: {concentration: Concentration, setConcentrationContainers: React.Dispatch<React.SetStateAction<ConcentrationContainerType[]>> }): JSX.Element{
+export function DisplayCourseList(props: {concentration: Concentration, setConcentrationContainers: React.Dispatch<React.SetStateAction<ConcentrationContainerType[]>>, savedSemesters: SavedSemesterType[] }): JSX.Element{
 
     function StringsToCourses(stringCourses: string[]): CourseType[]{
         /**Takes a list of strings, and returns a list of courses by looking in courses.json for matching names. 
@@ -21,8 +23,10 @@ export function DisplayCourseList(props: {concentration: Concentration, setConce
 
     }
 
+    // pass saved semester in as prop into individual displays
+
     if (props.concentration==CONCENTRATIONS[0]){
-        return <AIConc StringsToCourses={StringsToCourses} setConcentrationContainers={props.setConcentrationContainers}></AIConc>;
+        return <AIConc StringsToCourses={StringsToCourses} setConcentrationContainers={props.setConcentrationContainers} savedSemesters={props.savedSemesters}></AIConc>;
     } else if (props.concentration==CONCENTRATIONS[1]){
         return <BioConc StringsToCourses={StringsToCourses} setConcentrationContainers={props.setConcentrationContainers}></BioConc>;
     } else if (props.concentration==CONCENTRATIONS[2]){

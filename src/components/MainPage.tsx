@@ -15,19 +15,19 @@ import { Course as CourseType } from "../interfaces/course";
 import { SavedSemesterType } from "../interfaces/savedsemester";
 import { ConcentrationNumberDictionary } from "../interfaces/concentrationNumber";
 
+export const concentrationNumberLookup: ConcentrationNumberDictionary = {
+
+    "AI and Robotics": 0,
+    "Bioinformatics": 1,
+    "Data Science": 2,
+    "High-Performance Computing": 3,
+    "Networks and Systems": 4,
+    "Theory of Computation": 5
+
+};
+
 
 export const MainPage = (): JSX.Element => {
-
-    const concentrationNumberLookup: ConcentrationNumberDictionary = {
-
-        "AI and Robotics": 0,
-        "Bioinformatics": 1,
-        "Data Science": 2,
-        "High-Performance Computing": 3,
-        "Networks and Systems": 4,
-        "Theory of Computation": 5
-
-    };
     
     /*
 
@@ -78,7 +78,7 @@ export const MainPage = (): JSX.Element => {
 
     useEffect(() => {
 
-        //console.log("concentration changed to " + concentration.name);
+        console.log(`SWITCHED CONCENTRATIONS TO ${concentration}`);
         const tmpSavedSemesters = [...savedSemesters];
         if(tmpSavedSemesters.some(e => e.concentrationNumber === concentrationNumberLookup[concentration.name])){
             console.log("do not run with concentration");
@@ -97,10 +97,10 @@ export const MainPage = (): JSX.Element => {
         if(tmpSavedSemesters.some(e => e.concentrationNumber === concentrationNumberLookup[concentration.name])){
             const savedSemesterInd = tmpSavedSemesters.findIndex(e => e.concentrationNumber === concentrationNumberLookup[concentration.name]);
             const theSavedSemester = tmpSavedSemesters.splice(savedSemesterInd,1)[0];
-            theSavedSemester.concContainers = concentrationContainers;
+            theSavedSemester.concContainers = [...concentrationContainers];
             tmpSavedSemesters.splice(savedSemesterInd,0,theSavedSemester);
             setSavedSemesters([...tmpSavedSemesters]);
-            console.log(`Ctmp saved semesters = ${savedSemesters.forEach(e => console.log(Object.values(e)))}`);
+            console.log(`${concentration.name.toUpperCase()} Ctmp saved semesters = ${savedSemesters.forEach(e => console.log(Object.values(e)))}`);
         } else{
             tmpSavedSemesters.push({concentrationNumber: concentrationNumberLookup[concentration.name], semesterCourses: semesterCourses, concContainers: concentrationContainers, numSemesters: semesters});
             setSavedSemesters([...tmpSavedSemesters]);
@@ -117,14 +117,14 @@ export const MainPage = (): JSX.Element => {
         if(tmpSavedSemesters.some(e => e.concentrationNumber === concentrationNumberLookup[concentration.name])){
             const savedSemesterInd = tmpSavedSemesters.findIndex(e => e.concentrationNumber === concentrationNumberLookup[concentration.name]);
             const theSavedSemester = tmpSavedSemesters.splice(savedSemesterInd,1)[0];
-            theSavedSemester.semesterCourses = semesterCourses;
+            theSavedSemester.semesterCourses = [...semesterCourses];
             tmpSavedSemesters.splice(savedSemesterInd,0,theSavedSemester);
             setSavedSemesters([...tmpSavedSemesters]);
-            console.log(`Ctmp saved semesters = ${savedSemesters.forEach(e => console.log(Object.values(e)))}`);
+            console.log(`${concentration.name.toUpperCase()} SCtmp saved semesters = ${savedSemesters.forEach(e => console.log(Object.values(e)))}`);
         } else{
             tmpSavedSemesters.push({concentrationNumber: concentrationNumberLookup[concentration.name], semesterCourses: semesterCourses, concContainers: concentrationContainers, numSemesters: semesters});
             setSavedSemesters([...tmpSavedSemesters]);
-            console.log(`Ctmp saved semesters = ${tmpSavedSemesters.forEach(e => console.log(Object.values(e)))}`);
+            console.log(`SCtmp saved semesters = ${tmpSavedSemesters.forEach(e => console.log(Object.values(e)))}`);
         }
     },[semesterCourses]);
 
@@ -137,11 +137,11 @@ export const MainPage = (): JSX.Element => {
             theSavedSemester.numSemesters = semesters;
             tmpSavedSemesters.splice(savedSemesterInd,0,theSavedSemester);
             setSavedSemesters([...tmpSavedSemesters]);
-            console.log(`Ctmp saved semesters = ${savedSemesters.forEach(e => console.log(Object.values(e)))}`);
+            console.log(`Stmp saved semesters = ${savedSemesters.forEach(e => console.log(Object.values(e)))}`);
         } else{
             tmpSavedSemesters.push({concentrationNumber: concentrationNumberLookup[concentration.name], semesterCourses: semesterCourses, concContainers: concentrationContainers, numSemesters: semesters});
             setSavedSemesters([...tmpSavedSemesters]);
-            console.log(`Ctmp saved semesters = ${tmpSavedSemesters.forEach(e => console.log(Object.values(e)))}`);
+            console.log(`Stmp saved semesters = ${tmpSavedSemesters.forEach(e => console.log(Object.values(e)))}`);
         }
 
     }, [semesters]);
@@ -532,7 +532,7 @@ export const MainPage = (): JSX.Element => {
                         <Col>
                             <Row>
                                 <Col>
-                                    <DropdownMenu setConcentration={setConcentration} semesterCourses={semesterCourses} setSemesterCourses={setSemesterCourses}></DropdownMenu>
+                                    <DropdownMenu setConcentration={setConcentration} semesterCourses={semesterCourses} setSemesterCourses={setSemesterCourses} savedSemesters={savedSemesters} setSavedSemesters={setSavedSemesters} concentrationContainers={concentrationContainers} setConcentrationContainers={setConcentrationContainers} setNumSemesters={setSemesters} ></DropdownMenu>
                                 </Col>
                             </Row>
                             <br />
@@ -547,7 +547,7 @@ export const MainPage = (): JSX.Element => {
                     <br />
                     <Row>
                         <Col>
-                            <DisplayCourseList concentration={concentration} setConcentrationContainers={setConcentrationContainers} ></DisplayCourseList>
+                            <DisplayCourseList concentration={concentration} setConcentrationContainers={setConcentrationContainers} savedSemesters={savedSemesters}></DisplayCourseList>
                         </Col>
                         <Col>
                             <SemesterTable semesters={semesters} semestersCourses={semesterCourses} setSemesterCourses={setSemesterCourses}/>

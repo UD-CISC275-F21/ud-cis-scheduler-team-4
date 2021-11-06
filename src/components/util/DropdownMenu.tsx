@@ -3,24 +3,64 @@ import { Concentration } from "../../interfaces/concentration";
 import { SemesterType } from "../../interfaces/semester";
 import CONCENTRATIONS from "../../json/concentrations.json";
 import React from "react";
+import { SavedSemesterType } from "../../interfaces/savedsemester";
+import { ConcentrationContainerType } from "../../interfaces/concentrationcontainer";
 
-export function DropdownMenu(props: { setConcentration: React.Dispatch<React.SetStateAction<Concentration>>, semesterCourses: SemesterType[], setSemesterCourses: React.Dispatch<React.SetStateAction<SemesterType[]>> }): JSX.Element{
+export function DropdownMenu(props: {
+                                        setConcentration: React.Dispatch<React.SetStateAction<Concentration>>, 
+
+                                        semesterCourses: SemesterType[], 
+                                        setSemesterCourses: React.Dispatch<React.SetStateAction<SemesterType[]>>, 
+
+                                        savedSemesters: SavedSemesterType[], 
+                                        setSavedSemesters: React.Dispatch<React.SetStateAction<SavedSemesterType[]>>, 
+
+                                        concentrationContainers: ConcentrationContainerType[], 
+                                        setConcentrationContainers: React.Dispatch<React.SetStateAction<ConcentrationContainerType[]>>,
+                                        
+                                        setNumSemesters: React.Dispatch<React.SetStateAction<number>>
+                                    
+                                    }): JSX.Element{
     
     const clickFunc = (ind: number) => {
 
-        const tmpSemesterCourses = [...props.semesterCourses];
+        if(props.savedSemesters.some(e => e.concentrationNumber === ind)){
+            // we have a saved semester
+            console.log("INSIDE OF SAVED SEMESTER IF");
+            console.log(`savedSemester = ${props.savedSemesters.forEach(e => console.log(Object.values(e)))}`);
+            const theSavedSemester = props.savedSemesters.find(e => e.concentrationNumber === ind);
+            if(theSavedSemester?.semesterCourses !== undefined){
+                props.setSemesterCourses([...theSavedSemester?.semesterCourses]);
+            } else{
+                props.setSemesterCourses([]);
+            }
+            if(theSavedSemester?.numSemesters !== undefined){
+                props.setNumSemesters(theSavedSemester?.numSemesters);
+            } else {
+                props.setNumSemesters(1);
+            }
+            if(theSavedSemester?.concContainers !== undefined){
+                props.setConcentrationContainers(theSavedSemester.concContainers);
+            } else {
+                props.setConcentrationContainers([]);
+            }
 
-        for(let i = 0; i < tmpSemesterCourses.length; i++){
+        } else{
 
-            const tmpSemester = tmpSemesterCourses.splice(i,1)[0];
-            tmpSemester.courses = [];
-            tmpSemester.courseSetter([]);
-            tmpSemesterCourses.splice(i,0,tmpSemester);
+            const tmpSemesterCourses = [...props.semesterCourses];
 
+            for(let i = 0; i < tmpSemesterCourses.length; i++){
+
+                const tmpSemester = tmpSemesterCourses.splice(i,1)[0];
+                tmpSemester.courses = [];
+                tmpSemester.courseSetter([]);
+                tmpSemesterCourses.splice(i,0,tmpSemester);
+
+            }
+            props.setSemesterCourses([...tmpSemesterCourses]);
+
+            props.setConcentration(CONCENTRATIONS[ind]);
         }
-        props.setSemesterCourses([...tmpSemesterCourses]);
-
-        props.setConcentration(CONCENTRATIONS[ind]);
 
     };
 
