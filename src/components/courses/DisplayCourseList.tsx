@@ -23,7 +23,7 @@ export function DisplayCourseList(props: {concentration: Concentration, setConce
 
     }
 
-    // pass saved semester in as prop into individual displays
+    // pass saved semester in as prop into individual displays, maybe do a ternary string testing if the concentration is already saved?
 
     if (props.concentration==CONCENTRATIONS[0]){
         return <AIConc StringsToCourses={StringsToCourses} setConcentrationContainers={props.setConcentrationContainers} savedSemesters={props.savedSemesters}></AIConc>;

@@ -103,23 +103,130 @@ export function AIConc(props: {StringsToCourses: (stringCourses:string[]) => Cou
         }
     },[]);
 
-    return<div>
-        <h2>Artificial Intelligence and Robotics</h2>
-        <p>CISC Core and Concentration:</p>
-        <CourseContainer courses={coreCourses} name={"core"}  />
-        <CourseContainer courses={capstone1Courses} name={"capstone-1"} />
-        <CourseContainer courses={general1Courses} name={"general-1"} />
-        <p>Choose One Lab Sequence: (Needs fixing)</p>
-        
-        <p>Select One Writing Course:</p>
-        <CourseContainer courses={writingCourses} name={"writing"} />
-        <p>Select One Statistics Course:</p>
-        <CourseContainer courses={capstone2Courses} name={"capstone-2"} />
-        <p>Select One Systems Course:</p>
-        <CourseContainer courses={general2Courses} name={"general-2"} />
-        <p>Select Four from the Following:</p>
-        <CourseContainer courses={electiveCourses} name={"elective"} />
-    </div>;
+    return(props.savedSemesters.some(e => e.concentrationNumber === 0)? 
+        <div>
+            <h2>Artificial Intelligence and Robotics</h2>
+            <p>CISC Core and Concentration:</p>
+            <CourseContainer courses={
+
+                (() => {
+                    const tmpSemester = props.savedSemesters.find(e => e.concentrationNumber === 0)?.concContainers;
+                    const tmpConcContainers = tmpSemester?.find(e => e.name === "core");
+                    if(tmpConcContainers !== undefined){
+                        return tmpConcContainers.courses;
+                    } else{
+                        return [];
+                    }
+                })()
+
+            } name={"core"}  />
+            <CourseContainer courses={
+                
+                
+                (() => {
+                    const tmpSemester = props.savedSemesters.find(e => e.concentrationNumber === 0)?.concContainers;
+                    const tmpConcContainers = tmpSemester?.find(e => e.name === "capstone-1");
+                    if(tmpConcContainers !== undefined){
+                        return tmpConcContainers.courses;
+                    } else{
+                        return [];
+                    }
+                })()
+
+
+            } name={"capstone-1"} />
+            <CourseContainer courses={
+                
+
+                (() => {
+                    const tmpSemester = props.savedSemesters.find(e => e.concentrationNumber === 0)?.concContainers;
+                    const tmpConcContainers = tmpSemester?.find(e => e.name === "general-1");
+                    if(tmpConcContainers !== undefined){
+                        return tmpConcContainers.courses;
+                    } else{
+                        return [];
+                    }
+                })()
+
+            } name={"general-1"} />
+            <p>Choose One Lab Sequence: (Needs fixing)</p>
+            
+            <p>Select One Writing Course:</p>
+            <CourseContainer courses={
+                
+                (() => {
+                    const tmpSemester = props.savedSemesters.find(e => e.concentrationNumber === 0)?.concContainers;
+                    const tmpConcContainers = tmpSemester?.find(e => e.name === "writing");
+                    if(tmpConcContainers !== undefined){
+                        return tmpConcContainers.courses;
+                    } else{
+                        return [];
+                    }
+                })()
+
+            } name={"writing"} />
+            <p>Select One Statistics Course:</p>
+            <CourseContainer courses={
+                
+                (() => {
+                    const tmpSemester = props.savedSemesters.find(e => e.concentrationNumber === 0)?.concContainers;
+                    const tmpConcContainers = tmpSemester?.find(e => e.name === "capstone-2");
+                    if(tmpConcContainers !== undefined){
+                        return tmpConcContainers.courses;
+                    } else{
+                        return [];
+                    }
+                })()
+
+            } name={"capstone-2"} />
+            <p>Select One Systems Course:</p>
+            <CourseContainer courses={
+                
+                (() => {
+                    const tmpSemester = props.savedSemesters.find(e => e.concentrationNumber === 0)?.concContainers;
+                    const tmpConcContainers = tmpSemester?.find(e => e.name === "general-2");
+                    if(tmpConcContainers !== undefined){
+                        return tmpConcContainers.courses;
+                    } else{
+                        return [];
+                    }
+                })()
+
+            } name={"general-2"} />
+            <p>Select Four from the Following:</p>
+            <CourseContainer courses={
+                
+                (() => {
+                    const tmpSemester = props.savedSemesters.find(e => e.concentrationNumber === 0)?.concContainers;
+                    const tmpConcContainers = tmpSemester?.find(e => e.name === "elective");
+                    if(tmpConcContainers !== undefined){
+                        return tmpConcContainers.courses;
+                    } else{
+                        return [];
+                    }
+                })()
+
+            } name={"elective"} />
+        </div>
+        :
+        <div>
+            <h2>Artificial Intelligence and Robotics</h2>
+            <p>CISC Core and Concentration:</p>
+            <CourseContainer courses={coreCourses} name={"core"}  />
+            <CourseContainer courses={capstone1Courses} name={"capstone-1"} />
+            <CourseContainer courses={general1Courses} name={"general-1"} />
+            <p>Choose One Lab Sequence: (Needs fixing)</p>
+            
+            <p>Select One Writing Course:</p>
+            <CourseContainer courses={writingCourses} name={"writing"} />
+            <p>Select One Statistics Course:</p>
+            <CourseContainer courses={capstone2Courses} name={"capstone-2"} />
+            <p>Select One Systems Course:</p>
+            <CourseContainer courses={general2Courses} name={"general-2"} />
+            <p>Select Four from the Following:</p>
+            <CourseContainer courses={electiveCourses} name={"elective"} />
+        </div>
+    );
 }
 
 export function BioConc(props: {StringsToCourses: (stringCourses:string[]) => Course[], setConcentrationContainers: React.Dispatch<React.SetStateAction<ConcentrationContainerType[]>>}): JSX.Element{

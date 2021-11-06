@@ -46,6 +46,11 @@ export function DropdownMenu(props: {
             }
 
         } else{
+            
+            console.log("SWITCHING TO SEMESTER THAT IS NOT SAVED");
+            console.log(`savedSemester1 = ${props.savedSemesters.forEach(e => console.log(Object.values(e)))}`);
+            console.log(`concontainers = ${props.concentrationContainers.forEach(e => console.log(Object.values(e)))}`);
+            console.log(`semesterCourses = ${props.semesterCourses.forEach(e => console.log(Object.values(e)))}`);
 
             const tmpSemesterCourses = [...props.semesterCourses];
 
@@ -60,6 +65,7 @@ export function DropdownMenu(props: {
             props.setSemesterCourses([...tmpSemesterCourses]);
 
             props.setConcentration(CONCENTRATIONS[ind]);
+            console.log(`savedSemester2 = ${props.savedSemesters.forEach(e => console.log(Object.values(e)))}`);
         }
 
     };
