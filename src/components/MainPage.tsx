@@ -12,46 +12,144 @@ import { SemesterType } from "../interfaces/semester";
 import { AddSemesterButton } from "./semesters/AddSemesterButton";
 import { ConcentrationContainerType } from "../interfaces/concentrationcontainer";
 import { Course as CourseType } from "../interfaces/course";
+import { SavedSemesterType } from "../interfaces/savedsemester";
+import { ConcentrationNumberDictionary } from "../interfaces/concentrationNumber";
+
 
 export const MainPage = (): JSX.Element => {
-    const [concentration, setConcentration] = useState<Concentration>(CONCENTRATIONS[0] as Concentration);
-    const [semesterCourses, setSemesterCourses] = useState<SemesterType[]>([]);
-    const [display, setDisplay] = useState<boolean>(false);
-    const [semesters, setSemesters] = useState<number>(1);
-    const [concentrationContainers, setConcentrationContainers] = useState<ConcentrationContainerType[]>([]); // is initialized to the first concentration container, contains all of the parts of the concentration, outlined in the comment below
+
+    const concentrationNumberLookup: ConcentrationNumberDictionary = {
+
+        "AI and Robotics": 0,
+        "Bioinformatics": 1,
+        "Data Science": 2,
+        "High-Performance Computing": 3,
+        "Networks and Systems": 4,
+        "Theory of Computation": 5
+
+    };
+    
     /*
 
-    {
+    concentration - holds all the classes of each concentration as a typescript object
 
-        "name": "core" <--- what part of the concentration it is
-        courses: [] <--- the courses in the part
-        setCourses: [] <--- the way to update the courses in the part when we drag into the semester
+    */
+    
+    const [concentration, setConcentration] = useState<Concentration>(CONCENTRATIONS[0] as Concentration);
+    /*
 
-    }
+    semesterCourses - contains general information as to what classes each semester holds
 
+    */
+    const [semesterCourses, setSemesterCourses] = useState<SemesterType[]>([]);
+    /*
+
+    display - controls general notification display on/off
+
+    */
+    const [display, setDisplay] = useState<boolean>(false);
+    /*
+
+    semesters - decides how many semesters to generate
+
+    */
+    const [semesters, setSemesters] = useState<number>(1);
+    /*
+
+    concentrationContainers - for drag and drop logic, make it more secure
+
+    */
+    const [concentrationContainers, setConcentrationContainers] = useState<ConcentrationContainerType[]>([]); // is initialized to the first concentration container, contains all of the parts of the concentration, outlined in the comment below
+    
+    /*
+
+    savedSemesters - contains entire
 
     */
 
-    // maybe make an object like indexes are the semesters so {1: ["CISC101","CISC106"]}
+    const [savedSemesters, setSavedSemesters] = useState<SavedSemesterType[]>([]);
 
     useEffect(() => {
         setDisplay(true);
         setTimeout(() => {
             setDisplay(false);
         },1);
-    },[]);  
+    },[]);
 
     useEffect(() => {
 
-        console.log("edited semesterCourses from MainPage.tsx");
-        semesterCourses.forEach(e => console.log(Object.entries(e)));
+        //console.log("concentration changed to " + concentration.name);
+        const tmpSavedSemesters = [...savedSemesters];
+        if(tmpSavedSemesters.some(e => e.concentrationNumber === concentrationNumberLookup[concentration.name])){
+            console.log("do not run with concentration");
+        } else{
+            tmpSavedSemesters.push({concentrationNumber: concentrationNumberLookup[concentration.name], semesterCourses: semesterCourses, concContainers: concentrationContainers, numSemesters: semesters});
+            setSavedSemesters([...tmpSavedSemesters]);
+            console.log(`Ctmp saved semesters = ${tmpSavedSemesters.forEach(e => console.log(Object.values(e)))}`);
+        }
+    
 
+    },[concentration]);
+    
+    useEffect(() => {
+
+        const tmpSavedSemesters = [...savedSemesters];
+        if(tmpSavedSemesters.some(e => e.concentrationNumber === concentrationNumberLookup[concentration.name])){
+            const savedSemesterInd = tmpSavedSemesters.findIndex(e => e.concentrationNumber === concentrationNumberLookup[concentration.name]);
+            const theSavedSemester = tmpSavedSemesters.splice(savedSemesterInd,1)[0];
+            theSavedSemester.concContainers = concentrationContainers;
+            tmpSavedSemesters.splice(savedSemesterInd,0,theSavedSemester);
+            setSavedSemesters([...tmpSavedSemesters]);
+            console.log(`Ctmp saved semesters = ${savedSemesters.forEach(e => console.log(Object.values(e)))}`);
+        } else{
+            tmpSavedSemesters.push({concentrationNumber: concentrationNumberLookup[concentration.name], semesterCourses: semesterCourses, concContainers: concentrationContainers, numSemesters: semesters});
+            setSavedSemesters([...tmpSavedSemesters]);
+            console.log(`CCtmp saved semesters = ${tmpSavedSemesters.forEach(e => console.log(Object.values(e)))}`);
+        }
+        
+    
+    },[concentrationContainers]);
+
+    useEffect(() => {
+
+
+        const tmpSavedSemesters = [...savedSemesters];
+        if(tmpSavedSemesters.some(e => e.concentrationNumber === concentrationNumberLookup[concentration.name])){
+            const savedSemesterInd = tmpSavedSemesters.findIndex(e => e.concentrationNumber === concentrationNumberLookup[concentration.name]);
+            const theSavedSemester = tmpSavedSemesters.splice(savedSemesterInd,1)[0];
+            theSavedSemester.semesterCourses = semesterCourses;
+            tmpSavedSemesters.splice(savedSemesterInd,0,theSavedSemester);
+            setSavedSemesters([...tmpSavedSemesters]);
+            console.log(`Ctmp saved semesters = ${savedSemesters.forEach(e => console.log(Object.values(e)))}`);
+        } else{
+            tmpSavedSemesters.push({concentrationNumber: concentrationNumberLookup[concentration.name], semesterCourses: semesterCourses, concContainers: concentrationContainers, numSemesters: semesters});
+            setSavedSemesters([...tmpSavedSemesters]);
+            console.log(`Ctmp saved semesters = ${tmpSavedSemesters.forEach(e => console.log(Object.values(e)))}`);
+        }
     },[semesterCourses]);
 
+    useEffect(() => {
+
+        const tmpSavedSemesters = [...savedSemesters];
+        if(tmpSavedSemesters.some(e => e.concentrationNumber === concentrationNumberLookup[concentration.name])){
+            const savedSemesterInd = tmpSavedSemesters.findIndex(e => e.concentrationNumber === concentrationNumberLookup[concentration.name]);
+            const theSavedSemester = tmpSavedSemesters.splice(savedSemesterInd,1)[0];
+            theSavedSemester.numSemesters = semesters;
+            tmpSavedSemesters.splice(savedSemesterInd,0,theSavedSemester);
+            setSavedSemesters([...tmpSavedSemesters]);
+            console.log(`Ctmp saved semesters = ${savedSemesters.forEach(e => console.log(Object.values(e)))}`);
+        } else{
+            tmpSavedSemesters.push({concentrationNumber: concentrationNumberLookup[concentration.name], semesterCourses: semesterCourses, concContainers: concentrationContainers, numSemesters: semesters});
+            setSavedSemesters([...tmpSavedSemesters]);
+            console.log(`Ctmp saved semesters = ${tmpSavedSemesters.forEach(e => console.log(Object.values(e)))}`);
+        }
+
+    }, [semesters]);
+
     const onDragEnd = (result: DropResult) => {
-        console.log(semesterCourses);
-        console.log(result);
-        console.log(concentrationContainers);
+        ////console.log(semesterCourses);
+        ////console.log(result);
+        ////console.log(concentrationContainers);
 
         if (!result.destination) {
             return;
@@ -59,7 +157,7 @@ export const MainPage = (): JSX.Element => {
             
             if(!result.source.droppableId.includes("semester-table")){
 
-                console.log("from conc container");
+                ////console.log("from conc container");
 
                 const tmpConcentrationContainers = [...concentrationContainers];
 
@@ -117,11 +215,11 @@ export const MainPage = (): JSX.Element => {
             } else if(result.source.droppableId === result.destination.droppableId){
 
                 // dropping in same table
-                console.log("dropping in same table");
+                ////console.log("dropping in same table");
 
                 if(result.source.droppableId.includes("semester-table")){
                     
-                    console.log("within same semester table");
+                    ////console.log("within same semester table");
 
                     const semesterNum = parseInt(result.source.droppableId.substring(result.source.droppableId.lastIndexOf("-")+1));
 
@@ -142,24 +240,24 @@ export const MainPage = (): JSX.Element => {
 
                     }
 
-                    console.log(Object.entries(tmpSemester));
+                    //console.log(Object.entries(tmpSemester));
 
                     const courses: CourseType[] = [...tmpSemester.courses];
-                    console.log("----before any splicing----");
-                    courses.forEach(e => console.log(Object.values(e)));
+                    //console.log("----before any splicing----");
+                    //courses.forEach(e => //console.log(Object.values(e)));
                     const theCourse: CourseType = courses.splice(result.source.index,1)[0]; // gets 108
-                    console.log(`---spliced course--- : ${Object.values(theCourse)}`);
-                    console.log("----before----");
-                    courses.forEach(e => console.log(Object.values(e)));
+                    //console.log(`---spliced course--- : ${Object.values(theCourse)}`);
+                    //console.log("----before----");
+                    //courses.forEach(e => //console.log(Object.values(e)));
                     courses.splice(result.destination.index,0,theCourse);
-                    console.log("----after----");
-                    courses.forEach(e => console.log(Object.values(e)));
+                    //console.log("----after----");
+                    //courses.forEach(e => //console.log(Object.values(e)));
                     tmpSemester.courseSetter([...courses]);
                     tmpSemester.courses = [...courses];
-                    console.log("----after setting----");
-                    tmpSemester.courses.forEach(e => console.log(Object.values(e)));
+                    //console.log("----after setting----");
+                    //tmpSemester.courses.forEach(e => //console.log(Object.values(e)));
                     tmpSemesters.splice(ind,0,tmpSemester);
-                    console.log("----before setting semesters----");
+                    //console.log("----before setting semesters----");
                     setSemesterCourses(tmpSemesters);
 
                 }
@@ -170,13 +268,13 @@ export const MainPage = (): JSX.Element => {
 
                 // dropping from one semester table to the next
 
-                console.log("semestertable --> semestertable");
+                //console.log("semestertable --> semestertable");
 
                 const semesterNum1Id = result.source.droppableId;
                 const semesterNum2Id = result.destination.droppableId;
 
-                //console.log(`semesterNum1Id = ${semesterNum1Id}`);
-                //console.log(`semesterNum2Id = ${semesterNum2Id}`);
+                ////console.log(`semesterNum1Id = ${semesterNum1Id}`);
+                ////console.log(`semesterNum2Id = ${semesterNum2Id}`);
 
                 const semesterNum1 = parseInt(semesterNum1Id.substring(semesterNum1Id.lastIndexOf("-")+1));
 
@@ -190,8 +288,8 @@ export const MainPage = (): JSX.Element => {
                 let twoFound = false;
                 let semester1 = tmpSemesters[0];
                 let semester2 = tmpSemesters[0];
-                //console.log(`semester1# = ${semesterNum1}`);
-                //console.log(`semester2# = ${semesterNum2}`);
+                ////console.log(`semester1# = ${semesterNum1}`);
+                ////console.log(`semester2# = ${semesterNum2}`);
 
                 let i = 0;
 
@@ -202,23 +300,23 @@ export const MainPage = (): JSX.Element => {
 
                     const theSemester = tmpSemesters[i];
                     if(theSemester){
-                        //console.log(`the semester = ${Object.entries(theSemester)}, onefound = ${oneFound} and twofound = ${twoFound}, semesterstatus = ${theSemester === null || theSemester == undefined}`);
+                        ////console.log(`the semester = ${Object.entries(theSemester)}, onefound = ${oneFound} and twofound = ${twoFound}, semesterstatus = ${theSemester === null || theSemester == undefined}`);
                     } else{
-                        //console.log("semester is null");
+                        ////console.log("semester is null");
                     }
 
 
                     if(oneFound && twoFound){
                         break;
                     } else if(!oneFound && theSemester.semesternum == semesterNum1){
-                        //console.log("splicing first semester");
+                        ////console.log("splicing first semester");
                         oneFound = true;
                         semester1 = tmpSemesters.splice(i,1)[0];
                         ind1 = i;
                         i = 0;
                         continue;
                     } else if(!twoFound && theSemester.semesternum == semesterNum2){
-                        //console.log("splicing second semester");
+                        ////console.log("splicing second semester");
                         twoFound = true;
                         semester2 = tmpSemesters.splice(i,1)[0];
                         ind2 = i;
@@ -227,8 +325,8 @@ export const MainPage = (): JSX.Element => {
                     } else{
                         i++;
                     }
-                    //console.log("else");
-                    //console.log(Object.values(tmpSemesters));
+                    ////console.log("else");
+                    ////console.log(Object.values(tmpSemesters));
 
                 }
 
@@ -372,7 +470,7 @@ export const MainPage = (): JSX.Element => {
 
             } else {
 
-                console.log("container --> container");
+                //console.log("container --> container");
 
                 const tmpConcentrationContainers: ConcentrationContainerType[] = [...concentrationContainers];
 
