@@ -51,6 +51,7 @@ export function DropdownMenu(props: {
             console.log(`savedSemester1 = ${props.savedSemesters.forEach(e => console.log(Object.values(e)))}`);
             console.log(`concontainers = ${props.concentrationContainers.forEach(e => console.log(Object.values(e)))}`);
             console.log(`semesterCourses = ${props.semesterCourses.forEach(e => console.log(Object.values(e)))}`);
+            //TODO: WE HAVE ALL CURRENT COURSES, IN HERE COULDN'T WE JUST SAVE IT TO A SAVED SEMESTER NOW? AND FIX THE BUG THAT WAS HAPPENING
 
             const tmpSemesterCourses = [...props.semesterCourses];
 
