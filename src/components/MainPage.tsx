@@ -76,6 +76,44 @@ export const MainPage = (): JSX.Element => {
         },1);
     },[]);
 
+    useEffect(() => {
+
+        console.log("TRIPPING USEEFFECT FOR SEMESTERCOURSE CONTAINERS");
+        const concNumber = concentrationNumberLookup[concentration.name];
+        if(savedSemesters.some(e => e.concentrationNumber === concNumber)){
+            // found savedSemester
+            const ind = savedSemesters.findIndex(e => e.concentrationNumber === concNumber);
+            const theSavedSemester = savedSemesters.splice(ind,1)[0];
+            theSavedSemester.semesterCourses = [...semesterCourses];
+            savedSemesters.splice(0,ind,theSavedSemester);
+            setSavedSemesters(savedSemesters);
+        } else{
+            // semester doenst exist
+            savedSemesters.push({concentrationNumber: concentrationNumberLookup[concentration.name], semesterCourses: [...semesterCourses], concContainers: [...concentrationContainers], numSemesters: semesters});
+            setSavedSemesters([...savedSemesters]);
+        }
+
+    }, [semesterCourses]);
+
+    useEffect(() => {
+
+        console.log("TRIPPING USEEFFECT FOR CONCENTRATION CONTAINERS");
+        const concNumber = concentrationNumberLookup[concentration.name];
+        if(savedSemesters.some(e => e.concentrationNumber === concNumber)){
+            // found savedSemester
+            const ind = savedSemesters.findIndex(e => e.concentrationNumber === concNumber);
+            const theSavedSemester = savedSemesters.splice(ind,1)[0];
+            theSavedSemester.concContainers = [...concentrationContainers];
+            savedSemesters.splice(0,ind,theSavedSemester);
+            setSavedSemesters(savedSemesters);
+        } else{
+            // semester doenst exist
+            savedSemesters.push({concentrationNumber: concentrationNumberLookup[concentration.name], semesterCourses: semesterCourses, concContainers: concentrationContainers, numSemesters: semesters});
+            setSavedSemesters([...savedSemesters]);
+        }
+
+    }, [concentrationContainers]);
+
     const onDragEnd = (result: DropResult) => {
         ////console.log(semesterCourses);
         ////console.log(result);
