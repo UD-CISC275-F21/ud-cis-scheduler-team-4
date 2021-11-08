@@ -3,13 +3,13 @@
         "name":"AI and Robotics",
         "core":["CISC108","CISC181","CISC210","CISC220","CISC260","CISC275","CISC303","CISC320","MATH210","MATH241","CISC355"],
         "capstone":["CISC498","CISC499"],
-        "lab":[["BISC207", "BISC208"],["CHEM103","CHEM104"],["CHEM107","CHEM108"],["GEOL105","GEOL115","GEOL107"],["GEOL107","GEOL110"],["PHYS207","PHYS208"]],
+        "lab":["Lab Sequence 1", "Lab Sequence 2"],
         "writing":["ENGL312","ENGL410"], 
         "conc":{
             "general":["CISC304","CISC442","CISC481","CISC483","CISC484"],
             "stats":["MATH205","MATH350"],
             "systems":["CISC361","CISC372"],
-            "elective":["CISC436","CISC437","CISC439","CISC889","ELEG404","ELEG387","ELEG418","ELEG487","LING202","LING404","LING418","LING444","LING451","LING455","LING462","MAST632","MATH242","MATH349","MEEG671","PSYC310","PSYC340","PSYC344"],
+            "elective":["Restricted Elective 1","Restricted Elective 2", "Restricted Elective 3", "Restricted Elective 4"],
             "ochem":[""],
             "data":[""],
             "cybersecurity":[""],
@@ -21,13 +21,13 @@
         "name":"Bioinformatics",
         "core":["CISC108","CISC181","CISC210","CISC220","CISC260","CISC275","CISC303","CISC320","MATH210","MATH241","CISC355"],
         "capstone":["CISC498","CISC499"],
-        "lab":[["CHEM103","CHEM104"],[""]],
+        "lab":["CHEM103","CHEM104"],
         "writing":["ENGL312","ENGL410"], 
         "conc":{
             "general":["BISC207","BISC208","BISC401","CISC372","CISC436","MATH242","MATH349"],
             "stats":["MATH205","MATH350"],
             "systems":[""],
-            "elective":["Resctricted Elective 1","Restricted Elective 2"],
+            "elective":["Restricted Elective 1","Restricted Elective 2"],
             "ochem":["CHEM213","CHEM215","CHEM321","CHEM325"],
             "data":["CISC483","CISC484"],
             "cybersecurity":[""],
@@ -40,13 +40,13 @@
         "name":"Cybersecurity",
         "core":["CISC108","CISC181","CISC210","CISC220","CISC260","CISC275","CISC303","CISC320","MATH210","MATH241","CISC355"],
         "capstone":["CISC498","CISC499"],
-        "lab":[["BISC207", "BISC208"],["CHEM103","CHEM104"],["CHEM107","CHEM108"],["GEOL105","GEOL115","GEOL107"],["GEOL107","GEOL110"],["PHYS207","PHYS208"]],
+        "lab":["Lab Sequence 1", "Lab Sequence 2"],
         "writing":["ENGL312","ENGL410"], 
         "conc":{
             "general":["CISC361","CISC372","CISC450","CISC464","CISC465","CPEG494"],
             "stats":["MATH205","MATH350"],
             "systems":[""],
-            "elective":["Resctricted Elective 1","Restricted Elective 2"],
+            "elective":["Restricted Elective 1","Restricted Elective 2"],
             "ochem":[""],
             "data":[""],
             "cybersecurity":["CPEG472","CPEG473","CPEG475","CPEG476","CPEG495"],
@@ -59,15 +59,15 @@
         "name":"Data Science",
         "core":["CISC108","CISC181","CISC210","CISC220","CISC260","CISC275","CISC303","CISC320","MATH210","MATH241","CISC355"],
         "capstone":["CISC498","CISC499"],
-        "lab":[["BISC207", "BISC208"],["CHEM103","CHEM104"],["CHEM107","CHEM108"],["GEOL105","GEOL115","GEOL107"],["GEOL107","GEOL110"],["PHYS207","PHYS208"]],
+        "lab":["Lab Sequence 1", "Lab Sequence 2"],
         "writing":["ENGL312","ENGL410"], 
         "conc":{
-            "general":["CISC304","CISC372","CISC437","CISC481","MATH205","MATH242","MATH243","MATH349","CISC483"],
+            "general":["CISC304","CISC372","CISC437","CISC481","MATH205","MATH242","MATH243","MATH349"],
             "stats":["CISC410","MATH302","MATH350"],
             "systems":[""],
-            "elective":["Resctricted Elective 1"],
+            "elective":["Restricted Elective 1"],
             "ochem":[""],
-            "data":[""],
+            "data":["CISC483", "CISC484"],
             "cybersecurity":[""],
             "track":[""]
         }
@@ -77,17 +77,17 @@
         "name":"High-Performance Computing",
         "core":["CISC108","CISC181","CISC210","CISC220","CISC260","CISC275","CISC303","CISC320","MATH210","MATH241","CISC355"],
         "capstone":["CISC498","CISC499"],
-        "lab":[["BISC207", "BISC208"],["CHEM103","CHEM104"],["CHEM107","CHEM108"],["GEOL105","GEOL115","GEOL107"],["GEOL107","GEOL110"],["PHYS207","PHYS208"]],
+        "lab":["Lab Sequence 1", "Lab Sequence 2"],
         "writing":["ENGL312","ENGL410"], 
         "conc":{
             "general":["CISC360","CISC361","CISC372","CISC450","CISC471","MATH242","MATH243"],
-            "stats":[""],
+            "stats":["MATH205", "MATH350"],
             "systems":[""],
-            "elective":[""],
-            "ochem":[""],
-            "data":[""],
-            "cybersecurity":[""],
-            "track":[""]
+            "elective":["Restricted Elective 1"],
+            "ochem":["Restricted Elective 1", "MATH302", "MATH349", "MATH351", "MATH535"],
+            "data":["MATH351", "MATH428"],
+            "cybersecurity":["CISC483", "CISC484"],
+            "track":["CISC437", "MATH350", "MATH450"]
         }
 
     },
@@ -96,17 +96,17 @@
         "name":"Networks and Systems",
         "core":["CISC108","CISC181","CISC210","CISC220","CISC260","CISC275","CISC303","CISC320","MATH210","MATH241","CISC355"],
         "capstone":["CISC498","CISC499"],
-        "lab":[["BISC207", "BISC208"],["CHEM103","CHEM104"],["CHEM107","CHEM108"],["GEOL105","GEOL115","GEOL107"],["GEOL107","GEOL110"],["PHYS207","PHYS208"]],
+        "lab":["Lab Sequence 1", "Lab Sequence 2"],
         "writing":["ENGL312","ENGL410"], 
         "conc":{
             "general":["CISC360","CISC361","CISC372","CISC450","CISC471"],
             "stats":["MATH205","MATH350"],
             "systems":["CISC437","CISC453","CISC459","CISC464","CISC474","CISC475","CISC479","CPEG473","CPEG497"],
-            "elective":["Resctricted Elective 1","Restricted Elective 2"],
+            "elective":["Restricted Elective 1","Restricted Elective 2"],
             "ochem":[""],
             "data":[""],
             "cybersecurity":["CISC464","CISC465","CPEG470","CPEG473","CPEG475","CPEG476","CPEG497"],
-            "track":["Track 1", "Track 2", "Track 3", "Track 4", "Track 5"]
+            "track":[""]
         }
 
     },
@@ -115,7 +115,7 @@
         "name":"Theory of Computation",
         "core":["CISC108","CISC181","CISC210","CISC220","CISC260","CISC275","CISC303","CISC320","MATH210","MATH241"],
         "capstone":["CISC498","CISC499"],
-        "lab":[["BISC207", "BISC208"],["CHEM103","CHEM104"],["CHEM107","CHEM108"],["GEOL105","GEOL115","GEOL107"],["GEOL107","GEOL110"],["PHYS207","PHYS208"]],
+        "lab":["Lab Sequence 1", "Lab Sequence 2"],
         "writing":["ENGL312","ENGL410"], 
         "conc":{
             "general":["CISC304","CISC401","MATH242","MATH349"],
@@ -124,8 +124,8 @@
             "elective":[""],
             "ochem":[""],
             "data":[""],
-            "cybersecurity":[""],
-            "track":["Track 1", "Track 2", "Track 3", "Track 4"]
+            "cybersecurity":["MATH243", "MATH302", "MATH535", "MATH426"],
+            "track":["CISC404", "MATH245", "MATH315", "MATH451"]
         }
 
     }

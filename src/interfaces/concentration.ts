@@ -2,7 +2,7 @@ export interface Concentration{
     name:string,
     core:string[],
     capstone:string[],
-    lab:string[][],
+    lab:string[],
     writing: string[],
     conc:{
         general:string[],

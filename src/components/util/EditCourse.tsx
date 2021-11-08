@@ -1,26 +1,33 @@
 import React, { useState } from "react";
-import { Modal, Button } from "react-bootstrap";
+import { Modal, Button, Badge, Row, Col } from "react-bootstrap";
 import { Course as CourseType } from "../../interfaces/course";
 import { SemesterType } from "../../interfaces/semester";
 
 export const EditCourse = (props: {display: boolean, setDisplay: React.Dispatch<React.SetStateAction<boolean>>, course: CourseType, setCourses: React.Dispatch<React.SetStateAction<CourseType[]>>, semesterNumber: number, semesterCourses: SemesterType[], setSemesterCourses: React.Dispatch<React.SetStateAction<SemesterType[]>> }): JSX.Element => {
     const [nameText, setNameText] = useState(props.course.name);
     return (
-        <Modal show={true}>
-            <Modal.Header>
+        <Modal show={true} onHide={() => props.setDisplay(false)}>
+            <Modal.Header closeButton>
                 <Modal.Title>
-                    HEADER
+                    <Badge bg="primary">Edit Course Details</Badge>
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <input placeholder="Enter Course Name"type="textbox" value={nameText} 
-                    onChange={(e) =>{
-                        setNameText(e.target.value);
-                    }
-                    }/>
+                <Row>
+                    <Col>
+                        Enter name here:
+                    </Col>
+                    <Col>
+                        <input placeholder="Enter Course Name"type="textbox" value={nameText} 
+                            onChange={(e) =>{
+                                setNameText(e.target.value);
+                            }
+                            }/>
+                    </Col>
+                </Row>
             </Modal.Body>
-            <Modal.Footer>
-                <Button onClick={() => {
+            <Modal.Footer style={{ display: "block", textAlign: "center" }}>
+                <Button variant="outline-primary" onClick={() => {
                     props.setDisplay(!props.display);
                     const tmpSemesters: SemesterType[] = props.semesterCourses;
                     let tmpSemester: SemesterType = tmpSemesters[0];
@@ -41,7 +48,7 @@ export const EditCourse = (props: {display: boolean, setDisplay: React.Dispatch<
                     }
                     tmpSemesters.splice(ind1,0,tmpSemester);
                     props.setSemesterCourses([...tmpSemesters]);
-                }}>END EDIT</Button>
+                }}>Submit Changes</Button>
             </Modal.Footer>
         </Modal>
     );
