@@ -25,14 +25,7 @@ export const MainPage = (): JSX.Element => {
         setTimeout(() => {
             setDisplay(false);
         },1);
-    },[]);  
-
-    useEffect(() => {
-
-        console.log("edited semesterCourses from MainPage.tsx");
-        semesterCourses.forEach(e => console.log(Object.entries(e)));
-
-    },[semesterCourses]);
+    },[]);
 
     const onDragEnd = (result: DropResult) => {
         onDragEndLogic(result,concentrationContainers,setConcentrationContainers,semesterCourses,setSemesterCourses);
