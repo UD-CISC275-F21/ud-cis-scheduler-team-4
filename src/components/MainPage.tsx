@@ -51,17 +51,19 @@ export const MainPage = (): JSX.Element => {
                     <br />
                     <Row>
                         <Col>
-                            <Row>
-                                <Col>
-                                    <DropdownMenu setConcentration={setConcentration} semesterCourses={semesterCourses} setSemesterCourses={setSemesterCourses}></DropdownMenu>
-                                </Col>
-                            </Row>
-                            <br />
-                            <Row>
-                                <Col>
-                                    <AddSemesterButton setSemesters={setSemesters} semesters={semesters} />
-                                </Col>
-                            </Row>
+                            <DropdownMenu setConcentration={setConcentration} semesterCourses={semesterCourses} setSemesterCourses={setSemesterCourses}></DropdownMenu>
+                        </Col>
+                        <Col>
+                            <h3>Useful Links:</h3>
+                            <a href="https://udapps.nss.udel.edu/CoursesSearch/" target="_blank" rel="noopener noreferrer">Courses Search</a> 
+                            <div>
+                                <a href="https://www.cis.udel.edu/academics/undergraduate-programs/resources/courses/" target="_blank" rel="noopener noreferrer">Course Descriptions</a>
+                            </div>
+                            <a href="https://webreg.nss.udel.edu/registration/schedule/" target="_blank" rel="noopener noreferrer">Blue Hen Planner</a>
+                        </Col>
+                        <br />
+                        <Col>
+                            <AddSemesterButton setSemesters={setSemesters} semesters={semesters} />
                         </Col>
                     </Row>
                     <br />
