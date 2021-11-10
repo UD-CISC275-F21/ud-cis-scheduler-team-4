@@ -1,5 +1,5 @@
-import { Modal } from "react-bootstrap";
-import React from "react";
+import { Modal, Toast } from "react-bootstrap";
+import React, { useState } from "react";
 
 export const WelcomeToast = (props: {display: boolean }): JSX.Element =>
     <>
@@ -15,3 +15,27 @@ export const WelcomeToast = (props: {display: boolean }): JSX.Element =>
             </Modal.Footer>
         </Modal>
     </>;
+
+
+export const PreReqSameSemesterToast = (props: { errorCourse: string, causeCourse: string }): JSX.Element => {
+
+    const [show, setShow] = useState<boolean>(true);
+
+    const toggleShow = () => setShow(!show);
+
+    return(
+        <>
+
+            <Toast show={show} onClose={toggleShow}>
+                <Toast.Header>
+                    <strong className="me-auto">Invalid Course Selected</strong>
+                    <small>Close</small>
+                </Toast.Header>
+                <Toast.Body>
+                    {`You are trying to take the course ${props.causeCourse} which is a pre-requisite for the course ${props.errorCourse}`}
+                </Toast.Body>
+            </Toast>
+        </>
+    );
+
+};
