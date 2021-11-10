@@ -1,5 +1,5 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Table, ListGroup, Accordion, Col, Button, Row } from "react-bootstrap";
+import { Table, ListGroup, Accordion, Col, Button, Row, Badge } from "react-bootstrap";
 import React, { useState, useEffect } from "react";
 import { Droppable, DroppableProvided } from "react-beautiful-dnd";
 import { Course } from "../courses/Course";
@@ -30,13 +30,13 @@ export const getSemesterStr = (semesterNum: number): string => {
 export const Semester = (props: { ind: number, semesterCourses: SemesterType[], setSemesterCourses: React.Dispatch<React.SetStateAction<SemesterType[]>> }): JSX.Element => {
     const [courses, setCourses] = useState<CourseType[]>([]);
     const [display, setDisplay] = useState<boolean>(false);
+    const [credits, setCredits] = useState<number>(0);
 
     const func1 = (courses: CourseType[]) => {
-
         console.log("---calling func1 with---");
         courses.forEach(e => console.log(Object.values(e)));
         setCourses(courses);
-
+        //getCredits(props.semesterCourses, props.ind);
     };
 
     useEffect(() => {
@@ -47,23 +47,34 @@ export const Semester = (props: { ind: number, semesterCourses: SemesterType[], 
             const semesters: SemesterType[] = [...props.semesterCourses];
             semesters.push({semesternum: props.ind+1, courses: courses, courseSetter: func1});
             props.setSemesterCourses(semesters);
-            //console.log(semesters);
         }
-
     }, []);
-
-    useEffect(() => {
-
-        console.log("setter changed!");
-
-    },[setCourses]);
 
     useEffect(() => {
 
         console.log("----courses are now----");
         courses.forEach(e => console.log(Object.values(e)));
 
+        // verify that course you are trying to add is not a prereq of course in current semester
+
+
+        getCredits(courses);
+
     }, [courses]);
+
+    const getCredits = (courses: CourseType[]) => {
+        console.log("inside getCredits");
+        console.log(courses);
+        const tmpCourses: CourseType[] = courses;
+        console.log(tmpCourses);
+        let count=0;
+        for(let i=0;i<tmpCourses.length;i++){
+            count+=tmpCourses[i].credits;
+        }
+        console.log("count is: " + count);
+        setCredits(count);
+    };
+    
 
     return(
         <Accordion key={`accordion ${props.ind}`} defaultActiveKey="0">
@@ -98,10 +109,14 @@ export const Semester = (props: { ind: number, semesterCourses: SemesterType[], 
                             tmpSemesterCourses.splice(ind1,0,theSemester);
 
                             props.setSemesterCourses([...tmpSemesterCourses]);
-
-
                         }}></Button>
                     </Col>
+                    <Col>
+                        <Badge>
+                            {`Credits: ${credits}`}
+                        </Badge>
+                    </Col>
+                    
                 </Accordion.Header>
                 <Accordion.Body>
                     <Col key={`semester-table-col-${props.ind}`}>

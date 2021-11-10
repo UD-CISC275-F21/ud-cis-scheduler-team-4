@@ -95,7 +95,7 @@
         "title": "Machine Organization and Assembly Language",
         "description": "Introduction to the basics of machine organization. Programming tools and techniques at the machine and assembly levels. Assembly language programming and computer arithmetic techniques.",
 		"section": 10,
-		"prereqs": ["CISC181"],
+		"prereqs": ["CISC181","CISC210"],
 		"coreqs": [],
 		"credits": 3,
 		"lab": false
@@ -107,7 +107,7 @@
         "title":"Intro to Software Engineering",
         "description": "Object oriented software design and development through use of the Java programming language. Topics include team programming, design patterns, graphical user interfaces, software engineering tools (eg., integrated development environments, version control, build management, bug tracking, automated testing).",
         "section": 10,
-        "prereqs": ["CISC220"],
+        "prereqs": ["CISC220","CISC181","CISC210"],
         "coreqs": [],
         "credits": 3,
         "lab": true
@@ -170,7 +170,7 @@
         "title":"Computer Architecture",
         "description":"Principles and techniques used in the architecture of digital computers. Machine elements and their interrelation. Instruction sets, risc vs cisc, registers, busses and switches.",
 		"section": 10,
-		"prereqs": ["CISC220", "CISC260"],
+		"prereqs": ["CISC101","CISC103","CISC106","CISC108","CISC220", "CISC260"],
 		"coreqs": [],
 		"credits": 3,
 		"lab": false
@@ -210,7 +210,7 @@
         "title":"Parallel Programming",
         "description":"Introduction to parallel programming concepts, methodologies, and tools. Programming techniques for programs that contain code segments which will run simultaneously on multiple processors. Topics include: concurrency, program decomposition, data distribution, communication, load balancing, scalability, locality, granularity, debugging, performance evaluation.",
 		"section": 10,
-		"prereqs": ["CISC220"],
+		"prereqs": ["CISC220","CISC260"],
 		"coreqs": [],
 		"credits": 3,
 		"lab": false
@@ -288,7 +288,7 @@
         "title":"",
         "description":"",
 		"section": "10",
-		"prereqs": [],
+		"prereqs": ["CISC260"],
 		"coreqs": [],
 		"credits": 3,
 		"lab": false
@@ -314,7 +314,7 @@
         "title":"",
         "description":"",
 		"section": 10,
-		"prereqs": [],
+		"prereqs": ["CISC275"],
 		"coreqs": [],
 		"credits": 3,
 		"lab": false
@@ -327,7 +327,7 @@
         "title":"",
         "description":"",
 		"section": 10,
-		"prereqs": [],
+		"prereqs": ["CISC275"],
 		"coreqs": [],
 		"credits": 3,
 		"lab": true
@@ -340,7 +340,7 @@
         "title":"",
         "description":"",
 		"section": 10,
-		"prereqs": [],
+		"prereqs": ["CISC220","CISC304"],
 		"coreqs": [],
 		"credits": 3,
 		"lab": false
@@ -353,7 +353,7 @@
         "title":"",
         "description":"",
 		"section": 10,
-		"prereqs": [],
+		"prereqs": ["CISC275"],
 		"coreqs": [],
 		"credits": 3,
 		"lab": false
@@ -392,7 +392,7 @@
         "title":"",
         "description":"",
 		"section": 12,
-		"prereqs": [],
+		"prereqs": ["CISC275","CISC320"],
 		"coreqs": [],
 		"credits": 3,
 		"lab": true
@@ -405,7 +405,7 @@
         "title":"",
         "description":"",
 		"section": 10,
-		"prereqs": [],
+		"prereqs": ["CISC304"],
 		"coreqs": [],
 		"credits": 3,
 		"lab": false
@@ -457,7 +457,7 @@
         "title":"",
         "description":"",
 		"section": 10,
-		"prereqs": [],
+		"prereqs": ["CISC220"],
 		"coreqs": [],
 		"credits": 3,
 		"lab": false
@@ -484,7 +484,7 @@
         "title":"",
         "description":"",
 		"section": 10,
-		"prereqs": [],
+		"prereqs": ["CISC220"],
 		"coreqs": [],
 		"credits": 3,
 		"lab": false
@@ -497,7 +497,7 @@
         "title":"",
         "description":"",
 		"section": 10,
-		"prereqs": [],
+		"prereqs": ["CISC650"],
 		"coreqs": [],
 		"credits": 3,
 		"lab": false
@@ -518,7 +518,7 @@
         "title":"",
         "description":"",
         "section": 10,
-        "prereqs": [],
+        "prereqs": ["MATH010"],
         "coreqs": [],
         "credits": 3,
         "lab": false
@@ -529,7 +529,7 @@
         "title":"",
         "description":"",
         "section": 10,
-        "prereqs": [],
+        "prereqs": ["MATH010"],
         "coreqs": [],
         "credits": 3,
         "lab": false
@@ -543,7 +543,11 @@
         "description":"",
         "section": 10,
         "prereqs": [],
-        "coreqs": [],
+         "coreqs": [
+            "MATH241",
+            "MATH242",
+            "MATH232"
+        ],
         "credits": 3,
         "lab": true
 
@@ -578,7 +582,7 @@
         "title":"",
         "description":"",
         "section": 11,
-        "prereqs": [],
+        "prereqs": ["MATH117"],
         "coreqs": [],
         "credits": 3,
         "lab": true
@@ -591,7 +595,7 @@
         "title":"",
         "description":"",
         "section": 10,
-        "prereqs": [],
+        "prereqs": ["MATH232","MATH241"],
         "coreqs": [],
         "credits": 3,
         "lab": true
