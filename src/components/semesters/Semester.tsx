@@ -54,7 +54,7 @@ export const Semester = (props: { ind: number, semesterCourses: SemesterType[], 
 
         console.log("----courses are now----");
         courses.forEach(e => console.log(Object.values(e)));
-        getCredits(courses,);
+        getCredits(courses);
 
     }, [courses]);
 
