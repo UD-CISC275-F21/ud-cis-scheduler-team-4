@@ -1,5 +1,5 @@
 import { Modal, Toast } from "react-bootstrap";
-import React, { useState } from "react";
+import React from "react";
 
 export const WelcomeToast = (props: {display: boolean }): JSX.Element =>
     <>
