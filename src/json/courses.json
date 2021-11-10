@@ -2,6 +2,8 @@
     {
 
         "name": "CISC101",
+        "title": "Principles of Computing",
+        "description": "Introduces students to the central ideas of computing and computer science including programs, algorithms, abstraction, the internet, and information systems. Instills ideas and practices of computational thinking and engages students in activities that show how computing and computer science change the world. Explores computing as a creative activity and empowers students to applycomputational thinking to all disciplines including the arts, humanities, business, social and physical sciences, health, and entertainment.",
         "section": 10,
         "prereqs": [],
         "coreqs": [],
@@ -13,6 +15,8 @@
     {
 
         "name": "CISC101",
+        "title": "Principles of Computing",
+        "description": "Introduces students to the central ideas of computing and computer science including programs, algorithms, abstraction, the internet, and information systems. Instills ideas and practices of computational thinking and engages students in activities that show how computing and computer science change the world. Explores computing as a creative activity and empowers students to applycomputational thinking to all disciplines including the arts, humanities, business, social and physical sciences, health, and entertainment.",
         "section": 70,
         "prereqs": [],
         "coreqs": [],
@@ -24,16 +28,11 @@
     {
 
         "name": "CISC106",
+        "title": "General CS for Engineers",
+        "description": "Principles of computer science illustrated and applied through programming in a general-purpose language. Programming projects illustrate computational problems, styles, and issues that arise in engineering.",
         "section": 10,
         "prereqs": [],
-        "coreqs": [{
-            "name": "MATH241",
-            "section": 10,
-            "prereqs": [],
-            "coreqs": [],
-            "credits": 3,
-            "lab": true
-            }],
+        "coreqs": ["MATH241"],
         "credits": 3,
         "lab": true
 
@@ -42,24 +41,11 @@
 	{
 
         "name": "CISC108",
+        "title": "Intro to CS 1",
+        "description": "Computing and principles of programming with an emphasis on systematic program design. Topics include functional programming, data abstraction, procedural abstraction, use of control and state, recursion, testing, and object-oriented programming concepts. Requires no prior programming experience, open to any major, but intended primarily for majors and minors in computer science or mathematics.",
         "section": 10,
         "prereqs": [],
-        "coreqs": [{
-            "name": "MATH115",
-            "section": 10,
-            "prereqs": [],
-            "coreqs": [],
-            "credits": 3,
-            "lab": true
-            },
-            {
-            "name": "MATH117",
-            "section": 10,
-            "prereqs": [],
-            "coreqs": [],
-            "credits": 3,
-            "lab": true
-        }],
+        "coreqs": ["MATH115", "MATH117"],
         "credits": 3,
         "lab": true
 
@@ -68,58 +54,11 @@
     {
 
         "name": "CISC181",
+        "title": "Intro to CS 2",
+        "description": "Principles of computer science illustrated and applied through programming in an object oriented language. Programming projects illustrate computational problems, styles and issues that arise in computer systems development and in all application areas of computation.",
         "section": 10,
-        "prereqs": 
-        [{
-
-            "name": "CISC108",
-            "section": 10,
-            "prereqs": [],
-            "coreqs": [{
-                "name": "MATH115",
-                "section": 10,
-                "prereqs": [],
-                "coreqs": [],
-                "credits": 3,
-                "lab": true
-                },
-                {
-                "name": "MATH117",
-                "section": 10,
-                "prereqs": [],
-                "coreqs": [],
-                "credits": 3,
-                "lab": true
-            }],
-            "credits": 3,
-            "lab": true
-    
-        },    
-        {
-            "name": "CISC106",
-            "section": 10,
-            "prereqs": [],
-            "coreqs": [{
-                "name": "MATH241",
-                "section": 10,
-                "prereqs": [],
-                "coreqs": [],
-                "credits": 3,
-                "lab": true
-                }],
-            "credits": 3,
-            "lab": true
-    
-        }],
-        "coreqs": 
-        [{
-            "name": "MATH241",
-            "section": 10,
-            "prereqs": [],
-            "coreqs": [],
-            "credits": 3,
-            "lab": true
-        }],
+        "prereqs": ["CISC108", "CISC106"],
+        "coreqs": ["MATH241", "MATH221"],
         "credits": 3,
         "lab": true
 
@@ -128,63 +67,11 @@
 	{
 
 		"name": "CISC210",
+        "title": "Intro to Systems Programming",
+        "description": "Principles of computer systems programming for software and hardware platforms to achieve efficient resource usage. Topics include the C programming language, memory management, and awareness of system constraints and interfacing. Projects include programming embedded systems and interactive objects.",
 		"section": 10,
-		"prereqs": [{
-
-            "name": "CISC108",
-            "section": 10,
-            "prereqs": [],
-            "coreqs": [{
-                "name": "MATH115",
-                "section": 10,
-                "prereqs": [],
-                "coreqs": [],
-                "credits": 3,
-                "lab": true
-                },
-                {
-                "name": "MATH117",
-                "section": 10,
-                "prereqs": [],
-                "coreqs": [],
-                "credits": 3,
-                "lab": true
-            }],
-            "credits": 3,
-            "lab": true
-    
-        },    
-        {
-            "name": "CISC106",
-            "section": 10,
-            "prereqs": [],
-            "coreqs": [{
-                "name": "MATH241",
-                "section": 10,
-                "prereqs": [],
-                "coreqs": [],
-                "credits": 3,
-                "lab": true
-                }],
-            "credits": 3,
-            "lab": true
-    
-        }],
-		"coreqs": [{
-            "name": "MATH221",
-            "section": 10,
-            "prereqs": [],
-            "coreqs": [],
-            "credits": 3,
-            "lab": true
-        },{
-            "name": "MATH241",
-            "section": 10,
-            "prereqs": [],
-            "coreqs": [],
-            "credits": 3,
-            "lab": true
-        }],
+		"prereqs": ["CISC108", "CISC106"],
+		"coreqs": ["MATH221", "MATH241"],
 		"credits": 3,
 		"lab": true
 
@@ -193,23 +80,11 @@
 	{
 
 		"name": "CISC220",
+        "title": "Data Structures",
+        "description": "Review of data type abstraction, recursion, arrays, stacks, queues, multiple stacks and linked lists. Emphasis on dynamic storage management, garbage collection, trees, graphs, tables, sorting and searching.",
 		"section": 11,
-		"prereqs": [],
-		"coreqs": [{
-            "name": "MATH210",
-            "section": 10,
-            "prereqs": [],
-            "coreqs": [],
-            "credits": 3,
-            "lab": true
-        },{
-            "name": "MATH241",
-            "section": 10,
-            "prereqs": [],
-            "coreqs": [],
-            "credits": 3,
-            "lab": true
-        }],
+		"prereqs": ["CISC181"],
+		"coreqs": ["MATH210", "MATH241"],
 		"credits": 3,
 		"lab": true
 
@@ -217,71 +92,10 @@
 
 	{
 		"name": "CISC260",
+        "title": "Machine Organization and Assembly Language",
+        "description": "Introduction to the basics of machine organization. Programming tools and techniques at the machine and assembly levels. Assembly language programming and computer arithmetic techniques.",
 		"section": 10,
-		"prereqs": [{
-
-            "name": "CISC210",
-            "section": 10,
-            "prereqs": [{
-    
-                "name": "CISC108",
-                "section": 10,
-                "prereqs": [],
-                "coreqs": [{
-                    "name": "MATH115",
-                    "section": 10,
-                    "prereqs": [],
-                    "coreqs": [],
-                    "credits": 3,
-                    "lab": true
-                    },
-                    {
-                    "name": "MATH117",
-                    "section": 10,
-                    "prereqs": [],
-                    "coreqs": [],
-                    "credits": 3,
-                    "lab": true
-                }],
-                "credits": 3,
-                "lab": true
-        
-            },    
-            {
-                "name": "CISC106",
-                "section": 10,
-                "prereqs": [],
-                "coreqs": [{
-                    "name": "MATH241",
-                    "section": 10,
-                    "prereqs": [],
-                    "coreqs": [],
-                    "credits": 3,
-                    "lab": true
-                    }],
-                "credits": 3,
-                "lab": true
-        
-            }],
-            "coreqs": [{
-                "name": "MATH221",
-                "section": 10,
-                "prereqs": [],
-                "coreqs": [],
-                "credits": 3,
-                "lab": true
-            },{
-                "name": "MATH241",
-                "section": 10,
-                "prereqs": [],
-                "coreqs": [],
-                "credits": 3,
-                "lab": true
-            }],
-            "credits": 3,
-            "lab": true
-    
-        }],
+		"prereqs": ["CISC181"],
 		"coreqs": [],
 		"credits": 3,
 		"lab": false
@@ -290,129 +104,10 @@
     {
 
         "name": "CISC275",
+        "title":"Intro to Software Engineering",
+        "description": "Object oriented software design and development through use of the Java programming language. Topics include team programming, design patterns, graphical user interfaces, software engineering tools (eg., integrated development environments, version control, build management, bug tracking, automated testing).",
         "section": 10,
-        "prereqs": [    {
-
-            "name": "CISC181",
-            "section": 10,
-            "prereqs": 
-            [{
-    
-                "name": "CISC108",
-                "section": 10,
-                "prereqs": [],
-                "coreqs": [{
-                    "name": "MATH115",
-                    "section": 10,
-                    "prereqs": [],
-                    "coreqs": [],
-                    "credits": 3,
-                    "lab": true
-                    },
-                    {
-                    "name": "MATH117",
-                    "section": 10,
-                    "prereqs": [],
-                    "coreqs": [],
-                    "credits": 3,
-                    "lab": true
-                }],
-                "credits": 3,
-                "lab": true
-        
-            },    
-            {
-                "name": "CISC106",
-                "section": 10,
-                "prereqs": [],
-                "coreqs": [{
-                    "name": "MATH241",
-                    "section": 10,
-                    "prereqs": [],
-                    "coreqs": [],
-                    "credits": 3,
-                    "lab": true
-                    }],
-                "credits": 3,
-                "lab": true
-        
-            }],
-            "coreqs": 
-            [{
-                "name": "MATH241",
-                "section": 10,
-                "prereqs": [],
-                "coreqs": [],
-                "credits": 3,
-                "lab": true
-            }],
-            "credits": 3,
-            "lab": true
-    
-        },{
-
-            "name": "CISC210",
-            "section": 10,
-            "prereqs": [{
-    
-                "name": "CISC108",
-                "section": 10,
-                "prereqs": [],
-                "coreqs": [{
-                    "name": "MATH115",
-                    "section": 10,
-                    "prereqs": [],
-                    "coreqs": [],
-                    "credits": 3,
-                    "lab": true
-                    },
-                    {
-                    "name": "MATH117",
-                    "section": 10,
-                    "prereqs": [],
-                    "coreqs": [],
-                    "credits": 3,
-                    "lab": true
-                }],
-                "credits": 3,
-                "lab": true
-        
-            },    
-            {
-                "name": "CISC106",
-                "section": 10,
-                "prereqs": [],
-                "coreqs": [{
-                    "name": "MATH241",
-                    "section": 10,
-                    "prereqs": [],
-                    "coreqs": [],
-                    "credits": 3,
-                    "lab": true
-                    }],
-                "credits": 3,
-                "lab": true
-        
-            }],
-            "coreqs": [{
-                "name": "MATH221",
-                "section": 10,
-                "prereqs": [],
-                "coreqs": [],
-                "credits": 3,
-                "lab": true
-            },{
-                "name": "MATH241",
-                "section": 10,
-                "prereqs": [],
-                "coreqs": [],
-                "credits": 3,
-                "lab": true
-            }],
-            "credits": 3,
-            "lab": true
-    
-        }],
+        "prereqs": ["CISC220"],
         "coreqs": [],
         "credits": 3,
         "lab": true
@@ -421,38 +116,10 @@
 
 	{
 		"name": "CISC303",
+        "title": "Automata Theory",
+        "description": "Automata and formal language theory. Background for advanced applications in compilers, computer networks, operating systems, and natural language processing. Finite automata and regular languages. Push down automata and context free grammars. Turing machines.",
 		"section": 10,
-		"prereqs": [{
-            "name": "MATH210",
-            "section": 10,
-            "prereqs": [],
-            "coreqs": [],
-            "credits": 3,
-            "lab": true
-        },	{
-
-            "name": "CISC220",
-            "section": 11,
-            "prereqs": [],
-            "coreqs": [{
-                "name": "MATH210",
-                "section": 10,
-                "prereqs": [],
-                "coreqs": [],
-                "credits": 3,
-                "lab": true
-            },{
-                "name": "MATH241",
-                "section": 10,
-                "prereqs": [],
-                "coreqs": [],
-                "credits": 3,
-                "lab": true
-            }],
-            "credits": 3,
-            "lab": true
-    
-        }],
+		"prereqs": ["MATH210", "CISC220"],
 		"coreqs": [],
 		"credits": 3,
 		"lab": false
@@ -461,38 +128,10 @@
 	{
 
 		"name": "CISC304",
+        "title":"Logic and Programming",
+        "description":"Propositional and predicate logic for general reasoning and advanced applicationsin knowledge representation in artificial intelligence and database, program correctness and programming semantics. Models, resolution, logic programming, and natural deduction.",
 		"section": 10,
-		"prereqs": [{
-            "name": "MATH210",
-            "section": 10,
-            "prereqs": [],
-            "coreqs": [],
-            "credits": 3,
-            "lab": true
-        },	{
-
-            "name": "CISC220",
-            "section": 11,
-            "prereqs": [],
-            "coreqs": [{
-                "name": "MATH210",
-                "section": 10,
-                "prereqs": [],
-                "coreqs": [],
-                "credits": 3,
-                "lab": true
-            },{
-                "name": "MATH241",
-                "section": 10,
-                "prereqs": [],
-                "coreqs": [],
-                "credits": 3,
-                "lab": true
-            }],
-            "credits": 3,
-            "lab": true
-    
-        }],
+		"prereqs": ["MATH210", "CISC220"],
 		"coreqs": [],
 		"credits": 3,
 		"lab": false
@@ -502,38 +141,10 @@
 	{
 
 		"name": "CISC320",
+        "title":"Intro to Algorithms",
+        "description":"Design and analysis of algorithms: worst/average case analysis, proofs for correctness and performance of algorithms. Algorithmic strategies (divide and conquer, greedy methods, dynamic programming, etc.). Algorithms for searching, forming and traversal of strings, trees and graphs. Categorization of computational problems: classes P and NP. NP completeness.",
 		"section": 10,
-		"prereqs": [{
-            "name": "MATH210",
-            "section": 10,
-            "prereqs": [],
-            "coreqs": [],
-            "credits": 3,
-            "lab": true
-        },	{
-
-            "name": "CISC220",
-            "section": 11,
-            "prereqs": [],
-            "coreqs": [{
-                "name": "MATH210",
-                "section": 10,
-                "prereqs": [],
-                "coreqs": [],
-                "credits": 3,
-                "lab": true
-            },{
-                "name": "MATH241",
-                "section": 10,
-                "prereqs": [],
-                "coreqs": [],
-                "credits": 3,
-                "lab": true
-            }],
-            "credits": 3,
-            "lab": true
-    
-        }],
+		"prereqs": ["MATH210", "CISC220"],
 		"coreqs": [],
 		"credits": 3,
 		"lab": false
@@ -543,6 +154,8 @@
 	{
 
 		"name": "CISC355",
+        "title":"Computers, Ethics, and Society",
+        "description":"Explains relationships among information technology, society and ethics by examining issues raised by increasingly widespread use of computers. Topics include ethics for computer professionals, computer impact on factory work, office work, personal privacy and social power distribution.",
 		"section": 10,
 		"prereqs": [],
 		"coreqs": [],
@@ -553,66 +166,11 @@
 
 	{
 
-		"name": "CISC357",
+		"name": "CISC360",
+        "title":"Computer Architecture",
+        "description":"Principles and techniques used in the architecture of digital computers. Machine elements and their interrelation. Instruction sets, risc vs cisc, registers, busses and switches.",
 		"section": 10,
-		"prereqs": [{
-
-            "name": "CISC101",
-            "section": 10,
-            "prereqs": [],
-            "coreqs": [],
-            "credits": 3,
-            "lab": true
-    
-        },{
-
-            "name": "CISC103",
-            "section": 10,
-            "prereqs": [],
-            "coreqs": [],
-            "credits": 3,
-            "lab": true
-    
-        },{
-            "name": "CISC106",
-            "section": 10,
-            "prereqs": [],
-            "coreqs": [{
-                "name": "MATH241",
-                "section": 10,
-                "prereqs": [],
-                "coreqs": [],
-                "credits": 3,
-                "lab": true
-                }],
-            "credits": 3,
-            "lab": true
-    
-        },{
-
-            "name": "CISC108",
-            "section": 10,
-            "prereqs": [],
-            "coreqs": [{
-                "name": "MATH115",
-                "section": 10,
-                "prereqs": [],
-                "coreqs": [],
-                "credits": 3,
-                "lab": true
-                },
-                {
-                "name": "MATH117",
-                "section": 10,
-                "prereqs": [],
-                "coreqs": [],
-                "credits": 3,
-                "lab": true
-            }],
-            "credits": 3,
-            "lab": true
-    
-        }],
+		"prereqs": ["CISC220", "CISC260"],
 		"coreqs": [],
 		"credits": 3,
 		"lab": false
@@ -622,6 +180,8 @@
 	{
 
 		"name": "CISC361",
+        "title": "Operating Systems",
+        "description": "Principles and techniques employed in the development of operating systems and their control programs. Includes management of memory, processors, I/O devices.",
 		"section": 10,
 		"prereqs": ["CISC220","CISC260"],
 		"coreqs": [],
@@ -633,6 +193,8 @@
 	{
 
 		"name": "CISC367",
+        "title":"",
+        "description":"",
 		"section": 10,
 		"prereqs": ["CISC220"],
 		"coreqs": [],
@@ -644,114 +206,11 @@
 
 	{
 
-		"name": "CISC367",
-		"section": 11,
-		"prereqs": [],
-		"coreqs": [],
-		"credits": 3,
-		"lab": false
-
-
-	},
-
-	{
-
 		"name": "CISC372",
+        "title":"Parallel Programming",
+        "description":"Introduction to parallel programming concepts, methodologies, and tools. Programming techniques for programs that contain code segments which will run simultaneously on multiple processors. Topics include: concurrency, program decomposition, data distribution, communication, load balancing, scalability, locality, granularity, debugging, performance evaluation.",
 		"section": 10,
-		"prereqs": [{
-
-            "name": "CISC220",
-            "section": 11,
-            "prereqs": [],
-            "coreqs": [{
-                "name": "MATH210",
-                "section": 10,
-                "prereqs": [],
-                "coreqs": [],
-                "credits": 3,
-                "lab": true
-            },{
-                "name": "MATH241",
-                "section": 10,
-                "prereqs": [],
-                "coreqs": [],
-                "credits": 3,
-                "lab": true
-            }],
-            "credits": 3,
-            "lab": true
-    
-        },{
-            "name": "CISC260",
-            "section": 10,
-            "prereqs": [{
-    
-                "name": "CISC210",
-                "section": 10,
-                "prereqs": [{
-        
-                    "name": "CISC108",
-                    "section": 10,
-                    "prereqs": [],
-                    "coreqs": [{
-                        "name": "MATH115",
-                        "section": 10,
-                        "prereqs": [],
-                        "coreqs": [],
-                        "credits": 3,
-                        "lab": true
-                        },
-                        {
-                        "name": "MATH117",
-                        "section": 10,
-                        "prereqs": [],
-                        "coreqs": [],
-                        "credits": 3,
-                        "lab": true
-                    }],
-                    "credits": 3,
-                    "lab": true
-            
-                },    
-                {
-                    "name": "CISC106",
-                    "section": 10,
-                    "prereqs": [],
-                    "coreqs": [{
-                        "name": "MATH241",
-                        "section": 10,
-                        "prereqs": [],
-                        "coreqs": [],
-                        "credits": 3,
-                        "lab": true
-                        }],
-                    "credits": 3,
-                    "lab": true
-            
-                }],
-                "coreqs": [{
-                    "name": "MATH221",
-                    "section": 10,
-                    "prereqs": [],
-                    "coreqs": [],
-                    "credits": 3,
-                    "lab": true
-                },{
-                    "name": "MATH241",
-                    "section": 10,
-                    "prereqs": [],
-                    "coreqs": [],
-                    "credits": 3,
-                    "lab": true
-                }],
-                "credits": 3,
-                "lab": true
-        
-            }],
-            "coreqs": [],
-            "credits": 3,
-            "lab": false
-        }],
+		"prereqs": ["CISC220"],
 		"coreqs": [],
 		"credits": 3,
 		"lab": false
@@ -761,47 +220,10 @@
 	{
 		
 		"name": "CISC404",
+        "title":"Logic in Programming",
+        "description":"Formal introduction to first-order logic with emphasis on its relevance to computer science. Syntax, semantics, models, formal proofs and results on soundness, consistency, completeness, compactness and undecidability. Automated theorem proving also covered.",
 		"section": 10,
-		"prereqs": [{
-
-            "name": "CISC304",
-            "section": 10,
-            "prereqs": [{
-                "name": "MATH210",
-                "section": 10,
-                "prereqs": [],
-                "coreqs": [],
-                "credits": 3,
-                "lab": true
-            },	{
-    
-                "name": "CISC220",
-                "section": 11,
-                "prereqs": [],
-                "coreqs": [{
-                    "name": "MATH210",
-                    "section": 10,
-                    "prereqs": [],
-                    "coreqs": [],
-                    "credits": 3,
-                    "lab": true
-                },{
-                    "name": "MATH241",
-                    "section": 10,
-                    "prereqs": [],
-                    "coreqs": [],
-                    "credits": 3,
-                    "lab": true
-                }],
-                "credits": 3,
-                "lab": true
-        
-            }],
-            "coreqs": [],
-            "credits": 3,
-            "lab": false
-    
-        }],
+		"prereqs": ["CISC304"],
 		"coreqs": [],
 		"credits": 3,
 		"lab": false
@@ -811,8 +233,10 @@
 	{
 
 		"name": "CISC410",
+        "title":"Intro to Numerical Analysis and Algorithmic Computation",
+        "description":"Direct and iterative methods for solution of algebraic equations and systems of linear equations, matrix inversion, pseudo-inverses, algebraic eigenvalue problems, linear least-square problems and nonlinear equations. Stresses both numerical analysis and algorithmic aspects.",
 		"section": 10,
-		"prereqs": ["MATH305","MATH351","MATH349"],
+		"prereqs": ["MATH305","MATH351","MATH349", "MATH341", "CISC108"],
 		"coreqs": [],
 		"credits": 3,
 		"lab": false
@@ -822,31 +246,10 @@
 	{
 
 		"name": "CISC437",
+        "title":"Database Systems",
+        "description":"Physical and logical organization of databases. Data retrieval languages, relational database languages, security and integrity, concurrency, distributed databases.",
 		"section": 10,
-		"prereqs": [{
-    
-            "name": "CISC220",
-            "section": 11,
-            "prereqs": [],
-            "coreqs": [{
-                "name": "MATH210",
-                "section": 10,
-                "prereqs": [],
-                "coreqs": [],
-                "credits": 3,
-                "lab": true
-            },{
-                "name": "MATH241",
-                "section": 10,
-                "prereqs": [],
-                "coreqs": [],
-                "credits": 3,
-                "lab": true
-            }],
-            "credits": 3,
-            "lab": true
-    
-        }],
+		"prereqs": ["CISC220"],
 		"coreqs": [],
 		"credits": 3,
 		"lab": false
@@ -856,31 +259,10 @@
 	{
 
 		"name": "CISC442",
+        "title":"Intro to Computer Vision",
+        "description":"Analysis of images and video to recognize, reconstruct, model, and otherwise infer static and dynamic properties of objects in the three-dimensional world. Geometry of image formation; image processing such as smoothing, edge and feature detection, color, and texture; segmentation; shape representation including deformable templates; stereo vision; motion estimation and tracking; techniques for 3-D reconstruction; image registration methods.",
 		"section": "10",
-		"prereqs": [{
-    
-            "name": "CISC220",
-            "section": 11,
-            "prereqs": [],
-            "coreqs": [{
-                "name": "MATH210",
-                "section": 10,
-                "prereqs": [],
-                "coreqs": [],
-                "credits": 3,
-                "lab": true
-            },{
-                "name": "MATH241",
-                "section": 10,
-                "prereqs": [],
-                "coreqs": [],
-                "credits": 3,
-                "lab": true
-            }],
-            "credits": 3,
-            "lab": true
-    
-        }],
+		"prereqs": ["CISC220"],
 		"coreqs": [],
 		"credits": 3,
 		"lab": false
@@ -890,31 +272,10 @@
 	{
 
 		"name": "CISC449",
+        "title":"",
+        "description":"",
 		"section": "10",
-		"prereqs": [{
-    
-            "name": "CISC220",
-            "section": 11,
-            "prereqs": [],
-            "coreqs": [{
-                "name": "MATH210",
-                "section": 10,
-                "prereqs": [],
-                "coreqs": [],
-                "credits": 3,
-                "lab": true
-            },{
-                "name": "MATH241",
-                "section": 10,
-                "prereqs": [],
-                "coreqs": [],
-                "credits": 3,
-                "lab": true
-            }],
-            "credits": 3,
-            "lab": true
-    
-        }],
+		"prereqs": [],
 		"coreqs": [],
 		"credits": 3,
 		"lab": false
@@ -924,78 +285,10 @@
 	{
 
 		"name": "CISC450",
+        "title":"",
+        "description":"",
 		"section": "10",
-		"prereqs": [{
-            "name": "CISC260",
-            "section": 10,
-            "prereqs": [{
-    
-                "name": "CISC210",
-                "section": 10,
-                "prereqs": [{
-        
-                    "name": "CISC108",
-                    "section": 10,
-                    "prereqs": [],
-                    "coreqs": [{
-                        "name": "MATH115",
-                        "section": 10,
-                        "prereqs": [],
-                        "coreqs": [],
-                        "credits": 3,
-                        "lab": true
-                        },
-                        {
-                        "name": "MATH117",
-                        "section": 10,
-                        "prereqs": [],
-                        "coreqs": [],
-                        "credits": 3,
-                        "lab": true
-                    }],
-                    "credits": 3,
-                    "lab": true
-            
-                },    
-                {
-                    "name": "CISC106",
-                    "section": 10,
-                    "prereqs": [],
-                    "coreqs": [{
-                        "name": "MATH241",
-                        "section": 10,
-                        "prereqs": [],
-                        "coreqs": [],
-                        "credits": 3,
-                        "lab": true
-                        }],
-                    "credits": 3,
-                    "lab": true
-            
-                }],
-                "coreqs": [{
-                    "name": "MATH221",
-                    "section": 10,
-                    "prereqs": [],
-                    "coreqs": [],
-                    "credits": 3,
-                    "lab": true
-                },{
-                    "name": "MATH241",
-                    "section": 10,
-                    "prereqs": [],
-                    "coreqs": [],
-                    "credits": 3,
-                    "lab": true
-                }],
-                "credits": 3,
-                "lab": true
-        
-            }],
-            "coreqs": [],
-            "credits": 3,
-            "lab": false
-        }],
+		"prereqs": [],
 		"coreqs": [],
 		"credits": 3,
 		"lab": false
@@ -1005,6 +298,8 @@
 	{
 
 		"name": "CISC472",
+        "title":"",
+        "description":"",
 		"section": "10",
 		"prereqs": [],
 		"coreqs": [],
@@ -1016,138 +311,10 @@
 	{
 
 		"name": "CISC474",
+        "title":"",
+        "description":"",
 		"section": 10,
-		"prereqs": [{
-
-            "name": "CISC275",
-            "section": 10,
-            "prereqs": [    {
-    
-                "name": "CISC181",
-                "section": 10,
-                "prereqs": 
-                [{
-        
-                    "name": "CISC108",
-                    "section": 10,
-                    "prereqs": [],
-                    "coreqs": [{
-                        "name": "MATH115",
-                        "section": 10,
-                        "prereqs": [],
-                        "coreqs": [],
-                        "credits": 3,
-                        "lab": true
-                        },
-                        {
-                        "name": "MATH117",
-                        "section": 10,
-                        "prereqs": [],
-                        "coreqs": [],
-                        "credits": 3,
-                        "lab": true
-                    }],
-                    "credits": 3,
-                    "lab": true
-            
-                },    
-                {
-                    "name": "CISC106",
-                    "section": 10,
-                    "prereqs": [],
-                    "coreqs": [{
-                        "name": "MATH241",
-                        "section": 10,
-                        "prereqs": [],
-                        "coreqs": [],
-                        "credits": 3,
-                        "lab": true
-                        }],
-                    "credits": 3,
-                    "lab": true
-            
-                }],
-                "coreqs": 
-                [{
-                    "name": "MATH241",
-                    "section": 10,
-                    "prereqs": [],
-                    "coreqs": [],
-                    "credits": 3,
-                    "lab": true
-                }],
-                "credits": 3,
-                "lab": true
-        
-            },{
-    
-                "name": "CISC210",
-                "section": 10,
-                "prereqs": [{
-        
-                    "name": "CISC108",
-                    "section": 10,
-                    "prereqs": [],
-                    "coreqs": [{
-                        "name": "MATH115",
-                        "section": 10,
-                        "prereqs": [],
-                        "coreqs": [],
-                        "credits": 3,
-                        "lab": true
-                        },
-                        {
-                        "name": "MATH117",
-                        "section": 10,
-                        "prereqs": [],
-                        "coreqs": [],
-                        "credits": 3,
-                        "lab": true
-                    }],
-                    "credits": 3,
-                    "lab": true
-            
-                },    
-                {
-                    "name": "CISC106",
-                    "section": 10,
-                    "prereqs": [],
-                    "coreqs": [{
-                        "name": "MATH241",
-                        "section": 10,
-                        "prereqs": [],
-                        "coreqs": [],
-                        "credits": 3,
-                        "lab": true
-                        }],
-                    "credits": 3,
-                    "lab": true
-            
-                }],
-                "coreqs": [{
-                    "name": "MATH221",
-                    "section": 10,
-                    "prereqs": [],
-                    "coreqs": [],
-                    "credits": 3,
-                    "lab": true
-                },{
-                    "name": "MATH241",
-                    "section": 10,
-                    "prereqs": [],
-                    "coreqs": [],
-                    "credits": 3,
-                    "lab": true
-                }],
-                "credits": 3,
-                "lab": true
-        
-            }],
-            "coreqs": [],
-            "credits": 3,
-            "lab": true
-    
-        }],
+		"prereqs": [],
 		"coreqs": [],
 		"credits": 3,
 		"lab": false
@@ -1157,138 +324,10 @@
 	{
 
 		"name": "CISC475",
+        "title":"",
+        "description":"",
 		"section": 10,
-		"prereqs": [{
-
-            "name": "CISC275",
-            "section": 10,
-            "prereqs": [    {
-    
-                "name": "CISC181",
-                "section": 10,
-                "prereqs": 
-                [{
-        
-                    "name": "CISC108",
-                    "section": 10,
-                    "prereqs": [],
-                    "coreqs": [{
-                        "name": "MATH115",
-                        "section": 10,
-                        "prereqs": [],
-                        "coreqs": [],
-                        "credits": 3,
-                        "lab": true
-                        },
-                        {
-                        "name": "MATH117",
-                        "section": 10,
-                        "prereqs": [],
-                        "coreqs": [],
-                        "credits": 3,
-                        "lab": true
-                    }],
-                    "credits": 3,
-                    "lab": true
-            
-                },    
-                {
-                    "name": "CISC106",
-                    "section": 10,
-                    "prereqs": [],
-                    "coreqs": [{
-                        "name": "MATH241",
-                        "section": 10,
-                        "prereqs": [],
-                        "coreqs": [],
-                        "credits": 3,
-                        "lab": true
-                        }],
-                    "credits": 3,
-                    "lab": true
-            
-                }],
-                "coreqs": 
-                [{
-                    "name": "MATH241",
-                    "section": 10,
-                    "prereqs": [],
-                    "coreqs": [],
-                    "credits": 3,
-                    "lab": true
-                }],
-                "credits": 3,
-                "lab": true
-        
-            },{
-    
-                "name": "CISC210",
-                "section": 10,
-                "prereqs": [{
-        
-                    "name": "CISC108",
-                    "section": 10,
-                    "prereqs": [],
-                    "coreqs": [{
-                        "name": "MATH115",
-                        "section": 10,
-                        "prereqs": [],
-                        "coreqs": [],
-                        "credits": 3,
-                        "lab": true
-                        },
-                        {
-                        "name": "MATH117",
-                        "section": 10,
-                        "prereqs": [],
-                        "coreqs": [],
-                        "credits": 3,
-                        "lab": true
-                    }],
-                    "credits": 3,
-                    "lab": true
-            
-                },    
-                {
-                    "name": "CISC106",
-                    "section": 10,
-                    "prereqs": [],
-                    "coreqs": [{
-                        "name": "MATH241",
-                        "section": 10,
-                        "prereqs": [],
-                        "coreqs": [],
-                        "credits": 3,
-                        "lab": true
-                        }],
-                    "credits": 3,
-                    "lab": true
-            
-                }],
-                "coreqs": [{
-                    "name": "MATH221",
-                    "section": 10,
-                    "prereqs": [],
-                    "coreqs": [],
-                    "credits": 3,
-                    "lab": true
-                },{
-                    "name": "MATH241",
-                    "section": 10,
-                    "prereqs": [],
-                    "coreqs": [],
-                    "credits": 3,
-                    "lab": true
-                }],
-                "credits": 3,
-                "lab": true
-        
-            }],
-            "coreqs": [],
-            "credits": 3,
-            "lab": true
-    
-        }],
+		"prereqs": [],
 		"coreqs": [],
 		"credits": 3,
 		"lab": true
@@ -1298,70 +337,10 @@
 	{
 
 		"name": "CISC481",
+        "title":"",
+        "description":"",
 		"section": 10,
-		"prereqs": [{
-    
-            "name": "CISC220",
-            "section": 11,
-            "prereqs": [],
-            "coreqs": [{
-                "name": "MATH210",
-                "section": 10,
-                "prereqs": [],
-                "coreqs": [],
-                "credits": 3,
-                "lab": true
-            },{
-                "name": "MATH241",
-                "section": 10,
-                "prereqs": [],
-                "coreqs": [],
-                "credits": 3,
-                "lab": true
-            }],
-            "credits": 3,
-            "lab": true
-    
-        },{
-
-            "name": "CISC304",
-            "section": 10,
-            "prereqs": [{
-                "name": "MATH210",
-                "section": 10,
-                "prereqs": [],
-                "coreqs": [],
-                "credits": 3,
-                "lab": true
-            },	{
-    
-                "name": "CISC220",
-                "section": 11,
-                "prereqs": [],
-                "coreqs": [{
-                    "name": "MATH210",
-                    "section": 10,
-                    "prereqs": [],
-                    "coreqs": [],
-                    "credits": 3,
-                    "lab": true
-                },{
-                    "name": "MATH241",
-                    "section": 10,
-                    "prereqs": [],
-                    "coreqs": [],
-                    "credits": 3,
-                    "lab": true
-                }],
-                "credits": 3,
-                "lab": true
-        
-            }],
-            "coreqs": [],
-            "credits": 3,
-            "lab": false
-    
-        }],
+		"prereqs": [],
 		"coreqs": [],
 		"credits": 3,
 		"lab": false
@@ -1371,138 +350,10 @@
 	{
 
 		"name": "CISC482",
+        "title":"",
+        "description":"",
 		"section": 10,
-		"prereqs": [{
-
-            "name": "CISC275",
-            "section": 10,
-            "prereqs": [    {
-    
-                "name": "CISC181",
-                "section": 10,
-                "prereqs": 
-                [{
-        
-                    "name": "CISC108",
-                    "section": 10,
-                    "prereqs": [],
-                    "coreqs": [{
-                        "name": "MATH115",
-                        "section": 10,
-                        "prereqs": [],
-                        "coreqs": [],
-                        "credits": 3,
-                        "lab": true
-                        },
-                        {
-                        "name": "MATH117",
-                        "section": 10,
-                        "prereqs": [],
-                        "coreqs": [],
-                        "credits": 3,
-                        "lab": true
-                    }],
-                    "credits": 3,
-                    "lab": true
-            
-                },    
-                {
-                    "name": "CISC106",
-                    "section": 10,
-                    "prereqs": [],
-                    "coreqs": [{
-                        "name": "MATH241",
-                        "section": 10,
-                        "prereqs": [],
-                        "coreqs": [],
-                        "credits": 3,
-                        "lab": true
-                        }],
-                    "credits": 3,
-                    "lab": true
-            
-                }],
-                "coreqs": 
-                [{
-                    "name": "MATH241",
-                    "section": 10,
-                    "prereqs": [],
-                    "coreqs": [],
-                    "credits": 3,
-                    "lab": true
-                }],
-                "credits": 3,
-                "lab": true
-        
-            },{
-    
-                "name": "CISC210",
-                "section": 10,
-                "prereqs": [{
-        
-                    "name": "CISC108",
-                    "section": 10,
-                    "prereqs": [],
-                    "coreqs": [{
-                        "name": "MATH115",
-                        "section": 10,
-                        "prereqs": [],
-                        "coreqs": [],
-                        "credits": 3,
-                        "lab": true
-                        },
-                        {
-                        "name": "MATH117",
-                        "section": 10,
-                        "prereqs": [],
-                        "coreqs": [],
-                        "credits": 3,
-                        "lab": true
-                    }],
-                    "credits": 3,
-                    "lab": true
-            
-                },    
-                {
-                    "name": "CISC106",
-                    "section": 10,
-                    "prereqs": [],
-                    "coreqs": [{
-                        "name": "MATH241",
-                        "section": 10,
-                        "prereqs": [],
-                        "coreqs": [],
-                        "credits": 3,
-                        "lab": true
-                        }],
-                    "credits": 3,
-                    "lab": true
-            
-                }],
-                "coreqs": [{
-                    "name": "MATH221",
-                    "section": 10,
-                    "prereqs": [],
-                    "coreqs": [],
-                    "credits": 3,
-                    "lab": true
-                },{
-                    "name": "MATH241",
-                    "section": 10,
-                    "prereqs": [],
-                    "coreqs": [],
-                    "credits": 3,
-                    "lab": true
-                }],
-                "credits": 3,
-                "lab": true
-        
-            }],
-            "coreqs": [],
-            "credits": 3,
-            "lab": true
-    
-        }],
+		"prereqs": [],
 		"coreqs": [],
 		"credits": 3,
 		"lab": false
@@ -1512,6 +363,8 @@
 	{
 
 		"name": "CISC483",
+        "title":"",
+        "description":"",
 		"section": 10,
 		"prereqs": ["MATH205","CISC220"],
 		"coreqs": [],
@@ -1523,6 +376,8 @@
 	{
 
 		"name": "CISC484",
+        "title":"",
+        "description":"",
 		"section": 10,
 		"prereqs": ["MATH205","CISC220"],
 		"coreqs": [],
@@ -1534,177 +389,10 @@
 	{
 
 		"name": "CISC498",
+        "title":"",
+        "description":"",
 		"section": 12,
-		"prereqs": [{
-
-            "name": "CISC275",
-            "section": 10,
-            "prereqs": [    {
-    
-                "name": "CISC181",
-                "section": 10,
-                "prereqs": 
-                [{
-        
-                    "name": "CISC108",
-                    "section": 10,
-                    "prereqs": [],
-                    "coreqs": [{
-                        "name": "MATH115",
-                        "section": 10,
-                        "prereqs": [],
-                        "coreqs": [],
-                        "credits": 3,
-                        "lab": true
-                        },
-                        {
-                        "name": "MATH117",
-                        "section": 10,
-                        "prereqs": [],
-                        "coreqs": [],
-                        "credits": 3,
-                        "lab": true
-                    }],
-                    "credits": 3,
-                    "lab": true
-            
-                },    
-                {
-                    "name": "CISC106",
-                    "section": 10,
-                    "prereqs": [],
-                    "coreqs": [{
-                        "name": "MATH241",
-                        "section": 10,
-                        "prereqs": [],
-                        "coreqs": [],
-                        "credits": 3,
-                        "lab": true
-                        }],
-                    "credits": 3,
-                    "lab": true
-            
-                }],
-                "coreqs": 
-                [{
-                    "name": "MATH241",
-                    "section": 10,
-                    "prereqs": [],
-                    "coreqs": [],
-                    "credits": 3,
-                    "lab": true
-                }],
-                "credits": 3,
-                "lab": true
-        
-            },{
-    
-                "name": "CISC210",
-                "section": 10,
-                "prereqs": [{
-        
-                    "name": "CISC108",
-                    "section": 10,
-                    "prereqs": [],
-                    "coreqs": [{
-                        "name": "MATH115",
-                        "section": 10,
-                        "prereqs": [],
-                        "coreqs": [],
-                        "credits": 3,
-                        "lab": true
-                        },
-                        {
-                        "name": "MATH117",
-                        "section": 10,
-                        "prereqs": [],
-                        "coreqs": [],
-                        "credits": 3,
-                        "lab": true
-                    }],
-                    "credits": 3,
-                    "lab": true
-            
-                },    
-                {
-                    "name": "CISC106",
-                    "section": 10,
-                    "prereqs": [],
-                    "coreqs": [{
-                        "name": "MATH241",
-                        "section": 10,
-                        "prereqs": [],
-                        "coreqs": [],
-                        "credits": 3,
-                        "lab": true
-                        }],
-                    "credits": 3,
-                    "lab": true
-            
-                }],
-                "coreqs": [{
-                    "name": "MATH221",
-                    "section": 10,
-                    "prereqs": [],
-                    "coreqs": [],
-                    "credits": 3,
-                    "lab": true
-                },{
-                    "name": "MATH241",
-                    "section": 10,
-                    "prereqs": [],
-                    "coreqs": [],
-                    "credits": 3,
-                    "lab": true
-                }],
-                "credits": 3,
-                "lab": true
-        
-            }],
-            "coreqs": [],
-            "credits": 3,
-            "lab": true
-    
-        },{
-
-            "name": "CISC320",
-            "section": 10,
-            "prereqs": [{
-                "name": "MATH210",
-                "section": 10,
-                "prereqs": [],
-                "coreqs": [],
-                "credits": 3,
-                "lab": true
-            },	{
-    
-                "name": "CISC220",
-                "section": 11,
-                "prereqs": [],
-                "coreqs": [{
-                    "name": "MATH210",
-                    "section": 10,
-                    "prereqs": [],
-                    "coreqs": [],
-                    "credits": 3,
-                    "lab": true
-                },{
-                    "name": "MATH241",
-                    "section": 10,
-                    "prereqs": [],
-                    "coreqs": [],
-                    "credits": 3,
-                    "lab": true
-                }],
-                "credits": 3,
-                "lab": true
-        
-            }],
-            "coreqs": [],
-            "credits": 3,
-            "lab": false
-    
-        }],
+		"prereqs": [],
 		"coreqs": [],
 		"credits": 3,
 		"lab": true
@@ -1714,47 +402,10 @@
 	{
 
 		"name": "CISC604",
+        "title":"",
+        "description":"",
 		"section": 10,
-		"prereqs": [{
-
-            "name": "CISC304",
-            "section": 10,
-            "prereqs": [{
-                "name": "MATH210",
-                "section": 10,
-                "prereqs": [],
-                "coreqs": [],
-                "credits": 3,
-                "lab": true
-            },	{
-    
-                "name": "CISC220",
-                "section": 11,
-                "prereqs": [],
-                "coreqs": [{
-                    "name": "MATH210",
-                    "section": 10,
-                    "prereqs": [],
-                    "coreqs": [],
-                    "credits": 3,
-                    "lab": true
-                },{
-                    "name": "MATH241",
-                    "section": 10,
-                    "prereqs": [],
-                    "coreqs": [],
-                    "credits": 3,
-                    "lab": true
-                }],
-                "credits": 3,
-                "lab": true
-        
-            }],
-            "coreqs": [],
-            "credits": 3,
-            "lab": false
-    
-        }],
+		"prereqs": [],
 		"coreqs": [],
 		"credits": 3,
 		"lab": false
@@ -1764,6 +415,8 @@
 	{
 
 		"name": "CISC605",
+        "title":"",
+        "description":"",
 		"section": 10,
 		"prereqs": [],
 		"coreqs": [],
@@ -1775,6 +428,8 @@
 	{
 
 		"name": "CISC615",
+        "title":"",
+        "description":"",
 		"section": 10,
 		"prereqs": [],
 		"coreqs": [],
@@ -1786,6 +441,8 @@
 	{
 
 		"name": "CISC621",
+        "title":"",
+        "description":"",
 		"section": 10,
 		"prereqs": [],
 		"coreqs": [],
@@ -1797,31 +454,10 @@
 	{
 
 		"name": "CISC642",
+        "title":"",
+        "description":"",
 		"section": 10,
-		"prereqs": [	{
-    
-            "name": "CISC220",
-            "section": 11,
-            "prereqs": [],
-            "coreqs": [{
-                "name": "MATH210",
-                "section": 10,
-                "prereqs": [],
-                "coreqs": [],
-                "credits": 3,
-                "lab": true
-            },{
-                "name": "MATH241",
-                "section": 10,
-                "prereqs": [],
-                "coreqs": [],
-                "credits": 3,
-                "lab": true
-            }],
-            "credits": 3,
-            "lab": true
-    
-        }],
+		"prereqs": [],
 		"coreqs": [],
 		"credits": 3,
 		"lab": false
@@ -1832,6 +468,8 @@
 	{
 
 		"name": "CISC650",
+        "title":"",
+        "description":"",
 		"section": 10,
 		"prereqs": [],
 		"coreqs": [],
@@ -1843,31 +481,10 @@
 	{
 
 		"name": "CISC681",
+        "title":"",
+        "description":"",
 		"section": 10,
-		"prereqs": [{
-
-            "name": "CISC220",
-            "section": 11,
-            "prereqs": [],
-            "coreqs": [{
-                "name": "MATH210",
-                "section": 10,
-                "prereqs": [],
-                "coreqs": [],
-                "credits": 3,
-                "lab": true
-            },{
-                "name": "MATH241",
-                "section": 10,
-                "prereqs": [],
-                "coreqs": [],
-                "credits": 3,
-                "lab": true
-            }],
-            "credits": 3,
-            "lab": true
-    
-        }],
+		"prereqs": [],
 		"coreqs": [],
 		"credits": 3,
 		"lab": false
@@ -1877,17 +494,10 @@
 	{
 
 		"name": "CISC859",
+        "title":"",
+        "description":"",
 		"section": 10,
-		"prereqs": [{
-
-            "name": "CISC650",
-            "section": 10,
-            "prereqs": [],
-            "coreqs": [],
-            "credits": 3,
-            "lab": false
-    
-        }],
+		"prereqs": [],
 		"coreqs": [],
 		"credits": 3,
 		"lab": false
@@ -1895,6 +505,8 @@
 	},
     {
         "name": "MATH010",
+        "title":"",
+        "description":"",
         "section": 10,
         "prereqs": [],
         "coreqs": [],
@@ -1903,17 +515,10 @@
     },
     {
         "name": "MATH115",
+        "title":"",
+        "description":"",
         "section": 10,
-        "prereqs": [
-            {
-                "name": "MATH010",
-                "section": 10,
-                "prereqs": [],
-                "coreqs": [],
-                "credits": 3,
-                "lab": false
-            }
-        ],
+        "prereqs": [],
         "coreqs": [],
         "credits": 3,
         "lab": false
@@ -1921,17 +526,10 @@
     {
 
         "name": "MATH117",
+        "title":"",
+        "description":"",
         "section": 10,
-        "prereqs": [
-            {
-                "name": "MATH010",
-                "section": 10,
-                "prereqs": [],
-                "coreqs": [],
-                "credits": 3,
-                "lab": false
-            }
-        ],
+        "prereqs": [],
         "coreqs": [],
         "credits": 3,
         "lab": false
@@ -1941,105 +539,11 @@
     {
 
         "name": "MATH210",
+        "title":"",
+        "description":"",
         "section": 10,
         "prereqs": [],
-        "coreqs": [
-            {
-
-                "name": "MATH241",
-                "section": 11,
-                "prereqs": [
-                    {
-        
-                        "name": "MATH117",
-                        "section": 10,
-                        "prereqs": [
-                            {
-                                "name": "MATH010",
-                                "section": 10,
-                                "prereqs": [],
-                                "coreqs": [],
-                                "credits": 3,
-                                "lab": false
-                            }
-                        ],
-                        "coreqs": [],
-                        "credits": 3,
-                        "lab": false
-                
-                
-                    }
-                ],
-                "coreqs": [],
-                "credits": 3,
-                "lab": true
-        
-        
-            },
-            {
-
-                "name": "MATH242",
-                "section": 10,
-                "prereqs": [
-                    {
-                        "name": "MATH232",
-                        "section": 10,
-                        "prereqs": [
-                            "MATH231"
-                        ],
-                        "coreqs": [],
-                        "credits": 3,
-                        "lab": false
-                    },
-                    {
-        
-                        "name": "MATH241",
-                        "section": 11,
-                        "prereqs": [
-                            {
-                
-                                "name": "MATH117",
-                                "section": 10,
-                                "prereqs": [
-                                    {
-                                        "name": "MATH010",
-                                        "section": 10,
-                                        "prereqs": [],
-                                        "coreqs": [],
-                                        "credits": 3,
-                                        "lab": false
-                                    }
-                                ],
-                                "coreqs": [],
-                                "credits": 3,
-                                "lab": false
-                        
-                        
-                            }
-                        ],
-                        "coreqs": [],
-                        "credits": 3,
-                        "lab": true
-                
-                
-                    }
-                ],
-                "coreqs": [],
-                "credits": 3,
-                "lab": true
-        
-            },
-            {
-                "name": "MATH232",
-                "section": 10,
-                "prereqs": [
-                    "MATH231"
-                ],
-                "coreqs": [],
-                "credits": 3,
-                "lab": false
-            }
-        ],
+        "coreqs": [],
         "credits": 3,
         "lab": true
 
@@ -2048,11 +552,10 @@
     {
 
         "name": "MATH221",
+        "title":"",
+        "description":"",
         "section": 11,
-        "prereqs": [
-            "MATH115",
-            "MATH117"
-        ],
+        "prereqs": ["MATH115", "MATH117"],
         "coreqs": [],
         "credits": 3,
         "lab": true
@@ -2060,10 +563,10 @@
     },
     {
         "name": "MATH232",
+        "title":"",
+        "description":"",
         "section": 10,
-        "prereqs": [
-            "MATH231"
-        ],
+        "prereqs": ["MATH231"],
         "coreqs": [],
         "credits": 3,
         "lab": false
@@ -2072,29 +575,10 @@
     {
 
         "name": "MATH241",
+        "title":"",
+        "description":"",
         "section": 11,
-        "prereqs": [
-            {
-
-                "name": "MATH117",
-                "section": 10,
-                "prereqs": [
-                    {
-                        "name": "MATH010",
-                        "section": 10,
-                        "prereqs": [],
-                        "coreqs": [],
-                        "credits": 3,
-                        "lab": false
-                    }
-                ],
-                "coreqs": [],
-                "credits": 3,
-                "lab": false
-        
-        
-            }
-        ],
+        "prereqs": [],
         "coreqs": [],
         "credits": 3,
         "lab": true
@@ -2104,51 +588,10 @@
     {
 
         "name": "MATH242",
+        "title":"",
+        "description":"",
         "section": 10,
-        "prereqs": [
-            {
-                "name": "MATH232",
-                "section": 10,
-                "prereqs": [
-                    "MATH231"
-                ],
-                "coreqs": [],
-                "credits": 3,
-                "lab": false
-            },
-            {
-
-                "name": "MATH241",
-                "section": 11,
-                "prereqs": [
-                    {
-        
-                        "name": "MATH117",
-                        "section": 10,
-                        "prereqs": [
-                            {
-                                "name": "MATH010",
-                                "section": 10,
-                                "prereqs": [],
-                                "coreqs": [],
-                                "credits": 3,
-                                "lab": false
-                            }
-                        ],
-                        "coreqs": [],
-                        "credits": 3,
-                        "lab": false
-                
-                
-                    }
-                ],
-                "coreqs": [],
-                "credits": 3,
-                "lab": true
-        
-        
-            }
-        ],
+        "prereqs": [],
         "coreqs": [],
         "credits": 3,
         "lab": true
@@ -2158,6 +601,8 @@
     {
 
         "name": "ENGL312",
+        "title":"",
+        "description":"",
         "section": 10,
         "prereqs": [],
         "coreqs": [],
@@ -2169,6 +614,8 @@
     {
 
         "name": "ENGL410",
+        "title":"",
+        "description":"",
         "section": 10,
         "prereqs": [],
         "coreqs": [],
@@ -2180,6 +627,8 @@
     {
 
         "name": "MATH205",
+        "title":"",
+        "description":"",
         "section": 10,
         "prereqs": [],
         "coreqs": [],
@@ -2191,6 +640,8 @@
     {
 
         "name": "MATH350",
+        "title":"",
+        "description":"",
         "section": 10,
         "prereqs": [],
         "coreqs": [],
@@ -2202,6 +653,8 @@
     {
 
         "name": "CISC436",
+        "title":"",
+        "description":"",
         "section": 10,
         "prereqs": [],
         "coreqs": [],
@@ -2213,6 +666,8 @@
     {
 
         "name": "Restricted Elective 1",
+        "title":"",
+        "description":"",
         "section": 10,
         "prereqs": [],
         "coreqs": [],
@@ -2224,6 +679,8 @@
     {
 
         "name": "Restricted Elective 2",
+        "title":"",
+        "description":"",
         "section": 10,
         "prereqs": [],
         "coreqs": [],
@@ -2235,6 +692,8 @@
     {
 
         "name": "Restricted Elective 3",
+        "title":"",
+        "description":"",
         "section": 10,
         "prereqs": [],
         "coreqs": [],
@@ -2246,6 +705,8 @@
     {
 
         "name": "Restricted Elective 4",
+        "title":"",
+        "description":"",
         "section": 10,
         "prereqs": [],
         "coreqs": [],
@@ -2257,6 +718,8 @@
     {
 
         "name": "Lab Sequence 1",
+        "title":"",
+        "description":"",
         "section": 10,
         "prereqs": [],
         "coreqs": [],
@@ -2268,6 +731,8 @@
     {
 
         "name": "Lab Sequence 2",
+        "title":"",
+        "description":"",
         "section": 10,
         "prereqs": [],
         "coreqs": [],
@@ -2279,6 +744,8 @@
     {
 
         "name": "CISC499",
+        "title":"",
+        "description":"",
         "section": 10,
         "prereqs": [],
         "coreqs": [],
@@ -2290,6 +757,8 @@
     {
 
         "name": "MATH349",
+        "title":"",
+        "description":"",
         "section": 10,
         "prereqs": [],
         "coreqs": [],
@@ -2301,6 +770,8 @@
     {
 
         "name": "BISC207",
+        "title":"",
+        "description":"",
         "section": 10,
         "prereqs": [],
         "coreqs": [],
@@ -2312,6 +783,8 @@
     {
 
         "name": "BISC208",
+        "title":"",
+        "description":"",
         "section": 10,
         "prereqs": [],
         "coreqs": [],
@@ -2323,6 +796,8 @@
     {
 
         "name": "BISC401",
+        "title":"",
+        "description":"",
         "section": 10,
         "prereqs": [],
         "coreqs": [],
@@ -2334,6 +809,8 @@
     {
 
         "name": "CHEM103",
+        "title":"",
+        "description":"",
         "section": 10,
         "prereqs": [],
         "coreqs": [],
@@ -2345,6 +822,8 @@
     {
 
         "name": "CHEM104",
+        "title":"",
+        "description":"",
         "section": 10,
         "prereqs": [],
         "coreqs": [],
@@ -2356,6 +835,8 @@
     {
 
         "name": "CHEM213",
+        "title":"",
+        "description":"",
         "section": 10,
         "prereqs": [],
         "coreqs": [],
@@ -2367,6 +848,8 @@
     {
 
         "name": "CHEM215",
+        "title":"",
+        "description":"",
         "section": 10,
         "prereqs": [],
         "coreqs": [],
@@ -2378,6 +861,8 @@
     {
 
         "name": "CHEM321",
+        "title":"",
+        "description":"",
         "section": 10,
         "prereqs": [],
         "coreqs": [],
@@ -2389,6 +874,8 @@
     {
 
         "name": "CHEM325",
+        "title":"",
+        "description":"",
         "section": 10,
         "prereqs": [],
         "coreqs": [],
@@ -2400,6 +887,8 @@
     {
 
         "name": "CPEG472",
+        "title":"",
+        "description":"",
         "section": 10,
         "prereqs": [],
         "coreqs": [],
@@ -2411,6 +900,8 @@
     {
 
         "name": "CPEG473",
+        "title":"",
+        "description":"",
         "section": 10,
         "prereqs": [],
         "coreqs": [],
@@ -2422,6 +913,8 @@
     {
 
         "name": "CPEG475",
+        "title":"",
+        "description":"",
         "section": 10,
         "prereqs": [],
         "coreqs": [],
@@ -2433,6 +926,8 @@
     {
 
         "name": "CPEG476",
+        "title":"",
+        "description":"",
         "section": 10,
         "prereqs": [],
         "coreqs": [],
@@ -2444,6 +939,8 @@
     {
 
         "name": "CPEG495",
+        "title":"",
+        "description":"",
         "section": 10,
         "prereqs": [],
         "coreqs": [],
@@ -2455,6 +952,8 @@
     {
 
         "name": "MATH243",
+        "title":"",
+        "description":"",
         "section": 10,
         "prereqs": [],
         "coreqs": [],
@@ -2466,6 +965,8 @@
     {
 
         "name": "MATH302",
+        "title":"",
+        "description":"",
         "section": 10,
         "prereqs": [],
         "coreqs": [],
@@ -2476,18 +977,9 @@
 
 	{
 
-		"name": "CISC360",
-		"section": 10,
-		"prereqs": ["CISC220","CISC260"],
-		"coreqs": [],
-		"credits": 3,
-		"lab": false
-
-	},
-
-	{
-
 		"name": "CISC471",
+        "title":"",
+        "description":"",
 		"section": 10,
 		"prereqs": ["CISC220","CISC260"],
 		"coreqs": [],
@@ -2499,6 +991,8 @@
 	{
 
 		"name": "CISC401",
+        "title":"",
+        "description":"",
 		"section": 10,
 		"prereqs": ["CISC220","CISC260"],
 		"coreqs": [],
@@ -2510,6 +1004,8 @@
 	{
 
 		"name": "MATH245",
+        "title":"",
+        "description":"",
 		"section": 10,
 		"prereqs": ["CISC220","CISC260"],
 		"coreqs": [],
@@ -2521,6 +1017,8 @@
 	{
 
 		"name": "MATH315",
+        "title":"",
+        "description":"",
 		"section": 10,
 		"prereqs": ["CISC220","CISC260"],
 		"coreqs": [],
@@ -2532,6 +1030,8 @@
 	{
 
 		"name": "MATH451",
+        "title":"",
+        "description":"",
 		"section": 10,
 		"prereqs": ["CISC220","CISC260"],
 		"coreqs": [],
@@ -2543,6 +1043,8 @@
 	{
 
 		"name": "MATH535",
+        "title":"",
+        "description":"",
 		"section": 10,
 		"prereqs": ["CISC220","CISC260"],
 		"coreqs": [],
@@ -2554,6 +1056,8 @@
 	{
 
 		"name": "MATH426",
+        "title":"",
+        "description":"",
 		"section": 10,
 		"prereqs": ["CISC220","CISC260"],
 		"coreqs": [],
@@ -2565,6 +1069,8 @@
 	{
 
 		"name": "MATH428",
+        "title":"",
+        "description":"",
 		"section": 10,
 		"prereqs": ["CISC220","CISC260"],
 		"coreqs": [],
@@ -2576,6 +1082,8 @@
 	{
 
 		"name": "MATH351",
+        "title":"",
+        "description":"",
 		"section": 10,
 		"prereqs": ["CISC220","CISC260"],
 		"coreqs": [],
@@ -2587,6 +1095,8 @@
 	{
 
 		"name": "MATH450",
+        "title":"",
+        "description":"",
 		"section": 10,
 		"prereqs": ["CISC220","CISC260"],
 		"coreqs": [],
