@@ -8,18 +8,95 @@ export const onDragEndLogic = (result: DropResult,
     concentrationContainers: ConcentrationContainerType[], 
     setConcentrationContainers: React.Dispatch<React.SetStateAction<ConcentrationContainerType[]>>,
     semesterCourses: SemesterType[],
-    setSemesterCourses: React.Dispatch<React.SetStateAction<SemesterType[]>> ): void => {
+    setSemesterCourses: React.Dispatch<React.SetStateAction<SemesterType[]>>,
+    displayToast: (msg: string) => void ): void => {
 
 
     if (!result.destination) {
         return;
-    }if(result.destination.droppableId.includes("semester-table")){
+    }
+    
+    /*
+
+    If where you are dropping TO is a semester
+
+    */
+
+    if(result.destination.droppableId.includes("semester-table")){
         
+        /*
+
+         If where you are dropping FROM is not a semester, then go into this if
+
+         Case: Concentration Courses ---> Semester
+
+        */
+
         if(!result.source.droppableId.includes("semester-table")){
 
             console.log("from conc container");
 
             const tmpConcentrationContainers = [...concentrationContainers];
+
+
+            const chkTmpSemesterCourses = [...semesterCourses];
+            const chkSemesterDropId = result.destination.droppableId;
+            const chkSemesterNumber = parseInt(chkSemesterDropId.substring(chkSemesterDropId.lastIndexOf("-")+1));
+            let chkTmpSemester: SemesterType = [...chkTmpSemesterCourses][0];
+            for(let i = 0; i < semesterCourses.length; i++){
+
+                if(semesterCourses[i].semesternum == chkSemesterNumber){
+                    chkTmpSemester = chkTmpSemesterCourses[i];
+                    break;
+                }
+
+            }
+
+            let chkTmpContainer: ConcentrationContainerType = tmpConcentrationContainers[0];
+            for(let i = 0; i < concentrationContainers.length; i++){ // finding container , ex: core, capstone
+
+                if(concentrationContainers[i].name === result.source.droppableId){
+                    chkTmpContainer = tmpConcentrationContainers[i];
+                    break;
+                }
+
+            }
+
+            const chkTmpConcCourses = chkTmpContainer.courses;
+            const chkTmpConcCourse = chkTmpConcCourses[result.source.index];
+
+            const insertingCourseName = chkTmpConcCourse.name;
+
+            // got course
+
+            
+            const chkTmpSemesterCourses2 = [...chkTmpSemester.courses];
+
+            const chkTmp2CourseNames = chkTmpSemesterCourses2.map(e => e.name);
+            const chkTmp2CoursePreReqs = chkTmpSemesterCourses2.map(e => e.prereqs).flat(2);
+
+            console.log(`chk2tmpcoursenames = ${chkTmp2CourseNames}`);
+            console.log(`chktmp2CoursePrereqs = ${chkTmp2CoursePreReqs}`);
+
+            const preReqs = chkTmpSemesterCourses2.filter(e => e.prereqs.includes(insertingCourseName)).map(e => e.name); // prereqs if you are inserting a lower level course that's a prereq to a higher level course in the semester
+            const revPreReqs = chkTmp2CourseNames.filter(e => chkTmpConcCourse.prereqs.includes(e)); // prereqs if you are inserting a high level course that's a prereq for a lower level course in the semester
+
+            console.log("PREREQS is : " + Object.values(preReqs));
+
+            if(preReqs.length > 0){
+                // ERROR -- PRE-REQUISITE ERROR
+                const errorMsg = `You are trying to insert course ${insertingCourseName} when the course${preReqs.length > 1? "s": ""} ${preReqs.join(",")} has the course ${insertingCourseName} listed as a pre-requisite`;
+                displayToast(errorMsg);
+                return;
+            } else if(revPreReqs.length > 0){
+                const errorMsg = `You are trying to insert course ${insertingCourseName} when the course${preReqs.length > 1? "s": ""} ${preReqs.join(",")} has ${revPreReqs.join("")} listed as a pre-requisite`;
+                displayToast(errorMsg);
+                return;
+            }
+
+            
+
+
 
             let tmpContainer: ConcentrationContainerType = tmpConcentrationContainers[0];
             let ind1 = -1;

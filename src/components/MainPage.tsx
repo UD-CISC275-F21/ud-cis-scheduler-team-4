@@ -12,6 +12,7 @@ import { SemesterType } from "../interfaces/semester";
 import { AddSemesterButton } from "./semesters/AddSemesterButton";
 import { ConcentrationContainerType } from "../interfaces/concentrationcontainer";
 import { onDragEndLogic } from "./util/DropLogic";
+import { PreReqSameSemesterToast } from "./util/Notifications";
 
 export const MainPage = (): JSX.Element => {
     const [concentration, setConcentration] = useState<Concentration>(CONCENTRATIONS[0] as Concentration);
@@ -19,6 +20,9 @@ export const MainPage = (): JSX.Element => {
     const [display, setDisplay] = useState<boolean>(false);
     const [semesters, setSemesters] = useState<number>(1);
     const [concentrationContainers, setConcentrationContainers] = useState<ConcentrationContainerType[]>([]); // is initialized to the first concentration container, contains all of the parts of the concentration, outlined in the comment below
+    const [toastDisplay, setToastDisplay] = useState<boolean>(false);
+    const [toastMessage, setToastMessage] = useState<string>("");
+
 
     useEffect(() => {
         setDisplay(true);
@@ -27,8 +31,16 @@ export const MainPage = (): JSX.Element => {
         },1);
     },[]);
 
+    const displayToast = (msg: string) => {
+        setToastDisplay(true);
+        setToastMessage(msg);
+        setTimeout(() => {
+            setToastDisplay(false);
+        },5000); 
+    };
+
     const onDragEnd = (result: DropResult) => {
-        onDragEndLogic(result,concentrationContainers,setConcentrationContainers,semesterCourses,setSemesterCourses);
+        onDragEndLogic(result,concentrationContainers,setConcentrationContainers,semesterCourses,setSemesterCourses,displayToast);
     };
 
     return (
@@ -41,6 +53,7 @@ export const MainPage = (): JSX.Element => {
                     <Row>
                         <Col>
                             {<WelcomeToast display={display}/>}
+                            {<PreReqSameSemesterToast errMsg={toastMessage} display={toastDisplay} />}
                         </Col>
                     </Row>
                     <Row>
