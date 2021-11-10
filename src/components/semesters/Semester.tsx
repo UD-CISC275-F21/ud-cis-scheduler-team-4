@@ -57,8 +57,6 @@ export const Semester = (props: { ind: number, semesterCourses: SemesterType[], 
 
         // verify that course you are trying to add is not a prereq of course in current semester
 
-        //const preReqs = courses.map(e => e.prereqs);
-
 
         getCredits(courses);
 
