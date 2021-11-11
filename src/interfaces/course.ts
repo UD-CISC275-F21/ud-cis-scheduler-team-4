@@ -1,6 +1,8 @@
 export interface Course{
     name:string,
-    section:number,
+    title: string,
+    description: string
+    section:number
     prereqs:string[],
     coreqs:string[],
     credits:number,
