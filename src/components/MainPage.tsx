@@ -28,7 +28,7 @@ export const MainPage = (): JSX.Element => {
         setDisplay(true);
         setTimeout(() => {
             setDisplay(false);
-        },1);
+        },5000);
     },[]);
 
     const displayToast = (msg: string) => {
