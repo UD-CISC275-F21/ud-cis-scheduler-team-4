@@ -664,24 +664,94 @@ export function HPCConc(props: {StringsToCourses: (stringCourses:string[]) => Co
 
     return<div>
         <h2>High-Performance Computing</h2>
-        <p>CISC Core and Concentration:</p>
-        <CourseContainer courses={coreCourses} name="core"/>
-        <CourseContainer courses={capstoneCourses} name="capstone"/>
-        <CourseContainer courses={generalCourses} name="general"/>
-        <p>Choose a Two-Course Lab Sequence:</p>
-        <CourseContainer courses={labCourses} name={"lab-1"} />
-        <p>Select One Writing Course:</p>
-        <CourseContainer courses={writingCourses} name="writing"/>
-        <h5>Choose one of the follwing tracks:</h5>
-        <h5>Applied Math Track</h5>
-        <CourseContainer courses={electiveCourses} name="elecitve"/>
-        <CourseContainer courses={mathCourses} name="elecitve"/>
-        <CourseContainer courses={statCourses} name="MATH"/>
-        <h5>Data Track</h5>
-        <CourseContainer courses={dataCourses} name="data"/>
-        <CourseContainer courses={dataTrackCourses} name="data"/>
-        <p>Choose one Machine Learning Course:</p>
-        <CourseContainer courses={learningCourses} name="data"/>
+
+        <Accordion defaultActiveKey="8">
+
+            <Accordion.Item eventKey="0">
+                <Accordion.Header>
+                    CISC Core and Concentration
+                </Accordion.Header>
+                <Accordion.Body>
+                    <CourseContainer courses={coreCourses} name="core"/>
+                    <CourseContainer courses={capstoneCourses} name="capstone"/>
+                    <CourseContainer courses={generalCourses} name="general"/>
+                </Accordion.Body>
+            </Accordion.Item>
+
+            <Accordion.Item eventKey="1">
+                <Accordion.Header>
+                    Two Lab Courses
+                </Accordion.Header>
+                <Accordion.Body>
+                    <CourseContainer courses={labCourses} name={"lab-1"} />
+                </Accordion.Body>
+            </Accordion.Item>
+
+            <Accordion.Item eventKey="2">
+                <Accordion.Header>
+                    One Writing
+                </Accordion.Header>
+                <Accordion.Body>
+                    <CourseContainer courses={writingCourses} name="writing"/>
+                </Accordion.Body>
+            </Accordion.Item>
+
+
+            <Accordion.Item eventKey="3">
+
+                <Accordion.Header>
+                    Choose one of the tracks
+                </Accordion.Header>
+                <Accordion.Body>
+
+                    <Accordion>
+
+                        <Accordion.Item eventKey="4">
+
+                            <Accordion.Header>
+                                Applied Math
+                            </Accordion.Header>
+                            <Accordion.Body>
+
+                                <CourseContainer courses={electiveCourses} name="elecitve"/>
+                                <CourseContainer courses={mathCourses} name="elecitve"/>
+                                <CourseContainer courses={statCourses} name="MATH"/>
+
+                            </Accordion.Body>
+
+                        </Accordion.Item>
+                        <Accordion.Item eventKey="5">
+
+                            <Accordion.Header>
+                                Data Track
+                            </Accordion.Header>
+                            <Accordion.Body>
+                                <CourseContainer courses={dataCourses} name="data"/>
+                                <CourseContainer courses={dataTrackCourses} name="data"/>
+                            </Accordion.Body>
+
+                        </Accordion.Item>
+
+                    </Accordion>
+
+                </Accordion.Body>
+
+            </Accordion.Item>
+
+            <Accordion.Item eventKey="6">
+
+                <Accordion.Header>
+                    One Machine Learning
+                </Accordion.Header>
+                <Accordion.Body>
+                    <CourseContainer courses={learningCourses} name="data"/>
+                </Accordion.Body>
+
+            </Accordion.Item>
+
+
+
+        </Accordion>
     </div>;
 }
 
