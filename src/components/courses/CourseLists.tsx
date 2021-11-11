@@ -72,7 +72,7 @@ export function AIConc(props: {StringsToCourses: (stringCourses:string[]) => Cou
 
     return<div>
         <h2>Artificial Intelligence and Robotics</h2>
-        <Accordion defaultActiveKey="0">
+        <Accordion defaultActiveKey="8">
 
             <Accordion.Item eventKey="0">
                 <Accordion.Header>CISC Core and Concentration</Accordion.Header>
@@ -188,25 +188,114 @@ export function BioConc(props: {StringsToCourses: (stringCourses:string[]) => Co
         );
     }, []);
 
+    /*
+
+        <Accordion defaultActiveKey="0">
+
+            <Accordion.Item eventKey="0">
+
+                <Accordion.Header>
+
+                </Accordion.Header>
+
+                <Accordion.Body>
+
+                    
+
+                </Accordion.Body>
+
+            </Accordion.Item>
+
+        </Accordion>
+
+
+    */
+
     return(
         <div>
             <h2>Bioinformatics</h2>
-            <p>CISC Core and Concentration:</p>
-            <CourseContainer courses={coreCourses} name="core"/>
-            <CourseContainer courses={capstoneCourses} name="capstone"/>
-            <CourseContainer courses={generalCourses} name="general"/>
-            <p>Chem Sequence:</p>
-            <CourseContainer courses={labCourses} name={"lab-1"} />
-            <p>Choose One Organic Chem Sequence:</p>
-            <CourseContainer courses={ochemCourses} name={"ochem-1"} />
-            <p>Select One Writing Course:</p>
-            <CourseContainer courses={writingCourses} name="writing"/>
-            <p>Select One Statistics Course:</p>
-            <CourseContainer courses={statCourses} name="stat"/>
-            <p>Select One Data Analysis Course:</p>
-            <CourseContainer courses={dataCourses} name="data"/>
-            <p>Select Two from the Following:</p>
-            <CourseContainer courses={electiveCourses} name="electives"/>
+            <Accordion defaultActiveKey="8">
+
+                <Accordion.Item eventKey="0">
+                    <Accordion.Header>
+                        CISC Core and Concentration
+                    </Accordion.Header>
+                    <Accordion.Body>
+                        <CourseContainer courses={coreCourses} name="core"/>
+                        <CourseContainer courses={capstoneCourses} name="capstone"/>
+                        <CourseContainer courses={generalCourses} name="general"/>
+                    </Accordion.Body>
+                </Accordion.Item>
+
+                <Accordion.Item eventKey="1">
+                    <Accordion.Header>
+                        Chem Sequence
+                    </Accordion.Header>
+                    <Accordion.Body>
+                        <CourseContainer courses={labCourses} name={"lab-1"} />
+                    </Accordion.Body>
+                </Accordion.Item>
+
+                <Accordion.Item eventKey="2">
+                    <Accordion.Header>
+                        One Organic Chem Sequence
+                    </Accordion.Header>
+                    <Accordion.Body>
+                        <CourseContainer courses={ochemCourses} name={"ochem-1"} />
+                    </Accordion.Body>
+                </Accordion.Item>
+
+
+                <Accordion.Item eventKey="3">
+                    <Accordion.Header>
+                        Writing Course
+                    </Accordion.Header>
+                    <Accordion.Body>
+                        <CourseContainer courses={writingCourses} name="writing"/>
+                    </Accordion.Body>
+                </Accordion.Item>
+
+                <Accordion.Item eventKey="4">
+                    <Accordion.Header>
+                        One Statistics Course
+                    </Accordion.Header>
+                    <Accordion.Body>
+                        <CourseContainer courses={statCourses} name="stat"/>
+                    </Accordion.Body>
+                </Accordion.Item>
+
+                <Accordion.Item eventKey="5">
+
+                    <Accordion.Header>
+                        One Data Analysis Course
+                    </Accordion.Header>
+
+                    <Accordion.Body>
+
+                        <CourseContainer courses={dataCourses} name="data"/> 
+
+                    </Accordion.Body>
+
+                </Accordion.Item>
+
+                <Accordion.Item eventKey="6">
+
+                    <Accordion.Header>
+                        Two Electives
+                    </Accordion.Header>
+
+                    <Accordion.Body>
+
+                        <CourseContainer courses={electiveCourses} name="electives"/>
+
+                    </Accordion.Body>
+
+                </Accordion.Item>
+
+                
+
+            </Accordion>
+
         </div>
     );
 }
@@ -276,6 +365,8 @@ export function SecurityConc(props: {StringsToCourses: (stringCourses:string[]) 
         <div>
             <h2>Cybersecurity</h2>
             <p>CISC Core and Concentration:</p>
+
+
             <CourseContainer courses={coreCourses} name="core"/>
             <CourseContainer courses={capstoneCourses} name="capstone"/>
             <CourseContainer courses={generalCourses} name="general"/>
