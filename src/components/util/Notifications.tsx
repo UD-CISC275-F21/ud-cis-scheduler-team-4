@@ -21,8 +21,7 @@ export const PreReqSameSemesterToast = (props: { errMsg: string, display: boolea
 
     return(
         <>
-
-            <Toast show={props.display}>
+            <Toast show={props.display} bg="danger" >
                 <Toast.Header>
                     <strong className="me-auto">Invalid Course Selected</strong>
                     <small>Close</small>
