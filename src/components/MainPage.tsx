@@ -66,6 +66,7 @@ export const MainPage = (): JSX.Element => {
                     </Row>
                     <Row>
                         <Col>
+                            <br/>
                             <DisplayCourseList concentration={concentration} setConcentrationContainers={setConcentrationContainers} ></DisplayCourseList>
                         </Col>
                         <Col>

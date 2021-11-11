@@ -1,4 +1,4 @@
-import { Dropdown, NavDropdown } from "react-bootstrap";
+import { NavDropdown } from "react-bootstrap";
 import { Concentration } from "../../interfaces/concentration";
 import { SemesterType } from "../../interfaces/semester";
 import CONCENTRATIONS from "../../json/concentrations.json";
