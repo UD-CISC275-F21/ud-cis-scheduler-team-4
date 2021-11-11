@@ -1,4 +1,4 @@
-import "bootswatch/dist/flatly/bootstrap.min.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 import { Draggable } from "react-beautiful-dnd";
 import React from "react";
 import { ListGroup } from "react-bootstrap";

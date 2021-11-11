@@ -1,5 +1,4 @@
-import "bootswatch/dist/flatly/bootstrap.min.css";
-import "../css/style.css";
+import "bootswatch/dist/lux/bootstrap.min.css";
 import { Container, Row, Col, Badge, Navbar, Nav, NavDropdown } from "react-bootstrap";
 import { WelcomeToast } from "./util/Notifications";
 import { SemesterTable } from "./semesters/SemesterTable";

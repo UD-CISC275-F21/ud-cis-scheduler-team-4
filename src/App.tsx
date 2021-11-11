@@ -1,5 +1,5 @@
 import React from "react";
-import "bootswatch/dist/flatly/bootstrap.min.css";
+import "bootswatch/dist/lux/bootstrap.min.css";
 import { MainPage } from "./components/MainPage";
 import "./App.css";
 
