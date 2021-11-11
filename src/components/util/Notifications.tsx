@@ -2,7 +2,7 @@ import { Modal, Toast } from "react-bootstrap";
 import React from "react";
 
 export const WelcomeToast = (props: {display: boolean }): JSX.Element =>
-    <>
+        (
         <Modal show={props.display}>
             <Modal.Header>
                 <Modal.Title>
@@ -14,23 +14,19 @@ export const WelcomeToast = (props: {display: boolean }): JSX.Element =>
                 <small>Created by Kurt, Luke, and Cameron!</small>
             </Modal.Footer>
         </Modal>
-    </>;
+        );
 
 
-export const PreReqSameSemesterToast = (props: { errMsg: string, display: boolean }): JSX.Element => {
+export const PreReqSameSemesterToast = (props: { errMsg: string; display: boolean }): JSX.Element =>
+        (
+        <Toast bg="danger" show={props.display} >
+            <Toast.Header>
+                <strong className="me-auto">Invalid Course Selected</strong>
+                <small>Close</small>
+            </Toast.Header>
+            <Toast.Body>
+                {props.errMsg}
+            </Toast.Body>
+        </Toast>
+        );
 
-    return(
-        <>
-            <Toast show={props.display} bg="danger" >
-                <Toast.Header>
-                    <strong className="me-auto">Invalid Course Selected</strong>
-                    <small>Close</small>
-                </Toast.Header>
-                <Toast.Body>
-                    {props.errMsg}
-                </Toast.Body>
-            </Toast>
-        </>
-    );
-
-};

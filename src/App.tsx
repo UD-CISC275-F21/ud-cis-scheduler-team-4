@@ -3,12 +3,11 @@ import "bootswatch/dist/lux/bootstrap.min.css";
 import { MainPage } from "./components/MainPage";
 import "./App.css";
 
-function App(): JSX.Element {
-    return (
-        <div className="App">
-            <MainPage />
-        </div>
+export const App = (): JSX.Element =>
+    (
+    <div className="App">
+        <MainPage />
+    </div>
     );
-}
 
 export default App;
