@@ -826,22 +826,85 @@ export function NetworksConc(props: {StringsToCourses: (stringCourses:string[]) 
     return(
         <div>
             <h2>Networks and Systems</h2>
-            <p>CISC Core and Concentration:</p>
-            <CourseContainer courses={coreCourses} name="core"/>
-            <CourseContainer courses={capstoneCourses} name="capstone"/>
-            <CourseContainer courses={generalCourses} name="general"/>
-            <p>Choose a Two-Course Lab Sequence:</p>
-            <CourseContainer courses={labCourses} name={"lab-1"} />
-            <p>Select One Writing Course:</p>
-            <CourseContainer courses={writingCourses} name="writing"/>
-            <p>Select One Statistics Course:</p>
-            <CourseContainer courses={statCourses} name="stat"/>
-            <p>Select One Security Requirement:</p>
-            <CourseContainer courses={secCourses} name="stat"/>
-            <p>Select Two Systems Requirements:</p>
-            <CourseContainer courses={systemsCourses} name="stat"/>
-            <p>Select Two of the Following:</p>
-            <CourseContainer courses={electiveCourses} name="stat"/>
+
+            <Accordion defaultActiveKey="8">
+
+                <Accordion.Item eventKey="0">
+                    <Accordion.Header>
+                        CISC Core and Concentration
+                    </Accordion.Header>
+                    <Accordion.Body>
+                        <CourseContainer courses={coreCourses} name="core"/>
+                        <CourseContainer courses={capstoneCourses} name="capstone"/>
+                        <CourseContainer courses={generalCourses} name="general"/>
+                    </Accordion.Body>
+                </Accordion.Item>
+
+                <Accordion.Item eventKey="1">
+                    <Accordion.Header>
+                        Two Lab Courses
+                    </Accordion.Header>
+                    <Accordion.Body>
+                        <CourseContainer courses={labCourses} name={"lab-1"} />
+                    </Accordion.Body>
+                </Accordion.Item>
+
+                <Accordion.Item eventKey="2">
+                    <Accordion.Header>
+                        One Writing
+                    </Accordion.Header>
+                    <Accordion.Body>
+                        <CourseContainer courses={writingCourses} name="writing"/>
+                    </Accordion.Body>
+                </Accordion.Item>
+
+
+                <Accordion.Item eventKey="3">
+                    <Accordion.Header>
+                        One Statistics Course
+                    </Accordion.Header>
+                    <Accordion.Body>
+                        <CourseContainer courses={statCourses} name="stat"/>
+                    </Accordion.Body>
+                </Accordion.Item>
+
+                <Accordion.Item eventKey="4">
+                    <Accordion.Header>
+                        One Security Math
+                    </Accordion.Header>
+                    <Accordion.Body>
+                        <CourseContainer courses={secCourses} name="security"/>
+                    </Accordion.Body>
+                </Accordion.Item>
+
+                <Accordion.Item eventKey="5">
+
+                    <Accordion.Header>
+                        Two Systems Courses
+                    </Accordion.Header>
+
+                    <Accordion.Body>
+
+                        <CourseContainer courses={systemsCourses} name="systems"/>
+
+                    </Accordion.Body>
+
+                </Accordion.Item>
+
+                <Accordion.Item eventKey="6">
+
+                    <Accordion.Header>
+                        Two Electives
+                    </Accordion.Header>
+
+                    <Accordion.Body>
+                        <CourseContainer courses={electiveCourses} name="electives"/>
+                    </Accordion.Body>
+
+                </Accordion.Item>
+
+
+            </Accordion>
         </div>
     );
 }
@@ -912,21 +975,88 @@ export function TheoryConc(props: {StringsToCourses: (stringCourses:string[]) =>
     return(
         <div>
             <h2>Theory</h2>
-            <p>CISC Core and Concentration:</p>
-            <CourseContainer courses={coreCourses} name="core"/>
-            <CourseContainer courses={capstoneCourses} name="capstone"/>
-            <CourseContainer courses={generalCourses} name="general"/>
-            <p>Choose a Two-Course Lab Sequence:</p>
-            <CourseContainer courses={labCourses} name={"lab-1"} />
-            <p>Select One Writing Course:</p>
-            <CourseContainer courses={writingCourses} name="writing"/>
-            <p>Select One Statistics Course:</p>
-            <CourseContainer courses={statCourses} name="stat"/>
-            <h5>Select One of the Following Four-Course Tracks:</h5>
-            <p>Discrete:</p>
-            <CourseContainer courses={discCourses} name="stat"/>
-            <p>Continuous:</p>
-            <CourseContainer courses={contCourses} name="stat"/>
+
+            <Accordion defaultActiveKey="8">
+
+                <Accordion.Item eventKey="0">
+                    <Accordion.Header>
+                        CISC Core and Concentration
+                    </Accordion.Header>
+                    <Accordion.Body>
+                        <CourseContainer courses={coreCourses} name="core"/>
+                        <CourseContainer courses={capstoneCourses} name="capstone"/>
+                        <CourseContainer courses={generalCourses} name="general"/>
+                    </Accordion.Body>
+                </Accordion.Item>
+
+                <Accordion.Item eventKey="1">
+                    <Accordion.Header>
+                        Two Lab Courses
+                    </Accordion.Header>
+                    <Accordion.Body>
+                        <CourseContainer courses={labCourses} name={"lab-1"} />
+                    </Accordion.Body>
+                </Accordion.Item>
+
+                <Accordion.Item eventKey="2">
+                    <Accordion.Header>
+                        One Writing
+                    </Accordion.Header>
+                    <Accordion.Body>
+                        <CourseContainer courses={writingCourses} name="writing"/>
+                    </Accordion.Body>
+                </Accordion.Item>
+
+
+                <Accordion.Item eventKey="3">
+                    <Accordion.Header>
+                        One Statistics Course
+                    </Accordion.Header>
+                    <Accordion.Body>
+                        <CourseContainer courses={statCourses} name="stat"/>
+                    </Accordion.Body>
+                </Accordion.Item>
+
+
+                <Accordion.Item eventKey="4">
+
+                    <Accordion.Header>
+                        Select One of the Four-Course Tracks
+                    </Accordion.Header>
+                    <Accordion.Body>
+
+                        <Accordion>
+
+                            <Accordion.Item eventKey="5">
+
+                                <Accordion.Header>
+                                    Discrete
+                                </Accordion.Header>
+                                <Accordion.Body>
+                                    <CourseContainer courses={discCourses} name="discrete"/>
+                                </Accordion.Body>
+
+                            </Accordion.Item>
+
+                            <Accordion.Item eventKey="6">
+
+                                <Accordion.Header>
+                                    Continuous
+                                </Accordion.Header>
+                                <Accordion.Body>
+                                    <CourseContainer courses={contCourses} name="continuous"/>
+                                </Accordion.Body>
+
+                            </Accordion.Item>
+
+                        </Accordion>
+
+                    </Accordion.Body>
+
+                </Accordion.Item>
+
+
+            </Accordion>
 
         </div>
     );
