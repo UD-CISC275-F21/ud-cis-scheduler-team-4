@@ -54,7 +54,11 @@ export const Semester = (props: { ind: number, semesterCourses: SemesterType[], 
 
         console.log("----courses are now----");
         courses.forEach(e => console.log(Object.values(e)));
-        getCredits(courses,);
+
+        // verify that course you are trying to add is not a prereq of course in current semester
+
+
+        getCredits(courses);
 
     }, [courses]);
 

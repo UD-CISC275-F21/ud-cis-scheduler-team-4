@@ -1,4 +1,4 @@
-import { Modal } from "react-bootstrap";
+import { Modal, Toast } from "react-bootstrap";
 import React from "react";
 
 export const WelcomeToast = (props: {display: boolean }): JSX.Element =>
@@ -15,3 +15,23 @@ export const WelcomeToast = (props: {display: boolean }): JSX.Element =>
             </Modal.Footer>
         </Modal>
     </>;
+
+
+export const PreReqSameSemesterToast = (props: { errMsg: string, display: boolean }): JSX.Element => {
+
+    return(
+        <>
+
+            <Toast show={props.display}>
+                <Toast.Header>
+                    <strong className="me-auto">Invalid Course Selected</strong>
+                    <small>Close</small>
+                </Toast.Header>
+                <Toast.Body>
+                    {props.errMsg}
+                </Toast.Body>
+            </Toast>
+        </>
+    );
+
+};
