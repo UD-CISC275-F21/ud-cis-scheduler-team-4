@@ -1,5 +1,5 @@
 import "bootswatch/dist/lux/bootstrap.min.css";
-import { Container, Row, Col, Badge, Navbar, Nav, NavDropdown } from "react-bootstrap";
+import { Container, Row, Col, Navbar, Nav, NavDropdown } from "react-bootstrap";
 import { WelcomeToast } from "./util/Notifications";
 import { SemesterTable } from "./semesters/SemesterTable";
 import React, { useState, useEffect } from "react";
