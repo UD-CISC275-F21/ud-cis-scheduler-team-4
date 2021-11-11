@@ -1,12 +1,20 @@
 import { Button } from "react-bootstrap";
 import React from "react";
 
-export const AddSemesterButton = (props: { setSemesters: React.Dispatch<React.SetStateAction<number>>, semesters: number}): JSX.Element => 
+export const AddSemesterButton = (props: {
+        setSemesters: React.Dispatch<React.SetStateAction<number>>;
+        semesters: number;
+    }): JSX.Element =>
 
-    <Button variant="primary" onClick={() => {
-
+    (
+    <Button
+    onClick={() => {
         let tmpSemesters = props.semesters;
-        ++tmpSemesters;
+        tmpSemesters += 1;
         props.setSemesters(tmpSemesters);
-
-    }}>Add Semester</Button>;
+    }}
+    variant="primary"
+    >
+        Add Semester
+    </Button>
+    );
