@@ -1,4 +1,4 @@
-import { Dropdown } from "react-bootstrap";
+import { NavDropdown } from "react-bootstrap";
 import { Concentration } from "../../interfaces/concentration";
 import { SemesterType } from "../../interfaces/semester";
 import CONCENTRATIONS from "../../json/concentrations.json";
@@ -25,48 +25,42 @@ export function DropdownMenu(props: { setConcentration: React.Dispatch<React.Set
     };
 
     return <div>
-        <Dropdown>
-            <Dropdown.Toggle variant="success" id="dropdown-basic">
-                Concentrations:
-            </Dropdown.Toggle>
+        <NavDropdown title="Concentrations" id="basic-navbar-nav">
 
-            <Dropdown.Menu>
-                
-                <Dropdown.Item as="button" onClick={()=>{
-                    clickFunc(0);
-                }}>AI and Robotics</Dropdown.Item>
+            <NavDropdown.Item as="button" onClick={()=>{
+                clickFunc(0);
+            }}>AI and Robotics</NavDropdown.Item>
 
 
-                <Dropdown.Item as="button" onClick={()=>{
-                    clickFunc(1);
-                }}>Bioinformatics</Dropdown.Item>
+            <NavDropdown.Item as="button" onClick={()=>{
+                clickFunc(1);
+            }}>Bioinformatics</NavDropdown.Item>
 
 
-                <Dropdown.Item as="button" onClick={()=>{
-                    clickFunc(2);
-                }}>Cybersecurity</Dropdown.Item>
+            <NavDropdown.Item as="button" onClick={()=>{
+                clickFunc(2);
+            }}>Cybersecurity</NavDropdown.Item>
 
 
-                <Dropdown.Item as="button" onClick={()=>{
-                    clickFunc(3);
-                }}>Data Science</Dropdown.Item>
+            <NavDropdown.Item as="button" onClick={()=>{
+                clickFunc(3);
+            }}>Data Science</NavDropdown.Item>
 
 
-                <Dropdown.Item as="button" onClick={()=>{
-                    clickFunc(4);
-                }}>High-Performance Computing</Dropdown.Item>
+            <NavDropdown.Item as="button" onClick={()=>{
+                clickFunc(4);
+            }}>High-Performance Computing</NavDropdown.Item>
 
 
-                <Dropdown.Item as="button" onClick={()=>{
-                    clickFunc(5);
-                }}>Networks and Systems</Dropdown.Item>
+            <NavDropdown.Item as="button" onClick={()=>{
+                clickFunc(5);
+            }}>Networks and Systems</NavDropdown.Item>
 
 
-                <Dropdown.Item as="button" onClick={()=>{
-                    clickFunc(6);
-                }}>Theory</Dropdown.Item>
+            <NavDropdown.Item as="button" onClick={()=>{
+                clickFunc(6);
+            }}>Theory</NavDropdown.Item>
 
-            </Dropdown.Menu>
-        </Dropdown>
+        </NavDropdown>
     </div>;
 }

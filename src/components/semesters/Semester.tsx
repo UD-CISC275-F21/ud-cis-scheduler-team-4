@@ -1,4 +1,4 @@
-import "bootstrap/dist/css/bootstrap.min.css";
+import "bootswatch/dist/lux/bootstrap.min.css";
 import { Table, ListGroup, Accordion, Col, Button, Row, Badge } from "react-bootstrap";
 import React, { useState, useEffect } from "react";
 import { Droppable, DroppableProvided } from "react-beautiful-dnd";

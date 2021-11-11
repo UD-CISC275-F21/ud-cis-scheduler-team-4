@@ -1,5 +1,5 @@
-import "bootstrap/dist/css/bootstrap.min.css";
-import { Container, Row, Col, Badge } from "react-bootstrap";
+import "bootswatch/dist/lux/bootstrap.min.css";
+import { Container, Row, Col, Navbar, Nav, NavDropdown } from "react-bootstrap";
 import { WelcomeToast } from "./util/Notifications";
 import { SemesterTable } from "./semesters/SemesterTable";
 import React, { useState, useEffect } from "react";
@@ -28,7 +28,7 @@ export const MainPage = (): JSX.Element => {
         setDisplay(true);
         setTimeout(() => {
             setDisplay(false);
-        },1);
+        },5000);
     },[]);
 
     const displayToast = (msg: string) => {
@@ -57,35 +57,35 @@ export const MainPage = (): JSX.Element => {
                         </Col>
                     </Row>
                     <Row>
-                        <Col>
-                            <Badge bg="primary"><h1>Course Scheduler</h1></Badge>
-                        </Col>
+                        <Navbar bg="light" expand="lg">
+                            <Container>
+                                <Navbar.Brand href="#home">UDCIS Course Scheduler</Navbar.Brand>
+                                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                                <Navbar.Collapse id="basic-navbar-nav">
+                                    <Nav className="me-auto">
+                                        <NavDropdown title="Useful Links" id="basic-navbar-nav">
+                                            <NavDropdown.Item href="https://udapps.nss.udel.edu/CoursesSearch/">Course Search</NavDropdown.Item>
+                                            <NavDropdown.Item href="https://www.cis.udel.edu/academics/undergraduate-programs/resources/courses/">CISC Undergraduate Courses</NavDropdown.Item>
+                                            <NavDropdown.Item href="https://webreg.nss.udel.edu/registration/schedule/">Registration Add/Drop</NavDropdown.Item>
+                                            <NavDropdown.Item href="https://ud-cis-teaching.github.io/student-guidance/">UD CIS Student Guidance</NavDropdown.Item>
+                                        </NavDropdown>
+                                        <DropdownMenu setConcentration={setConcentration} semesterCourses={semesterCourses} setSemesterCourses={setSemesterCourses}></DropdownMenu>
+                                        <AddSemesterButton setSemesters={setSemesters} semesters={semesters} />
+                                    </Nav>
+                                </Navbar.Collapse>
+                            </Container>
+                        </Navbar>
                     </Row>
-                    <br />
                     <Row>
                         <Col>
-                            <DropdownMenu setConcentration={setConcentration} semesterCourses={semesterCourses} setSemesterCourses={setSemesterCourses}></DropdownMenu>
-                        </Col>
-                        <Col>
-                            <h3>Useful Links:</h3>
-                            <a href="https://udapps.nss.udel.edu/CoursesSearch/" target="_blank" rel="noopener noreferrer">Courses Search</a> 
-                            <div>
-                                <a href="https://www.cis.udel.edu/academics/undergraduate-programs/resources/courses/" target="_blank" rel="noopener noreferrer">Course Descriptions</a>
-                            </div>
-                            <a href="https://webreg.nss.udel.edu/registration/schedule/" target="_blank" rel="noopener noreferrer">Blue Hen Planner</a>
-                        </Col>
-                        <br />
-                        <Col>
-                            <AddSemesterButton setSemesters={setSemesters} semesters={semesters} />
-                        </Col>
-                    </Row>
-                    <br />
-                    <br />
-                    <Row>
-                        <Col>
+                            <br/>
                             <DisplayCourseList concentration={concentration} setConcentrationContainers={setConcentrationContainers} ></DisplayCourseList>
                         </Col>
                         <Col>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
                             <SemesterTable semesters={semesters} semestersCourses={semesterCourses} setSemesterCourses={setSemesterCourses}/>
                         </Col>
                     </Row>
