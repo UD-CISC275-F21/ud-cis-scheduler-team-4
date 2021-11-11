@@ -364,22 +364,75 @@ export function SecurityConc(props: {StringsToCourses: (stringCourses:string[]) 
     return(
         <div>
             <h2>Cybersecurity</h2>
-            <p>CISC Core and Concentration:</p>
+            <Accordion defaultActiveKey="8">
+
+                <Accordion.Item eventKey="0">
+                    <Accordion.Header>
+                        CISC Core and Concentration
+                    </Accordion.Header>
+                    <Accordion.Body>
+                        <CourseContainer courses={coreCourses} name="core"/>
+                        <CourseContainer courses={capstoneCourses} name="capstone"/>
+                        <CourseContainer courses={generalCourses} name="general"/>
+                    </Accordion.Body>
+                </Accordion.Item>
+
+                <Accordion.Item eventKey="1">
+                    <Accordion.Header>
+                        Two Lab Courses
+                    </Accordion.Header>
+                    <Accordion.Body>
+                        <CourseContainer courses={labCourses} name={"lab-1"} />
+                    </Accordion.Body>
+                </Accordion.Item>
+
+                <Accordion.Item eventKey="2">
+                    <Accordion.Header>
+                        One Writing
+                    </Accordion.Header>
+                    <Accordion.Body>
+                        <CourseContainer courses={writingCourses} name="writing"/>
+                    </Accordion.Body>
+                </Accordion.Item>
 
 
-            <CourseContainer courses={coreCourses} name="core"/>
-            <CourseContainer courses={capstoneCourses} name="capstone"/>
-            <CourseContainer courses={generalCourses} name="general"/>
-            <p>Choose a Two-Course Lab Sequence:</p>
-            <CourseContainer courses={labCourses} name={"lab-1"} />
-            <p>Select One Writing Course:</p>
-            <CourseContainer courses={writingCourses} name="writing"/>
-            <p>Select One Statistics Course:</p>
-            <CourseContainer courses={statCourses} name="stats"/>
-            <p>Select Two Advanced Reqs:</p>
-            <CourseContainer courses={secCourses} name="security"/>
-            <p>Select Two from the Following:</p>
-            <CourseContainer courses={electiveCourses} name="electives"/>
+                <Accordion.Item eventKey="3">
+                    <Accordion.Header>
+                        Statistics Course
+                    </Accordion.Header>
+                    <Accordion.Body>
+                        <CourseContainer courses={statCourses} name="stats"/>
+                    </Accordion.Body>
+                </Accordion.Item>
+
+                <Accordion.Item eventKey="4">
+                    <Accordion.Header>
+                        Two Advanced Requirements
+                    </Accordion.Header>
+                    <Accordion.Body>
+                        <CourseContainer courses={secCourses} name="security"/>
+                    </Accordion.Body>
+                </Accordion.Item>
+
+                <Accordion.Item eventKey="5">
+
+                    <Accordion.Header>
+                        Two Electives
+                    </Accordion.Header>
+
+                    <Accordion.Body>
+
+                        <CourseContainer courses={electiveCourses} name="electives"/>
+
+                    </Accordion.Body>
+
+                </Accordion.Item>
+
+
+
+            </Accordion>
+
+
         </div>
     );
 }
