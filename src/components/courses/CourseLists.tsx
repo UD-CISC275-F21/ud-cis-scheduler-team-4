@@ -1,4 +1,5 @@
 import React from "react";
+import { Accordion } from "react-bootstrap";
 import CONCENTRATIONS from "../../json/concentrations.json";
 import { Course } from "../../interfaces/course";
 import { CourseContainer } from "./CourseContainer";
@@ -71,20 +72,53 @@ export function AIConc(props: {StringsToCourses: (stringCourses:string[]) => Cou
 
     return<div>
         <h2>Artificial Intelligence and Robotics</h2>
-        <p>CISC Core and Concentration:</p>
-        <CourseContainer courses={coreCourses} name={"core"}  />
-        <CourseContainer courses={capstone1Courses} name={"capstone-1"} />
-        <CourseContainer courses={general1Courses} name={"general-1"} />
-        <p>Choose a Two-Course Lab Sequence:</p>
-        <CourseContainer courses={labCourses} name={"lab-1"} />
-        <p>Select One Writing Course:</p>
-        <CourseContainer courses={writingCourses} name={"writing"} />
-        <p>Select One Statistics Course:</p>
-        <CourseContainer courses={capstone2Courses} name={"capstone-2"} />
-        <p>Select One Systems Course:</p>
-        <CourseContainer courses={general2Courses} name={"general-2"} />
-        <p>Select Four from the Following:</p>
-        <CourseContainer courses={electiveCourses} name={"elective"} />
+        <Accordion defaultActiveKey="0">
+
+            <Accordion.Item eventKey="0">
+                <Accordion.Header>CISC Core and Concentration</Accordion.Header>
+                <Accordion.Body>
+                    <CourseContainer courses={coreCourses} name={"core"}  />
+                    <CourseContainer courses={capstone1Courses} name={"capstone-1"} />
+                    <CourseContainer courses={general1Courses} name={"general-1"} />
+                </Accordion.Body>
+            </Accordion.Item>
+
+            <Accordion.Item eventKey="1">
+                <Accordion.Header>Two-Course Lab Sequence</Accordion.Header>
+                <Accordion.Body>
+                    <CourseContainer courses={labCourses} name={"lab-1"} />
+                </Accordion.Body>
+            </Accordion.Item>
+
+            <Accordion.Item eventKey="2">
+                <Accordion.Header>Writing Course</Accordion.Header>
+                <Accordion.Body>
+                    <CourseContainer courses={writingCourses} name={"writing"} />
+                </Accordion.Body>
+            </Accordion.Item>
+
+            <Accordion.Item eventKey="3">
+                <Accordion.Header>Statistics Course</Accordion.Header>
+                <Accordion.Body>
+                    <CourseContainer courses={capstone2Courses} name={"capstone-2"} />
+                </Accordion.Body>
+            </Accordion.Item>
+
+            <Accordion.Item eventKey="4">
+                <Accordion.Header>Systems Course</Accordion.Header>
+                <Accordion.Body>
+                    <CourseContainer courses={general2Courses} name={"general-2"} />
+                </Accordion.Body>
+            </Accordion.Item>
+
+            <Accordion.Item eventKey="5">
+                <Accordion.Header>Electives(Select Four)</Accordion.Header>
+                <Accordion.Body>
+                    <CourseContainer courses={electiveCourses} name={"elective"} />
+                </Accordion.Body>
+            </Accordion.Item>
+
+        </Accordion>
     </div>;
 }
 
