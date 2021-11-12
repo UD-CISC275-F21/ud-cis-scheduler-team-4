@@ -84,7 +84,7 @@ export const Semester = (props: { ind: number, semesterCourses: SemesterType[], 
                         {`Semester ${props.ind+1}`}
                     </Col>
                     <Col>
-                        <Button variant="danger" onClick={() => {
+                        <Button data-testid="deletecourse" variant="danger" onClick={() => {
                         
                             const tmpSemesterCourses = [...props.semesterCourses];
 

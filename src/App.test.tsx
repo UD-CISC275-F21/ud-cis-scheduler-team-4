@@ -1,5 +1,14 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
+import userEvent from '@testing-library/user-event';
+import {
+    mockGetComputedStyle,
+    mockDndSpacing,
+    makeDnd,
+    DND_DIRECTION_UP,
+    DND_DIRECTION_DOWN,
+    DND_DRAGGABLE_DATA_ATTR
+  } from 'react-beautiful-dnd-test-utils';
 import App from "./App";
 
 /*
@@ -63,6 +72,13 @@ test("renders add semester button", () => {
     expect(addSemesterButton).toBeInTheDocument();
 });
 
+test("renders course listgroup", () => {
+    render(<App />);
+    const courses = screen.getAllByTestId("courseitem");
+    for(let c in courses){
+        expect(courses[c]).toBeInTheDocument();
+    }
+});
 
 /**
  * 
@@ -74,19 +90,36 @@ test("add semester button renders a new semester", () => {
     render(<App />);
     const addSemesterButton = screen.getByTestId('addsemesterbutton');
     const firstSemesters = screen.getAllByText(/Semester/);
-
-    // getAllByText(/Semester/) will also grab the add semesters button, thus the initial length will be 2. 
-    // A better way to test this would be good, because if we add a new button with the text 'semester', it will cause this test to fail
-    expect(firstSemesters).toHaveLength(2);
     addSemesterButton.click();
     const secondSemesters = screen.getAllByText(/Semester/);
-    expect(secondSemesters).toHaveLength(3);
+    expect(secondSemesters.length).toBeGreaterThan(firstSemesters.length)
 });
 
- test("renders courses", () => {
+
+/*test("course delete button deletes individual course", () => {
     render(<App />);
-    const courses = screen.getAllByTestId("courseitem");
-    for(let c in courses){
-        expect(courses[c]).toBeInTheDocument();
-    }
+    const course = screen.getByTestId("courseitem");
+    const deleteBtn = screen.getByTestId()
+});*/
+describe("testing drag and drop features", ()=> {
+
+    test('moves a task down inside a column', async () => {
+        render(<App />);
+    
+        const courses = screen.getAllByTestId("courseitem");
+    
+        await makeDnd({
+          getDragElement: () =>
+            screen
+              .getByText(/CISC108/)
+              .closest(DND_DRAGGABLE_DATA_ATTR),
+          direction: DND_DIRECTION_DOWN,
+          positions: 2
+        });
+        const newCourses = screen.getAllByTestId("courseitem");
+    
+        expect(newCourses).not.toEqual(courses);
+    });
+
+    
 });
