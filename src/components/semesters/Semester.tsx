@@ -131,7 +131,7 @@ export const Semester = (props: { ind: number, semesterCourses: SemesterType[], 
                                     <tbody {...prov.droppableProps} ref={prov.innerRef}>
                                         <tr>
                                             <td>
-                                                <ListGroup>
+                                                <ListGroup data-testid="semestertable">
                                                     {
                                                         courses.map((e, i) =>
                                                             <>

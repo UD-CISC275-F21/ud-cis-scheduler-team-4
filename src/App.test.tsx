@@ -95,15 +95,10 @@ test("add semester button renders a new semester", () => {
     expect(secondSemesters.length).toBeGreaterThan(firstSemesters.length)
 });
 
-
-/*test("course delete button deletes individual course", () => {
-    render(<App />);
-    const course = screen.getByTestId("courseitem");
-    const deleteBtn = screen.getByTestId()
-});*/
+// This test doesn't consistently pass? Seems to be a problem with the testing-util package
 describe("testing drag and drop features", ()=> {
 
-    test('moves a task down inside a column', async () => {
+    test("moves a task down inside a column", async () => {
         render(<App />);
     
         const courses = screen.getAllByTestId("courseitem");
@@ -121,5 +116,22 @@ describe("testing drag and drop features", ()=> {
         expect(newCourses).not.toEqual(courses);
     });
 
-    
+});
+
+describe("moving a course to semester table in order to test semester features", () => {
+    test("inner semester table is rendered", () => {
+        render(<App />);
+        const semesterTable = screen.getByTestId("semestertable");
+        expect(semesterTable).toBeInTheDocument();
+    });
+
+    //this test below is challenging
+
+   /* test("can move course to semester table", () => {
+        render(<App />);
+        const semesterTable = screen.getByTestId("semestertable");
+        const courses = screen.getAllByTestId("courseitem");
+        const theCourse = courses[0];
+        expect(semesterTable)
+    });*/
 });
