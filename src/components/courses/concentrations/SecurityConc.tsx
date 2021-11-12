@@ -20,53 +20,52 @@ export function SecurityConc(props: {StringsToCourses: (stringCourses:string[]) 
 
             [   
                 {
-                    "name": "core",
-                    "courses": coreCourses,
-                    "setCourses": setCoreCourses
+                    courses: coreCourses,
+                    name: "core",
+                    setCourses: setCoreCourses,
                 },
                 {
-                    "name": "capstone",
-                    "courses": capstoneCourses,
-                    "setCourses": setCapstoneCourses
+                    courses: capstoneCourses,
+                    name: "capstone",
+                    setCourses: setCapstoneCourses,
 
                 },
                 {
-                    "name": "general",
-                    "courses": generalCourses,
-                    "setCourses": setGeneralCourses
+                    courses: generalCourses,
+                    name: "general",
+                    setCourses: setGeneralCourses,
                 },
                 {
-                    "name": "writing",
-                    "courses": writingCourses,
-                    "setCourses": setWritingCourses
+                    courses: writingCourses,
+                    name: "writing",
+                    setCourses: setWritingCourses,
                 },
                 {
-                    "name": "stat",
-                    "courses": statCourses,
-                    "setCourses": setStatCourses
+                    courses: statCourses,
+                    name: "stat",
+                    setCourses: setStatCourses,
                 },
                 {
-                    "name": "lab",
-                    "courses": labCourses,
-                    "setCourses": setLabCourses
+                    courses: labCourses,
+                    name: "lab",
+                    setCourses: setLabCourses,
                 },
                 {
-                    "name": "electives",
-                    "courses": electiveCourses,
-                    "setCourses": setElectiveCourses
+                    courses: electiveCourses,
+                    name: "electives",
+                    setCourses: setElectiveCourses,
                 },
                 {
-                    "name": "cybersecurity",
-                    "courses": secCourses,
-                    "setCourses": setSecCourses
-                }
+                    courses: secCourses,
+                    name: "cybersecurity",
+                    setCourses: setSecCourses,
+                },
 
-            ]
+            ],
 
         );
-    }, []);
-    
-    return(
+    }, [capstoneCourses, coreCourses, generalCourses, labCourses, props, electiveCourses, secCourses, statCourses, writingCourses ]);
+    return (
         <div>
             <h2>Cybersecurity</h2>
             <Accordion defaultActiveKey="8">
@@ -76,9 +75,9 @@ export function SecurityConc(props: {StringsToCourses: (stringCourses:string[]) 
                         CISC Core and Concentration
                     </Accordion.Header>
                     <Accordion.Body>
-                        <CourseContainer courses={coreCourses} name="core"/>
-                        <CourseContainer courses={capstoneCourses} name="capstone"/>
-                        <CourseContainer courses={generalCourses} name="general"/>
+                        <CourseContainer courses={coreCourses} name="core" />
+                        <CourseContainer courses={capstoneCourses} name="capstone" />
+                        <CourseContainer courses={generalCourses} name="general" />
                     </Accordion.Body>
                 </Accordion.Item>
 
@@ -87,7 +86,7 @@ export function SecurityConc(props: {StringsToCourses: (stringCourses:string[]) 
                         Two Lab Courses
                     </Accordion.Header>
                     <Accordion.Body>
-                        <CourseContainer courses={labCourses} name={"lab-1"} />
+                        <CourseContainer courses={labCourses} name="lab-1" />
                     </Accordion.Body>
                 </Accordion.Item>
 
@@ -96,7 +95,7 @@ export function SecurityConc(props: {StringsToCourses: (stringCourses:string[]) 
                         One Writing
                     </Accordion.Header>
                     <Accordion.Body>
-                        <CourseContainer courses={writingCourses} name="writing"/>
+                        <CourseContainer courses={writingCourses} name="writing" />
                     </Accordion.Body>
                 </Accordion.Item>
 
@@ -106,7 +105,7 @@ export function SecurityConc(props: {StringsToCourses: (stringCourses:string[]) 
                         Statistics Course
                     </Accordion.Header>
                     <Accordion.Body>
-                        <CourseContainer courses={statCourses} name="stats"/>
+                        <CourseContainer courses={statCourses} name="stats" />
                     </Accordion.Body>
                 </Accordion.Item>
 
@@ -115,7 +114,7 @@ export function SecurityConc(props: {StringsToCourses: (stringCourses:string[]) 
                         Two Advanced Requirements
                     </Accordion.Header>
                     <Accordion.Body>
-                        <CourseContainer courses={secCourses} name="security"/>
+                        <CourseContainer courses={secCourses} name="security" />
                     </Accordion.Body>
                 </Accordion.Item>
 
@@ -127,7 +126,7 @@ export function SecurityConc(props: {StringsToCourses: (stringCourses:string[]) 
 
                     <Accordion.Body>
 
-                        <CourseContainer courses={electiveCourses} name="electives"/>
+                        <CourseContainer courses={electiveCourses} name="electives" />
 
                     </Accordion.Body>
 

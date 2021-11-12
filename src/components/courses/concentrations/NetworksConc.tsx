@@ -5,75 +5,76 @@ import { ConcentrationContainerType } from "../../../interfaces/concentrationcon
 import React, { useState, useEffect } from "react";
 import { Course as CourseType } from "../../../interfaces/course";
 
-export function NetworksConc(props: {StringsToCourses: (stringCourses:string[]) => Course[], setConcentrationContainers: React.Dispatch<React.SetStateAction<ConcentrationContainerType[]>>}): JSX.Element{
+export const NetworksConc = (props:
+        {StringsToCourses: (stringCourses: string[]) => Course[];
+        setConcentrationContainers: React.Dispatch<React.SetStateAction<ConcentrationContainerType[]>>;
+    }): JSX.Element => {
     const [coreCourses, setCoreCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[5].core));
     const [capstoneCourses, setCapstoneCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[5].capstone));
-    const [generalCourses,setGeneralCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[5].conc.general));
+    const [generalCourses, setGeneralCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[5].conc.general));
     const [writingCourses, setWritingCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[5].writing));
     const [statCourses, setStatCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[5].conc.stats));
-    const [labCourses,setLabCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[5].lab));
-    const [secCourses,setSecCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[5].conc.cybersecurity));
-    const [systemsCourses,setSystemsCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[5].conc.systems));
-    const [electiveCourses,setElectiveCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[5].conc.elective));
+    const [labCourses, setLabCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[5].lab));
+    const [secCourses, setSecCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[5].conc.cybersecurity));
+    const [systemsCourses, setSystemsCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[5].conc.systems));
+    const [electiveCourses, setElectiveCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[5].conc.elective));
 
     useEffect(() => {
         props.setConcentrationContainers(
 
-            [   
+            [
                 {
-                    "name": "core",
-                    "courses": coreCourses,
-                    "setCourses": setCoreCourses
+                    courses: coreCourses,
+                    name: "core",
+                    setCourses: setCoreCourses,
                 },
                 {
-                    "name": "capstone",
-                    "courses": capstoneCourses,
-                    "setCourses": setCapstoneCourses
+                    courses: capstoneCourses,
+                    name: "capstone",
+                    setCourses: setCapstoneCourses,
 
                 },
                 {
-                    "name": "general",
-                    "courses": generalCourses,
-                    "setCourses": setGeneralCourses
+                    courses: generalCourses,
+                    name: "general",
+                    setCourses: setGeneralCourses,
                 },
                 {
-                    "name": "writing",
-                    "courses": writingCourses,
-                    "setCourses": setWritingCourses
+                    courses: writingCourses,
+                    name: "writing",
+                    setCourses: setWritingCourses,
                 },
                 {
-                    "name": "stat",
-                    "courses": statCourses,
-                    "setCourses": setStatCourses
+                    courses: statCourses,
+                    name: "stat",
+                    setCourses: setStatCourses,
                 },
                 {
-                    "name": "lab",
-                    "courses": labCourses,
-                    "setCourses": setLabCourses
+                    courses: labCourses,
+                    name: "lab",
+                    setCourses: setLabCourses,
                 },
                 {
-                    "name": "security",
-                    "courses": secCourses,
-                    "setCourses": setSecCourses
+                    courses: secCourses,
+                    name: "security",
+                    setCourses: setSecCourses,
                 },
                 {
-                    "name": "systems",
-                    "courses": systemsCourses,
-                    "setCourses": setSystemsCourses
+                    courses: systemsCourses,
+                    name: "systems",
+                    setCourses: setSystemsCourses,
                 },
                 {
-                    "name": "electives",
-                    "courses": electiveCourses,
-                    "setCourses": setElectiveCourses
-                }
+                    courses: electiveCourses,
+                    name: "electives",
+                    setCourses: setElectiveCourses,
+                },
 
-            ]
+            ],
 
         );
-    }, []);
-    
-    
-    return(
+    }, [capstoneCourses, coreCourses, electiveCourses, generalCourses, labCourses, props, secCourses, statCourses, systemsCourses, writingCourses]);
+    return (
         <div>
             <h2>Networks and Systems</h2>
 
@@ -84,9 +85,9 @@ export function NetworksConc(props: {StringsToCourses: (stringCourses:string[]) 
                         CISC Core and Concentration
                     </Accordion.Header>
                     <Accordion.Body>
-                        <CourseContainer courses={coreCourses} name="core"/>
-                        <CourseContainer courses={capstoneCourses} name="capstone"/>
-                        <CourseContainer courses={generalCourses} name="general"/>
+                        <CourseContainer courses={coreCourses} name="core" />
+                        <CourseContainer courses={capstoneCourses} name="capstone" />
+                        <CourseContainer courses={generalCourses} name="general" />
                     </Accordion.Body>
                 </Accordion.Item>
 
@@ -95,7 +96,7 @@ export function NetworksConc(props: {StringsToCourses: (stringCourses:string[]) 
                         Two Lab Courses
                     </Accordion.Header>
                     <Accordion.Body>
-                        <CourseContainer courses={labCourses} name={"lab-1"} />
+                        <CourseContainer courses={labCourses} name="lab-1" />
                     </Accordion.Body>
                 </Accordion.Item>
 
@@ -104,7 +105,7 @@ export function NetworksConc(props: {StringsToCourses: (stringCourses:string[]) 
                         One Writing
                     </Accordion.Header>
                     <Accordion.Body>
-                        <CourseContainer courses={writingCourses} name="writing"/>
+                        <CourseContainer courses={writingCourses} name="writing" />
                     </Accordion.Body>
                 </Accordion.Item>
 
@@ -114,7 +115,7 @@ export function NetworksConc(props: {StringsToCourses: (stringCourses:string[]) 
                         One Statistics Course
                     </Accordion.Header>
                     <Accordion.Body>
-                        <CourseContainer courses={statCourses} name="stat"/>
+                        <CourseContainer courses={statCourses} name="stat" />
                     </Accordion.Body>
                 </Accordion.Item>
 
@@ -123,7 +124,7 @@ export function NetworksConc(props: {StringsToCourses: (stringCourses:string[]) 
                         One Security Math
                     </Accordion.Header>
                     <Accordion.Body>
-                        <CourseContainer courses={secCourses} name="security"/>
+                        <CourseContainer courses={secCourses} name="security" />
                     </Accordion.Body>
                 </Accordion.Item>
 
@@ -135,7 +136,7 @@ export function NetworksConc(props: {StringsToCourses: (stringCourses:string[]) 
 
                     <Accordion.Body>
 
-                        <CourseContainer courses={systemsCourses} name="systems"/>
+                        <CourseContainer courses={systemsCourses} name="systems" />
 
                     </Accordion.Body>
 
@@ -148,7 +149,7 @@ export function NetworksConc(props: {StringsToCourses: (stringCourses:string[]) 
                     </Accordion.Header>
 
                     <Accordion.Body>
-                        <CourseContainer courses={electiveCourses} name="electives"/>
+                        <CourseContainer courses={electiveCourses} name="electives" />
                     </Accordion.Body>
 
                 </Accordion.Item>
@@ -157,4 +158,4 @@ export function NetworksConc(props: {StringsToCourses: (stringCourses:string[]) 
             </Accordion>
         </div>
     );
-}
+};
