@@ -3,7 +3,7 @@ import React from "react";
 
 export const AddSemesterButton = (props: { setSemesters: React.Dispatch<React.SetStateAction<number>>, semesters: number}): JSX.Element => 
 
-    <Button variant="primary" onClick={() => {
+    <Button data-testid="addsemesterbutton" variant="primary" onClick={() => {
 
         let tmpSemesters = props.semesters;
         ++tmpSemesters;
