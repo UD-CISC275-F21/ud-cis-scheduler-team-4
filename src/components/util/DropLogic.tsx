@@ -27,8 +27,11 @@ export const semesterToConcentration = (
     setConcContainers: React.Dispatch<React.SetStateAction<ConcentrationContainerType[]>>,
     semesterCourses: SemesterType[],
     setSemesterCourses: React.Dispatch<React.SetStateAction<SemesterType[]>>,
+    semesterNum: number,
+    semester: SemesterType,
     ) => {
         console.log("doing semester to concentration");
+
 };
 
 export const concentrationToConcentration = (
@@ -39,12 +42,22 @@ export const concentrationToConcentration = (
     courseSpliceInd: number,
     dropInd: number,
     setConcContainers: React.Dispatch<React.SetStateAction<ConcentrationContainerType[]>>,
+    isDifferent: boolean,
     ) => {
-        const tmpConcContainerCourse = concContainer.courses.splice(courseSpliceInd,1)[0];
-        concContainer.courses.splice(dropInd,0,tmpConcContainerCourse);
-        concContainer.setCourses([...concContainer.courses]);
-        concContainers.splice(spliceInd,0,concContainer);
-        setConcContainers(concContainers);
+        const ind2 = (isDifferent) ? concContainers.findIndex(elem => elem.name === result.destination?.droppableId) : -1;
+        if (ind2 === -1) { /* Case if we are dropping within the same _exact_ container such as core --> core */
+            const tmpConcContainerCourse = concContainer.courses.splice(courseSpliceInd, 1)[0];
+            concContainer.courses.splice(dropInd, 0, tmpConcContainerCourse);
+            concContainer.setCourses([...concContainer.courses]);
+            concContainers.splice(spliceInd, 0, concContainer);
+            setConcContainers(concContainers);
+        } else if (ind2 !== -1) { /* Case if we are dropping within the concentration containers, but different containers, such as core --> elective */
+            const diffContainer = concContainers.splice(ind2, 1)[0];
+            const tmpConcContainerCourseDrag = concContainer.courses.splice(courseSpliceInd, 1)[0];
+            concContainer.setCourses([...concContainer.courses]); // update courses we just spliced from
+            diffContainer.courses.splice(dropInd, 0, tmpConcContainerCourseDrag);
+            diffContainer.setCourses([...diffContainer.courses]);
+        }
         return 1;
 };
 
@@ -86,11 +99,16 @@ export const onDragEndLogic = (result: DropResult,
             // concentration --> concentration
             const tmpContainer: ConcentrationContainerType[] = [...concentrationContainers];
             let ind1 = tmpContainer.findIndex(elem => elem.name === destinationId);
-            ind1 = (ind1 !== -1) ? concentrationToConcentration(result, concentrationContainers, concentrationContainers.splice(ind1, 1)[0], ind1, sourceIndex, dropIndex, setConcentrationContainers) : -1;
+            ind1 = (sourceId === destinationId) ? concentrationToConcentration(result, concentrationContainers, concentrationContainers.splice(ind1, 1)[0], ind1, sourceIndex, dropIndex, setConcentrationContainers, false) :
+            concentrationToConcentration(result, concentrationContainers, concentrationContainers.splice(ind1,1)[0], ind1, sourceIndex, dropIndex, setConcentrationContainers, true);
         }
     } else {
        // dropId != destinationId
         if (sourceIdSemester) { // semester --> concentration
+            const semesterNum = parseInt(sourceId.substring(sourceId.lastIndexOf("-")));
+            const ind1 = semesterCourses.findIndex(elem => elem.semesternum === semesterNum);
+            const ind2 = concentrationContainers.findIndex(elem => elem.name === destinationId);
+            semesterToConcentration(result, concentrationContainers, concentrationContainers.splice(ind2,1)[0], ind2, setConcentrationContainers, semesterCourses, setSemesterCourses, semesterNum, semesterCourses.splice(ind1,1)[0]);
         } else {
             // concentration --> semester
             const tmpContainer: ConcentrationContainerType[] = [...concentrationContainers];
