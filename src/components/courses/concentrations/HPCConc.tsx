@@ -5,8 +5,8 @@ import { ConcentrationContainerType } from "../../../interfaces/concentrationcon
 import React, { useState, useEffect } from "react";
 import { Course as CourseType } from "../../../interfaces/course";
 
-export const HPCConc = (props:
-    {StringsToCourses: (stringCourses: string[]) => Course[];
+export const HPCConc = (props: {
+    StringsToCourses: (stringCourses: string[]) => Course[];
     setConcentrationContainers: React.Dispatch<React.SetStateAction<ConcentrationContainerType[]>>;
     }): JSX.Element => {
     const [coreCourses, setCoreCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[4].core));
@@ -80,22 +80,9 @@ export const HPCConc = (props:
                     name: "data track",
                     setCourses: setDataTrackCourses,
                 },
-
             ],
-
         );
-    }, [coreCourses,
-        capstoneCourses,
-        generalCourses,
-        writingCourses,
-        labCourses,
-        statCourses,
-        electiveCourses,
-        mathCourses,
-        dataCourses,
-        learningCourses,
-        dataTrackCourses,
-        props]);
+    }, [coreCourses, capstoneCourses, generalCourses, writingCourses, labCourses, statCourses, electiveCourses, mathCourses, dataCourses, learningCourses, dataTrackCourses, props]);
 
 
     return (

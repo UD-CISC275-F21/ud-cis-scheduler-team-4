@@ -6,68 +6,71 @@ import React, { useState, useEffect } from "react";
 import { Course as CourseType } from "../../../interfaces/course";
 
 
-export function DataScienceConc(props: {StringsToCourses: (stringCourses:string[]) => Course[], setConcentrationContainers: React.Dispatch<React.SetStateAction<ConcentrationContainerType[]>>}): JSX.Element{
+export const DataScienceConc = (props: {
+    StringsToCourses: (stringCourses: string[]) => Course[];
+    setConcentrationContainers: React.Dispatch<React.SetStateAction<ConcentrationContainerType[]>>;
+    }): JSX.Element => {
     const [coreCourses, setCoreCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[3].core));
     const [capstoneCourses, setCapstoneCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[3].capstone));
-    const [generalCourses,setGeneralCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[3].conc.general));
+    const [generalCourses, setGeneralCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[3].conc.general));
     const [writingCourses, setWritingCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[3].writing));
-    const [labCourses,setLabCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[3].lab));
-    const [dataCourses,setDataCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[3].conc.data));
-    const [mathCourses,setMathCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[3].conc.stats));
-    const [electiveCourses,setElectiveCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[3].conc.elective));
+    const [labCourses, setLabCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[3].lab));
+    const [dataCourses, setDataCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[3].conc.data));
+    const [mathCourses, setMathCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[3].conc.stats));
+    const [electiveCourses, setElectiveCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[3].conc.elective));
 
     useEffect(() => {
         props.setConcentrationContainers(
 
-            [   
+            [
                 {
-                    "name": "core",
-                    "courses": coreCourses,
-                    "setCourses": setCoreCourses
+                    courses: coreCourses,
+                    name: "core",
+                    setCourses: setCoreCourses,
                 },
                 {
-                    "name": "capstone",
-                    "courses": capstoneCourses,
-                    "setCourses": setCapstoneCourses
+                    courses: capstoneCourses,
+                    name: "capstone",
+                    setCourses: setCapstoneCourses,
 
                 },
                 {
-                    "name": "general",
-                    "courses": generalCourses,
-                    "setCourses": setGeneralCourses
+                    courses: generalCourses,
+                    name: "general",
+                    setCourses: setGeneralCourses,
                 },
                 {
-                    "name": "writing",
-                    "courses": writingCourses,
-                    "setCourses": setWritingCourses
+                    courses: writingCourses,
+                    name: "writing",
+                    setCourses: setWritingCourses,
                 },
                 {
-                    "name": "lab",
-                    "courses": labCourses,
-                    "setCourses": setLabCourses
+                    courses: labCourses,
+                    name: "lab",
+                    setCourses: setLabCourses,
                 },
                 {
-                    "name": "electives",
-                    "courses": electiveCourses,
-                    "setCourses": setElectiveCourses
+                    courses: electiveCourses,
+                    name: "electives",
+                    setCourses: setElectiveCourses,
                 },
                 {
-                    "name": "data science",
-                    "courses": dataCourses,
-                    "setCourses": setDataCourses
+                    courses: dataCourses,
+                    name: "data science",
+                    setCourses: setDataCourses,
                 },
                 {
-                    "name": "math",
-                    "courses": mathCourses,
-                    "setCourses": setMathCourses
-                }
+                    courses: mathCourses,
+                    name: "math",
+                    setCourses: setMathCourses,
+                },
 
-            ]
+            ],
 
         );
-    }, []);
-    
-    return<div>
+    }, [capstoneCourses, coreCourses, dataCourses, labCourses, electiveCourses, generalCourses, mathCourses, props, writingCourses]);
+    return (
+    <div>
         <h2>Data Science</h2>
 
         <Accordion defaultActiveKey="8">
@@ -77,9 +80,9 @@ export function DataScienceConc(props: {StringsToCourses: (stringCourses:string[
                     CISC Core and Concentration
                 </Accordion.Header>
                 <Accordion.Body>
-                    <CourseContainer courses={coreCourses} name="core"/>
-                    <CourseContainer courses={capstoneCourses} name="capstone"/>
-                    <CourseContainer courses={generalCourses} name="general"/>
+                    <CourseContainer courses={coreCourses} name="core" />
+                    <CourseContainer courses={capstoneCourses} name="capstone" />
+                    <CourseContainer courses={generalCourses} name="general" />
                 </Accordion.Body>
             </Accordion.Item>
 
@@ -88,7 +91,7 @@ export function DataScienceConc(props: {StringsToCourses: (stringCourses:string[
                     Two Lab Courses
                 </Accordion.Header>
                 <Accordion.Body>
-                    <CourseContainer courses={labCourses} name={"lab-1"} />
+                    <CourseContainer courses={labCourses} name="lab-1" />
                 </Accordion.Body>
             </Accordion.Item>
 
@@ -97,7 +100,7 @@ export function DataScienceConc(props: {StringsToCourses: (stringCourses:string[
                     One Writing
                 </Accordion.Header>
                 <Accordion.Body>
-                    <CourseContainer courses={writingCourses} name="writing"/>
+                    <CourseContainer courses={writingCourses} name="writing" />
                 </Accordion.Body>
             </Accordion.Item>
 
@@ -107,7 +110,7 @@ export function DataScienceConc(props: {StringsToCourses: (stringCourses:string[
                     One Data Course
                 </Accordion.Header>
                 <Accordion.Body>
-                    <CourseContainer courses={dataCourses} name="data science"/>
+                    <CourseContainer courses={dataCourses} name="datascience" />
                 </Accordion.Body>
             </Accordion.Item>
 
@@ -116,7 +119,7 @@ export function DataScienceConc(props: {StringsToCourses: (stringCourses:string[
                     One Advanced Math
                 </Accordion.Header>
                 <Accordion.Body>
-                    <CourseContainer courses={mathCourses} name="math"/>
+                    <CourseContainer courses={mathCourses} name="math" />
                 </Accordion.Body>
             </Accordion.Item>
 
@@ -128,7 +131,7 @@ export function DataScienceConc(props: {StringsToCourses: (stringCourses:string[
 
                 <Accordion.Body>
 
-                    <CourseContainer courses={electiveCourses} name="electives"/>
+                    <CourseContainer courses={electiveCourses} name="electives" />
 
                 </Accordion.Body>
 
@@ -139,5 +142,6 @@ export function DataScienceConc(props: {StringsToCourses: (stringCourses:string[
         </Accordion>
 
 
-    </div>;
-}
+    </div>
+    );
+};

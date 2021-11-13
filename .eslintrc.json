@@ -334,10 +334,6 @@
       ],
       "keyword-spacing": "off",
       "line-comment-position": "off",
-      "linebreak-style": [
-        "error",
-        "unix"
-      ],
       "lines-around-comment": "off",
       "lines-between-class-members": "off",
       "max-depth": [
