@@ -5,7 +5,11 @@ import { ConcentrationContainerType } from "../../../interfaces/concentrationcon
 import React, { useState, useEffect } from "react";
 import { Course as CourseType } from "../../../interfaces/course";
 
-export function BioConc(props: {StringsToCourses: (stringCourses:string[]) => Course[], setConcentrationContainers: React.Dispatch<React.SetStateAction<ConcentrationContainerType[]>>}): JSX.Element{
+export const BioConc = (props: {StringsToCourses: (
+        stringCourses:string[]) => CourseType[];
+        setConcentrationContainers: React.Dispatch<React.SetStateAction<ConcentrationContainerType[]>>;
+    }): JSX.Element{
+        
     const [coreCourses, setCoreCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[1].core));
     const [capstoneCourses, setCapstoneCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[1].capstone));
     const [generalCourses,setGeneralCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[1].conc.general));
@@ -70,29 +74,6 @@ export function BioConc(props: {StringsToCourses: (stringCourses:string[]) => Co
 
         );
     }, []);
-
-    /*
-
-        <Accordion defaultActiveKey="0">
-
-            <Accordion.Item eventKey="0">
-
-                <Accordion.Header>
-
-                </Accordion.Header>
-
-                <Accordion.Body>
-
-                    
-
-                </Accordion.Body>
-
-            </Accordion.Item>
-
-        </Accordion>
-
-
-    */
 
     return(
         <div>
