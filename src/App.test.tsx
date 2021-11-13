@@ -113,6 +113,7 @@ describe("testing drag and drop features", ()=> {
         });
         const newCourses = screen.getAllByTestId("courseitem");
     
+        //These shouldn't be equal because the courses should  now be in a different order
         expect(newCourses).not.toEqual(courses);
     });
 
