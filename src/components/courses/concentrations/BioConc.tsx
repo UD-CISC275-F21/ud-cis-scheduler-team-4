@@ -6,76 +6,75 @@ import React, { useState, useEffect } from "react";
 import { Course as CourseType } from "../../../interfaces/course";
 
 export const BioConc = (props: {StringsToCourses: (
-        stringCourses:string[]) => CourseType[];
+        stringCourses: string[]) => CourseType[];
         setConcentrationContainers: React.Dispatch<React.SetStateAction<ConcentrationContainerType[]>>;
-    }): JSX.Element{
-        
+    }): JSX.Element => {
     const [coreCourses, setCoreCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[1].core));
     const [capstoneCourses, setCapstoneCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[1].capstone));
-    const [generalCourses,setGeneralCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[1].conc.general));
+    const [generalCourses, setGeneralCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[1].conc.general));
     const [writingCourses, setWritingCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[1].writing));
     const [statCourses, setStatCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[1].conc.stats));
-    const [labCourses,setLabCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[1].lab));
-    const [ochemCourses,setOchemCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[1].conc.ochem));
-    const [electiveCourses,setElectiveCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[1].conc.elective));
-    const [dataCourses,setDataCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[1].conc.data));
+    const [labCourses, setLabCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[1].lab));
+    const [ochemCourses, setOchemCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[1].conc.ochem));
+    const [electiveCourses, setElectiveCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[1].conc.elective));
+    const [dataCourses, setDataCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[1].conc.data));
     useEffect(() => {
         props.setConcentrationContainers(
 
-            [   
+            [
                 {
-                    "name": "core",
-                    "courses": coreCourses,
-                    "setCourses": setCoreCourses
+                    courses: coreCourses,
+                    name: "core",
+                    setCourses: setCoreCourses,
                 },
                 {
-                    "name": "capstone",
-                    "courses": capstoneCourses,
-                    "setCourses": setCapstoneCourses
+                    courses: capstoneCourses,
+                    name: "capstone",
+                    setCourses: setCapstoneCourses,
 
                 },
                 {
-                    "name": "general",
-                    "courses": generalCourses,
-                    "setCourses": setGeneralCourses
+                    courses: generalCourses,
+                    name: "general",
+                    setCourses: setGeneralCourses,
                 },
                 {
-                    "name": "writing",
-                    "courses": writingCourses,
-                    "setCourses": setWritingCourses
+                    courses: writingCourses,
+                    name: "writing",
+                    setCourses: setWritingCourses,
                 },
                 {
-                    "name": "stat",
-                    "courses": statCourses,
-                    "setCourses": setStatCourses
+                    courses: statCourses,
+                    name: "stat",
+                    setCourses: setStatCourses,
                 },
                 {
-                    "name": "lab",
-                    "courses": labCourses,
-                    "setCourses": setLabCourses
+                    courses: labCourses,
+                    name: "lab",
+                    setCourses: setLabCourses,
                 },
                 {
-                    "name": "electives",
-                    "courses": electiveCourses,
-                    "setCourses": setElectiveCourses
+                    courses: electiveCourses,
+                    name: "electives",
+                    setCourses: setElectiveCourses,
                 },
                 {
-                    "name": "data science",
-                    "courses": dataCourses,
-                    "setCourses": setDataCourses
+                    courses: dataCourses,
+                    name: "data science",
+                    setCourses: setDataCourses,
                 },
                 {
-                    "name": "ochem",
-                    "courses": ochemCourses,
-                    "setCourses": setOchemCourses
-                }
+                    courses: ochemCourses,
+                    name: "ochem",
+                    setCourses: setOchemCourses,
+                },
 
-            ]
+            ],
 
         );
-    }, []);
+    }, [capstoneCourses, coreCourses, dataCourses, electiveCourses, generalCourses, writingCourses, labCourses, ochemCourses, props, statCourses]);
 
-    return(
+    return (
         <div>
             <h2>Bioinformatics</h2>
             <Accordion defaultActiveKey="8">
@@ -85,9 +84,9 @@ export const BioConc = (props: {StringsToCourses: (
                         CISC Core and Concentration
                     </Accordion.Header>
                     <Accordion.Body>
-                        <CourseContainer courses={coreCourses} name="core"/>
-                        <CourseContainer courses={capstoneCourses} name="capstone"/>
-                        <CourseContainer courses={generalCourses} name="general"/>
+                        <CourseContainer courses={coreCourses} name="core" />
+                        <CourseContainer courses={capstoneCourses} name="capstone" />
+                        <CourseContainer courses={generalCourses} name="general" />
                     </Accordion.Body>
                 </Accordion.Item>
 
@@ -96,7 +95,7 @@ export const BioConc = (props: {StringsToCourses: (
                         Chem Sequence
                     </Accordion.Header>
                     <Accordion.Body>
-                        <CourseContainer courses={labCourses} name={"lab-1"} />
+                        <CourseContainer courses={labCourses} name="lab-1" />
                     </Accordion.Body>
                 </Accordion.Item>
 
@@ -105,7 +104,7 @@ export const BioConc = (props: {StringsToCourses: (
                         One Organic Chem Sequence
                     </Accordion.Header>
                     <Accordion.Body>
-                        <CourseContainer courses={ochemCourses} name={"ochem-1"} />
+                        <CourseContainer courses={ochemCourses} name="ochem-1" />
                     </Accordion.Body>
                 </Accordion.Item>
 
@@ -115,7 +114,7 @@ export const BioConc = (props: {StringsToCourses: (
                         Writing Course
                     </Accordion.Header>
                     <Accordion.Body>
-                        <CourseContainer courses={writingCourses} name="writing"/>
+                        <CourseContainer courses={writingCourses} name="writing" />
                     </Accordion.Body>
                 </Accordion.Item>
 
@@ -124,7 +123,7 @@ export const BioConc = (props: {StringsToCourses: (
                         One Statistics Course
                     </Accordion.Header>
                     <Accordion.Body>
-                        <CourseContainer courses={statCourses} name="stat"/>
+                        <CourseContainer courses={statCourses} name="stat" />
                     </Accordion.Body>
                 </Accordion.Item>
 
@@ -136,7 +135,7 @@ export const BioConc = (props: {StringsToCourses: (
 
                     <Accordion.Body>
 
-                        <CourseContainer courses={dataCourses} name="data"/> 
+                        <CourseContainer courses={dataCourses} name="data" />
 
                     </Accordion.Body>
 
@@ -150,16 +149,14 @@ export const BioConc = (props: {StringsToCourses: (
 
                     <Accordion.Body>
 
-                        <CourseContainer courses={electiveCourses} name="electives"/>
+                        <CourseContainer courses={electiveCourses} name="electives" />
 
                     </Accordion.Body>
 
                 </Accordion.Item>
 
-                
-
             </Accordion>
 
         </div>
     );
-}
+};
