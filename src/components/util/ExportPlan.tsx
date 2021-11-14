@@ -1,8 +1,6 @@
 import React from "react";
-//import { Course as CourseType } from "../../interfaces/course";
 import { SemesterType } from "../../interfaces/semester";
 import { Button } from "react-bootstrap";
-//import { CSVLink } from "react-csv";
 
 export const ExportPlan = (props: {semesterCourses: SemesterType[]}): JSX.Element => {
     const data = [["Semester", "Course", "Credits"]];
@@ -16,9 +14,8 @@ export const ExportPlan = (props: {semesterCourses: SemesterType[]}): JSX.Elemen
                     const courseName = courses[j].name;
                     const credits = courses[j].credits.toString();
                     data.push([semesterNum,courseName,credits]);
-                }
-            }
-
+                };
+            };
             const csvContent = "data:text/csv;charset=utf-8,"
             + data.map(e => e.join(",")).join("\n");
 
