@@ -13,6 +13,7 @@ import { AddSemesterButton } from "./semesters/AddSemesterButton";
 import { ConcentrationContainerType } from "../interfaces/concentrationcontainer";
 import { onDragEndLogic } from "./util/DropLogic";
 import { PreReqSameSemesterToast } from "./util/Notifications";
+import { ExportPlan } from "./util/ExportPlan";
 
 export const MainPage = (): JSX.Element => {
     const [concentration, setConcentration] = useState<Concentration>(CONCENTRATIONS[0] as Concentration);
@@ -71,6 +72,7 @@ export const MainPage = (): JSX.Element => {
                                         </NavDropdown>
                                         <DropdownMenu setConcentration={setConcentration} semesterCourses={semesterCourses} setSemesterCourses={setSemesterCourses}></DropdownMenu>
                                         <AddSemesterButton setSemesters={setSemesters} semesters={semesters} />
+                                        <ExportPlan semesterCourses={semesterCourses}></ExportPlan>
                                     </Nav>
                                 </Navbar.Collapse>
                             </Container>
