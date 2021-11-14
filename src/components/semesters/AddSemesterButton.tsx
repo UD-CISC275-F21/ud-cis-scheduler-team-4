@@ -9,4 +9,4 @@ export const AddSemesterButton = (props: { setSemesters: React.Dispatch<React.Se
         ++tmpSemesters;
         props.setSemesters(tmpSemesters);
 
-    }}>Add Semester</Button>;
+    }} >Add Semester</Button>;

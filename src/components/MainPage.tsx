@@ -10,6 +10,7 @@ import { Concentration } from "../interfaces/concentration";
 import CONCENTRATIONS from "../json/concentrations.json";
 import { SemesterType } from "../interfaces/semester";
 import { AddSemesterButton } from "./semesters/AddSemesterButton";
+import { DeleteSemesterButton } from "./semesters/DeleteSemesterButton";
 import { ConcentrationContainerType } from "../interfaces/concentrationcontainer";
 import { onDragEndLogic } from "./util/DropLogic";
 import { PreReqSameSemesterToast } from "./util/Notifications";
@@ -70,7 +71,8 @@ export const MainPage = (): JSX.Element => {
                                             <NavDropdown.Item href="https://ud-cis-teaching.github.io/student-guidance/" data-testid="navdropdownitem4">UD CIS Student Guidance</NavDropdown.Item>
                                         </NavDropdown>
                                         <DropdownMenu setConcentration={setConcentration} semesterCourses={semesterCourses} setSemesterCourses={setSemesterCourses}></DropdownMenu>
-                                        <AddSemesterButton setSemesters={setSemesters} semesters={semesters} />
+                                        <AddSemesterButton setSemesters={setSemesters} semesters={semesters}/>
+                                        <DeleteSemesterButton setSemesters={setSemesters} semesters={semesters} />
                                     </Nav>
                                 </Navbar.Collapse>
                             </Container>
