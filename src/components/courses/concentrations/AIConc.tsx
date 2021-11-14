@@ -67,6 +67,7 @@ export const AIConc = (props: {StringsToCourses: (stringCourses: string[]) => Co
         );
     }, [capstone1Courses, capstone2Courses, coreCourses, electiveCourses, general1Courses, general2Courses, writingCourses, labCourses, props]);
 
+    return (
         <div>
         <h2>Artificial Intelligence and Robotics</h2>
         <Accordion defaultActiveKey="8">
@@ -116,5 +117,6 @@ export const AIConc = (props: {StringsToCourses: (stringCourses: string[]) => Co
             </Accordion.Item>
 
         </Accordion>
-        </div>;
+        </div>
+    );
 };

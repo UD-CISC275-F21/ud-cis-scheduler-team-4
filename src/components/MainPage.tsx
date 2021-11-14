@@ -1,6 +1,6 @@
 import "bootswatch/dist/lux/bootstrap.min.css";
 import { Container, Row, Col, Navbar, Nav, NavDropdown } from "react-bootstrap";
-import { WelcomeToast, PreReqSameSemesterToast } from "./util/Notifications";
+import { WelcomeToast } from "./util/Notifications";
 import { SemesterTable } from "./semesters/SemesterTable";
 import React, { useState, useEffect } from "react";
 import { DropdownMenu } from "./util/DropdownMenu";
@@ -19,8 +19,8 @@ export const MainPage = (): JSX.Element => {
     const [display, setDisplay] = useState<boolean>(false);
     const [semesters, setSemesters] = useState<number>(1);
     const [concentrationContainers, setConcentrationContainers] = useState<ConcentrationContainerType[]>([]);
-    const [toastDisplay, setToastDisplay] = useState<boolean>(false);
-    const [toastMessage, setToastMessage] = useState<string>("");
+    // const [toastDisplay, setToastDisplay] = useState<boolean>(false); Will be implemented once basic drop logic is fully implemented
+    // const [toastMessage, setToastMessage] = useState<string>(""); Will be implemented once basic drop logic is fully implemented
 
 
     useEffect(() => {
@@ -30,6 +30,7 @@ export const MainPage = (): JSX.Element => {
         }, 5000);
     }, []);
 
+    /*
     const displayToast = (msg: string) => {
         setToastDisplay(true);
         setToastMessage(msg);
@@ -37,9 +38,10 @@ export const MainPage = (): JSX.Element => {
             setToastDisplay(false);
         }, 5000);
     };
+    */
 
     const onDragEnd = (result: DropResult) => {
-        onDragEndLogic(result, concentrationContainers, setConcentrationContainers, semesterCourses, setSemesterCourses, displayToast);
+        onDragEndLogic(result, concentrationContainers, setConcentrationContainers, semesterCourses, setSemesterCourses); // onDragEndLogic(result, concentrationContainers, setConcentrationContainers, semesterCourses, setSemesterCourses, displayToast);
     };
 
     return (
@@ -51,7 +53,7 @@ export const MainPage = (): JSX.Element => {
                     <Row>
                         <Col>
                             <WelcomeToast display={display} />
-                            <PreReqSameSemesterToast display={toastDisplay} errMsg={toastMessage} />
+                            { /* <PreReqSameSemesterToast display={toastDisplay} errMsg={toastMessage} /> */ }
                         </Col>
                     </Row>
                     <Row>

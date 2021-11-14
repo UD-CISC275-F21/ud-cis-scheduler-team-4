@@ -13,7 +13,12 @@ import { SemesterType } from "../../interfaces/semester";
 export const SemesterTable = (props: { semesters: number;
         semestersCourses: SemesterType[];
         setSemesterCourses: React.Dispatch<React.SetStateAction<SemesterType[]>>;
-    }): JSX.Element => {
+    }): JSX.Element =>
+        (
+        <div>
+        {
         new Array(props.semesters).fill(0)
-        .map((elem, ind) => <Semester ind={ind} key={`semester-table-key-${elem}`} semesterCourses={props.semestersCourses} setSemesterCourses={props.setSemesterCourses} />);
-    };
+        .map((elem, ind) => <Semester ind={ind} key={`semester-table-key-${elem}`} semesterCourses={props.semestersCourses} setSemesterCourses={props.setSemesterCourses} />)
+        }
+        </div>
+        );

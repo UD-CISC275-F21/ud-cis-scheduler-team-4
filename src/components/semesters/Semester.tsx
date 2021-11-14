@@ -151,14 +151,16 @@ export const Semester = (props: { ind: number;
                                                     {
                                                         courses.map((elem: CourseType, index: number) =>
                                                             (
-                                                                <ListGroup.Item key={elem}>
+                                                                <ListGroup.Item key={elem.name}>
                                                                     <Row>
                                                                         <Col>
                                                                             <Course ind={index} name={`${elem.name}-${elem.section}`} />
                                                                         </Col>
                                                                         <Col lg="1" xs>
                                                                             <Button
-                                                                            onClick={courseDeleteFunc(elem)}
+                                                                            onClick={() => {
+                                                                                courseDeleteFunc(elem);
+                                                                            }}
                                                                             variant="danger"
                                                                             />
                                                                             <Button
@@ -166,7 +168,7 @@ export const Semester = (props: { ind: number;
                                                                                 setDisplay(!display);
                                                                             }} variant="warning"
                                                                             />
-                                                                            {display && <EditCourse course={elem} display={display} semesterCourses={props.semesterCourses} semesterNumber={props.ind + 1} setCourses={setCourses} setDisplay={setDisplay} setSemesterCourses={props.setSemesterCourses} />}
+                                                                            {display && <EditCourse course={elem} display={display} semesterCourses={props.semesterCourses} semesterNumber={props.ind + 1} setDisplay={setDisplay} setSemesterCourses={props.setSemesterCourses} />}
                                                                         </Col>
                                                                     </Row>
                                                                 </ListGroup.Item>
