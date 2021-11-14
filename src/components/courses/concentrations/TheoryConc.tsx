@@ -9,14 +9,22 @@ export const TheoryConc = (props: {
     StringsToCourses: (stringCourses: string[]) => CourseType[];
     setConcentrationContainers: React.Dispatch<React.SetStateAction<ConcentrationContainerType[]>>;
     }): JSX.Element => {
-    const [coreCourses, setCoreCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[6].core));
-    const [capstoneCourses, setCapstoneCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[6].capstone));
-    const [generalCourses, setGeneralCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[6].conc.general));
-    const [writingCourses, setWritingCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[6].writing));
-    const [statCourses, setStatCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[6].conc.stats));
-    const [labCourses, setLabCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[6].lab));
-    const [discCourses, setDiscCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[6].conc.track));
-    const [contCourses, setContCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[6].conc.cybersecurity));
+    const [coreCourses,
+        setCoreCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[6].core));
+    const [capstoneCourses,
+        setCapstoneCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[6].capstone));
+    const [generalCourses,
+        setGeneralCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[6].conc.general));
+    const [writingCourses,
+        setWritingCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[6].writing));
+    const [statCourses,
+        setStatCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[6].conc.stats));
+    const [labCourses,
+        setLabCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[6].lab));
+    const [discCourses,
+        setDiscCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[6].conc.track));
+    const [contCourses,
+        setContCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[6].conc.cybersecurity));
 
     useEffect(() => {
         props.setConcentrationContainers(

@@ -55,7 +55,8 @@ export const concentrationToConcentration = (
     setConcContainers: React.Dispatch<React.SetStateAction<ConcentrationContainerType[]>>,
     isDifferent: boolean,
     ) => {
-        const ind2 = (isDifferent) ? concContainers.findIndex(elem => elem.name === result.destination?.droppableId) : -1;
+        const ind2 = (isDifferent) ?
+        concContainers.findIndex(elem => elem.name === result.destination?.droppableId) : -1;
         if (ind2 === -1) { /* Case if we are dropping within the same _exact_ container such as core --> core */
             const tmpConcContainerCourse = concContainer.courses.splice(courseSpliceInd, 1)[0];
             concContainer.courses.splice(dropInd, 0, tmpConcContainerCourse);
@@ -123,13 +124,26 @@ export const onDragEndLogic = (result: DropResult,
             // semestertable --> semestertable
             const semesterNum1 = parseInt(sourceId.substring(sourceId.lastIndexOf("-") + 1), 10);
             const ind1 = semesterCourses.findIndex(elem => elem.semesternum === semesterNum1);
-            semesterToSemester(result, semesterCourses[ind1], semesterCourses[ind1], result.source.index, result.destination.index, semesterCourses, setSemesterCourses, false);
+            semesterToSemester(result,
+                semesterCourses[ind1],
+                semesterCourses[ind1],
+                result.source.index,
+                result.destination.index,
+                semesterCourses,
+                setSemesterCourses, false);
         } else {
             // concentration --> concentration
             const tmpContainer: ConcentrationContainerType[] = [...concentrationContainers];
             let ind1 = tmpContainer.findIndex(elem => elem.name === destinationId);
-            ind1 = (sourceId === destinationId) ? concentrationToConcentration(result, concentrationContainers, concentrationContainers.splice(ind1, 1)[0], ind1, sourceIndex, dropIndex, setConcentrationContainers, false) :
-            concentrationToConcentration(result, concentrationContainers, concentrationContainers.splice(ind1, 1)[0], ind1, sourceIndex, dropIndex, setConcentrationContainers, true);
+            ind1 = (sourceId === destinationId) ?
+            concentrationToConcentration(result,
+                concentrationContainers,
+                concentrationContainers.splice(ind1, 1)[0],
+                ind1, sourceIndex, dropIndex, setConcentrationContainers, false) :
+            concentrationToConcentration(result,
+                concentrationContainers,
+                concentrationContainers.splice(ind1, 1)[0],
+                ind1, sourceIndex, dropIndex, setConcentrationContainers, true);
             successPrint(ind1);
         }
     } else if (sourceIdSemester) { // semester --> concentration
@@ -137,7 +151,16 @@ export const onDragEndLogic = (result: DropResult,
             const semesterNum = parseInt(sourceId.substring(sourceId.lastIndexOf("-") + 1), 10);
             const ind1 = semesterCourses.findIndex(elem => elem.semesternum === semesterNum);
             let ind2 = (destIdSemester) ? parseInt(destinationId.substring(destinationId.lastIndexOf("-") + 1), 10) : concentrationContainers.findIndex(elem => elem.name === destinationId);
-            ind2 = (destIdSemester) ? semesterToSemester(result, semesterCourses[ind1], semesterCourses[ind2], sourceIndex, dropIndex, semesterCourses, setSemesterCourses, true) : semesterToConcentration(concentrationContainers, ind2, result.source.index, setConcentrationContainers, semesterCourses, setSemesterCourses, semesterNum, ind1, result.destination.index);
+            ind2 = (destIdSemester) ?
+            semesterToSemester(result,
+                semesterCourses[ind1],
+                semesterCourses[ind2],
+                sourceIndex, dropIndex, semesterCourses, setSemesterCourses, true) :
+            semesterToConcentration(concentrationContainers,
+                ind2,
+                result.source.index,
+                setConcentrationContainers,
+                semesterCourses, setSemesterCourses, semesterNum, ind1, result.destination.index);
             successPrint(ind2);
     } else {
             // concentration --> semester
@@ -145,7 +168,12 @@ export const onDragEndLogic = (result: DropResult,
             const tmpContainer: ConcentrationContainerType[] = [...concentrationContainers];
             let ind1 = tmpContainer.findIndex(elem => elem.name === sourceId);
             const ind2 = semesterCourses.findIndex(elem => elem.semesternum === semesterNum);
-            ind1 = (ind1 > -1) ? concentrationToSemester(result, concentrationContainers, concentrationContainers[ind1], result.source.index, result.destination.index, setConcentrationContainers, semesterCourses, semesterCourses[ind2]) : -1;
+            ind1 = (ind1 > -1) ?
+            concentrationToSemester(result,
+                concentrationContainers,
+                concentrationContainers[ind1],
+                result.source.index,
+                result.destination.index, setConcentrationContainers, semesterCourses, semesterCourses[ind2]) : -1;
             successPrint(ind1);
     }
 };
