@@ -14,8 +14,8 @@ export const ExportPlan = (props: {semesterCourses: SemesterType[]}): JSX.Elemen
                     const courseName = courses[j].name;
                     const credits = courses[j].credits.toString();
                     data.push([semesterNum,courseName,credits]);
-                };
-            };
+                }
+            }
             const csvContent = "data:text/csv;charset=utf-8,"
             + data.map(e => e.join(",")).join("\n");
 
