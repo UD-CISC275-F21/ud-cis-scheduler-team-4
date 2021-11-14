@@ -9,18 +9,19 @@ export const concentrationToSemester = (
     concContainers: ConcentrationContainerType[],
     concContainer: ConcentrationContainerType,
     spliceInd: number,
+    dropInd: number,
     setConcContainers: React.Dispatch<React.SetStateAction<ConcentrationContainerType[]>>,
     semesterCourses: SemesterType[],
-    setSemesterCourses: React.Dispatch<React.SetStateAction<SemesterType[]>>,
+    droppingSemester: SemesterType,
     ) => {
-
-        const tmpConcentrationCourses = concContainer.courses;
-        return -1;
-
+        const theCourse: CourseType = concContainer.courses.splice(spliceInd, 1)[0];
+        concContainer.setCourses([...concContainer.courses]); /*  Optional line - may be able to remove  */
+        droppingSemester.courses.splice(dropInd, 0, theCourse);
+        droppingSemester.courseSetter([...droppingSemester.courses]); /* Optional line - may be able to remove */
+        return 1;
 };
 
 export const semesterToConcentration = (
-    result: DropResult,
     concContainers: ConcentrationContainerType[],
     concentrationInd: number,
     courseSpliceInd: number,
@@ -33,13 +34,14 @@ export const semesterToConcentration = (
     ) => {
         console.log("doing semester to concentration");
         const theCourse: CourseType = semesterCourses[semesterInd].courses.splice(courseSpliceInd, 1)[0];
-        semesterCourses[semesterInd].courses = [...semesterCourses[semesterInd].courses];                       /* may be able to delete this line */
-        semesterCourses[semesterInd].courseSetter([...semesterCourses[semesterInd].courses]);                   /* may be able to delete this line */
+        semesterCourses[semesterInd].courses = [...semesterCourses[semesterInd].courses];/* may be able to delete this line*/
+        semesterCourses[semesterInd].courseSetter([...semesterCourses[semesterInd].courses]);/* may be able to delete this line*/
         setSemesterCourses([...semesterCourses]);
-        concContainers[concentrationInd].courses.splice(courseDropInd,0,theCourse);
-        concContainers[concentrationInd].courses = [...concContainers[concentrationInd].courses];               /* may be able to delete this line */
-        concContainers[concentrationInd].setCourses([...concContainers[concentrationInd].courses]);             /* may be able to delete this line */
+        concContainers[concentrationInd].courses.splice(courseDropInd, 0, theCourse);
+        concContainers[concentrationInd].courses = [...concContainers[concentrationInd].courses];/* may be able to delete this line */
+        concContainers[concentrationInd].setCourses([...concContainers[concentrationInd].courses]);/* may be able to delete this line */
         setConcContainers([...concContainers]);
+        return 1;
 
 };
 
@@ -54,16 +56,16 @@ export const concentrationToConcentration = (
     isDifferent: boolean,
     ) => {
         const ind2 = (isDifferent) ? concContainers.findIndex(elem => elem.name === result.destination?.droppableId) : -1;
-        if (ind2 === -1) {                                                              /* Case if we are dropping within the same _exact_ container such as core --> core */
+        if (ind2 === -1) { /* Case if we are dropping within the same _exact_ container such as core --> core */
             const tmpConcContainerCourse = concContainer.courses.splice(courseSpliceInd, 1)[0];
             concContainer.courses.splice(dropInd, 0, tmpConcContainerCourse);
-            concContainer.setCourses([...concContainer.courses]);                       /* may be able to delete this line */
-            concContainers.splice(spliceInd, 0, concContainer);                         /* may not have to deal with splicing, and direct reference the index like above with the implementation of semester --> concentration */
+            concContainer.setCourses([...concContainer.courses]);/* may be able to delete this line */
+            concContainers.splice(spliceInd, 0, concContainer);/* may not have to deal with splicing, and direct reference the index like above with the implementation of semester --> concentration */
             setConcContainers(concContainers);
-        } else if (ind2 !== -1) {                                                       /* Case if we are dropping within the concentration containers, but different containers, such as core --> elective */
-            const diffContainer = concContainers.splice(ind2, 1)[0];
+        } else if (ind2 !== -1) { /* Case if we are dropping within the concentration containers, but different containers, such as core --> elective */
+            const diffContainer = concContainers[ind2];
             const tmpConcContainerCourseDrag = concContainer.courses.splice(courseSpliceInd, 1)[0];
-            concContainer.setCourses([...concContainer.courses]);                       // update courses we just spliced from
+            concContainer.setCourses([...concContainer.courses]);// update courses we just spliced from
             diffContainer.courses.splice(dropInd, 0, tmpConcContainerCourseDrag);
             diffContainer.setCourses([...diffContainer.courses]);
         }
@@ -72,14 +74,26 @@ export const concentrationToConcentration = (
 
 export const semesterToSemester = (
     result: DropResult,
-    concContainers: ConcentrationContainerType[],
-    concContainer: ConcentrationContainerType,
+    semester: SemesterType,
+    semester2: SemesterType,
     spliceInd: number,
-    setConcContainers: React.Dispatch<React.SetStateAction<ConcentrationContainerType[]>>,
+    dropInd: number,
     semesterCourses: SemesterType[],
     setSemesterCourses: React.Dispatch<React.SetStateAction<SemesterType[]>>,
+    diffSemester: boolean,
     ) => {
-        console.log("semester to semester");
+        if (diffSemester) {
+            const splicedCourse = semester.courses.splice(spliceInd, 1)[0];
+            semester2.courses.splice(dropInd, 0, splicedCourse);
+            semester.courseSetter([...semester.courses]);
+            semester2.courseSetter([...semester2.courses]);
+        } else {
+            console.log("semester to semester");
+            const splicedCourse = semester.courses.splice(spliceInd, 1)[0];
+            semester.courses.splice(dropInd, 0, splicedCourse);
+            semester.courseSetter([...semester.courses]);
+        }
+        return 1;
 };
 
 export const onDragEndLogic = (result: DropResult,
@@ -104,6 +118,9 @@ export const onDragEndLogic = (result: DropResult,
         // check if both are semester table, if not then conc container
         if(sourceIdSemester){
             // semestertable --> semestertable
+            const semesterNum1 = parseInt(sourceId.substring(sourceId.lastIndexOf("-")));
+            const ind1 = semesterCourses.findIndex(elem => elem.semesternum === semesterNum1);
+            semesterToSemester(result, semesterCourses[ind1], semesterCourses[ind1], result.source.index, result.destination.index, semesterCourses, setSemesterCourses, false);
         } else{
             // concentration --> concentration
             const tmpContainer: ConcentrationContainerType[] = [...concentrationContainers];
@@ -116,13 +133,15 @@ export const onDragEndLogic = (result: DropResult,
         if (sourceIdSemester) { // semester --> concentration
             const semesterNum = parseInt(sourceId.substring(sourceId.lastIndexOf("-")));
             const ind1 = semesterCourses.findIndex(elem => elem.semesternum === semesterNum);
-            const ind2 = concentrationContainers.findIndex(elem => elem.name === destinationId);
-            semesterToConcentration(result, concentrationContainers, ind2, result.source.index, setConcentrationContainers, semesterCourses, setSemesterCourses, semesterNum, ind1, result.destination.index);
+            let ind2 = (destIdSemester)? parseInt(destinationId.substring(destinationId.lastIndexOf("-"))) : concentrationContainers.findIndex(elem => elem.name === destinationId);
+            ind2 = (destIdSemester)? semesterToSemester(result, semesterCourses[ind1], semesterCourses[ind2], sourceIndex, dropIndex, semesterCourses, setSemesterCourses, true) : semesterToConcentration(concentrationContainers, ind2, result.source.index, setConcentrationContainers, semesterCourses, setSemesterCourses, semesterNum, ind1, result.destination.index);
         } else {
             // concentration --> semester
+            const semesterNum = parseInt(destinationId.substring(destinationId.lastIndexOf("-")+1));
             const tmpContainer: ConcentrationContainerType[] = [...concentrationContainers];
             let ind1 = tmpContainer.findIndex(elem => elem.name === sourceId);
-            ind1 = (ind1 !== -1) ? concentrationToSemester(result, concentrationContainers, concentrationContainers[ind1], result.source.index, setConcentrationContainers, semesterCourses, setSemesterCourses) : -1;
+            const ind2 = semesterCourses.findIndex(elem => elem.semesternum === semesterNum);
+            ind1 = (ind1 !== -1) ? concentrationToSemester(result, concentrationContainers, concentrationContainers[ind1], result.source.index, result.destination.index, setConcentrationContainers, semesterCourses, semesterCourses[ind2]) : -1;
         }
     }
 
