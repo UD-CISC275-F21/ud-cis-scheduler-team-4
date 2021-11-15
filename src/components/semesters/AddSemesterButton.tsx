@@ -12,7 +12,7 @@ export const AddSemesterButton = (props: {
             tmpSemesters += 1;
             props.setSemesters(tmpSemesters);
         }}
-        variant="primary"
+        variant="outline-primary"
     >
     Add Semester
     </Button>;

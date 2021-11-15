@@ -13,6 +13,7 @@ import { AddSemesterButton } from "./semesters/AddSemesterButton";
 import { ConcentrationContainerType } from "../interfaces/concentrationcontainer";
 import { onDragEndLogic } from "./util/DropLogic";
 import { ExportPlan } from "./util/ExportPlan";
+import { HowToDisplay } from "./util/howto/howtodisplay";
 
 export const MainPage = (): JSX.Element => {
     const [concentration, setConcentration] = useState<Concentration>(CONCENTRATIONS[0] as Concentration);
@@ -89,6 +90,7 @@ export const MainPage = (): JSX.Element => {
                                     />
                                     <AddSemesterButton semesters={semesters} setSemesters={setSemesters} />
                                     <ExportPlan semesterCourses={semesterCourses} />
+                                    <HowToDisplay />
                                 </Nav>
                             </Navbar.Collapse>
                         </Container>

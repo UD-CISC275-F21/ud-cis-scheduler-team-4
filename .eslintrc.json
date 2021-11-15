@@ -846,10 +846,6 @@
         "error",
         "multiline"
       ],
-      "react/jsx-fragments": [
-        "error",
-        "element"
-      ],
       "react/jsx-handler-names": "off",
       "react/jsx-key": "error",
       "react/jsx-max-depth": [
