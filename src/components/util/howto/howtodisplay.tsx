@@ -1,6 +1,7 @@
-import "bootswatch/dist/lux/bootstrap.min.css";
-import { Button, Modal } from "react-bootstrap";
+import { Button, Modal, Row, Col, Container } from "react-bootstrap";
 import React, { useState } from "react";
+import { HowToDropDown } from "./howtodropdown/howtodropdown";
+import { HandleHowToDisplay } from "./howtodropdown/howtodropdownlogic";
 
 export const HowToDisplay = () => {
 
@@ -12,6 +13,8 @@ export const HowToDisplay = () => {
     const handleShow = () => {
         setShow(true);
     };
+    const [currDisplay,
+        setCurrDisplay] = useState<number>(0);
 
     return (
 
@@ -21,14 +24,24 @@ export const HowToDisplay = () => {
             </Button>
             <Modal onHide={handleClose} show={show}>
                 <Modal.Header closeButton>
-                    <Modal.Title>
-                        How to use our app!
-                    </Modal.Title>
+                    <Container>
+                        <Row style={{ textAlign: "center" }}>
+                            <Col>
+                                <Modal.Title>
+                                    How to use our app!
+                                </Modal.Title>
+                            </Col>
+                        </Row>
+                        <br />
+                        <br />
+                        <Row style={{ textAlign: "left" }}>
+                            <Col>
+                                <HowToDropDown setDisplay={setCurrDisplay} />
+                            </Col>
+                        </Row>
+                    </Container>
                 </Modal.Header>
-                <Modal.Body>
-                    This is a display!
-                    You will notice
-                </Modal.Body>
+                {HandleHowToDisplay(currDisplay)}
                 <Modal.Footer>
                     <Button onClick={handleClose} variant="outline-danger">
                         Close
