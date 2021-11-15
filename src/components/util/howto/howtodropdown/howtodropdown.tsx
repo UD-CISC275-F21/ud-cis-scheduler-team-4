@@ -14,10 +14,18 @@ export const HowToDropDown = ({ setDisplay }: { setDisplay: React.Dispatch<React
             >
                 Application Layout
             </Dropdown.Item>
-            <Dropdown.Item>
+            <Dropdown.Item
+                onClick={() => {
+                    setDisplay(2);
+                }}
+            >
                 Navbar
             </Dropdown.Item>
-            <Dropdown.Item>
+            <Dropdown.Item
+                onClick={() => {
+                    setDisplay(3);
+                }}
+            >
                 Concentration Table
             </Dropdown.Item>
             <Dropdown.Item>
