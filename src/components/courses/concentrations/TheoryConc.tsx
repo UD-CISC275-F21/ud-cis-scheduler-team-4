@@ -73,7 +73,7 @@ export const TheoryConc = (props: {
                 },
             ],
         );
-    }, [capstoneCourses, contCourses, coreCourses, discCourses, generalCourses, labCourses, props, statCourses, writingCourses]);
+    }, []);
     return (
         <div>
             <h2>Theory</h2>

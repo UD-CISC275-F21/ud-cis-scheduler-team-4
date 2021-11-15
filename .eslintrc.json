@@ -871,7 +871,6 @@
       "react/jsx-uses-vars": "error",
       "react/jsx-wrap-multilines": "error",
       "react-hooks/rules-of-hooks": "error",
-      "react-hooks/exhaustive-deps": "error",
       "import/default": "error",
       "import/named": "off",
       "import/namespace": "error",

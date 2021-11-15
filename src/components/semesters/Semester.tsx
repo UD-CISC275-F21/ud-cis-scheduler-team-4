@@ -92,12 +92,12 @@ export const Semester = (props: { ind: number;
         if (!props.semesterCourses.find(elem => elem.semesternum === props.ind + 1)) {
             // not in list
             const semesters: SemesterType[] = [...props.semesterCourses];
-            semesters.push({courseSetter: () => {
+            semesters.push({ courseSetter: () => {
                 setCourses(courses);
             }, courses, semesternum: props.ind + 1 });
             props.setSemesterCourses(semesters);
         }
-    }, [courses, props]);
+    }, []);
 
     const getCredits = (courses: CourseType[]) => {
         console.log("inside getCredits");
@@ -168,7 +168,13 @@ export const Semester = (props: { ind: number;
                                                                                 setDisplay(!display);
                                                                             }} variant="warning"
                                                                             />
-                                                                            {display && <EditCourse course={elem} display={display} semesterCourses={props.semesterCourses} semesterNumber={props.ind + 1} setDisplay={setDisplay} setSemesterCourses={props.setSemesterCourses} />}
+                                                                            {display &&
+                                                                            <EditCourse
+                                                                                        course={elem} display={display}
+                                                                                        semesterCourses={props.semesterCourses} semesterNumber={props.ind + 1}
+                                                                                        setDisplay={setDisplay} setSemesterCourses={props.setSemesterCourses}
+                                                                            />
+                                                                            }
                                                                         </Col>
                                                                     </Row>
                                                                 </ListGroup.Item>

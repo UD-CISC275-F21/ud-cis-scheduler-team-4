@@ -10,14 +10,29 @@ export const DataScienceConc = (props: {
     StringsToCourses: (stringCourses: string[]) => CourseType[];
     setConcentrationContainers: React.Dispatch<React.SetStateAction<ConcentrationContainerType[]>>;
     }): JSX.Element => {
-    const [coreCourses, setCoreCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[3].core));
-    const [capstoneCourses, setCapstoneCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[3].capstone));
-    const [generalCourses, setGeneralCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[3].conc.general));
-    const [writingCourses, setWritingCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[3].writing));
-    const [labCourses, setLabCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[3].lab));
-    const [dataCourses, setDataCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[3].conc.data));
-    const [mathCourses, setMathCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[3].conc.stats));
-    const [electiveCourses, setElectiveCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[3].conc.elective));
+    const [coreCourses,
+        setCoreCourses] = useState<CourseType[]>(props.StringsToCourses(
+            CONCENTRATIONS[3].core));
+    const [capstoneCourses,
+        setCapstoneCourses] = useState<CourseType[]>(props.StringsToCourses(
+            CONCENTRATIONS[3].capstone));
+    const [generalCourses,
+        setGeneralCourses] = useState<CourseType[]>(props.StringsToCourses(
+            CONCENTRATIONS[3].conc.general));
+    const [writingCourses,
+        setWritingCourses] = useState<CourseType[]>(props.StringsToCourses(
+            CONCENTRATIONS[3].writing));
+    const [labCourses,
+        setLabCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[3].lab));
+    const [dataCourses,
+        setDataCourses] = useState<CourseType[]>(props.StringsToCourses(
+            CONCENTRATIONS[3].conc.data));
+    const [mathCourses,
+        setMathCourses] = useState<CourseType[]>(props.StringsToCourses(
+            CONCENTRATIONS[3].conc.stats));
+    const [electiveCourses,
+        setElectiveCourses] = useState<CourseType[]>(props.StringsToCourses(
+            CONCENTRATIONS[3].conc.elective));
 
     useEffect(() => {
         props.setConcentrationContainers(
@@ -68,7 +83,7 @@ export const DataScienceConc = (props: {
             ],
 
         );
-    }, [capstoneCourses, coreCourses, dataCourses, labCourses, electiveCourses, generalCourses, mathCourses, props, writingCourses]);
+    }, []);
     return (
     <div>
         <h2>Data Science</h2>

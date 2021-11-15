@@ -9,14 +9,22 @@ export const SecurityConc = (props: {
     StringsToCourses: (stringCourses: string[]) => CourseType[];
     setConcentrationContainers: React.Dispatch<React.SetStateAction<ConcentrationContainerType[]>>;
     }): JSX.Element => {
-    const [coreCourses, setCoreCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[2].core));
-    const [capstoneCourses, setCapstoneCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[2].capstone));
-    const [generalCourses, setGeneralCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[2].conc.general));
-    const [writingCourses, setWritingCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[2].writing));
-    const [statCourses, setStatCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[2].conc.stats));
-    const [labCourses, setLabCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[2].lab));
-    const [electiveCourses, setElectiveCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[2].conc.elective));
-    const [secCourses, setSecCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[2].conc.cybersecurity));
+    const [coreCourses,
+        setCoreCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[2].core));
+    const [capstoneCourses,
+        setCapstoneCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[2].capstone));
+    const [generalCourses,
+        setGeneralCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[2].conc.general));
+    const [writingCourses,
+        setWritingCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[2].writing));
+    const [statCourses,
+        setStatCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[2].conc.stats));
+    const [labCourses,
+        setLabCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[2].lab));
+    const [electiveCourses,
+        setElectiveCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[2].conc.elective));
+    const [secCourses,
+        setSecCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[2].conc.cybersecurity));
 
     useEffect(() => {
         props.setConcentrationContainers(
@@ -67,7 +75,7 @@ export const SecurityConc = (props: {
             ],
 
         );
-    }, [capstoneCourses, coreCourses, generalCourses, labCourses, props, electiveCourses, secCourses, statCourses, writingCourses]);
+    }, []);
     return (
         <div>
             <h2>Cybersecurity</h2>

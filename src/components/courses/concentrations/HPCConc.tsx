@@ -9,17 +9,28 @@ export const HPCConc = (props: {
     StringsToCourses: (stringCourses: string[]) => CourseType[];
     setConcentrationContainers: React.Dispatch<React.SetStateAction<ConcentrationContainerType[]>>;
     }): JSX.Element => {
-    const [coreCourses, setCoreCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[4].core));
-    const [capstoneCourses, setCapstoneCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[4].capstone));
-    const [generalCourses, setGeneralCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[4].conc.general));
-    const [writingCourses, setWritingCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[4].writing));
-    const [labCourses, setLabCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[4].lab));
-    const [statCourses, setStatCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[4].conc.stats));
-    const [electiveCourses, setElectiveCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[4].conc.elective));
-    const [mathCourses, setMathCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[4].conc.data));
-    const [dataCourses, setDataCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[4].conc.track));
-    const [learningCourses, setLearningCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[4].conc.cybersecurity));
-    const [dataTrackCourses, setDataTrackCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[4].conc.ochem));
+    const [coreCourses,
+        setCoreCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[4].core));
+    const [capstoneCourses,
+        setCapstoneCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[4].capstone));
+    const [generalCourses,
+        setGeneralCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[4].conc.general));
+    const [writingCourses,
+        setWritingCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[4].writing));
+    const [labCourses,
+        setLabCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[4].lab));
+    const [statCourses,
+        setStatCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[4].conc.stats));
+    const [electiveCourses,
+        setElectiveCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[4].conc.elective));
+    const [mathCourses,
+        setMathCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[4].conc.data));
+    const [dataCourses,
+        setDataCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[4].conc.track));
+    const [learningCourses,
+        setLearningCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[4].conc.cybersecurity));
+    const [dataTrackCourses,
+        setDataTrackCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[4].conc.ochem));
     useEffect(() => {
         props.setConcentrationContainers(
             [
@@ -70,20 +81,11 @@ export const HPCConc = (props: {
                     name: "data",
                     setCourses: setDataCourses,
                 },
-                {
-                    courses: learningCourses,
-                    name: "machine learning",
-                    setCourses: setLearningCourses,
-                },
-                {
-                    courses: dataTrackCourses,
-                    name: "data track",
-                    setCourses: setDataTrackCourses,
-                },
+                { courses: learningCourses, name: "machine learning", setCourses: setLearningCourses },
+                { courses: dataTrackCourses, name: "data track", setCourses: setDataTrackCourses },
             ],
         );
-    }, [coreCourses, capstoneCourses, generalCourses, writingCourses, labCourses, statCourses, electiveCourses, mathCourses, dataCourses, learningCourses, dataTrackCourses, props]);
-
+    }, []);
 
     return (
     <div>

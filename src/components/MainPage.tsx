@@ -41,7 +41,11 @@ export const MainPage = (): JSX.Element => {
     */
 
     const onDragEnd = (result: DropResult) => {
-        onDragEndLogic(result, concentrationContainers, setConcentrationContainers, semesterCourses, setSemesterCourses); // onDragEndLogic(result, concentrationContainers, setConcentrationContainers, semesterCourses, setSemesterCourses, displayToast);
+        onDragEndLogic(result,
+            concentrationContainers,
+            setConcentrationContainers,
+            semesterCourses,
+            setSemesterCourses); // onDragEndLogic(result, concentrationContainers, setConcentrationContainers, semesterCourses, setSemesterCourses, displayToast);
     };
 
     return (

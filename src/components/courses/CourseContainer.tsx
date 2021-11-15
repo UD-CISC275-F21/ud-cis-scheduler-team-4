@@ -5,7 +5,7 @@ import { Droppable } from "react-beautiful-dnd";
 import React from "react";
 import { Course as CourseType } from "../../interfaces/course";
 
-export const CourseContainer = (props: { courses: CourseType[]; name: string}): JSX.Element =>
+export const CourseContainer = (props: { courses: CourseType[]; name: string }): JSX.Element =>
 
 
 

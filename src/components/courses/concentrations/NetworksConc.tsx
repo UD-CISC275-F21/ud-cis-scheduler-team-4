@@ -6,18 +6,27 @@ import React, { useState, useEffect } from "react";
 import { Course as CourseType } from "../../../interfaces/course";
 
 export const NetworksConc = (props:
-        {StringsToCourses: (stringCourses: string[]) => CourseType[];
+        { StringsToCourses: (stringCourses: string[]) => CourseType[];
         setConcentrationContainers: React.Dispatch<React.SetStateAction<ConcentrationContainerType[]>>;
     }): JSX.Element => {
-    const [coreCourses, setCoreCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[5].core));
-    const [capstoneCourses, setCapstoneCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[5].capstone));
-    const [generalCourses, setGeneralCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[5].conc.general));
-    const [writingCourses, setWritingCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[5].writing));
-    const [statCourses, setStatCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[5].conc.stats));
-    const [labCourses, setLabCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[5].lab));
-    const [secCourses, setSecCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[5].conc.cybersecurity));
-    const [systemsCourses, setSystemsCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[5].conc.systems));
-    const [electiveCourses, setElectiveCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[5].conc.elective));
+    const [coreCourses,
+        setCoreCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[5].core));
+    const [capstoneCourses,
+        setCapstoneCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[5].capstone));
+    const [generalCourses,
+        setGeneralCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[5].conc.general));
+    const [writingCourses,
+        setWritingCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[5].writing));
+    const [statCourses,
+        setStatCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[5].conc.stats));
+    const [labCourses,
+        setLabCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[5].lab));
+    const [secCourses,
+        setSecCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[5].conc.cybersecurity));
+    const [systemsCourses,
+        setSystemsCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[5].conc.systems));
+    const [electiveCourses,
+        setElectiveCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[5].conc.elective));
 
     useEffect(() => {
         props.setConcentrationContainers(
@@ -73,7 +82,7 @@ export const NetworksConc = (props:
             ],
 
         );
-    }, [capstoneCourses, coreCourses, electiveCourses, generalCourses, labCourses, props, secCourses, statCourses, systemsCourses, writingCourses]);
+    }, []);
     return (
         <div>
             <h2>Networks and Systems</h2>
