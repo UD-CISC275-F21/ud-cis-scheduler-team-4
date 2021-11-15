@@ -13,6 +13,7 @@ import { AddSemesterButton } from "./semesters/AddSemesterButton";
 import { ConcentrationContainerType } from "../interfaces/concentrationcontainer";
 import { onDragEndLogic } from "./util/DropLogic";
 import { ExportPlan } from "./util/ExportPlan";
+import { HowToDisplay } from "./util/howto/howtodisplay";
 
 export const MainPage = (): JSX.Element => {
     const [concentration, setConcentration] = useState<Concentration>(CONCENTRATIONS[0] as Concentration);
@@ -28,7 +29,7 @@ export const MainPage = (): JSX.Element => {
         setDisplay(true);
         setTimeout(() => {
             setDisplay(false);
-        }, 5000);
+        }, 1);
     }, []);
 
     /*
@@ -82,9 +83,14 @@ export const MainPage = (): JSX.Element => {
                                             UD CIS Student Guidance
                                         </NavDropdown.Item>
                                     </NavDropdown>
-                                    <DropdownMenu semesterCourses={semesterCourses} setConcentration={setConcentration} setSemesterCourses={setSemesterCourses} />
+                                    <DropdownMenu
+                                        semesterCourses={semesterCourses}
+                                        setConcentration={setConcentration}
+                                        setSemesterCourses={setSemesterCourses}
+                                    />
                                     <AddSemesterButton semesters={semesters} setSemesters={setSemesters} />
-                                    <ExportPlan semesterCourses={semesterCourses}></ExportPlan>
+                                    <ExportPlan semesterCourses={semesterCourses} />
+                                    <HowToDisplay />
                                 </Nav>
                             </Navbar.Collapse>
                         </Container>
@@ -93,14 +99,21 @@ export const MainPage = (): JSX.Element => {
                 <Row>
                     <Col>
                         <br />
-                        <DisplayCourseList concentration={concentration} setConcentrationContainers={setConcentrationContainers} />
+                        <DisplayCourseList
+                            concentration={concentration}
+                            setConcentrationContainers={setConcentrationContainers}
+                        />
                     </Col>
                     <Col>
                         <br />
                         <br />
                         <br />
                         <br />
-                        <SemesterTable semesters={semesters} semestersCourses={semesterCourses} setSemesterCourses={setSemesterCourses} />
+                        <SemesterTable
+                            semesters={semesters}
+                            semestersCourses={semesterCourses}
+                            setSemesterCourses={setSemesterCourses}
+                        />
                     </Col>
                 </Row>
             </Container>

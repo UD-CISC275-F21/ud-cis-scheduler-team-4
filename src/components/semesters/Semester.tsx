@@ -149,7 +149,7 @@ export const Semester = (props: { ind: number;
                                             <td>
                                                 <ListGroup>
                                                     {
-                                                        courses.map((elem: CourseType, index: number) =>     
+                                                        courses.map((elem: CourseType, index: number) =>
                                                             <ListGroup.Item key={elem.name}>
                                                                 <Row>
                                                                     <Col>
@@ -170,20 +170,24 @@ export const Semester = (props: { ind: number;
                                                                         {display &&
                                                                         <EditCourse
                                                                             course={elem} display={display}
-                                                                            semesterCourses={props.semesterCourses} semesterNumber={props.ind + 1}
-                                                                            setDisplay={setDisplay} setSemesterCourses={props.setSemesterCourses}
+                                                                            semesterCourses={props.semesterCourses}
+                                                                            semesterNumber={props.ind + 1}
+                                                                            setDisplay={setDisplay}
+                                                                            setSemesterCourses={
+                                                                                props.setSemesterCourses
+                                                                            }
                                                                         />
                                                                         }
                                                                     </Col>
                                                                 </Row>
-                                                            </ListGroup.Item>
+                                                            </ListGroup.Item>,
                                                         )
                                                     }
                                                 </ListGroup>
                                             </td>
                                         </tr>
                                     </tbody>
-                                </Table>   
+                                </Table>
                             }
                         </Droppable>
                     </Col>

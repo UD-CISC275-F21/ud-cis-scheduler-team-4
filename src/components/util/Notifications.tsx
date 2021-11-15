@@ -2,7 +2,6 @@ import { Modal, Toast } from "react-bootstrap";
 import React from "react";
 
 export const WelcomeToast = (props: { display: boolean }): JSX.Element =>
-    
     <Modal show={props.display}>
         <Modal.Header>
             <Modal.Title>
@@ -20,7 +19,6 @@ export const WelcomeToast = (props: { display: boolean }): JSX.Element =>
 
 
 export const PreReqSameSemesterToast = (props: { errMsg: string; display: boolean }): JSX.Element =>
-    
     <Toast bg="danger" show={props.display} >
         <Toast.Header>
             <strong className="me-auto">Invalid Course Selected</strong>
