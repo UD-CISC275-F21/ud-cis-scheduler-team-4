@@ -826,8 +826,8 @@
     {
 
         "name": "CHEM104",
-        "title":"",
-        "description":"",
+        "title":"General Chemistry",
+        "description":"Continuation and application of CHEM 103 with additional emphasis on chemical spontaneity, equilibrium, rates of reactions, electrochemistry and organic chemistry. ",
         "section": 10,
         "prereqs": [],
         "coreqs": [],
@@ -839,8 +839,8 @@
     {
 
         "name": "CHEM213",
-        "title":"",
-        "description":"",
+        "title":"Elementary Organic Chemistry",
+        "description":"A survey of the fundamentals of organic chemistry. Topics include molecular structure, organic nomenclature, functional groups, isomerism and stereoisomerism, reaction mechanisms, and organic synthesis. Basic principles will be illustrated with examples of biological significance.",
         "section": 10,
         "prereqs": [],
         "coreqs": [],
@@ -852,8 +852,8 @@
     {
 
         "name": "CHEM215",
-        "title":"",
-        "description":"",
+        "title":"Elementary Organic Chemistry Laboratory",
+        "description":"A survey of elementary laboratory techniques that are useful to organic chemists. Separation and purification techniques and examples of typical organic reactions will be included.",
         "section": 10,
         "prereqs": [],
         "coreqs": [],
@@ -865,8 +865,8 @@
     {
 
         "name": "CHEM321",
-        "title":"",
-        "description":"",
+        "title":"Organic Chemistry 1",
+        "description":"First half of two-semester survey of structure, synthesis, and reactions of organic compounds.",
         "section": 10,
         "prereqs": [],
         "coreqs": [],
@@ -878,8 +878,8 @@
     {
 
         "name": "CHEM325",
-        "title":"",
-        "description":"",
+        "title":"Organic Chemistry Laboratory 1",
+        "description":"Laboratory work that introduces the basic laboratory techniques of organic chemistry.",
         "section": 10,
         "prereqs": [],
         "coreqs": [],
@@ -891,8 +891,8 @@
     {
 
         "name": "CPEG472",
-        "title":"",
-        "description":"",
+        "title":"Applied Cryptography",
+        "description":"This cybersecurity course explores modern Cryptography covering algorithms and cryptosystems, cryptanalysis, and best practices for application and implementation of crypto in software systems.",
         "section": 10,
         "prereqs": [],
         "coreqs": [],
@@ -904,8 +904,8 @@
     {
 
         "name": "CPEG473",
-        "title":"",
-        "description":"",
+        "title":"Cloud Computing and Security",
+        "description":"This cybersecurity course introduces the virtualization and cloud computing technologies used in most modern online services. The unique and conventional security issues related to protecting these types of systems are addressed and reinforced with hands-on exercises run in a virtual machine environment.",
         "section": 10,
         "prereqs": [],
         "coreqs": [],
