@@ -170,8 +170,12 @@ export const Semester = (props: { ind: number;
                                                                         {display &&
                                                                         <EditCourse
                                                                             course={elem} display={display}
-                                                                            semesterCourses={props.semesterCourses} semesterNumber={props.ind + 1}
-                                                                            setDisplay={setDisplay} setSemesterCourses={props.setSemesterCourses}
+                                                                            semesterCourses={props.semesterCourses}
+                                                                            semesterNumber={props.ind + 1}
+                                                                            setDisplay={setDisplay}
+                                                                            setSemesterCourses={
+                                                                                props.setSemesterCourses
+                                                                            }
                                                                         />
                                                                         }
                                                                     </Col>

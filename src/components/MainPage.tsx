@@ -82,7 +82,11 @@ export const MainPage = (): JSX.Element => {
                                             UD CIS Student Guidance
                                         </NavDropdown.Item>
                                     </NavDropdown>
-                                    <DropdownMenu semesterCourses={semesterCourses} setConcentration={setConcentration} setSemesterCourses={setSemesterCourses} />
+                                    <DropdownMenu
+                                        semesterCourses={semesterCourses}
+                                        setConcentration={setConcentration}
+                                        setSemesterCourses={setSemesterCourses}
+                                    />
                                     <AddSemesterButton semesters={semesters} setSemesters={setSemesters} />
                                     <ExportPlan semesterCourses={semesterCourses} />
                                 </Nav>
@@ -93,14 +97,21 @@ export const MainPage = (): JSX.Element => {
                 <Row>
                     <Col>
                         <br />
-                        <DisplayCourseList concentration={concentration} setConcentrationContainers={setConcentrationContainers} />
+                        <DisplayCourseList
+                            concentration={concentration}
+                            setConcentrationContainers={setConcentrationContainers}
+                        />
                     </Col>
                     <Col>
                         <br />
                         <br />
                         <br />
                         <br />
-                        <SemesterTable semesters={semesters} semestersCourses={semesterCourses} setSemesterCourses={setSemesterCourses} />
+                        <SemesterTable
+                            semesters={semesters}
+                            semestersCourses={semesterCourses}
+                            setSemesterCourses={setSemesterCourses}
+                        />
                     </Col>
                 </Row>
             </Container>
