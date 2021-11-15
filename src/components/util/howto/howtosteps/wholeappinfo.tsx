@@ -1,7 +1,7 @@
 import { Modal, Image } from "react-bootstrap";
 import React from "react";
 
-export const WholeAppInfo = () =>
+export const WholeAppInfo = (): JSX.Element =>
 
     <Modal.Body>
         <Image fluid src={`${process.env.PUBLIC_URL}/howtoimgs/wholeapp.PNG`} />

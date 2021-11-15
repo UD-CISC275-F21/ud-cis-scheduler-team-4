@@ -1,7 +1,7 @@
 import { Modal, Dropdown } from "react-bootstrap";
 import React from "react";
 
-export const HowToNavigation = () =>
+export const HowToNavigation = (): JSX.Element =>
 
     <Modal.Body>
         How to navigate the help menu:

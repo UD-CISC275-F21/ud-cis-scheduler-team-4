@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { HowToDropDown } from "./howtodropdown/howtodropdown";
 import { HandleHowToDisplay } from "./howtodropdown/howtodropdownlogic";
 
-export const HowToDisplay = () => {
+export const HowToDisplay = (): JSX.Element => {
 
     const [show,
         setShow] = useState<boolean>(false);

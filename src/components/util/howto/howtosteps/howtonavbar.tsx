@@ -1,7 +1,7 @@
 import { Modal, Image, Accordion } from "react-bootstrap";
 import React from "react";
 
-export const NavBarInfo = () =>
+export const NavBarInfo = (): JSX.Element =>
 
     <Modal.Body>
         <Image fluid src={`${process.env.PUBLIC_URL}/howtoimgs/navbarguide.gif`} />
