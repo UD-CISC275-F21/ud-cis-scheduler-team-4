@@ -7,14 +7,14 @@ export const AddSemesterButton = (props: {
     }): JSX.Element =>
 
     (
-    <Button
-    onClick={() => {
-        let tmpSemesters = props.semesters;
-        tmpSemesters += 1;
-        props.setSemesters(tmpSemesters);
-    }}
-    variant="primary"
-    >
+        <Button
+            onClick={() => {
+                let tmpSemesters = props.semesters;
+                tmpSemesters += 1;
+                props.setSemesters(tmpSemesters);
+            }}
+            variant="primary"
+        >
         Add Semester
-    </Button>
+        </Button>
     );

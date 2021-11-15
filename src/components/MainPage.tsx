@@ -49,59 +49,59 @@ export const MainPage = (): JSX.Element => {
     };
 
     return (
-            <DragDropContext
-                onDragEnd={onDragEnd}
-            >
-                <Container>
-                    <br />
-                    <Row>
-                        <Col>
-                            <WelcomeToast display={display} />
-                            { /* <PreReqSameSemesterToast display={toastDisplay} errMsg={toastMessage} /> */ }
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Navbar bg="light" data-testid="navbar" expand="lg" >
-                            <Container>
-                                <Navbar.Brand href="#home">UDCIS Course Scheduler</Navbar.Brand>
-                                <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                                <Navbar.Collapse id="basic-navbar-nav">
-                                    <Nav className="me-auto">
-                                        <NavDropdown data-testid="navbardropdown" id="basic-navbar-nav" title="Useful Links" >
-                                            <NavDropdown.Item data-testid="navdropdownitem1" href="https://udapps.nss.udel.edu/CoursesSearch/" >
-                                                Course Search
-                                            </NavDropdown.Item>
-                                            <NavDropdown.Item data-testid="navdropdownitem2" href="https://www.cis.udel.edu/academics/undergraduate-programs/resources/courses/" >
-                                                CISC Undergraduate Courses
-                                            </NavDropdown.Item>
-                                            <NavDropdown.Item data-testid="navdropdownitem3" href="https://webreg.nss.udel.edu/registration/schedule/" >
-                                                Registration Add/Drop
-                                            </NavDropdown.Item>
-                                            <NavDropdown.Item data-testid="navdropdownitem4" href="https://ud-cis-teaching.github.io/student-guidance/" >
-                                                UD CIS Student Guidance
-                                            </NavDropdown.Item>
-                                        </NavDropdown>
-                                        <DropdownMenu semesterCourses={semesterCourses} setConcentration={setConcentration} setSemesterCourses={setSemesterCourses} />
-                                        <AddSemesterButton semesters={semesters} setSemesters={setSemesters} />
-                                    </Nav>
-                                </Navbar.Collapse>
-                            </Container>
-                        </Navbar>
-                    </Row>
-                    <Row>
-                        <Col>
-                            <br />
-                            <DisplayCourseList concentration={concentration} setConcentrationContainers={setConcentrationContainers} />
-                        </Col>
-                        <Col>
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <SemesterTable semesters={semesters} semestersCourses={semesterCourses} setSemesterCourses={setSemesterCourses} />
-                        </Col>
-                    </Row>
-                </Container>
-            </DragDropContext>
+        <DragDropContext
+            onDragEnd={onDragEnd}
+        >
+            <Container>
+                <br />
+                <Row>
+                    <Col>
+                        <WelcomeToast display={display} />
+                        { /* <PreReqSameSemesterToast display={toastDisplay} errMsg={toastMessage} /> */ }
+                    </Col>
+                </Row>
+                <Row>
+                    <Navbar bg="light" data-testid="navbar" expand="lg" >
+                        <Container>
+                            <Navbar.Brand href="#home">UDCIS Course Scheduler</Navbar.Brand>
+                            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                            <Navbar.Collapse id="basic-navbar-nav">
+                                <Nav className="me-auto">
+                                    <NavDropdown data-testid="navbardropdown" id="basic-navbar-nav" title="Useful Links" >
+                                        <NavDropdown.Item data-testid="navdropdownitem1" href="https://udapps.nss.udel.edu/CoursesSearch/" >
+                                            Course Search
+                                        </NavDropdown.Item>
+                                        <NavDropdown.Item data-testid="navdropdownitem2" href="https://www.cis.udel.edu/academics/undergraduate-programs/resources/courses/" >
+                                            CISC Undergraduate Courses
+                                        </NavDropdown.Item>
+                                        <NavDropdown.Item data-testid="navdropdownitem3" href="https://webreg.nss.udel.edu/registration/schedule/" >
+                                            Registration Add/Drop
+                                        </NavDropdown.Item>
+                                        <NavDropdown.Item data-testid="navdropdownitem4" href="https://ud-cis-teaching.github.io/student-guidance/" >
+                                            UD CIS Student Guidance
+                                        </NavDropdown.Item>
+                                    </NavDropdown>
+                                    <DropdownMenu semesterCourses={semesterCourses} setConcentration={setConcentration} setSemesterCourses={setSemesterCourses} />
+                                    <AddSemesterButton semesters={semesters} setSemesters={setSemesters} />
+                                </Nav>
+                            </Navbar.Collapse>
+                        </Container>
+                    </Navbar>
+                </Row>
+                <Row>
+                    <Col>
+                        <br />
+                        <DisplayCourseList concentration={concentration} setConcentrationContainers={setConcentrationContainers} />
+                    </Col>
+                    <Col>
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <SemesterTable semesters={semesters} semestersCourses={semesterCourses} setSemesterCourses={setSemesterCourses} />
+                    </Col>
+                </Row>
+            </Container>
+        </DragDropContext>
     );
 };

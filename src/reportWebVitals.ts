@@ -11,7 +11,7 @@ const reportWebVitals = (onPerfEntry?: ReportHandler): void => {
             getLCP(onPerfEntry);
             getTTFB(onPerfEntry);
         })
-        .catch(err => err as string);
+            .catch(err => err as string);
     }
 };
 

@@ -85,78 +85,78 @@ export const DataScienceConc = (props: {
         );
     }, []);
     return (
-    <div>
-        <h2>Data Science</h2>
+        <div>
+            <h2>Data Science</h2>
 
-        <Accordion defaultActiveKey="8">
+            <Accordion defaultActiveKey="8">
 
-            <Accordion.Item eventKey="0">
-                <Accordion.Header>
-                    CISC Core and Concentration
-                </Accordion.Header>
-                <Accordion.Body>
-                    <CourseContainer courses={coreCourses} name="core" />
-                    <CourseContainer courses={capstoneCourses} name="capstone" />
-                    <CourseContainer courses={generalCourses} name="general" />
-                </Accordion.Body>
-            </Accordion.Item>
+                <Accordion.Item eventKey="0">
+                    <Accordion.Header>
+                        CISC Core and Concentration
+                    </Accordion.Header>
+                    <Accordion.Body>
+                        <CourseContainer courses={coreCourses} name="core" />
+                        <CourseContainer courses={capstoneCourses} name="capstone" />
+                        <CourseContainer courses={generalCourses} name="general" />
+                    </Accordion.Body>
+                </Accordion.Item>
 
-            <Accordion.Item eventKey="1">
-                <Accordion.Header>
-                    Two Lab Courses
-                </Accordion.Header>
-                <Accordion.Body>
-                    <CourseContainer courses={labCourses} name="lab-1" />
-                </Accordion.Body>
-            </Accordion.Item>
+                <Accordion.Item eventKey="1">
+                    <Accordion.Header>
+                        Two Lab Courses
+                    </Accordion.Header>
+                    <Accordion.Body>
+                        <CourseContainer courses={labCourses} name="lab-1" />
+                    </Accordion.Body>
+                </Accordion.Item>
 
-            <Accordion.Item eventKey="2">
-                <Accordion.Header>
-                    One Writing
-                </Accordion.Header>
-                <Accordion.Body>
-                    <CourseContainer courses={writingCourses} name="writing" />
-                </Accordion.Body>
-            </Accordion.Item>
-
-
-            <Accordion.Item eventKey="3">
-                <Accordion.Header>
-                    One Data Course
-                </Accordion.Header>
-                <Accordion.Body>
-                    <CourseContainer courses={dataCourses} name="datascience" />
-                </Accordion.Body>
-            </Accordion.Item>
-
-            <Accordion.Item eventKey="4">
-                <Accordion.Header>
-                    One Advanced Math
-                </Accordion.Header>
-                <Accordion.Body>
-                    <CourseContainer courses={mathCourses} name="math" />
-                </Accordion.Body>
-            </Accordion.Item>
-
-            <Accordion.Item eventKey="5">
-
-                <Accordion.Header>
-                    One Elective
-                </Accordion.Header>
-
-                <Accordion.Body>
-
-                    <CourseContainer courses={electiveCourses} name="electives" />
-
-                </Accordion.Body>
-
-            </Accordion.Item>
+                <Accordion.Item eventKey="2">
+                    <Accordion.Header>
+                        One Writing
+                    </Accordion.Header>
+                    <Accordion.Body>
+                        <CourseContainer courses={writingCourses} name="writing" />
+                    </Accordion.Body>
+                </Accordion.Item>
 
 
+                <Accordion.Item eventKey="3">
+                    <Accordion.Header>
+                        One Data Course
+                    </Accordion.Header>
+                    <Accordion.Body>
+                        <CourseContainer courses={dataCourses} name="datascience" />
+                    </Accordion.Body>
+                </Accordion.Item>
 
-        </Accordion>
+                <Accordion.Item eventKey="4">
+                    <Accordion.Header>
+                        One Advanced Math
+                    </Accordion.Header>
+                    <Accordion.Body>
+                        <CourseContainer courses={mathCourses} name="math" />
+                    </Accordion.Body>
+                </Accordion.Item>
+
+                <Accordion.Item eventKey="5">
+
+                    <Accordion.Header>
+                        One Elective
+                    </Accordion.Header>
+
+                    <Accordion.Body>
+
+                        <CourseContainer courses={electiveCourses} name="electives" />
+
+                    </Accordion.Body>
+
+                </Accordion.Item>
 
 
-    </div>
+
+            </Accordion>
+
+
+        </div>
     );
 };

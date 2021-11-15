@@ -7,11 +7,11 @@ export const concentrationToSemester = (
     spliceInd: number,
     dropInd: number,
     droppingSemester: SemesterType,
-    ) => {
-        console.log("in concentration --> semester");
-        const theCourse: CourseType = concContainer.courses.splice(spliceInd, 1)[0];
-        concContainer.setCourses([...concContainer.courses]); /*  Optional line - may be able to remove  */
-        droppingSemester.courses.splice(dropInd, 0, theCourse);
-        droppingSemester.courseSetter([...droppingSemester.courses]); /* Optional line - may be able to remove */
-        return 1;
+): number => {
+    console.log("in concentration --> semester");
+    const theCourse: CourseType = concContainer.courses.splice(spliceInd, 1)[0];
+    concContainer.setCourses([...concContainer.courses]); /*  Optional line - may be able to remove  */
+    droppingSemester.courses.splice(dropInd, 0, theCourse);
+    droppingSemester.courseSetter([...droppingSemester.courses]); /* Optional line - may be able to remove */
+    return 1;
 };

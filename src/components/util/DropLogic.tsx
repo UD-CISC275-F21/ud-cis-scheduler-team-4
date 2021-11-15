@@ -22,13 +22,13 @@ export const onDragEndLogic = (result: DropResult,
     /*
     If where you are dropping TO is a semester
     */
-   const sourceId = result.source.droppableId;
-   const destinationId = result.destination.droppableId;
-   const sourceIdSemester = sourceId.includes("semester-table");
-   const destIdSemester = destinationId.includes("semester-table");
-   const sourceIndex = result.source.index;
-   const dropIndex = result.destination.index;
-   if (sourceId === destinationId) {
+    const sourceId = result.source.droppableId;
+    const destinationId = result.destination.droppableId;
+    const sourceIdSemester = sourceId.includes("semester-table");
+    const destIdSemester = destinationId.includes("semester-table");
+    const sourceIndex = result.source.index;
+    const dropIndex = result.destination.index;
+    if (sourceId === destinationId) {
         // check if both are semester table, if not then conc container
         if (sourceIdSemester) {
             // semestertable --> semestertable
@@ -45,22 +45,22 @@ export const onDragEndLogic = (result: DropResult,
             const tmpContainer: ConcentrationContainerType[] = [...concentrationContainers];
             let ind1 = tmpContainer.findIndex(elem => elem.name === destinationId);
             ind1 = (sourceId === destinationId) ?
-            concentrationToConcentration(result,
-                concentrationContainers,
-                concentrationContainers.splice(ind1, 1)[0],
-                ind1, sourceIndex, dropIndex, setConcentrationContainers, false) :
-            concentrationToConcentration(result,
-                concentrationContainers,
-                concentrationContainers.splice(ind1, 1)[0],
-                ind1, sourceIndex, dropIndex, setConcentrationContainers, true);
+                concentrationToConcentration(result,
+                    concentrationContainers,
+                    concentrationContainers.splice(ind1, 1)[0],
+                    ind1, sourceIndex, dropIndex, setConcentrationContainers, false) :
+                concentrationToConcentration(result,
+                    concentrationContainers,
+                    concentrationContainers.splice(ind1, 1)[0],
+                    ind1, sourceIndex, dropIndex, setConcentrationContainers, true);
             successPrint(ind1);
         }
     } else if (sourceIdSemester) { // semester --> concentration
-       // dropId != destinationId
-            const semesterNum = parseInt(sourceId.substring(sourceId.lastIndexOf("-") + 1), 10);
-            const ind1 = semesterCourses.findIndex(elem => elem.semesternum === semesterNum);
-            let ind2 = (destIdSemester) ? parseInt(destinationId.substring(destinationId.lastIndexOf("-") + 1), 10) : concentrationContainers.findIndex(elem => elem.name === destinationId);
-            ind2 = (destIdSemester) ?
+    // dropId != destinationId
+        const semesterNum = parseInt(sourceId.substring(sourceId.lastIndexOf("-") + 1), 10);
+        const ind1 = semesterCourses.findIndex(elem => elem.semesternum === semesterNum);
+        let ind2 = (destIdSemester) ? parseInt(destinationId.substring(destinationId.lastIndexOf("-") + 1), 10) : concentrationContainers.findIndex(elem => elem.name === destinationId);
+        ind2 = (destIdSemester) ?
             semesterToSemester(
                 semesterCourses[ind1],
                 semesterCourses[ind2],
@@ -70,20 +70,20 @@ export const onDragEndLogic = (result: DropResult,
                 result.source.index,
                 setConcentrationContainers,
                 semesterCourses, setSemesterCourses, ind1, result.destination.index);
-            successPrint(ind2);
+        successPrint(ind2);
     } else {
-            // concentration --> semester
-            const semesterNum = parseInt(destinationId.substring(destinationId.lastIndexOf("-") + 1), 10);
-            const tmpContainer: ConcentrationContainerType[] = [...concentrationContainers];
-            let ind1 = tmpContainer.findIndex(elem => elem.name === sourceId);
-            const ind2 = semesterCourses.findIndex(elem => elem.semesternum === semesterNum);
-            ind1 = (ind1 > -1) ?
+        // concentration --> semester
+        const semesterNum = parseInt(destinationId.substring(destinationId.lastIndexOf("-") + 1), 10);
+        const tmpContainer: ConcentrationContainerType[] = [...concentrationContainers];
+        let ind1 = tmpContainer.findIndex(elem => elem.name === sourceId);
+        const ind2 = semesterCourses.findIndex(elem => elem.semesternum === semesterNum);
+        ind1 = (ind1 > -1) ?
             concentrationToSemester(
                 concentrationContainers[ind1],
                 result.source.index,
                 result.destination.index,
                 semesterCourses[ind2],
             ) : -1;
-            successPrint(ind1);
+        successPrint(ind1);
     }
 };

@@ -27,51 +27,53 @@ export const DisplayCourseList = (props: {
     }
 
     if (props.concentration === CONCENTRATIONS[0]) {
-        return (<AIConc
+        return (
+            <AIConc
                 StringsToCourses={StringsToCourses}
                 setConcentrationContainers={props.setConcentrationContainers}
-                />
-                );
+            />
+        );
     } else if (props.concentration === CONCENTRATIONS[1]) {
         return (
-                <BioConc
+            <BioConc
                 StringsToCourses={StringsToCourses}
                 setConcentrationContainers={props.setConcentrationContainers}
-                />
-                );
+            />
+        );
     } else if (props.concentration === CONCENTRATIONS[2]) {
         return (
-                <SecurityConc
+            <SecurityConc
                 StringsToCourses={StringsToCourses}
                 setConcentrationContainers={props.setConcentrationContainers}
-                />
-                );
+            />
+        );
     } else if (props.concentration === CONCENTRATIONS[3]) {
         return (
-                <DataScienceConc
+            <DataScienceConc
                 StringsToCourses={StringsToCourses}
                 setConcentrationContainers={props.setConcentrationContainers}
-                />);
+            />
+        );
     } else if (props.concentration === CONCENTRATIONS[4]) {
         return (
-                <HPCConc
+            <HPCConc
                 StringsToCourses={StringsToCourses}
                 setConcentrationContainers={props.setConcentrationContainers}
-                />
-                );
+            />
+        );
     } else if (props.concentration === CONCENTRATIONS[5]) {
         return (
-                <NetworksConc
+            <NetworksConc
                 StringsToCourses={StringsToCourses}
                 setConcentrationContainers={props.setConcentrationContainers}
-                />
-                );
+            />
+        );
     } else if (props.concentration === CONCENTRATIONS[6]) {
         return (
-                <TheoryConc
+            <TheoryConc
                 StringsToCourses={StringsToCourses}
                 setConcentrationContainers={props.setConcentrationContainers}
-                />
-                );
+            />
+        );
     } return <div />;
 };

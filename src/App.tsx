@@ -4,10 +4,9 @@ import { MainPage } from "./components/MainPage";
 import "./App.css";
 
 export const App = (): JSX.Element =>
-    (
+    
     <div className="App">
         <MainPage />
-    </div>
-    );
+    </div>;
 
 export default App;
