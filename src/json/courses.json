@@ -917,8 +917,8 @@
     {
 
         "name": "CPEG475",
-        "title":"",
-        "description":"",
+        "title":"IoT and Embedded Systems Security",
+        "description":"The main emphasis of this course is cybersecurity for embedded systems devices and Internet of Things. The major topics covered include the instruction set and CPUs of embedded devices, the design of secure computing architectures from assembly program design to operating systems. Additional emphasis is given to Internet of Things applications, such as smart homes, embedded microprocessors and automotive systems.",
         "section": 10,
         "prereqs": [],
         "coreqs": [],
@@ -930,8 +930,8 @@
     {
 
         "name": "CPEG476",
-        "title":"",
-        "description":"",
+        "title":"Secure Software Design",
+        "description":"This cybersecurity course introduce the theory and practices used to help make a computer program secure and provide the skills needed to implement programs that are free from vulnerabilities.",
         "section": 10,
         "prereqs": [],
         "coreqs": [],
@@ -943,8 +943,8 @@
     {
 
         "name": "CPEG495",
-        "title":"",
-        "description":"",
+        "title":"Digital Forensics",
+        "description":"Introduction to digital forensics as used to analyze criminal evidence in computer systems and digital media. Forensic tools and techniques for storage and memory analysis of windows/linux, network traffic, documentation are covered and reinforced with hands-on exercises run in a virtual machine environment.",
         "section": 10,
         "prereqs": [],
         "coreqs": [],
@@ -956,10 +956,10 @@
     {
 
         "name": "MATH243",
-        "title":"",
-        "description":"",
+        "title":"Analytic Geometry and Calculus C",
+        "description":"Vectors, operations on vectors, velocity and acceleration, partial derivatives, directional derivatives, optimization of functions of two or more variables, integration over two and three dimensional regions, line integrals, Green’s Theorem, surface integrals, the Divergence theorem. Includes use of computers to perform symbolic, numerical and graphical analysis.",
         "section": 10,
-        "prereqs": [],
+        "prereqs": ["MATH242"],
         "coreqs": [],
         "credits": 3,
         "lab": true
@@ -969,10 +969,10 @@
     {
 
         "name": "MATH302",
-        "title":"",
-        "description":"",
+        "title":"Ordinary Differential Equations",
+        "description":"Solution and applications of initial-value problems for a single or a system of ordinary differential equations. Topics include the solution of first-order equations, linear first-order systems, linear second-order equations, and elementary phase plane analysis of nonlinear systems. Mathematical software will be used to study some of these topics",
         "section": 10,
-        "prereqs": [],
+        "prereqs": ["MATH242", "MATH349"],
         "coreqs": [],
         "credits": 3,
         "lab": true
@@ -982,8 +982,8 @@
 	{
 
 		"name": "CISC471",
-        "title":"",
-        "description":"",
+        "title":"Compiler Design",
+        "description":"Introduction to the design and implementation of compilers, with a focus on lexical analysis, parsing and syntax directed translation.",
 		"section": 10,
 		"prereqs": ["CISC220","CISC260"],
 		"coreqs": [],
@@ -995,10 +995,10 @@
 	{
 
 		"name": "CISC401",
-        "title":"",
-        "description":"",
+        "title":"Elements of the Theory of Computation",
+        "description":"General models of computation, formal languages and automata theory and algorithmic unsolvability.",
 		"section": 10,
-		"prereqs": ["CISC220","CISC260"],
+		"prereqs": [],
 		"coreqs": [],
 		"credits": 3,
 		"lab": false
@@ -1008,10 +1008,10 @@
 	{
 
 		"name": "MATH245",
-        "title":"",
-        "description":"",
+        "title":"An Introduction to Proof",
+        "description":"Basic set operations, relations, equivalence relations, functions, inverse functions, cardinality, order properties of real numbers, least upper bound, greatest lower bound, completeness axiom, topology of reals, complex numbers.",
 		"section": 10,
-		"prereqs": ["CISC220","CISC260"],
+		"prereqs": [],
 		"coreqs": [],
 		"credits": 3,
 		"lab": false
@@ -1021,10 +1021,10 @@
 	{
 
 		"name": "MATH315",
-        "title":"",
-        "description":"",
+        "title":"Discrete Mathematics 2",
+        "description":"Algorithmic graph theory and computational geometry. Topics in graph theory cover shortest path problems, coloring problems, and others. The computational geometry covers Steiner tree, convex hull, design of experiments and selected topics.",
 		"section": 10,
-		"prereqs": ["CISC220","CISC260"],
+		"prereqs": ["MATH210"],
 		"coreqs": [],
 		"credits": 3,
 		"lab": false
@@ -1034,10 +1034,10 @@
 	{
 
 		"name": "MATH451",
-        "title":"",
-        "description":"",
+        "title":"Abstract Algebra 1",
+        "description":"Basic properties of the integers and the rationals, fields of quotients, polynomial rings, root-finding, introduction to groups, rings and fields. A historical perspective on the development of the notion of number and algebraic structure.",
 		"section": 10,
-		"prereqs": ["CISC220","CISC260"],
+		"prereqs": ["MATH349", "MATH245"],
 		"coreqs": [],
 		"credits": 3,
 		"lab": false
@@ -1050,7 +1050,7 @@
         "title":"",
         "description":"",
 		"section": 10,
-		"prereqs": ["CISC220","CISC260"],
+		"prereqs": [],
 		"coreqs": [],
 		"credits": 3,
 		"lab": false
@@ -1060,10 +1060,10 @@
 	{
 
 		"name": "MATH426",
-        "title":"",
-        "description":"",
+        "title":"Computational Mathematics 1",
+        "description":"Floating point numbers; conditioning and stability; LU, Cholesky, and QR factorizations; square and overdetermined linear systems; Newton and quasi-Newton rootfinding methods; piecewise polynomials for interpolation, integration, and finite differences; explicit methods for initial-value problems. Prerequisites: MATH 305, MATH 349, or MATH 351. Students may not receive credit for both MATH 353 and MATH 426.",
 		"section": 10,
-		"prereqs": ["CISC220","CISC260"],
+		"prereqs": [],
 		"coreqs": [],
 		"credits": 3,
 		"lab": false
@@ -1073,10 +1073,10 @@
 	{
 
 		"name": "MATH428",
-        "title":"",
-        "description":"",
+        "title":"Computational Mathematics 2",
+        "description":"Eigenvalue and singular-value decompositions; power and Krylov subspace iterations; global interpolation and quadrature; methods for boundary-value problems and Poisson’s equation; implicit solvers for stiff problems; method of lines for partial differential equations; diffusion and advection problems.",
 		"section": 10,
-		"prereqs": ["CISC220","CISC260"],
+		"prereqs": ["MATH426", "MATH353"],
 		"coreqs": [],
 		"credits": 3,
 		"lab": false
@@ -1086,11 +1086,11 @@
 	{
 
 		"name": "MATH351",
-        "title":"",
-        "description":"",
+        "title":"Engineering Mathematics 1",
+        "description":"Solutions of linear algebraic equations, Gauss elimination, vector spaces, subspaces, linear dependence, linear ordinary differential equations of 2nd order and higher, initial value problems, eigenvalues, coupled linear ordinary differential equations, nonlinear differential equations, with engineering applications.",
 		"section": 10,
-		"prereqs": ["CISC220","CISC260"],
-		"coreqs": [],
+		"prereqs": [],
+		"coreqs": ["MATH243"],
 		"credits": 3,
 		"lab": false
 
@@ -1099,10 +1099,10 @@
 	{
 
 		"name": "MATH450",
-        "title":"",
-        "description":"",
+        "title":"Mathematical Statistics",
+        "description":"Introduction to mathematical aspects of statistics. Topics include exploratory data analysis, parameter estimation, maximum likelihood method, testing of hypothesis, confidence intervals and others. Includes application of a computer software package to perform data analysis.",
 		"section": 10,
-		"prereqs": ["CISC220","CISC260"],
+		"prereqs": ["MATH350"],
 		"coreqs": [],
 		"credits": 3,
 		"lab": false
