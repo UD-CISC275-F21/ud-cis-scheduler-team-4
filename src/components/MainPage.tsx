@@ -84,7 +84,7 @@ export const MainPage = (): JSX.Element => {
                                     </NavDropdown>
                                     <DropdownMenu semesterCourses={semesterCourses} setConcentration={setConcentration} setSemesterCourses={setSemesterCourses} />
                                     <AddSemesterButton semesters={semesters} setSemesters={setSemesters} />
-                                    <ExportPlan semesterCourses={semesterCourses}></ExportPlan>
+                                    <ExportPlan semesterCourses={semesterCourses} />
                                 </Nav>
                             </Navbar.Collapse>
                         </Container>

@@ -6,7 +6,6 @@ export const AddSemesterButton = (props: {
         semesters: number;
     }): JSX.Element =>
 
-    
     <Button
         onClick={() => {
             let tmpSemesters = props.semesters;

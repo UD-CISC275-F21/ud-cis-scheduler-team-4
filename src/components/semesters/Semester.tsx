@@ -149,7 +149,7 @@ export const Semester = (props: { ind: number;
                                             <td>
                                                 <ListGroup>
                                                     {
-                                                        courses.map((elem: CourseType, index: number) =>     
+                                                        courses.map((elem: CourseType, index: number) =>
                                                             <ListGroup.Item key={elem.name}>
                                                                 <Row>
                                                                     <Col>
@@ -176,14 +176,14 @@ export const Semester = (props: { ind: number;
                                                                         }
                                                                     </Col>
                                                                 </Row>
-                                                            </ListGroup.Item>
+                                                            </ListGroup.Item>,
                                                         )
                                                     }
                                                 </ListGroup>
                                             </td>
                                         </tr>
                                     </tbody>
-                                </Table>   
+                                </Table>
                             }
                         </Droppable>
                     </Col>
