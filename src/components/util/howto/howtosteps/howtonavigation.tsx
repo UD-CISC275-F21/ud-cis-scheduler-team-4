@@ -9,7 +9,7 @@ export const HowToNavigation = () =>
             <li>
                 There is a dropdown menu that looks like this:
                 <Dropdown>
-                    <Dropdown.Toggle id="dropdown-basic" variant="success">
+                    <Dropdown.Toggle id="dropdown-basic" variant="outline-success">
                         Help Menu
                     </Dropdown.Toggle>
                 </Dropdown>
