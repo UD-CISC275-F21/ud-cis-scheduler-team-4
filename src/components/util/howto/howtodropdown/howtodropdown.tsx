@@ -28,7 +28,11 @@ export const HowToDropDown = ({ setDisplay }: { setDisplay: React.Dispatch<React
             >
                 Concentration Table
             </Dropdown.Item>
-            <Dropdown.Item>
+            <Dropdown.Item
+                onClick={() => {
+                    setDisplay(4);
+                }}
+            >
                 Semester Table
             </Dropdown.Item>
         </Dropdown.Menu>

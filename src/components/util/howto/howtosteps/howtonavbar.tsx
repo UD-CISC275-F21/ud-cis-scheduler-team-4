@@ -29,8 +29,10 @@ export const NavBarInfo = () =>
                                             Concentrations
                                         </Accordion.Header>
                                         <Accordion.Body>
-                                                The <em>Concentrations</em> menu contains all the different CISC concentrations
-                                                you can select from, and adjusts the courses you can choose from accordingly
+                                                The <em>Concentrations</em> menu contains
+                                                all the different CISC concentrations
+                                                you can select from,
+                                                and adjusts the courses you can choose from accordingly
                                         </Accordion.Body>
                                     </Accordion.Item>
                                     <Accordion.Item eventKey="4">
@@ -38,7 +40,8 @@ export const NavBarInfo = () =>
                                             Add Semester
                                         </Accordion.Header>
                                         <Accordion.Body>
-                                                The button works as when it is clicked, another semester appears beneath the current one
+                                                The button works as when it is clicked,
+                                                another semester appears beneath the current one
                                         </Accordion.Body>
                                     </Accordion.Item>
                                     <Accordion.Item eventKey="5">
@@ -46,7 +49,8 @@ export const NavBarInfo = () =>
                                             Export CSV
                                         </Accordion.Header>
                                         <Accordion.Body>
-                                                The export csv button works as when it is clicked, a CSV file containing all the semester information
+                                                The export csv button works as when it is clicked,
+                                                a CSV file containing all the semester information
                                                 is saved onto your computer.
                                         </Accordion.Body>
                                     </Accordion.Item>
