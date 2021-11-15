@@ -2,101 +2,13 @@ import React from "react";
 import { DropResult } from "react-beautiful-dnd";
 import { SemesterType } from "../../interfaces/semester";
 import { ConcentrationContainerType } from "../../interfaces/concentrationcontainer";
-import { Course as CourseType } from "../../interfaces/course";
-
-export const concentrationToSemester = (
-    concContainer: ConcentrationContainerType,
-    spliceInd: number,
-    dropInd: number,
-    droppingSemester: SemesterType,
-    ) => {
-        console.log("in concentration --> semester");
-        const theCourse: CourseType = concContainer.courses.splice(spliceInd, 1)[0];
-        concContainer.setCourses([...concContainer.courses]); /*  Optional line - may be able to remove  */
-        droppingSemester.courses.splice(dropInd, 0, theCourse);
-        droppingSemester.courseSetter([...droppingSemester.courses]); /* Optional line - may be able to remove */
-        return 1;
-};
-
-export const semesterToConcentration = (
-    concContainers: ConcentrationContainerType[],
-    concentrationInd: number,
-    courseSpliceInd: number,
-    setConcContainers: React.Dispatch<React.SetStateAction<ConcentrationContainerType[]>>,
-    semesterCourses: SemesterType[],
-    setSemesterCourses: React.Dispatch<React.SetStateAction<SemesterType[]>>,
-    semesterInd: number,
-    courseDropInd: number,
-    ) => {
-        console.log("in semester ---> concentration");
-        const theCourse: CourseType = semesterCourses[semesterInd].courses.splice(courseSpliceInd, 1)[0];
-        semesterCourses[semesterInd].courses = [...semesterCourses[semesterInd].courses];/* may be able to delete this line*/
-        semesterCourses[semesterInd].courseSetter([...semesterCourses[semesterInd].courses]);/* may be able to delete this line*/
-        console.log(`The course is : ${theCourse.name}`);
-        setSemesterCourses([...semesterCourses]);
-        concContainers[concentrationInd].courses.splice(courseDropInd, 0, theCourse);
-        concContainers[concentrationInd].courses = [...concContainers[concentrationInd].courses];/* may be able to delete this line */
-        concContainers[concentrationInd].setCourses([...concContainers[concentrationInd].courses]);/* may be able to delete this line */
-        concContainers[concentrationInd].courses.forEach(elem => {
-            console.log(elem.name);
-        });
-        setConcContainers([...concContainers]);
-        return 1;
-
-};
-
-export const concentrationToConcentration = (
-    result: DropResult,
-    concContainers: ConcentrationContainerType[],
-    concContainer: ConcentrationContainerType,
-    spliceInd: number,
-    courseSpliceInd: number,
-    dropInd: number,
-    setConcContainers: React.Dispatch<React.SetStateAction<ConcentrationContainerType[]>>,
-    isDifferent: boolean,
-    ) => {
-        console.log("in concentration ---> concentration");
-        const ind2 = (isDifferent) ?
-        concContainers.findIndex(elem => elem.name === result.destination?.droppableId) : -1;
-        if (ind2 === -1) { /* Case if we are dropping within the same _exact_ container such as core --> core */
-            const tmpConcContainerCourse = concContainer.courses.splice(courseSpliceInd, 1)[0];
-            concContainer.courses.splice(dropInd, 0, tmpConcContainerCourse);
-            concContainer.setCourses([...concContainer.courses]);/* may be able to delete this line */
-            concContainers.splice(spliceInd, 0, concContainer);/* may not have to deal with splicing, and direct reference the index like above with the implementation of semester --> concentration */
-            setConcContainers(concContainers);
-        } else if (ind2 !== -1) { /* Case if we are dropping within the concentration containers, but different containers, such as core --> elective */
-            const diffContainer = concContainers[ind2];
-            const tmpConcContainerCourseDrag = concContainer.courses.splice(courseSpliceInd, 1)[0];
-            concContainer.setCourses([...concContainer.courses]);// update courses we just spliced from
-            diffContainer.courses.splice(dropInd, 0, tmpConcContainerCourseDrag);
-            diffContainer.setCourses([...diffContainer.courses]);
-        }
-        return 1;
-};
-
-export const semesterToSemester = (
-    semester: SemesterType,
-    semester2: SemesterType,
-    spliceInd: number,
-    dropInd: number,
-    diffSemester: boolean,
-    ) => {
-        console.log("in semester ---> semester");
-        if (diffSemester) {
-            const splicedCourse = semester.courses.splice(spliceInd, 1)[0];
-            semester2.courses.splice(dropInd, 0, splicedCourse);
-            semester.courseSetter([...semester.courses]);
-            semester2.courseSetter([...semester2.courses]);
-        } else {
-            const splicedCourse = semester.courses.splice(spliceInd, 1)[0];
-            semester.courses.splice(dropInd, 0, splicedCourse);
-            semester.courseSetter([...semester.courses]);
-        }
-        return 1;
-};
+import { semesterToSemester } from "./DNDLogic/semesterToSemester";
+import { semesterToConcentration } from "./DNDLogic/semesterToConcentration";
+import { concentrationToConcentration } from "./DNDLogic/concentrationToConcentration";
+import { concentrationToSemester } from "./DNDLogic/concentrationToSemester";
 
 export const successPrint = (result: number): void => {
-    console.log(result === 1 ? "Success!" : "Failure");
+    console.log(result >= 1 ? "Success!" : "Failure");
 };
 
 export const onDragEndLogic = (result: DropResult,
