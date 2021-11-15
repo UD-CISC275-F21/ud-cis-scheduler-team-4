@@ -13,7 +13,7 @@ export const concentrationToConcentration = (
     isDifferent: boolean,
 ): number => {
     console.log("in concentration ---> concentration");
-    const ind2 = (isDifferent) ?
+    const ind2 = isDifferent ?
         concContainers.findIndex(elem => elem.name === result.destination?.droppableId) : -1;
     if (ind2 === -1) { /* Case if we are dropping within the same _exact_ container such as core --> core */
         const tmpConcContainerCourse = concContainer.courses.splice(courseSpliceInd, 1)[0];

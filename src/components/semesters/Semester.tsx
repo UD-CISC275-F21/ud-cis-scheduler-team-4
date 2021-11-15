@@ -138,56 +138,52 @@ export const Semester = (props: { ind: number;
                     <Col key={`semester-table-col-${props.ind}`}>
                         <Droppable droppableId={`semester-table-${props.ind + 1}`}>
                             {(prov: DroppableProvided) =>
-                                (
-                                    <Table key={`semester-table-table-${props.ind}`}>
-                                        <thead>
-                                            <tr>
-                                                <td>{`${getSemesterStr(props.ind + 1)}`}</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody {...prov.droppableProps} ref={prov.innerRef}>
-                                            <tr>
-                                                <td>
-                                                    <ListGroup>
-                                                        {
-                                                            courses.map((elem: CourseType, index: number) =>
-                                                                (
-                                                                    <ListGroup.Item key={elem.name}>
-                                                                        <Row>
-                                                                            <Col>
-                                                                                <Course ind={index} name={`${elem.name}-${elem.section}`} />
-                                                                            </Col>
-                                                                            <Col lg="1" xs>
-                                                                                <Button
-                                                                                    onClick={() => {
-                                                                                        courseDeleteFunc(elem);
-                                                                                    }}
-                                                                                    variant="danger"
-                                                                                />
-                                                                                <Button
-                                                                                    onClick={() => {
-                                                                                        setDisplay(!display);
-                                                                                    }} variant="warning"
-                                                                                />
-                                                                                {display &&
-                                                                                <EditCourse
-                                                                                    course={elem} display={display}
-                                                                                    semesterCourses={props.semesterCourses} semesterNumber={props.ind + 1}
-                                                                                    setDisplay={setDisplay} setSemesterCourses={props.setSemesterCourses}
-                                                                                />
-                                                                                }
-                                                                            </Col>
-                                                                        </Row>
-                                                                    </ListGroup.Item>
-                                                                ),
-                                                            )
-                                                        }
-                                                    </ListGroup>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </Table>
-                                )
+                                <Table key={`semester-table-table-${props.ind}`}>
+                                    <thead>
+                                        <tr>
+                                            <td>{`${getSemesterStr(props.ind + 1)}`}</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody {...prov.droppableProps} ref={prov.innerRef}>
+                                        <tr>
+                                            <td>
+                                                <ListGroup>
+                                                    {
+                                                        courses.map((elem: CourseType, index: number) =>     
+                                                            <ListGroup.Item key={elem.name}>
+                                                                <Row>
+                                                                    <Col>
+                                                                        <Course ind={index} name={`${elem.name}-${elem.section}`} />
+                                                                    </Col>
+                                                                    <Col lg="1" xs>
+                                                                        <Button
+                                                                            onClick={() => {
+                                                                                courseDeleteFunc(elem);
+                                                                            }}
+                                                                            variant="danger"
+                                                                        />
+                                                                        <Button
+                                                                            onClick={() => {
+                                                                                setDisplay(!display);
+                                                                            }} variant="warning"
+                                                                        />
+                                                                        {display &&
+                                                                        <EditCourse
+                                                                            course={elem} display={display}
+                                                                            semesterCourses={props.semesterCourses} semesterNumber={props.ind + 1}
+                                                                            setDisplay={setDisplay} setSemesterCourses={props.setSemesterCourses}
+                                                                        />
+                                                                        }
+                                                                    </Col>
+                                                                </Row>
+                                                            </ListGroup.Item>
+                                                        )
+                                                    }
+                                                </ListGroup>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </Table>   
                             }
                         </Droppable>
                     </Col>
