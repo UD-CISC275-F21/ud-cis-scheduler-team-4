@@ -7,14 +7,15 @@ export const HowToDisplay = () => {
 
     const [show,
         setShow] = useState<boolean>(false);
-    const handleClose = () => {
-        setShow(false);
-    };
     const handleShow = () => {
         setShow(true);
     };
     const [currDisplay,
         setCurrDisplay] = useState<number>(0);
+    const handleClose = () => {
+        setCurrDisplay(0);
+        setShow(false);
+    };
 
     return (
 
