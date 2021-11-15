@@ -4,18 +4,22 @@ import { SemesterType } from "../../interfaces/semester";
 import CONCENTRATIONS from "../../json/concentrations.json";
 import React from "react";
 
-export function DropdownMenu(props: { setConcentration: React.Dispatch<React.SetStateAction<Concentration>>, semesterCourses: SemesterType[], setSemesterCourses: React.Dispatch<React.SetStateAction<SemesterType[]>> }): JSX.Element{
-    
+export const DropdownMenu = (props: {
+        setConcentration: React.Dispatch<React.SetStateAction<Concentration>>;
+        semesterCourses: SemesterType[];
+        setSemesterCourses: React.Dispatch<React.SetStateAction<SemesterType[]>>;
+    }): JSX.Element => {
+
     const clickFunc = (ind: number) => {
 
         const tmpSemesterCourses = [...props.semesterCourses];
 
-        for(let i = 0; i < tmpSemesterCourses.length; i++){
+        for (let i = 0; i < tmpSemesterCourses.length; i += 1) {
 
-            const tmpSemester = tmpSemesterCourses.splice(i,1)[0];
+            const tmpSemester = tmpSemesterCourses.splice(i, 1)[0];
             tmpSemester.courses = [];
             tmpSemester.courseSetter([]);
-            tmpSemesterCourses.splice(i,0,tmpSemester);
+            tmpSemesterCourses.splice(i, 0, tmpSemester);
 
         }
         props.setSemesterCourses([...tmpSemesterCourses]);
@@ -24,43 +28,79 @@ export function DropdownMenu(props: { setConcentration: React.Dispatch<React.Set
 
     };
 
-    return <div>
-        <NavDropdown title="Concentrations" id="basic-navbar-nav">
+    return (
+        <div>
+            <NavDropdown id="basic-navbar-nav" title="Concentrations" >
 
-            <NavDropdown.Item as="button" onClick={()=>{
-                clickFunc(0);
-            }}>AI and Robotics</NavDropdown.Item>
-
-
-            <NavDropdown.Item as="button" onClick={()=>{
-                clickFunc(1);
-            }}>Bioinformatics</NavDropdown.Item>
-
-
-            <NavDropdown.Item as="button" onClick={()=>{
-                clickFunc(2);
-            }}>Cybersecurity</NavDropdown.Item>
+                <NavDropdown.Item
+                    as="button"
+                    onClick={() => {
+                        clickFunc(0);
+                    }}
+                >AI and Robotics
+                </NavDropdown.Item>
 
 
-            <NavDropdown.Item as="button" onClick={()=>{
-                clickFunc(3);
-            }}>Data Science</NavDropdown.Item>
+                <NavDropdown.Item
+                    as="button"
+                    onClick={() => {
+                        clickFunc(1);
+                    }}
+                >
+                    Bioinformatics
+                </NavDropdown.Item>
 
 
-            <NavDropdown.Item as="button" onClick={()=>{
-                clickFunc(4);
-            }}>High-Performance Computing</NavDropdown.Item>
+                <NavDropdown.Item
+                    as="button"
+                    onClick={() => {
+                        clickFunc(2);
+                    }}
+                >
+                    Cybersecurity
+                </NavDropdown.Item>
 
 
-            <NavDropdown.Item as="button" onClick={()=>{
-                clickFunc(5);
-            }}>Networks and Systems</NavDropdown.Item>
+                <NavDropdown.Item
+                    as="button"
+                    onClick={() => {
+                        clickFunc(3);
+                    }}
+                >
+                    Data Science
+                </NavDropdown.Item>
 
 
-            <NavDropdown.Item as="button" onClick={()=>{
-                clickFunc(6);
-            }}>Theory</NavDropdown.Item>
+                <NavDropdown.Item
+                    as="button"
+                    onClick={() => {
+                        clickFunc(4);
+                    }}
+                >
+                    High-Performance Computing
+                </NavDropdown.Item>
 
-        </NavDropdown>
-    </div>;
-}
+
+                <NavDropdown.Item
+                    as="button"
+                    onClick={() => {
+                        clickFunc(5);
+                    }}
+                >
+                    Networks and Systems
+                </NavDropdown.Item>
+
+
+                <NavDropdown.Item
+                    as="button"
+                    onClick={() => {
+                        clickFunc(6);
+                    }}
+                >
+                    Theory
+                </NavDropdown.Item>
+
+            </NavDropdown>
+        </div>
+    );
+};
