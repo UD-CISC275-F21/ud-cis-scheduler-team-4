@@ -193,8 +193,8 @@
 	{
 
 		"name": "CISC367",
-        "title":"",
-        "description":"",
+        "title":"Seminar",
+        "description":"N/A",
 		"section": 10,
 		"prereqs": ["CISC220"],
 		"coreqs": [],
@@ -272,8 +272,8 @@
 	{
 
 		"name": "CISC449",
-        "title":"",
-        "description":"",
+        "title":"Topics in Computer Applications",
+        "description":"Contents will vary to coincide with the interests of students and current faculty.",
 		"section": "10",
 		"prereqs": [],
 		"coreqs": [],
@@ -285,8 +285,8 @@
 	{
 
 		"name": "CISC450",
-        "title":"",
-        "description":"",
+        "title":"Computer Networks 1",
+        "description":"Foundation principles, architectures and techniques employed in computer and communication networks. Focuses on mechanisms used in TCP/IP protocol suite. Topics include connection management, end-to-end reliable data transfer, sliding window protocols, quality of service, flow control, congestion control, routing, LANs, framing, error control, analog versus digital transmission, packet versus circuit switching, multiplexing.",
 		"section": "10",
 		"prereqs": ["CISC260"],
 		"coreqs": [],
@@ -298,8 +298,8 @@
 	{
 
 		"name": "CISC472",
-        "title":"",
-        "description":"",
+        "title":"Web Applications Security ",
+        "description":"This seminar-style cybersecurity course covers one specific discipline of information security known as application security. This discipline (APPSEC) refers to the development of software that can continue to function correctly even under constant scrutiny and attack by determined adversaries.",
 		"section": "10",
 		"prereqs": [],
 		"coreqs": [],
@@ -311,8 +311,8 @@
 	{
 
 		"name": "CISC474",
-        "title":"",
-        "description":"",
+        "title":"Advanced Web Technologies",
+        "description":"Programming and architecture of web servers and the technologies for implementing high performance, sophisticated web sites for applications like e-commerce. Students learn how to install and set-up a web server, how to write and install programs for a web server, and how to design and implement multi-tier client/server applications with database backends.",
 		"section": 10,
 		"prereqs": ["CISC275"],
 		"coreqs": [],
@@ -324,8 +324,8 @@
 	{
 
 		"name": "CISC475",
-        "title":"",
-        "description":"",
+        "title":"Advanced Software Engineering ",
+        "description":"Understand and apply a complete modern software engineering process. Topics include requirements analysis, specification, design, implementation, verification, and project management. Real-life team projects cover all aspects of the software development lifecycle, from the requirements to acceptance testing.",
 		"section": 10,
 		"prereqs": ["CISC275"],
 		"coreqs": [],
@@ -337,8 +337,8 @@
 	{
 
 		"name": "CISC481",
-        "title":"",
-        "description":"",
+        "title":"Artificial Intelligence ",
+        "description":"Programming techniques for problems not amenable to algorithmic solutions. Problem formulation, search strategies, state spaces, applications of logic, knowledge representation, planning and application areas.",
 		"section": 10,
 		"prereqs": ["CISC220","CISC304"],
 		"coreqs": [],
@@ -350,8 +350,8 @@
 	{
 
 		"name": "CISC482",
-        "title":"",
-        "description":"",
+        "title":"Introduction to Human-Computer Interaction",
+        "description":"Research and theoretical methods for the study, design, implementation, and evaluation of effective user-interactive systems, including requirements for gathering, survey design, and rapid prototyping. Hands-on group projects supplement theoretical knowledge.",
 		"section": 10,
 		"prereqs": ["CISC275"],
 		"coreqs": [],
@@ -363,8 +363,8 @@
 	{
 
 		"name": "CISC483",
-        "title":"",
-        "description":"",
+        "title":"Introduction to Data Mining",
+        "description":"Concepts, techniques, and algorithms for mining large data sets to discover structural patterns that can be used to make subsequent predictions. Emphasis on practical approaches and empirical evaluation. Use of a workbench of data mining tools, such as the Weka toolkit.",
 		"section": 10,
 		"prereqs": ["MATH205","CISC220"],
 		"coreqs": [],
@@ -376,8 +376,8 @@
 	{
 
 		"name": "CISC484",
-        "title":"",
-        "description":"",
+        "title":"Introduction to Machine Learning",
+        "description":"Development of methods to learn to solve a task using examples. Explore different machine learning algorithms/techniques and discuss their strengths and weaknesses and situations they are or are not suited for.",
 		"section": 10,
 		"prereqs": ["MATH205","CISC220"],
 		"coreqs": [],
@@ -389,8 +389,8 @@
 	{
 
 		"name": "CISC498",
-        "title":"",
-        "description":"",
+        "title":"Topics: Artificial Intelligence ",
+        "description":"Contents vary to coincide with the interests of students and current faculty.",
 		"section": 12,
 		"prereqs": ["CISC275","CISC320"],
 		"coreqs": [],
@@ -505,8 +505,8 @@
 	},
     {
         "name": "MATH010",
-        "title":"",
-        "description":"",
+        "title":"Intermediate Algebra",
+        "description":"This course prepares students with the skills necessary for pre-calculus and college mathematics and statistics. Topics include solving equations (linear, rational, and quadratic) and inequalities, linear functions, systems of equations, and operations with polynomial, rational, and radical expressions.",
         "section": 10,
         "prereqs": [],
         "coreqs": [],
@@ -515,8 +515,8 @@
     },
     {
         "name": "MATH115",
-        "title":"",
-        "description":"",
+        "title":"Pre-Calculus",
+        "description":"The various classes of functions and their graphs are explored. Functionclasses include linear, quadratic, polynomial, rational, exponential,logarithmic and trigonometric. Skills and concepts needed for calculus (MATH221) are emphasized.",
         "section": 10,
         "prereqs": ["MATH010"],
         "coreqs": [],
@@ -526,8 +526,8 @@
     {
 
         "name": "MATH117",
-        "title":"",
-        "description":"",
+        "title":"Pre-Calculus for Scientists and Engineers",
+        "description":"Designed to prepare students for MATH241. All topics included in MATH115 arecovered, as well as additional topics in functions, trigonometry, linearsystems, and nonlinear systems. Other topics may be added at the discretion of the instructor.",
         "section": 10,
         "prereqs": ["MATH010"],
         "coreqs": [],
@@ -539,8 +539,8 @@
     {
 
         "name": "MATH210",
-        "title":"",
-        "description":"",
+        "title":"Discrete Mathematics 1",
+        "description":"Elements of sets and logic. Relations, functions. Integers. Induction and recursion. Principles and techniques of counting. Graphs. Paths and circuits",
         "section": 10,
         "prereqs": [],
          "coreqs": [
@@ -556,8 +556,8 @@
     {
 
         "name": "MATH221",
-        "title":"",
-        "description":"",
+        "title":"Calculus 1",
+        "description":"Topics include functions, graphing functions, limits, derivatives, exponential and logarithmic functions, integration, and techniques of integration. Business applications are emphasized.",
         "section": 11,
         "prereqs": ["MATH115", "MATH117"],
         "coreqs": [],
@@ -567,8 +567,8 @@
     },
     {
         "name": "MATH232",
-        "title":"",
-        "description":"",
+        "title":"Integrated Calculus IB",
+        "description":"Calculus topics of integration in the context of polynomial, rational, exponential, and logarithmic function classes. Trigonometric functions introduced and followed with limits, derivatives, integrals, and applications in the context of trigonometric functions. Differential equations modeling exponential growth and decay (linear and separable ODEs). Second semester of a two-semester course. ",
         "section": 10,
         "prereqs": ["MATH231"],
         "coreqs": [],
@@ -579,8 +579,8 @@
     {
 
         "name": "MATH241",
-        "title":"",
-        "description":"",
+        "title":"Analytic Geometry and Calculus A",
+        "description":"Functions, limits, continuity, derivatives. Polynomial, rational, exponential, hyperbolic, logarithmic, trigonometric and inverse trigonometric functions. Definite and indefinite integrals and the Fundamental Theorem of Calculus. Simple differential equations (separable ODE, linear ODE). ODE models leading to exponential growth and decay.",
         "section": 11,
         "prereqs": ["MATH117"],
         "coreqs": [],
@@ -592,8 +592,8 @@
     {
 
         "name": "MATH242",
-        "title":"",
-        "description":"",
+        "title":"Analytic Geometry and Calculus B",
+        "description":"Brief review of MATH 241; evaluation of limits by L’Hospital’s rule; applications of integration; integration techniques; parametric curves; polar coordinates; infinite sequences and series. Includes use of computers to perform symbolic, numerical and graphical analysis.",
         "section": 10,
         "prereqs": ["MATH232","MATH241"],
         "coreqs": [],
@@ -605,8 +605,8 @@
     {
 
         "name": "ENGL312",
-        "title":"",
-        "description":"",
+        "title":"Written Communications in Business",
+        "description":"Examines the role of written communication in corporate decision making. Students write memos, letters, proposals and reports that simulate on-the-job communication tasks, and are encouraged to use materials from their fields of specialization.",
         "section": 10,
         "prereqs": [],
         "coreqs": [],
@@ -618,8 +618,8 @@
     {
 
         "name": "ENGL410",
-        "title":"",
-        "description":"",
+        "title":"Technical Writing",
+        "description":"Selected problems in technical communications, the preparation of reports and technical editing.",
         "section": 10,
         "prereqs": [],
         "coreqs": [],
@@ -631,10 +631,10 @@
     {
 
         "name": "MATH205",
-        "title":"",
-        "description":"",
+        "title":"Statistical Methods",
+        "description":"Descriptive statistics, graphical displays, sampling, variation, normal distribution, estimation, hypothesis testing, one-way analysis of variance, simple linear regression and goodness of fit. Laboratory covers use of statistical packages on mainframe and microcomputers.",
         "section": 10,
-        "prereqs": [],
+        "prereqs": ["MATH210", "MATH230"],
         "coreqs": [],
         "credits": 3,
         "lab": true
@@ -644,11 +644,11 @@
     {
 
         "name": "MATH350",
-        "title":"",
-        "description":"",
+        "title":"Probability Theory and Simulation Methods",
+        "description":"Introduces the basic theory of discrete and continuous aspects of probability theory. Topics include bivariate distributions, sums of independent random variables, moment generating functions, laws of large numbers and central limit theorem.",
         "section": 10,
         "prereqs": [],
-        "coreqs": [],
+        "coreqs": ["MATH243"],
         "credits": 3,
         "lab": true
 
@@ -657,10 +657,10 @@
     {
 
         "name": "CISC436",
-        "title":"",
-        "description":"",
+        "title":"Computational Biology and Bioinformatics",
+        "description":"Concepts, methodologies, and tools in bioinformatics. Abstraction of biological problems for computational solutions. Genome sequencing and assembly, bio-sequence analysis and comparison and database search, dynamics programming, hidden Markov models, and phylogenetic trees.",
         "section": 10,
-        "prereqs": [],
+        "prereqs": ["CISC220"],
         "coreqs": [],
         "credits": 3,
         "lab": false
@@ -748,8 +748,8 @@
     {
 
         "name": "CISC499",
-        "title":"",
-        "description":"",
+        "title":"Computer Science Senior Design Project 2",
+        "description":"COMP SCI SENIOR DESIGN II",
         "section": 10,
         "prereqs": [],
         "coreqs": [],
@@ -761,10 +761,10 @@
     {
 
         "name": "MATH349",
-        "title":"",
-        "description":"",
+        "title":"Elementary Linear Algebra",
+        "description":"Systems of linear equations, linear combinations of vectors, and matrix algebra. Determinants, eigenvalues and eigenvectors, similarity and diagonalization of square matrices. Vector spaces, linear dependence and independence, basis and dimension, linear transformations. Inner product spaces, orthogonality, orthogonal projections, fundamental subspaces. A software package may be used for the analysis and solution of linear algebra problems.",
         "section": 10,
-        "prereqs": [],
+        "prereqs": ["MATH230", "MATH242"],
         "coreqs": [],
         "credits": 3,
         "lab": false
@@ -774,11 +774,11 @@
     {
 
         "name": "BISC207",
-        "title":"",
-        "description":"",
+        "title":"Introductory Biology I",
+        "description":"Molecular basis of life. Structure and function of cells, including signal transduction pathways. Energy transformations. Classical Mendelian genetics and the flow of information from DNA to RNA to proteins. Laboratory focuses on the testing of hypotheses, data analysis and scientific writing.",
         "section": 10,
         "prereqs": [],
-        "coreqs": [],
+        "coreqs": ["CHEM103", "CHEM133", "CHEM111"],
         "credits": 3,
         "lab": true
 
@@ -787,11 +787,11 @@
     {
 
         "name": "BISC208",
-        "title":"",
-        "description":"",
+        "title":"Introductory Biology 2",
+        "description":"Mechanisms of evolution. Physiology of multicellular plants and animals. Principles of ecology with emphasis on the biology of populations. Laboratory focuses on testing of hypotheses, data analysis and scientific writing. Animal and plant anatomy also studied.",
         "section": 10,
-        "prereqs": [],
-        "coreqs": [],
+        "prereqs": ["BISC207"],
+        "coreqs": ["CHEM104", "CHEM134", "CHEM112"],
         "credits": 3,
         "lab": true
 
@@ -800,10 +800,10 @@
     {
 
         "name": "BISC401",
-        "title":"",
-        "description":"",
+        "title":"Molecular Biology of the Cell",
+        "description":"Introduction to the molecular biology of eucaryotes and procaryotes. Topics include structure and function of proteins and nucleic acids; replication and repair of DNA; biosynthesis of RNA and proteins; membranes, transport, composition and function of the eucaryotic cell, chromosomes, viruses, the immune system and recombinant DNA.",
         "section": 10,
-        "prereqs": [],
+        "prereqs": ["BISC207"],
         "coreqs": [],
         "credits": 3,
         "lab": true
@@ -813,8 +813,8 @@
     {
 
         "name": "CHEM103",
-        "title":"",
-        "description":"",
+        "title":"General Chemistry",
+        "description":"Matter, the changes that matter undergoes, and the laws governing these changes, with greater emphasis on atomic and molecular structure, chemicalbonding, and energy relationships. Properties of gases, liquids, solids and solutions.",
         "section": 10,
         "prereqs": [],
         "coreqs": [],
