@@ -88,20 +88,20 @@ export const Semester = (props: { ind: number;
 
     useEffect(() => {
 
-        console.log("rendering semester");
+        // console.log("rendering semester");
         if (!props.semesterCourses.find(elem => elem.semesternum === props.ind + 1)) {
             // not in list
             const semesters: SemesterType[] = [...props.semesterCourses];
-            semesters.push({ courseSetter: () => {
-                setCourses(courses);
+            semesters.push({ courseSetter: (newCourses: CourseType[]) => {
+                setCourses(newCourses);
             }, courses, semesternum: props.ind + 1 });
             props.setSemesterCourses(semesters);
         }
     }, []);
 
     const getCredits = (courses: CourseType[]) => {
-        console.log("inside getCredits");
-        console.log(courses);
+        // console.log("inside getCredits");
+        // console.log(courses);
         const tmpCourses: CourseType[] = courses;
         let count = 0;
         for (const eachCourse of tmpCourses) {
@@ -112,6 +112,7 @@ export const Semester = (props: { ind: number;
 
     useEffect(() => {
         console.log("----courses are now----");
+        console.log(courses);
         // verify that course you are trying to add is not a prereq of course in current semester
         getCredits(courses);
 
