@@ -27,7 +27,8 @@ export const getSemesterStr = (semesterNum: number): string => {
     }
 };
 
-export const Semester = (props: { ind: number;
+export const Semester = (props: {
+    ind: number;
     semesterCourses: SemesterType[];
     setSemesterCourses: React.Dispatch<React.SetStateAction<SemesterType[]>>;
 }): JSX.Element => {
