@@ -12,6 +12,7 @@ export const Course = (props: { name: string; ind: number }): JSX.Element => {
         <Draggable draggableId={props.name} index={props.ind} key={props.name}>
             {prov =>
                 <ListGroup.Item ref={prov.innerRef} {...prov.draggableProps} {...prov.dragHandleProps}>
+                    {props.name}
                     <button className="course-button" onClick={() => {
                         setDisplay(!display);
                     }}>
