@@ -340,7 +340,7 @@
         "title":"Artificial Intelligence ",
         "description":"Programming techniques for problems not amenable to algorithmic solutions. Problem formulation, search strategies, state spaces, applications of logic, knowledge representation, planning and application areas.",
 		"section": 10,
-		"prereqs": ["CISC220","CISC304"],
+		"prereqs": ["CISC220|CISC181|CISC210|CISC108|CISC106|MATH115|MATH117|MATH241|CISC304"],
 		"coreqs": [],
 		"credits": 3,
 		"lab": false
@@ -366,7 +366,7 @@
         "title":"Introduction to Data Mining",
         "description":"Concepts, techniques, and algorithms for mining large data sets to discover structural patterns that can be used to make subsequent predictions. Emphasis on practical approaches and empirical evaluation. Use of a workbench of data mining tools, such as the Weka toolkit.",
 		"section": 10,
-		"prereqs": ["MATH205","CISC220"],
+		"prereqs": ["MATH205|CISC220|CISC181|CISC210|CISC108|CISC106|MATH115|MATH117|MATH241"],
 		"coreqs": [],
 		"credits": 3,
 		"lab": false
@@ -379,7 +379,7 @@
         "title":"Introduction to Machine Learning",
         "description":"Development of methods to learn to solve a task using examples. Explore different machine learning algorithms/techniques and discuss their strengths and weaknesses and situations they are or are not suited for.",
 		"section": 10,
-		"prereqs": ["MATH205","CISC220"],
+		"prereqs": ["MATH205|CISC220|CISC181|CISC210|CISC108|CISC106|MATH115|MATH117|MATH241"],
 		"coreqs": [],
 		"credits": 3,
 		"lab": false
@@ -559,7 +559,7 @@
         "title":"Calculus 1",
         "description":"Topics include functions, graphing functions, limits, derivatives, exponential and logarithmic functions, integration, and techniques of integration. Business applications are emphasized.",
         "section": 11,
-        "prereqs": ["MATH115", "MATH117"],
+        "prereqs": ["MATH115|MATH117"],
         "coreqs": [],
         "credits": 3,
         "lab": true
@@ -595,7 +595,7 @@
         "title":"Analytic Geometry and Calculus B",
         "description":"Brief review of MATH 241; evaluation of limits by L’Hospital’s rule; applications of integration; integration techniques; parametric curves; polar coordinates; infinite sequences and series. Includes use of computers to perform symbolic, numerical and graphical analysis.",
         "section": 10,
-        "prereqs": ["MATH232","MATH241"],
+        "prereqs": ["MATH232|MATH241"],
         "coreqs": [],
         "credits": 3,
         "lab": true
@@ -608,7 +608,7 @@
         "title":"Written Communications in Business",
         "description":"Examines the role of written communication in corporate decision making. Students write memos, letters, proposals and reports that simulate on-the-job communication tasks, and are encouraged to use materials from their fields of specialization.",
         "section": 10,
-        "prereqs": [],
+        "prereqs": ["ENGL110"],
         "coreqs": [],
         "credits": 3,
         "lab": false
@@ -621,7 +621,7 @@
         "title":"Technical Writing",
         "description":"Selected problems in technical communications, the preparation of reports and technical editing.",
         "section": 10,
-        "prereqs": [],
+        "prereqs": ["ENGL110"],
         "coreqs": [],
         "credits": 3,
         "lab": false
@@ -634,7 +634,7 @@
         "title":"Statistical Methods",
         "description":"Descriptive statistics, graphical displays, sampling, variation, normal distribution, estimation, hypothesis testing, one-way analysis of variance, simple linear regression and goodness of fit. Laboratory covers use of statistical packages on mainframe and microcomputers.",
         "section": 10,
-        "prereqs": ["MATH210", "MATH230"],
+        "prereqs": ["MATH210|MATH230"],
         "coreqs": [],
         "credits": 3,
         "lab": true
@@ -660,7 +660,7 @@
         "title":"Computational Biology and Bioinformatics",
         "description":"Concepts, methodologies, and tools in bioinformatics. Abstraction of biological problems for computational solutions. Genome sequencing and assembly, bio-sequence analysis and comparison and database search, dynamics programming, hidden Markov models, and phylogenetic trees.",
         "section": 10,
-        "prereqs": ["CISC220"],
+        "prereqs": ["CISC220|CISC181|CISC210|CISC108|CISC106|MATH115|MATH117|MATH241"],
         "coreqs": [],
         "credits": 3,
         "lab": false
@@ -764,7 +764,7 @@
         "title":"Elementary Linear Algebra",
         "description":"Systems of linear equations, linear combinations of vectors, and matrix algebra. Determinants, eigenvalues and eigenvectors, similarity and diagonalization of square matrices. Vector spaces, linear dependence and independence, basis and dimension, linear transformations. Inner product spaces, orthogonality, orthogonal projections, fundamental subspaces. A software package may be used for the analysis and solution of linear algebra problems.",
         "section": 10,
-        "prereqs": ["MATH230", "MATH242"],
+        "prereqs": ["MATH230|MATH242"],
         "coreqs": [],
         "credits": 3,
         "lab": false
@@ -778,7 +778,7 @@
         "description":"Molecular basis of life. Structure and function of cells, including signal transduction pathways. Energy transformations. Classical Mendelian genetics and the flow of information from DNA to RNA to proteins. Laboratory focuses on the testing of hypotheses, data analysis and scientific writing.",
         "section": 10,
         "prereqs": [],
-        "coreqs": ["CHEM103", "CHEM133", "CHEM111"],
+        "coreqs": ["CHEM103|CHEM133|CHEM111"],
         "credits": 3,
         "lab": true
 
@@ -791,7 +791,7 @@
         "description":"Mechanisms of evolution. Physiology of multicellular plants and animals. Principles of ecology with emphasis on the biology of populations. Laboratory focuses on testing of hypotheses, data analysis and scientific writing. Animal and plant anatomy also studied.",
         "section": 10,
         "prereqs": ["BISC207"],
-        "coreqs": ["CHEM104", "CHEM134", "CHEM112"],
+        "coreqs": ["CHEM104|CHEM134|CHEM112"],
         "credits": 3,
         "lab": true
 
@@ -829,8 +829,8 @@
         "title":"General Chemistry",
         "description":"Continuation and application of CHEM 103 with additional emphasis on chemical spontaneity, equilibrium, rates of reactions, electrochemistry and organic chemistry. ",
         "section": 10,
-        "prereqs": [],
-        "coreqs": [],
+        "prereqs": ["CHEM103|CHEM133|CHEM111"],
+        "coreqs": ["CHEM134"],
         "credits": 3,
         "lab": true
 
@@ -842,7 +842,7 @@
         "title":"Elementary Organic Chemistry",
         "description":"A survey of the fundamentals of organic chemistry. Topics include molecular structure, organic nomenclature, functional groups, isomerism and stereoisomerism, reaction mechanisms, and organic synthesis. Basic principles will be illustrated with examples of biological significance.",
         "section": 10,
-        "prereqs": [],
+        "prereqs": ["CHEM102|CHEM104|CHEM134|CHEM105|CHEM112"],
         "coreqs": [],
         "credits": 3,
         "lab": true
@@ -855,8 +855,8 @@
         "title":"Elementary Organic Chemistry Laboratory",
         "description":"A survey of elementary laboratory techniques that are useful to organic chemists. Separation and purification techniques and examples of typical organic reactions will be included.",
         "section": 10,
-        "prereqs": [],
-        "coreqs": [],
+        "prereqs": ["CHEM102|CHEM104|CHEM134|CHEM105|CHEM112"],
+        "coreqs": ["CHEM213"],
         "credits": 3,
         "lab": true
 
@@ -868,8 +868,8 @@
         "title":"Organic Chemistry 1",
         "description":"First half of two-semester survey of structure, synthesis, and reactions of organic compounds.",
         "section": 10,
-        "prereqs": [],
-        "coreqs": [],
+        "prereqs": ["CHEM104|CHEM134|CHEM112"],
+        "coreqs": ["CHEM325"],
         "credits": 3,
         "lab": true
 
@@ -881,8 +881,8 @@
         "title":"Organic Chemistry Laboratory 1",
         "description":"Laboratory work that introduces the basic laboratory techniques of organic chemistry.",
         "section": 10,
-        "prereqs": [],
-        "coreqs": [],
+        "prereqs": ["CHEM104|CHEM134"],
+        "coreqs": ["CHEM321"],
         "credits": 3,
         "lab": true
 
@@ -894,7 +894,7 @@
         "title":"Applied Cryptography",
         "description":"This cybersecurity course explores modern Cryptography covering algorithms and cryptosystems, cryptanalysis, and best practices for application and implementation of crypto in software systems.",
         "section": 10,
-        "prereqs": [],
+        "prereqs": ["CPEG465|CPEG665|MATH549"],
         "coreqs": [],
         "credits": 3,
         "lab": true
@@ -959,7 +959,7 @@
         "title":"Analytic Geometry and Calculus C",
         "description":"Vectors, operations on vectors, velocity and acceleration, partial derivatives, directional derivatives, optimization of functions of two or more variables, integration over two and three dimensional regions, line integrals, Green’s Theorem, surface integrals, the Divergence theorem. Includes use of computers to perform symbolic, numerical and graphical analysis.",
         "section": 10,
-        "prereqs": ["MATH242"],
+        "prereqs": ["MATH242|MATH232|MATH241"],
         "coreqs": [],
         "credits": 3,
         "lab": true
