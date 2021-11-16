@@ -84,6 +84,7 @@ export const onDragEndLogic = (result: DropResult,
                 result.destination.index,
                 semesterCourses[ind2],
             ) : -1;
+        console.log(Object.values(semesterCourses));
         successPrint(ind1);
     }
 };
