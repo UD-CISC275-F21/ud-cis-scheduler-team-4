@@ -153,7 +153,7 @@ export const Semester = (props: { ind: number;
                                                             <ListGroup.Item key={elem.name}>
                                                                 <Row>
                                                                     <Col>
-                                                                        <Course ind={index} name={`${elem.name}-${elem.section}`} />
+                                                                        <Course ind={index} name={`${elem.name}${elem.title.length > 0? "-" + elem.title:""}`} />
                                                                     </Col>
                                                                     <Col lg="1" xs>
                                                                         <Button
