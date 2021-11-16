@@ -26,7 +26,7 @@ export const MainPage = (): JSX.Element => {
     const [concentrationContainers, setConcentrationContainers] = useState<ConcentrationContainerType[]>([]);
     const [toastDisplay, setToastDisplay] = useState<boolean>(false); //Will be implemented once basic drop logic is fully implemented
     const [toastMessage, setToastMessage] = useState<string>(""); //Will be implemented once basic drop logic is fully implemented
-
+    const [deleteTriggered, setDeleteTriggered] = useState<number>(-1);
 
     useEffect(() => {
         setDisplay(true);
@@ -34,6 +34,22 @@ export const MainPage = (): JSX.Element => {
             setDisplay(false);
         }, 5000);
     }, []);
+
+    useEffect(() => {
+
+        console.log("Deleting semester");
+        if (deleteTriggered === 0) {
+            console.log("Inside delete semester if");
+            const theSemester: SemesterType | undefined = semesterCourses.length > 0? semesterCourses[0]: undefined;
+            if (theSemester !== undefined) {
+                // delete semester
+                theSemester.courseSetter([]);
+                setSemesterCourses(semesterCourses.slice(1).map(e => Object.assign({}, e, {semesterNum: e.semesternum-1})));
+            }
+            setDeleteTriggered(-1);
+        }
+
+    }, [semesters]);
 
     /*
     const displayToast = (msg: string) => {
@@ -79,9 +95,9 @@ export const MainPage = (): JSX.Element => {
                                             <NavDropdown.Item href="https://webreg.nss.udel.edu/registration/schedule/" data-testid="navdropdownitem3">Registration Add/Drop</NavDropdown.Item>
                                             <NavDropdown.Item href="https://ud-cis-teaching.github.io/student-guidance/" data-testid="navdropdownitem4">UD CIS Student Guidance</NavDropdown.Item>
                                         </NavDropdown>
-                                        <DropdownMenu setConcentration={setConcentration} semesterCourses={semesterCourses} setSemesterCourses={setSemesterCourses}></DropdownMenu>
-                                        <AddSemesterButton setSemesters={setSemesters} semesters={semesters}/>
-                                        <DeleteSemesterButton setSemesters={setSemesters} semesters={semesters} />
+                                        <DropdownMenu setConcentration={setConcentration} semesterCourses={semesterCourses} setSemesterCourses={setSemesterCourses} />
+                                        <AddSemesterButton setSemesters={setSemesters} semesters={semesters} />
+                                        <DeleteSemesterButton setSemesters={setSemesters} semesters={semesters} setDelete={setDeleteTriggered} />
                                     </Nav>
                                 </Navbar.Collapse>
                             </Container>
