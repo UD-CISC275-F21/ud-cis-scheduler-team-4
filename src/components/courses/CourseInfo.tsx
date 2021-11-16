@@ -1,19 +1,28 @@
 import React from "react";
-import { Modal } from "react-bootstrap";
+import { Badge, Modal } from "react-bootstrap";
 export const CourseInfo = (
     props:
-    {display:boolean;
-    setDisplay:React.Dispatch<React.SetStateAction<boolean>>;
+    {display: boolean;
+    setDisplay: React.Dispatch<React.SetStateAction<boolean>>;
+    name: string;
+    title: string;
+    description: string;
+    credits: number;
 }): JSX.Element => {
-    props.setDisplay(!props.display);
+    const courseName = props.name.split("-")[0];
+    const courseTitle = props.name.split("-")[1];
     return (
-        <Modal onHide={() => props.setDisplay} show={props.display}>
+        <Modal onHide={() => props.setDisplay(false)} show={props.display}>
             <Modal.Header closeButton>
                 <Modal.Title>
-                    Course Description
+                    <h1>{`${courseName}`}</h1>
+                    <h5>{`${courseTitle}`}</h5>
+                    <Badge>Credits: {`${props.credits}`}</Badge>
                 </Modal.Title>
             </Modal.Header>
+            <Modal.Body>
+                {`${props.description}`}
+            </Modal.Body>
         </Modal>
-
     );
 };

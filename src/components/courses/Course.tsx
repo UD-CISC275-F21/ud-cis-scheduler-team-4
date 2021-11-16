@@ -6,7 +6,7 @@ import { ListGroup, Button } from "react-bootstrap";
 import { CourseInfo } from "./CourseInfo";
 
 
-export const Course = (props: { name: string; ind: number }): JSX.Element => {
+export const Course = (props: { name: string; description: string; title: string; credits: number; ind: number }): JSX.Element => {
     const [display, setDisplay] = useState<boolean>(false);
     return (
         <Draggable draggableId={props.name} index={props.ind} key={props.name}>
@@ -20,7 +20,8 @@ export const Course = (props: { name: string; ind: number }): JSX.Element => {
                             <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
                         </svg>
                     </button>
-                    {display && <CourseInfo display={display} setDisplay={setDisplay}></CourseInfo>}
+                    {display && <CourseInfo display={display} setDisplay={setDisplay} name={props.name}
+                        title={props.title} description={props.description} credits={props.credits}></CourseInfo>}
                 </ListGroup.Item>
             }
         </Draggable>
