@@ -12,6 +12,8 @@ export const EditCourse = (props: {
     setSemesterCourses: React.Dispatch<React.SetStateAction<SemesterType[]>>;
 }): JSX.Element => {
     const [nameText, setNameText] = useState(props.course.name);
+    const [titleText, setTitleText] = useState(props.course.title);
+    const [descText, setDescText] = useState(props.course.description);
     const setDisplay = (): boolean => {
         props.setDisplay(false);
         return props.display;
@@ -32,6 +34,8 @@ export const EditCourse = (props: {
         for (const eachcourse of tmpSemester.courses) {
             if (eachcourse.name === props.course.name) {
                 eachcourse.name = nameText;
+                eachcourse.title = titleText;
+                eachcourse.description = descText;
             }
         }
         tmpSemesters.splice(ind1, 0, tmpSemester);
@@ -58,6 +62,37 @@ export const EditCourse = (props: {
                             type="textbox"
                             value={nameText}
                         />
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        Enter Title here:
+                    </Col>
+                    <Col>
+                        <input
+                            onChange={elem => {
+                                setTitleText(elem.target.value);
+                            }}
+                            placeholder="Enter Course Title"
+                            type="textbox"
+                            value={titleText}
+                        />
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        Enter description here:
+                    </Col>
+                    <Col>
+                        <form>
+                            <textarea rows={10} cols={45}
+                                onChange={elem => {
+                                    setDescText(elem.target.value);
+                                }}
+                                placeholder="Enter Course Description"
+                                value={descText}
+                            ></textarea>
+                        </form>
                     </Col>
                 </Row>
             </Modal.Body>

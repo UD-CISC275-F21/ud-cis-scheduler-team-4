@@ -15,7 +15,6 @@ import { ConcentrationContainerType } from "../interfaces/concentrationcontainer
 import { onDragEndLogic } from "./util/DropLogic";
 import { ExportPlan } from "./util/ExportPlan";
 import { HowToDisplay } from "./util/howto/howtodisplay";
-import { PreReqSameSemesterToast } from "./util/Notifications";
 
 
 export const MainPage = (): JSX.Element => {
@@ -60,6 +59,7 @@ export const MainPage = (): JSX.Element => {
         }, 5000);
     };
     */
+    
 
     const onDragEnd = (result: DropResult) => {
         onDragEndLogic(result,
@@ -79,7 +79,7 @@ export const MainPage = (): JSX.Element => {
                     <Row>
                         <Col>
                             {<WelcomeToast display={display}/>}
-                            {<PreReqSameSemesterToast errMsg={toastMessage} display={toastDisplay} />}
+                            { /* <PreReqSameSemesterToast errMsg={toastMessage} display={toastDisplay} /> */}
                         </Col>
                     </Row>
                     <Row>
@@ -95,8 +95,10 @@ export const MainPage = (): JSX.Element => {
                                             <NavDropdown.Item href="https://webreg.nss.udel.edu/registration/schedule/" data-testid="navdropdownitem3">Registration Add/Drop</NavDropdown.Item>
                                             <NavDropdown.Item href="https://ud-cis-teaching.github.io/student-guidance/" data-testid="navdropdownitem4">UD CIS Student Guidance</NavDropdown.Item>
                                         </NavDropdown>
-                                        <DropdownMenu setConcentration={setConcentration} semesterCourses={semesterCourses} setSemesterCourses={setSemesterCourses} />
-                                        <AddSemesterButton setSemesters={setSemesters} semesters={semesters} />
+                                        <DropdownMenu setConcentration={setConcentration} semesterCourses={semesterCourses} setSemesterCourses={setSemesterCourses}></DropdownMenu>
+                                        <AddSemesterButton setSemesters={setSemesters} semesters={semesters}/>
+                                        <ExportPlan semesterCourses={semesterCourses}/>
+                                        <HowToDisplay/>
                                         <DeleteSemesterButton setSemesters={setSemesters} semesters={semesters} setDelete={setDeleteTriggered} />
                                     </Nav>
                                 </Navbar.Collapse>
