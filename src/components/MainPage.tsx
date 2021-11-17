@@ -15,6 +15,7 @@ import { ConcentrationContainerType } from "../interfaces/concentrationcontainer
 import { onDragEndLogic } from "./util/DropLogic";
 import { ExportPlan } from "./util/ExportPlan";
 import { HowToDisplay } from "./util/howto/howtodisplay";
+import { Footer } from "./util/Footer";
 
 
 export const MainPage = (): JSX.Element => {
@@ -23,8 +24,8 @@ export const MainPage = (): JSX.Element => {
     const [display, setDisplay] = useState<boolean>(false);
     const [semesters, setSemesters] = useState<number>(1);
     const [concentrationContainers, setConcentrationContainers] = useState<ConcentrationContainerType[]>([]);
-    const [toastDisplay, setToastDisplay] = useState<boolean>(false); //Will be implemented once basic drop logic is fully implemented
-    const [toastMessage, setToastMessage] = useState<string>(""); //Will be implemented once basic drop logic is fully implemented
+    //const [toastDisplay, setToastDisplay] = useState<boolean>(false); //Will be implemented once basic drop logic is fully implemented
+    //const [toastMessage, setToastMessage] = useState<string>(""); //Will be implemented once basic drop logic is fully implemented
     const [deleteTriggered, setDeleteTriggered] = useState<number>(-1);
 
     useEffect(() => {
@@ -117,6 +118,9 @@ export const MainPage = (): JSX.Element => {
                             <br/>
                             <SemesterTable semesters={semesters} semestersCourses={semesterCourses} setSemesterCourses={setSemesterCourses}/>
                         </Col>
+                    </Row>
+                    <Row>
+                        <Footer/>
                     </Row>
                 </Container>
             </DragDropContext>

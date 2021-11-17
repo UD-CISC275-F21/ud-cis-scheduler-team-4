@@ -1,6 +1,5 @@
 import { Button } from "react-bootstrap";
 import React from "react";
-import { SemesterType } from "../../interfaces/semester";
 
 export const DeleteSemesterButton = (props: {
         setSemesters: React.Dispatch<React.SetStateAction<number>>;
