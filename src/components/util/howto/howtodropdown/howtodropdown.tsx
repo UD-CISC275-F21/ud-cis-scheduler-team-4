@@ -1,7 +1,8 @@
 import { Dropdown } from "react-bootstrap";
 import React from "react";
 
-export const HowToDropDown = ({ setDisplay }: { setDisplay: React.Dispatch<React.SetStateAction<number>> }): JSX.Element =>
+export const HowToDropDown = ({ setDisplay }:
+    { setDisplay: React.Dispatch<React.SetStateAction<number>> }): JSX.Element =>
     <Dropdown>
         <Dropdown.Toggle id="dropdown-basic" variant="success">
             Help Menu
