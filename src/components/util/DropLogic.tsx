@@ -79,6 +79,7 @@ export const onDragEndLogic = (result: DropResult,
         // concentration --> semester
         const semesterNum = parseInt(destinationId.substring(destinationId.lastIndexOf("-") + 1), 10);
         const tmpContainer: ConcentrationContainerType[] = [...concentrationContainers];
+        console.log(Object.values(tmpContainer), "sourceId =", sourceId);
         let ind1 = tmpContainer.findIndex(elem => elem.name === sourceId);
         const ind2 = semesterCourses.findIndex(elem => elem.semesternum === semesterNum);
         if (PreReqChecker(

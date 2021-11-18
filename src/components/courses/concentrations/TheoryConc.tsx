@@ -58,17 +58,17 @@ export const TheoryConc = (props: {
                 },
                 {
                     courses: labCourses,
-                    name: "lab",
+                    name: "lab-1",
                     setCourses: setLabCourses,
                 },
                 {
                     courses: discCourses,
-                    name: "discTrack",
+                    name: "discrete",
                     setCourses: setDiscCourses,
                 },
                 {
                     courses: contCourses,
-                    name: "contTrack",
+                    name: "continuous",
                     setCourses: setContCourses,
                 },
             ],

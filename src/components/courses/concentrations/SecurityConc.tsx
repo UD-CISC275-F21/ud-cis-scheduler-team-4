@@ -58,7 +58,7 @@ export const SecurityConc = (props: {
                 },
                 {
                     courses: labCourses,
-                    name: "lab",
+                    name: "lab-1",
                     setCourses: setLabCourses,
                 },
                 {
@@ -68,7 +68,7 @@ export const SecurityConc = (props: {
                 },
                 {
                     courses: secCourses,
-                    name: "cybersecurity",
+                    name: "security",
                     setCourses: setSecCourses,
                 },
 
@@ -116,7 +116,7 @@ export const SecurityConc = (props: {
                         Statistics Course
                     </Accordion.Header>
                     <Accordion.Body>
-                        <CourseContainer courses={statCourses} name="stats" />
+                        <CourseContainer courses={statCourses} name="stat" />
                     </Accordion.Body>
                 </Accordion.Item>
 

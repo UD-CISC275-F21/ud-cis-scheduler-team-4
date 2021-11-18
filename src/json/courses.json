@@ -604,7 +604,7 @@
         "title":"Written Communications in Business",
         "description":"Examines the role of written communication in corporate decision making. Students write memos, letters, proposals and reports that simulate on-the-job communication tasks, and are encouraged to use materials from their fields of specialization.",
         "section": 10,
-        "prereqs": ["ENGL110"],
+        "prereqs": [],
         "coreqs": [],
         "credits": 3,
         "lab": false
@@ -617,7 +617,7 @@
         "title":"Technical Writing",
         "description":"Selected problems in technical communications, the preparation of reports and technical editing.",
         "section": 10,
-        "prereqs": ["ENGL110"],
+        "prereqs": [],
         "coreqs": [],
         "credits": 3,
         "lab": false

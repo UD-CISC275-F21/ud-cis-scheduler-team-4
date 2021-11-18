@@ -59,7 +59,7 @@ export const BioConc = (props: { StringsToCourses: (
                 },
                 {
                     courses: labCourses,
-                    name: "lab",
+                    name: "lab-1",
                     setCourses: setLabCourses,
                 },
                 {
@@ -69,12 +69,12 @@ export const BioConc = (props: { StringsToCourses: (
                 },
                 {
                     courses: dataCourses,
-                    name: "data science",
+                    name: "data",
                     setCourses: setDataCourses,
                 },
                 {
                     courses: ochemCourses,
-                    name: "ochem",
+                    name: "ochem-1",
                     setCourses: setOchemCourses,
                 },
 
