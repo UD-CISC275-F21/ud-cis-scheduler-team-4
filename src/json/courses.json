@@ -578,7 +578,7 @@
         "title":"Analytic Geometry and Calculus A",
         "description":"Functions, limits, continuity, derivatives. Polynomial, rational, exponential, hyperbolic, logarithmic, trigonometric and inverse trigonometric functions. Definite and indefinite integrals and the Fundamental Theorem of Calculus. Simple differential equations (separable ODE, linear ODE). ODE models leading to exponential growth and decay.",
         "section": 11,
-        "prereqs": ["MATH117"],
+        "prereqs": [],
         "coreqs": [],
         "credits": 3,
         "lab": true
