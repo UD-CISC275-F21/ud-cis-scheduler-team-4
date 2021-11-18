@@ -600,11 +600,24 @@
 
     {
 
+        "name": "ENGL110",
+        "title":"Seminar in Composition",
+        "description":"Introduction to the process of academic writing that centers on the composition of analytical, research-based essays. RESTRICTIONS: Required of all students. Should be taken first year on campus.",
+        "section": 10,
+        "prereqs": [],
+        "coreqs": [],
+        "credits": 3,
+        "lab": false
+
+    },
+
+    {
+
         "name": "ENGL312",
         "title":"Written Communications in Business",
         "description":"Examines the role of written communication in corporate decision making. Students write memos, letters, proposals and reports that simulate on-the-job communication tasks, and are encouraged to use materials from their fields of specialization.",
         "section": 10,
-        "prereqs": [],
+        "prereqs": ["ENGL110"],
         "coreqs": [],
         "credits": 3,
         "lab": false
@@ -617,7 +630,7 @@
         "title":"Technical Writing",
         "description":"Selected problems in technical communications, the preparation of reports and technical editing.",
         "section": 10,
-        "prereqs": [],
+        "prereqs": ["ENGL110"],
         "coreqs": [],
         "credits": 3,
         "lab": false

@@ -4,7 +4,7 @@
         "core":["CISC108","CISC181","CISC210","CISC220","CISC260","CISC275","CISC303","CISC320","MATH210","MATH241","CISC355"],
         "capstone":["CISC498","CISC499"],
         "lab":["Lab Sequence 1", "Lab Sequence 2"],
-        "writing":["ENGL312","ENGL410"], 
+        "writing":["ENGL110","ENGL312","ENGL410"], 
         "conc":{
             "general":["CISC304","CISC442","CISC481","CISC483","CISC484"],
             "stats":["MATH205","MATH350"],
@@ -22,7 +22,7 @@
         "core":["CISC108","CISC181","CISC210","CISC220","CISC260","CISC275","CISC303","CISC320","MATH210","MATH241","CISC355"],
         "capstone":["CISC498","CISC499"],
         "lab":["CHEM103","CHEM104"],
-        "writing":["ENGL312","ENGL410"], 
+        "writing":["ENGL110","ENGL312","ENGL410"], 
         "conc":{
             "general":["BISC207","BISC208","BISC401","CISC372","CISC436","MATH242","MATH349"],
             "stats":["MATH205","MATH350"],
@@ -41,7 +41,7 @@
         "core":["CISC108","CISC181","CISC210","CISC220","CISC260","CISC275","CISC303","CISC320","MATH210","MATH241","CISC355"],
         "capstone":["CISC498","CISC499"],
         "lab":["Lab Sequence 1", "Lab Sequence 2"],
-        "writing":["ENGL312","ENGL410"], 
+        "writing":["ENGL110","ENGL312","ENGL410"], 
         "conc":{
             "general":["CISC361","CISC372","CISC450","CISC464","CISC465","CPEG494"],
             "stats":["MATH205","MATH350"],
@@ -60,7 +60,7 @@
         "core":["CISC108","CISC181","CISC210","CISC220","CISC260","CISC275","CISC303","CISC320","MATH210","MATH241","CISC355"],
         "capstone":["CISC498","CISC499"],
         "lab":["Lab Sequence 1", "Lab Sequence 2"],
-        "writing":["ENGL312","ENGL410"], 
+        "writing":["ENGL110","ENGL312","ENGL410"], 
         "conc":{
             "general":["CISC304","CISC372","CISC437","CISC481","MATH205","MATH242","MATH243","MATH349"],
             "stats":["CISC410","MATH302","MATH350"],
@@ -78,7 +78,7 @@
         "core":["CISC108","CISC181","CISC210","CISC220","CISC260","CISC275","CISC303","CISC320","MATH210","MATH241","CISC355"],
         "capstone":["CISC498","CISC499"],
         "lab":["Lab Sequence 1", "Lab Sequence 2"],
-        "writing":["ENGL312","ENGL410"], 
+        "writing":["ENGL110","ENGL312","ENGL410"], 
         "conc":{
             "general":["CISC360","CISC361","CISC372","CISC450","CISC471","MATH242","MATH243"],
             "stats":["MATH205", "MATH350"],
@@ -97,7 +97,7 @@
         "core":["CISC108","CISC181","CISC210","CISC220","CISC260","CISC275","CISC303","CISC320","MATH210","MATH241","CISC355"],
         "capstone":["CISC498","CISC499"],
         "lab":["Lab Sequence 1", "Lab Sequence 2"],
-        "writing":["ENGL312","ENGL410"], 
+        "writing":["ENGL110","ENGL312","ENGL410"], 
         "conc":{
             "general":["CISC360","CISC361","CISC372","CISC450","CISC471"],
             "stats":["MATH205","MATH350"],
@@ -116,7 +116,7 @@
         "core":["CISC108","CISC181","CISC210","CISC220","CISC260","CISC275","CISC303","CISC320","MATH210","MATH241"],
         "capstone":["CISC498","CISC499"],
         "lab":["Lab Sequence 1", "Lab Sequence 2"],
-        "writing":["ENGL312","ENGL410"], 
+        "writing":["ENGL110","ENGL312","ENGL410"], 
         "conc":{
             "general":["CISC304","CISC401","MATH242","MATH349"],
             "stats":["MATH205","MATH350"],
