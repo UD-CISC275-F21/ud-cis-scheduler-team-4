@@ -1,9 +1,28 @@
 import { Course as CourseType } from "../../../interfaces/course";
 import { SemesterType } from "../../../interfaces/semester";
 
-export const PreReqChecker = ( semesters: SemesterType[], placingIndex: number, courseBeingPlaced: CourseType ) => {
+export const PreReqChecker = ( semesters: SemesterType[], courseBeingPlaced: CourseType ) => {
 
-
+    const semesterCourses: string = semesters.map(e => e.courses.map(e => e.name)).flat(2).join("");
+    const coursePreReqs: string[] = courseBeingPlaced.prereqs;
+    const StringBuffer: string[] = [];
+    for (let eachPreReq of coursePreReqs) {
+        const expr: RegExp = new RegExp(eachPreReq);
+        const result: boolean = expr.test(semesterCourses);
+        if (!result){
+            // found an error
+            StringBuffer.push(`PreReq(s): ${eachPreReq.indexOf("|") != -1 ?
+            eachPreReq.split("|").join(" or ") + " are " :
+            eachPreReq + " is "}  required`);
+        }
+    }
+    
+    if (StringBuffer.length > 0) {
+        // errors found
+        // set toast message here
+        return false;
+    }
+    return true;
 
 };
 
