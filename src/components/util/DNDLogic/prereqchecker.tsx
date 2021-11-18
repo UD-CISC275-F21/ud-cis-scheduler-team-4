@@ -5,7 +5,7 @@ export const PreReqChecker = (semesters: SemesterType[],
     placingIndex: number,
     courseBeingPlaced: CourseType,
     setErrMsg: (msg: string) => void,
-) => {
+): boolean => {
     const semesterCourses: string = semesters.slice(0, placingIndex)
         .map(elem => elem.courses.map(eachcourse => eachcourse.name))
         .flat(2)
