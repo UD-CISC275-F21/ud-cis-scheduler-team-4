@@ -57,7 +57,7 @@
         "title": "Intro to CS 2",
         "description": "Principles of computer science illustrated and applied through programming in an object oriented language. Programming projects illustrate computational problems, styles and issues that arise in computer systems development and in all application areas of computation.",
         "section": 10,
-        "prereqs": ["CISC108|CISC106","MATH115|MATH117"],
+        "prereqs": ["CISC108|CISC106"],
         "coreqs": ["MATH241|MATH221"],
         "credits": 3,
         "lab": true

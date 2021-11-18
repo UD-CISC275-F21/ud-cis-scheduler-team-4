@@ -8,21 +8,21 @@ export const PreReqChecker = (semesters: SemesterType[], placingIndex: number, c
         .join("");
     const coursePreReqs: string[] = courseBeingPlaced.prereqs;
     const StringBuffer: string[] = [];
-    console.log("semester courses = ", semesterCourses);
     for (const eachPreReq of coursePreReqs) {
         const expr = new RegExp(eachPreReq);
         const result: boolean = expr.test(semesterCourses);
         if (!result) {
             // found an error
-            StringBuffer.push(`PreReq(s): ${eachPreReq.includes("|") ?
-                `${eachPreReq.split("|").join(" or ")} are ` :
-                `${eachPreReq} is `}  required`);
+            // StringBuffer.push(`PreReq(s): ${eachPreReq.includes("|") ?
+            //    `${eachPreReq.split("|").join(" or ")} are ` :
+            //    `${eachPreReq} is `}  required`);
+            StringBuffer.push(eachPreReq.includes("|") ? eachPreReq.split("|").join(" or ") : `${eachPreReq}, `);
         }
     }
     if (StringBuffer.length > 0) {
         // errors found
         // set toast message here
-        setErrMsg(StringBuffer.join("\n"));
+        setErrMsg(`PreReq(s) required are : ${StringBuffer.join("\n")}`);
         return false;
     }
     return true;
