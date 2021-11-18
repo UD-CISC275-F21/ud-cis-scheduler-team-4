@@ -16,10 +16,11 @@ export const PreReqChecker = (semesters: SemesterType[],
         const expr = new RegExp(eachPreReq);
         const result: boolean = expr.test(semesterCourses);
         if (!result) {
-            StringBuffer.push(eachPreReq.includes("|") ? eachPreReq.split("|").join(" or ") : `${eachPreReq}, `);
+            StringBuffer.push(eachPreReq.includes("|") ? `${eachPreReq.split("|").join(" or ")}, and ` : `${eachPreReq}, and `);
         }
     }
     if (StringBuffer.length > 0) {
+        StringBuffer[StringBuffer.length - 1] = StringBuffer[StringBuffer.length - 1].replace(", and", "");
         setErrMsg(`PreReq(s) required are : ${StringBuffer.join("\n")}`);
         return false;
     }
