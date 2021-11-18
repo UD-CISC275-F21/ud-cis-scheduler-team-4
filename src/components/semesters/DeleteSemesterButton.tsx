@@ -8,7 +8,7 @@ export const DeleteSemesterButton = (props: {
         setDelete: React.Dispatch<React.SetStateAction<number>>;
     }): JSX.Element => 
 
-    <Button variant="primary" onClick={() => {
+    <Button variant="outline-danger" onClick={() => {
         
         let tmpSemesters = props.semesters;
         if (tmpSemesters > 0) {
@@ -17,4 +17,4 @@ export const DeleteSemesterButton = (props: {
         props.setSemesters(tmpSemesters);
         props.setDelete(0);
 
-    }}>Delete Last Semester</Button>;
+    }}>Delete Semester</Button>;

@@ -97,9 +97,9 @@ export const MainPage = (): JSX.Element => {
                                         </NavDropdown>
                                         <DropdownMenu setConcentration={setConcentration} semesterCourses={semesterCourses} setSemesterCourses={setSemesterCourses}></DropdownMenu>
                                         <AddSemesterButton setSemesters={setSemesters} semesters={semesters}/>
+                                        <DeleteSemesterButton setSemesters={setSemesters} semesters={semesters} setDelete={setDeleteTriggered} />
                                         <ExportPlan semesterCourses={semesterCourses}/>
                                         <HowToDisplay/>
-                                        <DeleteSemesterButton setSemesters={setSemesters} semesters={semesters} setDelete={setDeleteTriggered} />
                                     </Nav>
                                 </Navbar.Collapse>
                             </Container>

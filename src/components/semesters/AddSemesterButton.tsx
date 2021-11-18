@@ -6,7 +6,7 @@ export const AddSemesterButton = (props: {
         semesters: number;
     }): JSX.Element =>
 
-    <Button variant="primary" onClick={() => {
+    <Button variant="outline-primary" onClick={() => {
 
         let tmpSemesters = props.semesters;
         ++tmpSemesters;
