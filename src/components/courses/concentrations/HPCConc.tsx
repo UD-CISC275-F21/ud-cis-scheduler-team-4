@@ -58,12 +58,12 @@ export const HPCConc = (props: {
                 },
                 {
                     courses: labCourses,
-                    name: "lab",
+                    name: "lab-1",
                     setCourses: setLabCourses,
                 },
                 {
                     courses: statCourses,
-                    name: "stats",
+                    name: "stat",
                     setCourses: setStatCourses,
                 },
                 {
@@ -78,11 +78,11 @@ export const HPCConc = (props: {
                 },
                 {
                     courses: dataCourses,
-                    name: "data",
+                    name: "dataCourses",
                     setCourses: setDataCourses,
                 },
-                { courses: learningCourses, name: "machine learning", setCourses: setLearningCourses },
-                { courses: dataTrackCourses, name: "data track", setCourses: setDataTrackCourses },
+                { courses: learningCourses, name: "machineLearningCourses", setCourses: setLearningCourses },
+                { courses: dataTrackCourses, name: "dataTrack", setCourses: setDataTrackCourses },
             ],
         );
     }, []);

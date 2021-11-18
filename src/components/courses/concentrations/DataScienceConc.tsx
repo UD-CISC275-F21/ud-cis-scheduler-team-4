@@ -61,7 +61,7 @@ export const DataScienceConc = (props: {
                 },
                 {
                     courses: labCourses,
-                    name: "lab",
+                    name: "lab-1",
                     setCourses: setLabCourses,
                 },
                 {
@@ -71,7 +71,7 @@ export const DataScienceConc = (props: {
                 },
                 {
                     courses: dataCourses,
-                    name: "data science",
+                    name: "datascience",
                     setCourses: setDataCourses,
                 },
                 {
