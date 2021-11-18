@@ -81,7 +81,11 @@ export const onDragEndLogic = (result: DropResult,
         const tmpContainer: ConcentrationContainerType[] = [...concentrationContainers];
         let ind1 = tmpContainer.findIndex(elem => elem.name === sourceId);
         const ind2 = semesterCourses.findIndex(elem => elem.semesternum === semesterNum);
-        if (PreReqChecker(semesterCourses, semesterNum - 1, concentrationContainers[ind1].courses[result.source.index], setErrMsg)) {
+        if (PreReqChecker(
+            semesterCourses,
+            semesterNum - 1,
+            concentrationContainers[ind1].courses[result.source.index],
+            setErrMsg)) {
             ind1 = ind1 > -1 ?
                 concentrationToSemester(
                     concentrationContainers[ind1],

@@ -44,7 +44,7 @@ export const MainPage = (): JSX.Element => {
                 // delete semester
                 theSemester.courseSetter([]);
                 setSemesterCourses(semesterCourses.slice(1).map(elem => {
-                    const newObj = {...elem};
+                    const newObj = { ...elem };
                     newObj.semesternum = elem.semesternum - 1;
                     return newObj;
                 }));
@@ -95,11 +95,19 @@ export const MainPage = (): JSX.Element => {
                                         <NavDropdown.Item data-testid="navdropdownitem3" href="https://webreg.nss.udel.edu/registration/schedule/" >Registration Add/Drop</NavDropdown.Item>
                                         <NavDropdown.Item data-testid="navdropdownitem4" href="https://ud-cis-teaching.github.io/student-guidance/" >UD CIS Student Guidance</NavDropdown.Item>
                                     </NavDropdown>
-                                    <DropdownMenu semesterCourses={semesterCourses} setConcentration={setConcentration} setSemesterCourses={setSemesterCourses} />
+                                    <DropdownMenu
+                                        semesterCourses={semesterCourses}
+                                        setConcentration={setConcentration}
+                                        setSemesterCourses={setSemesterCourses}
+                                    />
                                     <AddSemesterButton semesters={semesters} setSemesters={setSemesters} />
                                     <ExportPlan semesterCourses={semesterCourses} />
                                     <HowToDisplay />
-                                    <DeleteSemesterButton semesters={semesters} setDelete={setDeleteTriggered} setSemesters={setSemesters} />
+                                    <DeleteSemesterButton
+                                        semesters={semesters}
+                                        setDelete={setDeleteTriggered}
+                                        setSemesters={setSemesters}
+                                    />
                                 </Nav>
                             </Navbar.Collapse>
                         </Container>
@@ -108,14 +116,21 @@ export const MainPage = (): JSX.Element => {
                 <Row>
                     <Col>
                         <br />
-                        <DisplayCourseList concentration={concentration} setConcentrationContainers={setConcentrationContainers} />
+                        <DisplayCourseList
+                            concentration={concentration}
+                            setConcentrationContainers={setConcentrationContainers}
+                        />
                     </Col>
                     <Col>
                         <br />
                         <br />
                         <br />
                         <br />
-                        <SemesterTable semesters={semesters} semestersCourses={semesterCourses} setSemesterCourses={setSemesterCourses} />
+                        <SemesterTable
+                            semesters={semesters}
+                            semestersCourses={semesterCourses}
+                            setSemesterCourses={setSemesterCourses}
+                        />
                     </Col>
                 </Row>
                 <Row>
