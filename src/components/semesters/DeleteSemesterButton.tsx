@@ -16,7 +16,7 @@ export const DeleteSemesterButton = (props: {
             props.setSemesters(tmpSemesters);
             props.setDelete(0);
         }}
-        variant="outline-warning"
+        variant="outline-danger"
     >
-        Delete Last Semester
+        Delete Semester
     </Button>;
