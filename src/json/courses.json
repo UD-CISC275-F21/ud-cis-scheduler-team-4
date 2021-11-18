@@ -389,8 +389,8 @@
 	{
 
 		"name": "CISC498",
-        "title":"Topics: Artificial Intelligence ",
-        "description":"Contents vary to coincide with the interests of students and current faculty.",
+        "title":"CS Senior Design Project 1",
+        "description":"First semester of two-semester senior software design course.  Students work in teams to develop solutions to real-world problems for a client.  Application of a modern software engineering process; requirement solicitation, analysis, and specification; prototyping; design; incremental development; testing and verification; client interaction; and presentation. Offered in Fall only.",
 		"section": 12,
 		"prereqs": ["CISC275","CISC320"],
 		"coreqs": [],
@@ -670,8 +670,8 @@
     {
 
         "name": "Restricted Elective 1",
-        "title":"",
-        "description":"",
+        "title":"Restricted Elective",
+        "description":"Replace this information with one of the restricted electives for your concentration, found at https://catalog.udel.edu/preview_entity.php?catoid=29&ent_oid=3077",
         "section": 10,
         "prereqs": [],
         "coreqs": [],
@@ -683,8 +683,8 @@
     {
 
         "name": "Restricted Elective 2",
-        "title":"",
-        "description":"",
+        "title":"Restricted Elective",
+        "description":"Replace this information with one of the restricted electives for your concentration, found at https://catalog.udel.edu/preview_entity.php?catoid=29&ent_oid=3077",
         "section": 10,
         "prereqs": [],
         "coreqs": [],
@@ -696,8 +696,8 @@
     {
 
         "name": "Restricted Elective 3",
-        "title":"",
-        "description":"",
+        "title":"Restricted Elective",
+        "description":"Replace this information with one of the restricted electives for your concentration, found at https://catalog.udel.edu/preview_entity.php?catoid=29&ent_oid=3077",
         "section": 10,
         "prereqs": [],
         "coreqs": [],
@@ -709,8 +709,8 @@
     {
 
         "name": "Restricted Elective 4",
-        "title":"",
-        "description":"",
+        "title":"Restricted Elective",
+        "description":"Replace this information with one of the restricted electives for your concentration, found at https://catalog.udel.edu/preview_entity.php?catoid=29&ent_oid=3077",
         "section": 10,
         "prereqs": [],
         "coreqs": [],
@@ -722,8 +722,8 @@
     {
 
         "name": "Lab Sequence 1",
-        "title":"",
-        "description":"",
+        "title":"Lab Sequence",
+        "description":"Replace this and Lab Sequence 2 with one pair of lab courses. Possible labs can be found here by clicking on your concentration: https://catalog.udel.edu/preview_entity.php?catoid=29&ent_oid=3077",
         "section": 10,
         "prereqs": [],
         "coreqs": [],
@@ -735,8 +735,8 @@
     {
 
         "name": "Lab Sequence 2",
-        "title":"",
-        "description":"",
+        "title":"Lab Sequence",
+        "description":"Replace this and Lab Sequence 2 with one pair of lab courses. Possible labs can be found here by clicking on your concentration: https://catalog.udel.edu/preview_entity.php?catoid=29&ent_oid=3077",
         "section": 10,
         "prereqs": [],
         "coreqs": [],
@@ -748,10 +748,10 @@
     {
 
         "name": "CISC499",
-        "title":"Computer Science Senior Design Project 2",
-        "description":"COMP SCI SENIOR DESIGN II",
+        "title":"CS Senior Design Project 2",
+        "description":"Continuation of CISC498",
         "section": 10,
-        "prereqs": [],
+        "prereqs": ["CISC498"],
         "coreqs": [],
         "credits": 3,
         "lab": false
@@ -881,65 +881,11 @@
         "title":"Organic Chemistry Laboratory 1",
         "description":"Laboratory work that introduces the basic laboratory techniques of organic chemistry.",
         "section": 10,
-        "prereqs": ["CHEM104|CHEM134"],
-        "coreqs": ["CHEM321"],
-        "credits": 3,
-        "lab": true
-
-    }, 
-
-    {
-
-        "name": "CPEG472",
-        "title":"Applied Cryptography",
-        "description":"This cybersecurity course explores modern Cryptography covering algorithms and cryptosystems, cryptanalysis, and best practices for application and implementation of crypto in software systems.",
-        "section": 10,
-        "prereqs": ["CPEG465|CPEG665|MATH549"],
+        "prereqs": ["CHEM321"],
         "coreqs": [],
         "credits": 3,
         "lab": true
-
-    }, 
-
-    {
-
-        "name": "CPEG473",
-        "title":"Cloud Computing and Security",
-        "description":"This cybersecurity course introduces the virtualization and cloud computing technologies used in most modern online services. The unique and conventional security issues related to protecting these types of systems are addressed and reinforced with hands-on exercises run in a virtual machine environment.",
-        "section": 10,
-        "prereqs": [],
-        "coreqs": [],
-        "credits": 3,
-        "lab": true
-
-    }, 
-
-    {
-
-        "name": "CPEG475",
-        "title":"IoT and Embedded Systems Security",
-        "description":"The main emphasis of this course is cybersecurity for embedded systems devices and Internet of Things. The major topics covered include the instruction set and CPUs of embedded devices, the design of secure computing architectures from assembly program design to operating systems. Additional emphasis is given to Internet of Things applications, such as smart homes, embedded microprocessors and automotive systems.",
-        "section": 10,
-        "prereqs": [],
-        "coreqs": [],
-        "credits": 3,
-        "lab": true
-
-    }, 
-
-    {
-
-        "name": "CPEG476",
-        "title":"Secure Software Design",
-        "description":"This cybersecurity course introduce the theory and practices used to help make a computer program secure and provide the skills needed to implement programs that are free from vulnerabilities.",
-        "section": 10,
-        "prereqs": [],
-        "coreqs": [],
-        "credits": 3,
-        "lab": true
-
-    }, 
-
+    },
     {
 
         "name": "CPEG495",

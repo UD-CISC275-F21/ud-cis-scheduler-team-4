@@ -1,15 +1,19 @@
 import { Button } from "react-bootstrap";
 import React from "react";
 
-export const AddSemesterButton = (props: {
+export const DeleteSemesterButton = (props: {
         setSemesters: React.Dispatch<React.SetStateAction<number>>;
         semesters: number;
-    }): JSX.Element =>
+        setDelete: React.Dispatch<React.SetStateAction<number>>;
+    }): JSX.Element => 
 
     <Button variant="primary" onClick={() => {
-
+        
         let tmpSemesters = props.semesters;
-        ++tmpSemesters;
+        if (tmpSemesters > 0) {
+            --tmpSemesters;
+        }
         props.setSemesters(tmpSemesters);
+        props.setDelete(0);
 
-    }} >Add Semester</Button>;
+    }}>Delete Last Semester</Button>;
