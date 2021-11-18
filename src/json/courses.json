@@ -45,7 +45,7 @@
         "description": "Computing and principles of programming with an emphasis on systematic program design. Topics include functional programming, data abstraction, procedural abstraction, use of control and state, recursion, testing, and object-oriented programming concepts. Requires no prior programming experience, open to any major, but intended primarily for majors and minors in computer science or mathematics.",
         "section": 10,
         "prereqs": [],
-        "coreqs": ["MATH115", "MATH117"],
+        "coreqs": [],
         "credits": 3,
         "lab": true
 
@@ -57,8 +57,8 @@
         "title": "Intro to CS 2",
         "description": "Principles of computer science illustrated and applied through programming in an object oriented language. Programming projects illustrate computational problems, styles and issues that arise in computer systems development and in all application areas of computation.",
         "section": 10,
-        "prereqs": ["CISC108", "CISC106"],
-        "coreqs": ["MATH241", "MATH221"],
+        "prereqs": ["CISC108|CISC106"],
+        "coreqs": ["MATH241|MATH221"],
         "credits": 3,
         "lab": true
 
@@ -70,8 +70,8 @@
         "title": "Intro to Systems Programming",
         "description": "Principles of computer systems programming for software and hardware platforms to achieve efficient resource usage. Topics include the C programming language, memory management, and awareness of system constraints and interfacing. Projects include programming embedded systems and interactive objects.",
 		"section": 10,
-		"prereqs": ["CISC108", "CISC106"],
-		"coreqs": ["MATH221", "MATH241"],
+		"prereqs": ["CISC108|CISC106"],
+		"coreqs": ["MATH221|MATH241"],
 		"credits": 3,
 		"lab": true
 
@@ -83,8 +83,8 @@
         "title": "Data Structures",
         "description": "Review of data type abstraction, recursion, arrays, stacks, queues, multiple stacks and linked lists. Emphasis on dynamic storage management, garbage collection, trees, graphs, tables, sorting and searching.",
 		"section": 11,
-		"prereqs": ["CISC181"],
-		"coreqs": ["MATH210", "MATH241"],
+		"prereqs": ["CISC210","CISC108|CISC106"],
+		"coreqs": ["MATH210|MATH241"],
 		"credits": 3,
 		"lab": true
 
@@ -95,7 +95,7 @@
         "title": "Machine Org. and Assembly Language",
         "description": "Introduction to the basics of machine organization. Programming tools and techniques at the machine and assembly levels. Assembly language programming and computer arithmetic techniques.",
 		"section": 10,
-		"prereqs": ["CISC181","CISC210"],
+		"prereqs": ["CISC210","CISC108|CISC106","MATH241"],
 		"coreqs": [],
 		"credits": 3,
 		"lab": false
@@ -107,7 +107,7 @@
         "title":"Intro to Software Engineering",
         "description": "Object oriented software design and development through use of the Java programming language. Topics include team programming, design patterns, graphical user interfaces, software engineering tools (eg., integrated development environments, version control, build management, bug tracking, automated testing).",
         "section": 10,
-        "prereqs": ["CISC220","CISC181","CISC210"],
+        "prereqs": ["CISC220","CISC181","CISC210","CISC108|CISC106","MATH241"],
         "coreqs": [],
         "credits": 3,
         "lab": true
@@ -119,7 +119,7 @@
         "title": "Automata Theory",
         "description": "Automata and formal language theory. Background for advanced applications in compilers, computer networks, operating systems, and natural language processing. Finite automata and regular languages. Push down automata and context free grammars. Turing machines.",
 		"section": 10,
-		"prereqs": ["MATH210", "CISC220"],
+		"prereqs": ["MATH210","CISC220","MATH241|MATH221","CISC108|CISC106"],
 		"coreqs": [],
 		"credits": 3,
 		"lab": false
@@ -131,7 +131,7 @@
         "title":"Logic and Programming",
         "description":"Propositional and predicate logic for general reasoning and advanced applicationsin knowledge representation in artificial intelligence and database, program correctness and programming semantics. Models, resolution, logic programming, and natural deduction.",
 		"section": 10,
-		"prereqs": ["MATH210", "CISC220"],
+		"prereqs": ["MATH210","CISC220","MATH241|MATH221","CISC108|CISC106"],
 		"coreqs": [],
 		"credits": 3,
 		"lab": false
@@ -144,7 +144,7 @@
         "title":"Intro to Algorithms",
         "description":"Design and analysis of algorithms: worst/average case analysis, proofs for correctness and performance of algorithms. Algorithmic strategies (divide and conquer, greedy methods, dynamic programming, etc.). Algorithms for searching, forming and traversal of strings, trees and graphs. Categorization of computational problems: classes P and NP. NP completeness.",
 		"section": 10,
-		"prereqs": ["MATH210", "CISC220"],
+		"prereqs": ["MATH210","CISC220","MATH241|MATH221","CISC108|CISC106"],
 		"coreqs": [],
 		"credits": 3,
 		"lab": false
@@ -170,7 +170,7 @@
         "title":"Computer Architecture",
         "description":"Principles and techniques used in the architecture of digital computers. Machine elements and their interrelation. Instruction sets, risc vs cisc, registers, busses and switches.",
 		"section": 10,
-		"prereqs": ["CISC101","CISC103","CISC106","CISC108","CISC220", "CISC260"],
+		"prereqs": ["CISC210","MATH241","CISC220","CISC260","CISC108|CISC106"],
 		"coreqs": [],
 		"credits": 3,
 		"lab": false
@@ -183,7 +183,7 @@
         "title": "Operating Systems",
         "description": "Principles and techniques employed in the development of operating systems and their control programs. Includes management of memory, processors, I/O devices.",
 		"section": 10,
-		"prereqs": ["CISC220","CISC260"],
+		"prereqs": ["CISC210","MATH241","CISC220","CISC260","CISC108|CISC106"],
 		"coreqs": [],
 		"credits": 3,
 		"lab": false
@@ -193,7 +193,7 @@
 	{
 
 		"name": "CISC367",
-        "title":"Seminar",
+        "title":"Seminar: DEVEL ASSIST TECH",
         "description":"N/A",
 		"section": 10,
 		"prereqs": ["CISC220"],
@@ -210,7 +210,7 @@
         "title":"Parallel Programming",
         "description":"Introduction to parallel programming concepts, methodologies, and tools. Programming techniques for programs that contain code segments which will run simultaneously on multiple processors. Topics include: concurrency, program decomposition, data distribution, communication, load balancing, scalability, locality, granularity, debugging, performance evaluation.",
 		"section": 10,
-		"prereqs": ["CISC220","CISC260"],
+		"prereqs": ["CISC210","MATH241","CISC220","CISC260","CISC108|CISC106"],
 		"coreqs": [],
 		"credits": 3,
 		"lab": false
@@ -223,7 +223,7 @@
         "title":"Logic in Programming",
         "description":"Formal introduction to first-order logic with emphasis on its relevance to computer science. Syntax, semantics, models, formal proofs and results on soundness, consistency, completeness, compactness and undecidability. Automated theorem proving also covered.",
 		"section": 10,
-		"prereqs": ["CISC304"],
+		"prereqs": ["CISC304","MATH210","CISC220","MATH241|MATH221","CISC108|CISC106"],
 		"coreqs": [],
 		"credits": 3,
 		"lab": false
@@ -249,7 +249,7 @@
         "title":"Database Systems",
         "description":"Physical and logical organization of databases. Data retrieval languages, relational database languages, security and integrity, concurrency, distributed databases.",
 		"section": 10,
-		"prereqs": ["CISC220"],
+		"prereqs": ["CISC210","CISC108|CISC106","CISC220"],
 		"coreqs": [],
 		"credits": 3,
 		"lab": false
@@ -288,7 +288,7 @@
         "title":"Computer Networks 1",
         "description":"Foundation principles, architectures and techniques employed in computer and communication networks. Focuses on mechanisms used in TCP/IP protocol suite. Topics include connection management, end-to-end reliable data transfer, sliding window protocols, quality of service, flow control, congestion control, routing, LANs, framing, error control, analog versus digital transmission, packet versus circuit switching, multiplexing.",
 		"section": "10",
-		"prereqs": ["CISC260"],
+		"prereqs": ["CISC210","CISC108|CISC106","MATH241","CISC260"],
 		"coreqs": [],
 		"credits": 3,
 		"lab": false
@@ -314,7 +314,7 @@
         "title":"Advanced Web Technologies",
         "description":"Programming and architecture of web servers and the technologies for implementing high performance, sophisticated web sites for applications like e-commerce. Students learn how to install and set-up a web server, how to write and install programs for a web server, and how to design and implement multi-tier client/server applications with database backends.",
 		"section": 10,
-		"prereqs": ["CISC275"],
+		"prereqs": ["CISC220|CISC181|CISC210|CISC108|CISC106|MATH115|MATH117|MATH241|CISC275"],
 		"coreqs": [],
 		"credits": 3,
 		"lab": false
@@ -340,7 +340,7 @@
         "title":"Artificial Intelligence ",
         "description":"Programming techniques for problems not amenable to algorithmic solutions. Problem formulation, search strategies, state spaces, applications of logic, knowledge representation, planning and application areas.",
 		"section": 10,
-		"prereqs": ["CISC220","CISC304"],
+		"prereqs": ["CISC210","CISC108|CISC106","CISC220","MATH210","MATH241|MATH221","CISC304"],
 		"coreqs": [],
 		"credits": 3,
 		"lab": false
@@ -366,7 +366,7 @@
         "title":"Introduction to Data Mining",
         "description":"Concepts, techniques, and algorithms for mining large data sets to discover structural patterns that can be used to make subsequent predictions. Emphasis on practical approaches and empirical evaluation. Use of a workbench of data mining tools, such as the Weka toolkit.",
 		"section": 10,
-		"prereqs": ["MATH205","CISC220"],
+		"prereqs": ["CISC210","CISC108|CISC106","CISC220","MATH205|MATH350"],
 		"coreqs": [],
 		"credits": 3,
 		"lab": false
@@ -379,7 +379,7 @@
         "title":"Introduction to Machine Learning",
         "description":"Development of methods to learn to solve a task using examples. Explore different machine learning algorithms/techniques and discuss their strengths and weaknesses and situations they are or are not suited for.",
 		"section": 10,
-		"prereqs": ["MATH205","CISC220"],
+		"prereqs": ["CISC210","CISC108|CISC106","CISC220","MATH205|MATH350"],
 		"coreqs": [],
 		"credits": 3,
 		"lab": false
@@ -543,11 +543,7 @@
         "description":"Elements of sets and logic. Relations, functions. Integers. Induction and recursion. Principles and techniques of counting. Graphs. Paths and circuits",
         "section": 10,
         "prereqs": [],
-         "coreqs": [
-            "MATH241",
-            "MATH242",
-            "MATH232"
-        ],
+         "coreqs": ["MATH241|MATH242|MATH232"],
         "credits": 3,
         "lab": true
 
@@ -559,7 +555,7 @@
         "title":"Calculus 1",
         "description":"Topics include functions, graphing functions, limits, derivatives, exponential and logarithmic functions, integration, and techniques of integration. Business applications are emphasized.",
         "section": 11,
-        "prereqs": ["MATH115", "MATH117"],
+        "prereqs": ["MATH115|MATH117"],
         "coreqs": [],
         "credits": 3,
         "lab": true
@@ -582,7 +578,7 @@
         "title":"Analytic Geometry and Calculus A",
         "description":"Functions, limits, continuity, derivatives. Polynomial, rational, exponential, hyperbolic, logarithmic, trigonometric and inverse trigonometric functions. Definite and indefinite integrals and the Fundamental Theorem of Calculus. Simple differential equations (separable ODE, linear ODE). ODE models leading to exponential growth and decay.",
         "section": 11,
-        "prereqs": ["MATH117"],
+        "prereqs": [],
         "coreqs": [],
         "credits": 3,
         "lab": true
@@ -595,7 +591,7 @@
         "title":"Analytic Geometry and Calculus B",
         "description":"Brief review of MATH 241; evaluation of limits by L’Hospital’s rule; applications of integration; integration techniques; parametric curves; polar coordinates; infinite sequences and series. Includes use of computers to perform symbolic, numerical and graphical analysis.",
         "section": 10,
-        "prereqs": ["MATH232","MATH241"],
+        "prereqs": ["MATH232|MATH241"],
         "coreqs": [],
         "credits": 3,
         "lab": true
@@ -634,7 +630,7 @@
         "title":"Statistical Methods",
         "description":"Descriptive statistics, graphical displays, sampling, variation, normal distribution, estimation, hypothesis testing, one-way analysis of variance, simple linear regression and goodness of fit. Laboratory covers use of statistical packages on mainframe and microcomputers.",
         "section": 10,
-        "prereqs": ["MATH210", "MATH230"],
+        "prereqs": ["MATH210|MATH230"],
         "coreqs": [],
         "credits": 3,
         "lab": true
@@ -660,7 +656,7 @@
         "title":"Computational Biology and Bioinformatics",
         "description":"Concepts, methodologies, and tools in bioinformatics. Abstraction of biological problems for computational solutions. Genome sequencing and assembly, bio-sequence analysis and comparison and database search, dynamics programming, hidden Markov models, and phylogenetic trees.",
         "section": 10,
-        "prereqs": ["CISC220"],
+        "prereqs": ["CISC210","CISC108|CISC106","CISC220"],
         "coreqs": [],
         "credits": 3,
         "lab": false
@@ -764,7 +760,7 @@
         "title":"Elementary Linear Algebra",
         "description":"Systems of linear equations, linear combinations of vectors, and matrix algebra. Determinants, eigenvalues and eigenvectors, similarity and diagonalization of square matrices. Vector spaces, linear dependence and independence, basis and dimension, linear transformations. Inner product spaces, orthogonality, orthogonal projections, fundamental subspaces. A software package may be used for the analysis and solution of linear algebra problems.",
         "section": 10,
-        "prereqs": ["MATH230", "MATH242"],
+        "prereqs": ["MATH230|MATH242"],
         "coreqs": [],
         "credits": 3,
         "lab": false
@@ -778,7 +774,7 @@
         "description":"Molecular basis of life. Structure and function of cells, including signal transduction pathways. Energy transformations. Classical Mendelian genetics and the flow of information from DNA to RNA to proteins. Laboratory focuses on the testing of hypotheses, data analysis and scientific writing.",
         "section": 10,
         "prereqs": [],
-        "coreqs": ["CHEM103", "CHEM133", "CHEM111"],
+        "coreqs": ["CHEM103|CHEM133|CHEM111"],
         "credits": 3,
         "lab": true
 
@@ -791,7 +787,7 @@
         "description":"Mechanisms of evolution. Physiology of multicellular plants and animals. Principles of ecology with emphasis on the biology of populations. Laboratory focuses on testing of hypotheses, data analysis and scientific writing. Animal and plant anatomy also studied.",
         "section": 10,
         "prereqs": ["BISC207"],
-        "coreqs": ["CHEM104", "CHEM134", "CHEM112"],
+        "coreqs": ["CHEM104|CHEM134|CHEM112"],
         "credits": 3,
         "lab": true
 
@@ -829,8 +825,8 @@
         "title":"General Chemistry",
         "description":"Continuation and application of CHEM 103 with additional emphasis on chemical spontaneity, equilibrium, rates of reactions, electrochemistry and organic chemistry. ",
         "section": 10,
-        "prereqs": ["CHEM103"],
-        "coreqs": [],
+        "prereqs": ["CHEM103|CHEM133|CHEM111"],
+        "coreqs": ["CHEM134"],
         "credits": 3,
         "lab": true
 
@@ -842,7 +838,7 @@
         "title":"Elementary Organic Chemistry",
         "description":"A survey of the fundamentals of organic chemistry. Topics include molecular structure, organic nomenclature, functional groups, isomerism and stereoisomerism, reaction mechanisms, and organic synthesis. Basic principles will be illustrated with examples of biological significance.",
         "section": 10,
-        "prereqs": ["CHEM104"],
+        "prereqs": ["CHEM102|CHEM104|CHEM134|CHEM105|CHEM112"],
         "coreqs": [],
         "credits": 3,
         "lab": true
@@ -855,8 +851,8 @@
         "title":"Elementary Organic Chemistry Laboratory",
         "description":"A survey of elementary laboratory techniques that are useful to organic chemists. Separation and purification techniques and examples of typical organic reactions will be included.",
         "section": 10,
-        "prereqs": ["CHEM213"],
-        "coreqs": [],
+        "prereqs": ["CHEM102|CHEM104|CHEM134|CHEM105|CHEM112"],
+        "coreqs": ["CHEM213"],
         "credits": 3,
         "lab": true
 
@@ -868,7 +864,7 @@
         "title":"Organic Chemistry 1",
         "description":"First half of two-semester survey of structure, synthesis, and reactions of organic compounds.",
         "section": 10,
-        "prereqs": ["CHEM104"],
+        "prereqs": ["CHEM104|CHEM134|CHEM112"],
         "coreqs": ["CHEM325"],
         "credits": 3,
         "lab": true
@@ -881,65 +877,11 @@
         "title":"Organic Chemistry Laboratory 1",
         "description":"Laboratory work that introduces the basic laboratory techniques of organic chemistry.",
         "section": 10,
-        "prereqs": ["CHEM321"],
-        "coreqs": [],
+        "prereqs": ["CHEM104|CHEM134"],
+        "coreqs": ["CHEM321"],
         "credits": 3,
         "lab": true
-
-    }, 
-
-    {
-
-        "name": "CPEG472",
-        "title":"Applied Cryptography",
-        "description":"This cybersecurity course explores modern Cryptography covering algorithms and cryptosystems, cryptanalysis, and best practices for application and implementation of crypto in software systems.",
-        "section": 10,
-        "prereqs": ["CPEG465"],
-        "coreqs": [],
-        "credits": 3,
-        "lab": true
-
-    }, 
-
-    {
-
-        "name": "CPEG473",
-        "title":"Cloud Computing and Security",
-        "description":"This cybersecurity course introduces the virtualization and cloud computing technologies used in most modern online services. The unique and conventional security issues related to protecting these types of systems are addressed and reinforced with hands-on exercises run in a virtual machine environment.",
-        "section": 10,
-        "prereqs": ["CPEG465"],
-        "coreqs": [],
-        "credits": 3,
-        "lab": true
-
-    }, 
-
-    {
-
-        "name": "CPEG475",
-        "title":"IoT and Embedded Systems Security",
-        "description":"The main emphasis of this course is cybersecurity for embedded systems devices and Internet of Things. The major topics covered include the instruction set and CPUs of embedded devices, the design of secure computing architectures from assembly program design to operating systems. Additional emphasis is given to Internet of Things applications, such as smart homes, embedded microprocessors and automotive systems.",
-        "section": 10,
-        "prereqs": ["CPEG465"],
-        "coreqs": [],
-        "credits": 3,
-        "lab": true
-
-    }, 
-
-    {
-
-        "name": "CPEG476",
-        "title":"Secure Software Design",
-        "description":"This cybersecurity course introduce the theory and practices used to help make a computer program secure and provide the skills needed to implement programs that are free from vulnerabilities.",
-        "section": 10,
-        "prereqs": [],
-        "coreqs": [],
-        "credits": 3,
-        "lab": true
-
-    }, 
-
+    },
     {
 
         "name": "CPEG495",
@@ -959,7 +901,7 @@
         "title":"Analytic Geometry and Calculus C",
         "description":"Vectors, operations on vectors, velocity and acceleration, partial derivatives, directional derivatives, optimization of functions of two or more variables, integration over two and three dimensional regions, line integrals, Green’s Theorem, surface integrals, the Divergence theorem. Includes use of computers to perform symbolic, numerical and graphical analysis.",
         "section": 10,
-        "prereqs": ["MATH242"],
+        "prereqs": ["MATH242","MATH232|MATH241"],
         "coreqs": [],
         "credits": 3,
         "lab": true
@@ -985,7 +927,7 @@
         "title":"Compiler Design",
         "description":"Introduction to the design and implementation of compilers, with a focus on lexical analysis, parsing and syntax directed translation.",
 		"section": 10,
-		"prereqs": ["CISC220","CISC260"],
+		"prereqs": ["CISC220","CISC210","CISC108|CISC106","CISC260","MATH241"],
 		"coreqs": [],
 		"credits": 3,
 		"lab": false
@@ -998,7 +940,7 @@
         "title":"Elements of the Theory of Computation",
         "description":"General models of computation, formal languages and automata theory and algorithmic unsolvability.",
 		"section": 10,
-		"prereqs": [],
+		"prereqs": ["CISC303"],
 		"coreqs": [],
 		"credits": 3,
 		"lab": false
@@ -1011,7 +953,7 @@
         "title":"An Introduction to Proof",
         "description":"Basic set operations, relations, equivalence relations, functions, inverse functions, cardinality, order properties of real numbers, least upper bound, greatest lower bound, completeness axiom, topology of reals, complex numbers.",
 		"section": 10,
-		"prereqs": [],
+		"prereqs": ["MATH210","MATH242"],
 		"coreqs": [],
 		"credits": 3,
 		"lab": false

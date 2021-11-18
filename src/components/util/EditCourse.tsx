@@ -85,13 +85,15 @@ export const EditCourse = (props: {
                     </Col>
                     <Col>
                         <form>
-                            <textarea rows={10} cols={45}
+                            <textarea
+                                cols={45}
                                 onChange={elem => {
                                     setDescText(elem.target.value);
                                 }}
                                 placeholder="Enter Course Description"
+                                rows={10}
                                 value={descText}
-                            ></textarea>
+                            />
                         </form>
                     </Col>
                 </Row>

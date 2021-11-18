@@ -6,6 +6,7 @@ import { semesterToSemester } from "./DNDLogic/semesterToSemester";
 import { semesterToConcentration } from "./DNDLogic/semesterToConcentration";
 import { concentrationToConcentration } from "./DNDLogic/concentrationToConcentration";
 import { concentrationToSemester } from "./DNDLogic/concentrationToSemester";
+import { PreReqChecker } from "./DNDLogic/prereqchecker";
 
 export const successPrint = (result: number): void => {
     console.log(result >= 1 ? "Success!" : "Failure");
@@ -15,7 +16,9 @@ export const onDragEndLogic = (result: DropResult,
     concentrationContainers: ConcentrationContainerType[],
     setConcentrationContainers: React.Dispatch<React.SetStateAction<ConcentrationContainerType[]>>,
     semesterCourses: SemesterType[],
-    setSemesterCourses: React.Dispatch<React.SetStateAction<SemesterType[]>>): void => {
+    setSemesterCourses: React.Dispatch<React.SetStateAction<SemesterType[]>>,
+    setErrMsg: (msg: string) => void,
+): void => {
     if (!result.destination) {
         return;
     }
@@ -72,19 +75,26 @@ export const onDragEndLogic = (result: DropResult,
                 semesterCourses, setSemesterCourses, ind1, result.destination.index);
         successPrint(ind2);
     } else {
+        // place prereq checker here
         // concentration --> semester
         const semesterNum = parseInt(destinationId.substring(destinationId.lastIndexOf("-") + 1), 10);
         const tmpContainer: ConcentrationContainerType[] = [...concentrationContainers];
         let ind1 = tmpContainer.findIndex(elem => elem.name === sourceId);
         const ind2 = semesterCourses.findIndex(elem => elem.semesternum === semesterNum);
-        ind1 = ind1 > -1 ?
-            concentrationToSemester(
-                concentrationContainers[ind1],
-                result.source.index,
-                result.destination.index,
-                semesterCourses[ind2],
-            ) : -1;
-        console.log(Object.values(semesterCourses));
-        successPrint(ind1);
+        if (PreReqChecker(
+            semesterCourses,
+            semesterNum - 1,
+            concentrationContainers[ind1].courses[result.source.index],
+            setErrMsg)) {
+            ind1 = ind1 > -1 ?
+                concentrationToSemester(
+                    concentrationContainers[ind1],
+                    result.source.index,
+                    result.destination.index,
+                    semesterCourses[ind2],
+                ) : -1;
+            console.log(Object.values(semesterCourses));
+        }
+        successPrint(ind1 > -1 ? 1 : 0);
     }
 };
