@@ -101,13 +101,13 @@ export const MainPage = (): JSX.Element => {
                                         setSemesterCourses={setSemesterCourses}
                                     />
                                     <AddSemesterButton semesters={semesters} setSemesters={setSemesters} />
-                                    <ExportPlan semesterCourses={semesterCourses} />
-                                    <HowToDisplay />
                                     <DeleteSemesterButton
                                         semesters={semesters}
                                         setDelete={setDeleteTriggered}
                                         setSemesters={setSemesters}
                                     />
+                                    <ExportPlan semesterCourses={semesterCourses} />
+                                    <HowToDisplay />
                                 </Nav>
                             </Navbar.Collapse>
                         </Container>

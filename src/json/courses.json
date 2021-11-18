@@ -92,7 +92,7 @@
 
 	{
 		"name": "CISC260",
-        "title": "Machine Organization and Assembly Language",
+        "title": "Machine Org. and Assembly Language",
         "description": "Introduction to the basics of machine organization. Programming tools and techniques at the machine and assembly levels. Assembly language programming and computer arithmetic techniques.",
 		"section": 10,
 		"prereqs": ["CISC210","CISC108|CISC106","MATH241"],
@@ -640,7 +640,7 @@
     {
 
         "name": "MATH350",
-        "title":"Probability Theory and Simulation Methods",
+        "title":"Probability Theory and Simulation",
         "description":"Introduces the basic theory of discrete and continuous aspects of probability theory. Topics include bivariate distributions, sums of independent random variables, moment generating functions, laws of large numbers and central limit theorem.",
         "section": 10,
         "prereqs": [],
