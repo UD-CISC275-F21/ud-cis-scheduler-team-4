@@ -16,6 +16,7 @@ import { onDragEndLogic } from "./util/DropLogic";
 import { ExportPlan } from "./util/ExportPlan";
 import { HowToDisplay } from "./util/howto/howtodisplay";
 import { Footer } from "./util/Footer";
+import { PreReqSameSemesterToast } from "./util/Notifications";
 
 
 export const MainPage = (): JSX.Element => {
@@ -24,10 +25,11 @@ export const MainPage = (): JSX.Element => {
     const [display, setDisplay] = useState<boolean>(false);
     const [semesters, setSemesters] = useState<number>(1);
     const [concentrationContainers, setConcentrationContainers] = useState<ConcentrationContainerType[]>([]);
-    //const [toastDisplay, setToastDisplay] = useState<boolean>(false); //Will be implemented once basic drop logic is fully implemented
-    //const [toastMessage, setToastMessage] = useState<string>(""); //Will be implemented once basic drop logic is fully implemented
+    const [toastDisplay, setToastDisplay] = useState<boolean>(false); //Will be implemented once basic drop logic is fully implemented
+    const [toastMessage, setToastMessage] = useState<string>(""); //Will be implemented once basic drop logic is fully implemented
     const [deleteTriggered, setDeleteTriggered] = useState<number>(-1);
-
+    setToastDisplay(false); //need these to not trigger the linter for not being used
+    setToastMessage("");
     useEffect(() => {
         setDisplay(true);
         setTimeout(() => {
@@ -43,23 +45,25 @@ export const MainPage = (): JSX.Element => {
             const theSemester: SemesterType | undefined = semesterCourses.length > 0? semesterCourses[0]: undefined;
             if (theSemester !== undefined) {
                 // delete semester
-                theSemester.courseSetter([]);
-                setSemesterCourses(semesterCourses.slice(1).map(e => Object.assign({}, e, {semesterNum: e.semesternum-1})));
+                if (theSemester.courses.length===0){
+                    theSemester.courseSetter([]);
+                    setSemesterCourses(semesterCourses.slice(1).map(e => Object.assign({}, e, {semesterNum: e.semesternum-1})));
+                } 
             }
             setDeleteTriggered(-1);
         }
 
     }, [semesters]);
 
-    /*
+    /**
     const displayToast = (msg: string) => {
         setToastDisplay(true);
         setToastMessage(msg);
         setTimeout(() => {
             setToastDisplay(false);
         }, 5000);
-    };
-    */
+    };*/
+    
     
 
     const onDragEnd = (result: DropResult) => {
@@ -80,7 +84,7 @@ export const MainPage = (): JSX.Element => {
                     <Row>
                         <Col>
                             {<WelcomeToast display={display}/>}
-                            { /* <PreReqSameSemesterToast errMsg={toastMessage} display={toastDisplay} /> */}
+                            <PreReqSameSemesterToast errMsg={toastMessage} display={toastDisplay} />
                         </Col>
                     </Row>
                     <Row>
@@ -100,7 +104,7 @@ export const MainPage = (): JSX.Element => {
                                         <AddSemesterButton setSemesters={setSemesters} semesters={semesters}/>
                                         <ExportPlan semesterCourses={semesterCourses}/>
                                         <HowToDisplay/>
-                                        <DeleteSemesterButton setSemesters={setSemesters} semesters={semesters} setDelete={setDeleteTriggered} />
+                                        <DeleteSemesterButton setSemesters={setSemesters} semesters={semesters} setDelete={setDeleteTriggered} semesterCourses={semesterCourses}/>
                                     </Nav>
                                 </Navbar.Collapse>
                             </Container>
