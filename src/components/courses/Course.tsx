@@ -2,7 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../../css/style.css";
 import { Draggable } from "react-beautiful-dnd";
 import React, { useState } from "react";
-import { ListGroup, Button } from "react-bootstrap";
+import { ListGroup } from "react-bootstrap";
 import { CourseInfo } from "./CourseInfo";
 
 
