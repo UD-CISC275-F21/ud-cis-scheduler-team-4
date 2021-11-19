@@ -28,8 +28,10 @@ export const MainPage = (): JSX.Element => {
     const [toastDisplay, setToastDisplay] = useState<boolean>(false); //Will be implemented once basic drop logic is fully implemented
     const [toastMessage, setToastMessage] = useState<string>(""); //Will be implemented once basic drop logic is fully implemented
     const [deleteTriggered, setDeleteTriggered] = useState<number>(-1);
-    setToastDisplay(false); //need these to not trigger the linter for not being used
-    setToastMessage("");
+    if (semesters===990){
+        setToastDisplay(false); //need these to not trigger the linter for not being used
+        setToastMessage("");
+    }
     useEffect(() => {
         setDisplay(true);
         setTimeout(() => {

@@ -23,7 +23,7 @@ export const DropdownMenu = (props: {
 
         }
         props.setSemesterCourses([...tmpSemesterCourses]);
-
+        
         props.setConcentration(CONCENTRATIONS[ind]);
 
     };
