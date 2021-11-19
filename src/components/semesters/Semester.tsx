@@ -35,7 +35,7 @@ export const Semester = (props: {
     const [courses, setCourses] = useState<CourseType[]>([]);
     const [display, setDisplay] = useState<boolean>(false);
     const [credits, setCredits] = useState<number>(0);
-
+    /*
     const courseDeleteFunc = (elem: CourseType): string => {
         const tmpCourses: CourseType[] = [...courses];
         for (let i = 0; i < tmpCourses.length; i += 1) {
@@ -85,7 +85,7 @@ export const Semester = (props: {
         theSemester.courseSetter([]);
         tmpSemesterCourses.splice(ind1, 0, theSemester);
         props.setSemesterCourses([...tmpSemesterCourses]);
-    };
+    };*/
 
     useEffect(() => {
 
@@ -127,9 +127,6 @@ export const Semester = (props: {
                         {`Semester ${props.ind + 1}`}
                     </Col>
                     <Col>
-                        <Button onClick={semesterDeleteFunc} variant="danger" />
-                    </Col>
-                    <Col>
                         <Badge>
                             {`Credits: ${credits}`}
                         </Badge>
@@ -158,12 +155,6 @@ export const Semester = (props: {
                                                                             description={elem.description} title={elem.title} credits={elem.credits} />
                                                                     </Col>
                                                                     <Col lg="1" xs>
-                                                                        <Button
-                                                                            onClick={() => {
-                                                                                courseDeleteFunc(elem);
-                                                                            }}
-                                                                            variant="danger"
-                                                                        />
                                                                         <Button
                                                                             onClick={() => {
                                                                                 setDisplay(!display);
