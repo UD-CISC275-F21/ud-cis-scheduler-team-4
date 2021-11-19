@@ -9,7 +9,8 @@ export const CourseContainer = (props: { courses: CourseType[]; name: string }):
     <Droppable droppableId={props.name}>
         {prov =>
             <ListGroup {...prov.droppableProps} ref={prov.innerRef}>
-                {props.courses.map((elem: CourseType, index: number) => <Course ind={index} key={elem.name} name={`${elem.name}-${elem.section}`} />)}
+                {props.courses.map((elem: CourseType, index: number) => <Course ind={index} key={elem.name} name={`${elem.name}${elem.title.length > 0? "-"+elem.title: ""}`}
+                    description={elem.description} title={elem.title} credits={elem.credits} />)}
                 {prov.placeholder}
             </ListGroup>
         }

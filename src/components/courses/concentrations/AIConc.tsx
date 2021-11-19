@@ -69,7 +69,7 @@ export const AIConc = (props: {
                 },
                 {
                     courses: labCourses,
-                    name: "lab",
+                    name: "lab-1",
                     setCourses: setLabCourses,
                 },
 
