@@ -27,6 +27,7 @@ export const ExportPlan = (props: { semesterCourses: SemesterType[] }): JSX.Elem
                 link.click();
             }}
             variant="outline-secondary"
+            data-testid="exportcsvbutton"
         >
             Export CSV
         </Button>

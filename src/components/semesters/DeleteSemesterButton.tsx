@@ -17,6 +17,7 @@ export const DeleteSemesterButton = (props: {
             props.setDelete(0);
         }}
         variant="outline-danger"
+        data-testid="deletesemesterbutton"
     >
         Delete Semester
     </Button>;

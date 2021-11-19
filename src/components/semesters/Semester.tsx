@@ -120,43 +120,14 @@ export const Semester = (props: {
     }, [courses]);
 
     return (
-        <Accordion defaultActiveKey="0" key={`accordion ${props.ind}`} >
+        <Accordion defaultActiveKey="0" key={`accordion ${props.ind}`} data-testid="semesteraccordian" >
             <Accordion.Item eventKey="0">
                 <Accordion.Header>
                     <Col xs={2}>
                         {`Semester ${props.ind + 1}`}
                     </Col>
                     <Col>
-<<<<<<< HEAD
-                        <Button data-testid="deletecourse" variant="danger" onClick={() => {
-                        
-                            const tmpSemesterCourses = [...props.semesterCourses];
-
-                            let theSemester = tmpSemesterCourses[0];
-
-                            let ind1 = 0;
-
-                            for(let i = 0; i < tmpSemesterCourses.length; i++){
-
-                                if(tmpSemesterCourses[i].semesternum === props.ind+1){
-                                    // found semester
-                                    ind1 = i;
-                                    theSemester = tmpSemesterCourses.splice(i,1)[0];
-                                    break;
-                                }
-
-                            }
-
-                            theSemester.courses = [];
-                            theSemester.courseSetter([]);
-
-                            tmpSemesterCourses.splice(ind1,0,theSemester);
-
-                            props.setSemesterCourses([...tmpSemesterCourses]);
-                        }}></Button>
-=======
                         <Button onClick={semesterDeleteFunc} variant="danger" />
->>>>>>> main
                     </Col>
                     <Col>
                         <Badge>
