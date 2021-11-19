@@ -20,7 +20,9 @@ export const HowToDisplay = (): JSX.Element => {
     return (
 
         <>
-            <Button onClick={handleShow} variant="outline-success">
+            <Button onClick={handleShow}
+                variant="outline-success"
+                data-testid="howtobutton">
                 How To
             </Button>
             <Modal onHide={handleClose} show={show}>

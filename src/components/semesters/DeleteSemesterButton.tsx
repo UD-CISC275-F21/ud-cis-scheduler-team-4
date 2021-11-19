@@ -9,7 +9,7 @@ export const DeleteSemesterButton = (props: {
         semesterCourses: SemesterType[];
     }): JSX.Element => 
 
-    <Button variant="outline-danger" onClick={() => {
+    <Button variant="outline-danger" data-testid="deletesemesterbutton" onClick={() => {
         
         let tmpSemesters = props.semesters;
         if (tmpSemesters > 0 && props.semesterCourses[tmpSemesters-1].courses.length==0) {
@@ -20,4 +20,4 @@ export const DeleteSemesterButton = (props: {
         props.setSemesters(tmpSemesters);
         props.setDelete(0);
 
-    }}>Delete Last Semester</Button>;
+    }}>Delete Semester</Button>;

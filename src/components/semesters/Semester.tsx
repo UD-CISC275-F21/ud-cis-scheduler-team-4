@@ -120,7 +120,7 @@ export const Semester = (props: {
     }, [courses]);
 
     return (
-        <Accordion defaultActiveKey="0" key={`accordion ${props.ind}`} >
+        <Accordion defaultActiveKey="0" key={`accordion ${props.ind}`} data-testid="semesteraccordian" >
             <Accordion.Item eventKey="0">
                 <Accordion.Header>
                     <Col xs={2}>
@@ -145,7 +145,7 @@ export const Semester = (props: {
                                     <tbody {...prov.droppableProps} ref={prov.innerRef}>
                                         <tr>
                                             <td>
-                                                <ListGroup>
+                                                <ListGroup data-testid="semestertable">
                                                     {
                                                         courses.map((elem: CourseType, index: number) =>
                                                             <ListGroup.Item key={elem.name}>
