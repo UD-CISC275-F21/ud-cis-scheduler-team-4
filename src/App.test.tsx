@@ -1,16 +1,12 @@
 import React from "react";
 import { act, render, screen } from "@testing-library/react";
-import userEvent from '@testing-library/user-event';
 import {
-    mockGetComputedStyle,
-    mockDndSpacing,
     makeDnd,
     DND_DIRECTION_UP,
     DND_DIRECTION_DOWN,
     DND_DRAGGABLE_DATA_ATTR
-  } from 'react-beautiful-dnd-test-utils';
+} from "react-beautiful-dnd-test-utils";
 import App from "./App";
-
 /*
 
     Testing initial render elements
@@ -93,7 +89,7 @@ test("renders how to button", () => {
 test("renders course listgroup", () => {
     render(<App />);
     const courses = screen.getAllByTestId("courseitem");
-    for(let c in courses){
+    for(const c in courses){
         expect(courses[c]).toBeInTheDocument();
     }
 });
@@ -106,13 +102,13 @@ test("renders course listgroup", () => {
 
 test("add semester button renders a new semester", () => {
     render(<App />);
-    const addSemesterButton = screen.getByTestId('addsemesterbutton');
+    const addSemesterButton = screen.getByTestId("addsemesterbutton");
     const initialSemesters = screen.getAllByText(/Semester/);
     act(() => {
         addSemesterButton.click();
     });
     const secondSemesters = screen.getAllByText(/Semester/);
-    expect(secondSemesters.length).toBeGreaterThan(initialSemesters.length)
+    expect(secondSemesters.length).toBeGreaterThan(initialSemesters.length);
 });
 
 test("delete semester button removes a semester from the screen", () => {
@@ -142,12 +138,12 @@ describe("testing drag and drop features", ()=> {
         screen.getByText(/CISC Core and Concentration/).click();
     
         await makeDnd({
-          getDragElement: () =>
-            screen
-              .getByText(/CISC108/)
-              .closest(DND_DRAGGABLE_DATA_ATTR),
-          direction: DND_DIRECTION_DOWN,
-          positions: 2
+            getDragElement: () =>
+                screen
+                    .getByText(/CISC108/)
+                    .closest(DND_DRAGGABLE_DATA_ATTR),
+            direction: DND_DIRECTION_DOWN,
+            positions: 2
         });
         const newCourses = screen.getAllByTestId("courseitem");
         //These shouldn't be equal because the courses should  now be in a different order
@@ -166,9 +162,9 @@ describe("testing drag and drop features", ()=> {
 
         await makeDnd({
             getDragElement: () => 
-            screen
-                .getByText(/CISC210/)
-                .closest(DND_DRAGGABLE_DATA_ATTR),
+                screen
+                    .getByText(/CISC210/)
+                    .closest(DND_DRAGGABLE_DATA_ATTR),
             direction: DND_DIRECTION_UP,
             positions: 2
         });
@@ -190,7 +186,7 @@ describe("moving a course to semester table in order to test semester features",
 
     //this test below is challenging me --- how can we simulate a course inside a semester without doing a drag/drop?
 
-   /* test("can move course to semester table", () => {
+/* test("can move course to semester table", () => {
         render(<App />);
         const semesterTable = screen.getByTestId("semestertable");
         const courses = screen.getAllByTestId("courseitem");
