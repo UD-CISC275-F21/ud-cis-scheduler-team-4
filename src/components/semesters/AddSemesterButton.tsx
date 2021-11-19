@@ -6,15 +6,6 @@ export const AddSemesterButton = (props: {
         semesters: number;
     }): JSX.Element =>
 
-<<<<<<< HEAD
-    <Button data-testid="addsemesterbutton" variant="primary" onClick={() => {
-
-        let tmpSemesters = props.semesters;
-        ++tmpSemesters;
-        props.setSemesters(tmpSemesters);
-
-    }}>Add Semester</Button>;
-=======
     <Button
         onClick={() => {
             let tmpSemesters = props.semesters;
@@ -22,7 +13,7 @@ export const AddSemesterButton = (props: {
             props.setSemesters(tmpSemesters);
         }}
         variant="outline-primary"
+        data-testid="addsemesterbutton"
     >
         Add Semester
     </Button>;
->>>>>>> main
