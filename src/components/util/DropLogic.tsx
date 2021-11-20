@@ -62,7 +62,12 @@ export const onDragEndLogic = (result: DropResult,
     // dropId != destinationId
         const semesterNum = parseInt(sourceId.substring(sourceId.lastIndexOf("-") + 1), 10);
         const ind1 = semesterCourses.findIndex(elem => elem.semesternum === semesterNum);
-        let ind2 = destIdSemester ? parseInt(destinationId.substring(destinationId.lastIndexOf("-") + 1), 10) : concentrationContainers.findIndex(elem => elem.name === destinationId);
+        let ind2 = destIdSemester ?
+            semesterCourses.findIndex(elem =>
+                elem.semesternum === parseInt(destinationId.substring(destinationId.lastIndexOf("-") + 1), 10))
+            :
+            concentrationContainers.findIndex(elem =>
+                elem.name === destinationId);
         ind2 = destIdSemester ?
             semesterToSemester(
                 semesterCourses[ind1],
