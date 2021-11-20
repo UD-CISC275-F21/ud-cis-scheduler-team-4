@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Modal, Button, Badge, Row, Col } from "react-bootstrap";
 import { Course as CourseType } from "../../interfaces/course";
 import { SemesterType } from "../../interfaces/semester";
