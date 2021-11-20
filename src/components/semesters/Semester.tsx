@@ -60,7 +60,7 @@ export const Semester = (props: {
     }, [courses]);
 
     return (
-        <Accordion defaultActiveKey="0" key={`accordion ${props.ind}`} data-testid="semesteraccordian" >
+        <Accordion data-testid="semesteraccordian" defaultActiveKey="0" key={`accordion ${props.ind}`} >
             <Accordion.Item eventKey="0">
                 <Accordion.Header>
                     <Col xs={2}>
@@ -91,10 +91,20 @@ export const Semester = (props: {
                                                             <ListGroup.Item key={elem.name}>
                                                                 <Row>
                                                                     <Col>
-                                                                        <Course ind={index} name={`${elem.name}${elem.title.length > 0? "-" + elem.title:""}`}
-                                                                            description={elem.description} title={elem.title} credits={elem.credits} />
+                                                                        <Course
+                                                                            credits={elem.credits}
+                                                                            description={elem.description}
+                                                                            ind={index}
+                                                                            name={`${elem.name}${elem.title.length > 0 ? `-${elem.title}` : ""}`}
+                                                                            title={elem.title}
+                                                                        />
                                                                     </Col>
-                                                                    <EditCoursePanel semesterCourses={props.semesterCourses} setSemesterCourses={props.setSemesterCourses} elem={elem} ind={props.ind}  />
+                                                                    <EditCoursePanel
+                                                                        elem={elem}
+                                                                        ind={props.ind}
+                                                                        semesterCourses={props.semesterCourses}
+                                                                        setSemesterCourses={props.setSemesterCourses}
+                                                                    />
                                                                 </Row>
                                                             </ListGroup.Item>,
                                                         )

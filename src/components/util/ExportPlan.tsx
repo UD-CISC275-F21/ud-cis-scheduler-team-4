@@ -7,6 +7,7 @@ export const ExportPlan = (props: { semesterCourses: SemesterType[] }): JSX.Elem
 
     return (
         <Button
+            data-testid="exportcsvbutton"
             onClick={() => {
                 for (let i = 0; i < props.semesterCourses.length; i += 1) {
                     const courses = props.semesterCourses[i].courses;
@@ -27,7 +28,6 @@ export const ExportPlan = (props: { semesterCourses: SemesterType[] }): JSX.Elem
                 link.click();
             }}
             variant="outline-secondary"
-            data-testid="exportcsvbutton"
         >
             Export CSV
         </Button>

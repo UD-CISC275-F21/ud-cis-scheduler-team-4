@@ -21,7 +21,7 @@ export const EditCourse = (props: {
     const courseEdit = () => {
         const theSemester: SemesterType = props.semesterCourses[props.semesterNumber];
         const courseIndex: number = theSemester.courses.findIndex(elem => elem.name === props.course.name);
-        const theCourse: CourseType = {...theSemester.courses[courseIndex], name: nameText, title: titleText, description: descText};
+        const theCourse: CourseType = {...theSemester.courses[courseIndex], description: descText, name: nameText, title: titleText};
         theSemester.courses[courseIndex] = theCourse;
         theSemester.courseSetter(theSemester.courses);
         props.semesterCourses[props.semesterNumber] = theSemester;
@@ -29,7 +29,12 @@ export const EditCourse = (props: {
         props.setDisplay(false);
     };
     return (
-        <Modal onHide={() => closeDisplay()} show={props.display} >
+        <Modal
+            onHide={() => {
+                closeDisplay();
+            }}
+            show={props.display}
+        >
             <Modal.Header closeButton>
                 <Modal.Title>
                     <Badge bg="primary">Edit Course Details</Badge>

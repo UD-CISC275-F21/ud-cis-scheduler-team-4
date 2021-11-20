@@ -26,38 +26,13 @@ export const MainPage = (): JSX.Element => {
     const [toastDisplay, setToastDisplay] = useState<boolean>(false); // Will be implemented once basic drop logic is fully implemented
     const [toastMessage, setToastMessage] = useState<string>(""); // Will be implemented once basic drop logic is fully implemented
     const [deleteTriggered, setDeleteTriggered] = useState<number>(-1);
-    if (semesters===990){
-        setToastDisplay(false); //need these to not trigger the linter for not being used
-        setToastMessage("");
-    }
+
     useEffect(() => {
         setDisplay(true);
         setTimeout(() => {
             setDisplay(false);
         }, 1);
     }, []);
-
-    useEffect(() => {
-
-        if (deleteTriggered === 0) {
-            const theSemester: SemesterType | undefined = semesterCourses.length > 0 ? semesterCourses[semesters-1] : undefined;
-            if (theSemester !== undefined && theSemester.courses.length === 0) {
-                theSemester.courseSetter([]);
-                setSemesterCourses([...semesterCourses.slice(0,semesters-1).map(elem => {
-                    const newObj = { ...elem };
-                    newObj.semesternum = elem.semesternum - 1;
-                    return newObj;
-                })]);
-                setSemesters(semesters-1);
-            } else {
-                console.log("displaying err");
-                displayToast(`Move all courses from Semester ${semesters} back into course list on the left`);
-            }
-            setDeleteTriggered(-1);
-        }
-
-    }, [deleteTriggered]);
-
 
     const displayToast = (msg: string) => {
         setToastDisplay(true);
@@ -66,8 +41,27 @@ export const MainPage = (): JSX.Element => {
             setToastDisplay(false);
         }, 5000);
     };
-    
-    
+
+    useEffect(() => {
+
+        if (deleteTriggered === 0) {
+            const theSemester: SemesterType | undefined = semesterCourses.length > 0 ? semesterCourses[semesters - 1] : undefined;
+            if (theSemester !== undefined && theSemester.courses.length === 0) {
+                theSemester.courseSetter([]);
+                setSemesterCourses([...semesterCourses.slice(0, semesters - 1).map(elem => {
+                    const newObj = { ...elem };
+                    newObj.semesternum = elem.semesternum - 1;
+                    return newObj;
+                })]);
+                setSemesters(semesters - 1);
+            } else {
+                console.log("displaying err");
+                displayToast(`Move all courses from Semester ${semesters} back into course list on the left`);
+            }
+            setDeleteTriggered(-1);
+        }
+
+    }, [deleteTriggered]);
 
     const onDragEnd = (result: DropResult) => {
         onDragEndLogic(result,
