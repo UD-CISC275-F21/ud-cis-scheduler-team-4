@@ -34,30 +34,31 @@ export const MainPage = (): JSX.Element => {
         setDisplay(true);
         setTimeout(() => {
             setDisplay(false);
-        }, 5000);
+        }, 1);
     }, []);
 
     useEffect(() => {
 
-        console.log("Deleting semester");
         if (deleteTriggered === 0) {
-            console.log("Inside delete semester if");
-            const theSemester: SemesterType | undefined = semesterCourses.length > 0 ? semesterCourses[0] : undefined;
-            if (theSemester !== undefined) {
-                // delete semester
+            const theSemester: SemesterType | undefined = semesterCourses.length > 0 ? semesterCourses[semesters-1] : undefined;
+            if (theSemester !== undefined && theSemester.courses.length === 0) {
                 theSemester.courseSetter([]);
-                setSemesterCourses(semesterCourses.slice(1).map(elem => {
+                setSemesterCourses([...semesterCourses.slice(0,semesters-1).map(elem => {
                     const newObj = { ...elem };
                     newObj.semesternum = elem.semesternum - 1;
                     return newObj;
-                }));
+                })]);
+                setSemesters(semesters-1);
+            } else {
+                console.log("displaying err");
+                displayToast(`Delete all courses from Semester ${semesters}`);
             }
             setDeleteTriggered(-1);
         }
 
-    }, [semesters]);
+    }, [deleteTriggered]);
 
-    
+
     const displayToast = (msg: string) => {
         setToastDisplay(true);
         setToastMessage(msg);
@@ -87,7 +88,7 @@ export const MainPage = (): JSX.Element => {
                 <Row>
                     <Col>
                         <WelcomeToast display={display} />
-                        <PreReqSameSemesterToast display={toastDisplay} errMsg={toastMessage} />
+                        <PreReqSameSemesterToast display={toastDisplay} errMsg={toastMessage} setToastDisplay={setToastDisplay} />
                     </Col>
                 </Row>
                 <Row>
@@ -110,10 +111,7 @@ export const MainPage = (): JSX.Element => {
                                     />
                                     <AddSemesterButton semesters={semesters} setSemesters={setSemesters} />
                                     <DeleteSemesterButton
-                                        semesters={semesters}
                                         setDelete={setDeleteTriggered}
-                                        setSemesters={setSemesters}
-                                        semesterCourses={semesterCourses}
                                     />
                                     <ExportPlan semesterCourses={semesterCourses} />
                                     <HowToDisplay />

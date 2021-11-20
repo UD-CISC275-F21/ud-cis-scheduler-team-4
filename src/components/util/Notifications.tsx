@@ -18,11 +18,15 @@ export const WelcomeToast = (props: { display: boolean }): JSX.Element =>
     </Modal>;
 
 
-export const PreReqSameSemesterToast = (props: { errMsg: string; display: boolean }): JSX.Element =>
-    <Toast bg="danger" show={props.display} >
+export const PreReqSameSemesterToast = (props: { errMsg: string; display: boolean; setToastDisplay: React.Dispatch<React.SetStateAction<boolean>> }): JSX.Element =>
+    <Toast bg="danger" show={props.display} onClose={() => {
+        props.setToastDisplay(false);
+    }}>
         <Toast.Header>
             <strong className="me-auto">Invalid Course Selected</strong>
-            <small>Close</small>
+            <small>
+                Close
+            </small>
         </Toast.Header>
         <Toast.Body>
             {props.errMsg}
