@@ -50,7 +50,6 @@ export const MainPage = (): JSX.Element => {
                 theSemester.courseSetter([]);
                 setSemesterCourses([...semesterCourses.slice(0, semesters - 1).map(elem => {
                     const newObj = { ...elem };
-                    newObj.semesternum = elem.semesternum - 1;
                     return newObj;
                 })]);
                 setSemesters(semesters - 1);
