@@ -51,7 +51,7 @@ export const MainPage = (): JSX.Element => {
                 setSemesters(semesters-1);
             } else {
                 console.log("displaying err");
-                displayToast(`Delete all courses from Semester ${semesters}`);
+                displayToast(`Move all courses from Semester ${semesters} back into course list on the left`);
             }
             setDeleteTriggered(-1);
         }
