@@ -11,20 +11,30 @@ export const Course = (props: { name: string; description: string; title: string
     return (
         <Draggable draggableId={props.name} index={props.ind} key={props.name}>
             {prov =>
-                <ListGroup.Item data-testid="courseitem"ref={prov.innerRef} {...prov.draggableProps} {...prov.dragHandleProps}>
+                <ListGroup.Item data-testid="courseitem" ref={prov.innerRef} {...prov.draggableProps} {...prov.dragHandleProps}>
                     {props.name}
-                    <button className="course-button" onClick={() => {
-                        setDisplay(!display);
-                    }}>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-three-dots-vertical" viewBox="0 0 16 16">
-                            <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+                    <button
+                        className="course-button"
+                        onClick={() => {
+                            setDisplay(!display);
+                        }}
+                        type="button"
+                    >
+                        <svg className="bi bi-three-dots-vertical" fill="currentColor" height="16" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
                         </svg>
                     </button>
-                    {display && <CourseInfo display={display} setDisplay={setDisplay} name={props.name}
-                        title={props.title} description={props.description} credits={props.credits}></CourseInfo>}
+                    {display &&
+                    <CourseInfo
+                        credits={props.credits}
+                        description={props.description}
+                        display={display}
+                        name={props.name}
+                        setDisplay={setDisplay}
+                    />
+                    }
                 </ListGroup.Item>
             }
         </Draggable>
     );
 };
-    

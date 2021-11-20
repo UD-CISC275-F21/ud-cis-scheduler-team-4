@@ -61,13 +61,25 @@ export const onDragEndLogic = (result: DropResult,
     } else if (sourceIdSemester) { // semester --> concentration
     // dropId != destinationId
         const semesterNum = parseInt(sourceId.substring(sourceId.lastIndexOf("-") + 1), 10);
+        const semester2Num = destIdSemester ? parseInt(destinationId.substring(destinationId.lastIndexOf("-") + 1), 10) : -1;
         const ind1 = semesterCourses.findIndex(elem => elem.semesternum === semesterNum);
         let ind2 = destIdSemester ?
             semesterCourses.findIndex(elem =>
-                elem.semesternum === parseInt(destinationId.substring(destinationId.lastIndexOf("-") + 1), 10))
+                elem.semesternum === semester2Num)
             :
             concentrationContainers.findIndex(elem =>
                 elem.name === destinationId);
+        const preReqResult = destIdSemester ?
+            PreReqChecker(semesterCourses,
+                semester2Num - 1,
+                semesterCourses[ind1].courses[dropIndex],
+                setErrMsg,
+            )
+            :
+            true;
+        if (destIdSemester && !preReqResult) {
+            return;
+        }
         ind2 = destIdSemester ?
             semesterToSemester(
                 semesterCourses[ind1],
@@ -84,7 +96,7 @@ export const onDragEndLogic = (result: DropResult,
         // concentration --> semester
         const semesterNum = parseInt(destinationId.substring(destinationId.lastIndexOf("-") + 1), 10);
         const tmpContainer: ConcentrationContainerType[] = [...concentrationContainers];
-        //console.log(Object.values(tmpContainer), "sourceId =", sourceId);
+        // console.log(Object.values(tmpContainer), "sourceId =", sourceId);
         let ind1 = tmpContainer.findIndex(elem => elem.name === sourceId);
         const ind2 = semesterCourses.findIndex(elem => elem.semesternum === semesterNum);
         if (PreReqChecker(
@@ -99,7 +111,7 @@ export const onDragEndLogic = (result: DropResult,
                     result.destination.index,
                     semesterCourses[ind2],
                 ) : -1;
-            //console.log(Object.values(semesterCourses));
+            // console.log(Object.values(semesterCourses));
         }
         successPrint(ind1 > -1 ? 1 : 0);
     }
