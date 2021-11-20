@@ -1,11 +1,11 @@
 import "bootswatch/dist/lux/bootstrap.min.css";
-import { Table, ListGroup, Accordion, Col, Button, Row, Badge } from "react-bootstrap";
+import { Table, ListGroup, Accordion, Col, Row, Badge } from "react-bootstrap";
 import React, { useState, useEffect } from "react";
 import { Droppable, DroppableProvided } from "react-beautiful-dnd";
 import { Course } from "../courses/Course";
 import { Course as CourseType } from "../../interfaces/course";
 import { SemesterType } from "../../interfaces/semester";
-import { EditCourse } from "../util/EditCourse";
+import { EditCoursePanel } from "../courses/EditCoursePanel";
 
 /*
 
@@ -33,65 +33,11 @@ export const Semester = (props: {
     setSemesterCourses: React.Dispatch<React.SetStateAction<SemesterType[]>>;
 }): JSX.Element => {
     const [courses, setCourses] = useState<CourseType[]>([]);
-    const [display, setDisplay] = useState<boolean>(false);
     const [credits, setCredits] = useState<number>(0);
-    /*
-    const courseDeleteFunc = (elem: CourseType): string => {
-        const tmpCourses: CourseType[] = [...courses];
-        for (let i = 0; i < tmpCourses.length; i += 1) {
-            const theCourse: CourseType = tmpCourses[i];
-            if (theCourse.name === elem.name) {
-                // found course
-                tmpCourses.splice(i, 1);
-            }
-        }
-        setCourses([...tmpCourses]);
-        const tmpSemesters: SemesterType[] = props.semesterCourses;
-        let tmpSemester: SemesterType = tmpSemesters[0];
-        for (let i = 0; i < tmpSemesters.length; i += 1) {
-            tmpSemester = tmpSemesters[i];
-            if (tmpSemester.semesternum === props.ind + 1) {
-                // found semester
-                tmpSemester = tmpSemesters.splice(i, 1)[0];
-                tmpSemester.courses = [...tmpCourses];
-                tmpSemester.courseSetter([...tmpCourses]);
-                tmpSemesters.splice(i, 0, tmpSemester);
-                props.setSemesterCourses([...tmpSemesters]);
-                return elem.name;
-            }
-        }
-
-        return elem.name;
-    };
-
-    const semesterDeleteFunc = () => {
-
-        const tmpSemesterCourses = [...props.semesterCourses];
-
-        let theSemester = tmpSemesterCourses[0];
-
-        let ind1 = 0;
-
-        for (let i = 0; i < tmpSemesterCourses.length; i += 1) {
-
-            if (tmpSemesterCourses[i].semesternum === props.ind + 1) {
-                // found semester
-                ind1 = i;
-                theSemester = tmpSemesterCourses.splice(i, 1)[0];
-                break;
-            }
-        }
-        theSemester.courses = [];
-        theSemester.courseSetter([]);
-        tmpSemesterCourses.splice(ind1, 0, theSemester);
-        props.setSemesterCourses([...tmpSemesterCourses]);
-    };*/
 
     useEffect(() => {
 
-        // console.log("rendering semester");
         if (!props.semesterCourses.find(elem => elem.semesternum === props.ind + 1)) {
-            // not in list
             const semesters: SemesterType[] = [...props.semesterCourses];
             semesters.push({ courseSetter: (newCourses: CourseType[]) => {
                 setCourses(newCourses);
@@ -101,8 +47,6 @@ export const Semester = (props: {
     }, []);
 
     const getCredits = (courses: CourseType[]) => {
-        // console.log("inside getCredits");
-        // console.log(courses);
         const tmpCourses: CourseType[] = courses;
         let count = 0;
         for (const eachCourse of tmpCourses) {
@@ -112,11 +56,7 @@ export const Semester = (props: {
     };
 
     useEffect(() => {
-        console.log("----courses are now----");
-        console.log(courses);
-        // verify that course you are trying to add is not a prereq of course in current semester
         getCredits(courses);
-
     }, [courses]);
 
     return (
@@ -154,24 +94,7 @@ export const Semester = (props: {
                                                                         <Course ind={index} name={`${elem.name}${elem.title.length > 0? "-" + elem.title:""}`}
                                                                             description={elem.description} title={elem.title} credits={elem.credits} />
                                                                     </Col>
-                                                                    <Col lg="1" xs>
-                                                                        <Button
-                                                                            onClick={() => {
-                                                                                setDisplay(!display);
-                                                                            }} variant="warning"
-                                                                        />
-                                                                        {display &&
-                                                                        <EditCourse
-                                                                            course={elem} display={display}
-                                                                            semesterCourses={props.semesterCourses}
-                                                                            semesterNumber={props.ind + 1}
-                                                                            setDisplay={setDisplay}
-                                                                            setSemesterCourses={
-                                                                                props.setSemesterCourses
-                                                                            }
-                                                                        />
-                                                                        }
-                                                                    </Col>
+                                                                    <EditCoursePanel semesterCourses={props.semesterCourses} setSemesterCourses={props.setSemesterCourses} elem={elem} ind={props.ind}  />
                                                                 </Row>
                                                             </ListGroup.Item>,
                                                         )
