@@ -48,10 +48,7 @@ export const MainPage = (): JSX.Element => {
             const theSemester: SemesterType | undefined = semesterCourses.length > 0 ? semesterCourses[semesters - 1] : undefined;
             if (theSemester !== undefined && theSemester.courses.length === 0) {
                 theSemester.courseSetter([]);
-                setSemesterCourses([...semesterCourses.slice(0, semesters - 1).map(elem => {
-                    const newObj = { ...elem };
-                    return newObj;
-                })]);
+                setSemesterCourses([...semesterCourses.slice(0, semesters - 1)]);
                 setSemesters(semesters - 1);
             } else {
                 console.log("displaying err");
