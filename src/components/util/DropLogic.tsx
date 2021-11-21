@@ -7,6 +7,7 @@ import { semesterToConcentration } from "./DNDLogic/semesterToConcentration";
 import { concentrationToConcentration } from "./DNDLogic/concentrationToConcentration";
 import { concentrationToSemester } from "./DNDLogic/concentrationToSemester";
 import { PreReqChecker } from "./DNDLogic/prereqchecker";
+import { RevPreReqChecker } from "./DNDLogic/revprereqchecker";
 
 export const successPrint = (result: number): void => {
     console.log(result >= 1 ? "Success!" : "Failure");
@@ -75,10 +76,16 @@ export const onDragEndLogic = (result: DropResult,
                 semester2Num - 1,
                 semesterCourses[ind1].courses[sourceIndex],
                 setErrMsg,
+            ) && RevPreReqChecker(
+                semesterCourses,
+                semester2Num - 1,
+                semesterCourses[ind1].courses[sourceIndex],
+                setErrMsg,
             )
             :
             true;
-        if (destIdSemester && !preReqResult) {
+        console.log("prereqResult = ",preReqResult);
+        if ((destIdSemester || sourceIdSemester) && !preReqResult) {
             return;
         }
         ind2 = destIdSemester ?
