@@ -1,5 +1,5 @@
 import "bootswatch/dist/lux/bootstrap.min.css";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { SemesterType } from "../../../interfaces/semester";
 
 export const DeleteOneSemester = (

@@ -1,9 +1,7 @@
 import { Button } from "react-bootstrap";
 import React from "react";
 
-export const DeleteSemesterButton = (props: {
-        setDeleteAllSemesters: React.Dispatch<React.SetStateAction<number>>;
-    }): JSX.Element =>
+export const DeleteSemesterButton = (): JSX.Element =>
 
     <Button
         data-testid="deletesemesterbutton"
@@ -15,3 +13,10 @@ export const DeleteSemesterButton = (props: {
         Clear All Semesters
     </Button>;
 
+/*
+
+export const DeleteSemesterButton = (props: {
+        setDeleteAllSemesters: React.Dispatch<React.SetStateAction<number>>;
+    }): JSX.Element =>
+
+*/
