@@ -16,6 +16,9 @@ import { onDragEndLogic } from "./util/DropLogic";
 import { ExportPlan } from "./util/ExportPlan";
 import { HowToDisplay } from "./util/howto/howtodisplay";
 import { Footer } from "./util/Footer";
+import { SavingState } from "./util/SaveStateLogic/SavingState";
+import { GetSaveState } from "./util/SaveStateLogic/GetSaveState";
+import { SaveState } from "../interfaces/savestate";
 
 export const MainPage = (): JSX.Element => {
     const [concentration, setConcentration] = useState<Concentration>(CONCENTRATIONS[0] as Concentration);
@@ -40,6 +43,15 @@ export const MainPage = (): JSX.Element => {
         setTimeout(() => {
             setToastDisplay(false);
         }, 5000);
+    };
+
+    const saveProgress = (): void => {
+        console.log("MAINPAGE : saving : ", concentration.name);
+        SavingState(concentrationContainers, semesterCourses, concentration.name, semesters);
+    };
+
+    const getSavedProgress = (concName: string): SaveState | undefined => {
+        return GetSaveState(concName);
     };
 
     useEffect(() => {
@@ -98,6 +110,8 @@ export const MainPage = (): JSX.Element => {
                                         semesterCourses={semesterCourses}
                                         setConcentration={setConcentration}
                                         setSemesterCourses={setSemesterCourses}
+                                        saveProgress={saveProgress}
+                                        getProgress={getSavedProgress}
                                     />
                                     <AddSemesterButton semesters={semesters} setSemesters={setSemesters} />
                                     <DeleteSemesterButton

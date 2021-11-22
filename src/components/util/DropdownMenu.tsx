@@ -1,6 +1,7 @@
 import { NavDropdown } from "react-bootstrap";
 import { Concentration } from "../../interfaces/concentration";
 import { SemesterType } from "../../interfaces/semester";
+import { SaveState } from "../../interfaces/savestate";
 import CONCENTRATIONS from "../../json/concentrations.json";
 import React from "react";
 
@@ -8,9 +9,28 @@ export const DropdownMenu = (props: {
         setConcentration: React.Dispatch<React.SetStateAction<Concentration>>;
         semesterCourses: SemesterType[];
         setSemesterCourses: React.Dispatch<React.SetStateAction<SemesterType[]>>;
+        saveProgress: () => void;
+        getProgress: (concName: string) => SaveState | undefined;
     }): JSX.Element => {
 
     const clickFunc = (ind: number) => {
+
+        //localStorage.clear();
+
+        props.saveProgress();
+        
+        console.log("accessing", CONCENTRATIONS[ind].name);
+
+        const result: SaveState | undefined = props.getProgress(CONCENTRATIONS[ind].name);
+
+        console.log("result is ", result);
+
+        if(result !== undefined){
+            // courses are saved
+            console.log("ACQUIRED SAVED RESULT");
+            console.log(Object.values(result.concentrationCourses));
+            console.log(Object.values(result.semesters));
+        }
 
         const tmpSemesterCourses = [...props.semesterCourses];
 
