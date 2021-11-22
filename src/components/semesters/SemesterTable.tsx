@@ -17,6 +17,6 @@ export const SemesterTable = (props: { semesters: number;
     <div>
         {
             new Array(props.semesters).fill(0)
-                .map((elem, ind) => <Semester ind={ind} key={`semester-table-key-${elem}`} semesterCourses={props.semestersCourses} setSemesterCourses={props.setSemesterCourses} />)
+                .map((elem, ind) => <Semester ind={ind} key={`semester-table-key-${ind}`} semesterCourses={props.semestersCourses} setSemesterCourses={props.setSemesterCourses} />)
         }
     </div>;

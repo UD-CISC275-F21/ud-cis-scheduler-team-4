@@ -33,22 +33,8 @@ export const DropdownMenu = (props: {
         console.log("result is ", result);
 
         if(result !== undefined){
-            // courses are saved
-            props.updateConc(CONCENTRATIONS[ind]);
-            console.log("SETTING STATES TO SAVED INFO");
-            console.log("BEFORE CONCENTRATIONCOURSES LOOP, CONCENTRATION COURSES = ", Object.values(props.concentrationCourses));
-            for (let i = 0; i < props.concentrationCourses.length; i++) {
-                console.log("i = ", i, " result[i] = ",result.concentrationCourses[i]);
-                props.concentrationCourses[i].setCourses(result.concentrationCourses[i].courses);
-            }
-            console.log("BEFORE SEMESTERCOURSES LOOP, SEMESTER COURSES = ", Object.values(props.semesterCourses));
-            for (let i = 0; i < props.semesterCourses.length; i++) {
-                console.log("i = ", i, " result.semesters[i] = ", result.semesters[i]);
-                props.semesterCourses[i].courseSetter(result.semesters[i].courses);
-            }
-            //props.setSemesterCourses([...props.semesterCourses]);
-            //props.setConcentration(CONCENTRATIONS[ind]);
-            props.setConcentrationCourses([...props.concentrationCourses]);
+            console.log("CONC CONTAINERS ", props.concentrationCourses);
+            console.log("SEMESTER COURSES ", props.semesterCourses);
             props.setSemesters(result.numsemesters);
             props.saveProgress();
         } else {
@@ -67,6 +53,7 @@ export const DropdownMenu = (props: {
             }
             props.setSemesterCourses([...tmpSemesterCourses]);
             props.setConcentration(CONCENTRATIONS[ind]);
+            props.setSemesters(1);
         }
         
         

@@ -44,6 +44,9 @@ export const Semester = (props: {
             }, courses, semesternum: props.ind + 1 });
             props.setSemesterCourses(semesters);
         }
+        return () => {
+            props.setSemesterCourses([]);
+        };
     }, []);
 
     const getCredits = (courses: CourseType[]) => {
