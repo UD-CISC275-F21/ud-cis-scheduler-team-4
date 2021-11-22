@@ -1,6 +1,7 @@
 import { NavDropdown } from "react-bootstrap";
 import { Concentration } from "../../interfaces/concentration";
 import { SemesterType } from "../../interfaces/semester";
+import { Course as CourseType } from "../../interfaces/course";
 import { SaveState } from "../../interfaces/savestate";
 import CONCENTRATIONS from "../../json/concentrations.json";
 import React from "react";
@@ -15,7 +16,6 @@ export const DropdownMenu = (props: {
         concentrationCourses: ConcentrationContainerType[];
         setConcentrationCourses: React.Dispatch<React.SetStateAction<ConcentrationContainerType[]>>;
         setSemesters: React.Dispatch<React.SetStateAction<number>>;
-        updateConc: (conc: Concentration) => void;
     }): JSX.Element => {
 
     const clearMem = () => {
@@ -26,7 +26,7 @@ export const DropdownMenu = (props: {
 
         //clearMem();
         
-        console.log("accessing", CONCENTRATIONS[ind].name);
+        console.log("--------------\naccessing", CONCENTRATIONS[ind].name);
 
         const result: SaveState | undefined = props.getProgress(CONCENTRATIONS[ind].name);
 
@@ -34,6 +34,15 @@ export const DropdownMenu = (props: {
 
         if(result !== undefined){
             console.log("CONC CONTAINERS ", props.concentrationCourses);
+            result.semesters = result.semesters.map(e => new Object({
+                semesternum: e.semesternum,
+                courses: e.courses,
+                courseSetter: (courses: CourseType[]) => {
+                    e.courses = courses;
+                } 
+            })) as SemesterType[];
+            console.log("new result = ", result);
+            props.setSemesterCourses(result.semesters);
             console.log("SEMESTER COURSES ", props.semesterCourses);
             props.setSemesters(result.numsemesters);
             props.saveProgress();
@@ -52,12 +61,10 @@ export const DropdownMenu = (props: {
 
             }
             props.setSemesterCourses([...tmpSemesterCourses]);
-            props.setConcentration(CONCENTRATIONS[ind]);
             props.setSemesters(1);
         }
+        props.setConcentration(CONCENTRATIONS[ind]);      
         
-        
-
     };
 
     return (

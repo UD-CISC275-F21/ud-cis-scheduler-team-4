@@ -45,12 +45,11 @@ export const MainPage = (): JSX.Element => {
         }, 5000);
     };
 
-    const updateConcentration = (concentration: Concentration) => {
-        setConcentration(concentration);
-    };
-
     const saveProgress = (): void => {
         console.log("MAINPAGE : saving : ", concentration.name);
+        //console.log("------- DATA BEING SAVED -------");
+        //console.log("Concentration Courses : ", concentrationContainers);
+        //console.log("Semester Courses : ", semesterCourses);
         SavingState(concentrationContainers, semesterCourses, concentration.name, semesters);
     };
 
@@ -114,12 +113,11 @@ export const MainPage = (): JSX.Element => {
                                         semesterCourses={semesterCourses}
                                         setConcentration={setConcentration}
                                         setSemesterCourses={setSemesterCourses}
-                                        saveProgress={saveProgress}
-                                        getProgress={getSavedProgress}
+                                        setSemesters={setSemesters}
                                         concentrationCourses={concentrationContainers}
                                         setConcentrationCourses={setConcentrationContainers}
-                                        setSemesters={setSemesters}
-                                        updateConc={updateConcentration}
+                                        saveProgress={saveProgress}
+                                        getProgress={getSavedProgress}
                                     />
                                     <AddSemesterButton semesters={semesters} setSemesters={setSemesters} />
                                     <DeleteSemesterButton
@@ -149,6 +147,8 @@ export const MainPage = (): JSX.Element => {
                             semesters={semesters}
                             semestersCourses={semesterCourses}
                             setSemesterCourses={setSemesterCourses}
+                            getSavedProgress={getSavedProgress}
+                            conc={concentration}
                         />
                     </Col>
                 </Row>

@@ -10,5 +10,6 @@ export const SavingState = (
 ): void => {
     console.log("SAVINGSTATE : NAME : ", concentrationName);
     const newState: SaveState = { concentrationName: concentrationName, concentrationCourses: concentrationContainers, semesters: semesters, numsemesters: numsemesters};
+    //console.log("STRINGIFIED SAVE STATE : ", JSON.stringify(newState));
     localStorage.setItem(concentrationName, JSON.stringify(newState));
 };

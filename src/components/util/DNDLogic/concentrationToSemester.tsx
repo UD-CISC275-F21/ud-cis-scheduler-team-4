@@ -9,7 +9,6 @@ export const concentrationToSemester = (
     droppingSemester: SemesterType,
 ): number => {
     console.log("in concentration --> semester");
-    console.log("dropSemester = ", droppingSemester);
     const theCourse: CourseType = concContainer.courses.splice(spliceInd, 1)[0];
     concContainer.setCourses([...concContainer.courses]); /*  Optional line - may be able to remove  */
     droppingSemester.courses.splice(dropInd, 0, theCourse);

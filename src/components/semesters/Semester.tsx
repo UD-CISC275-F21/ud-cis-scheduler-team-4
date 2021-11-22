@@ -6,6 +6,8 @@ import { Course } from "../courses/Course";
 import { Course as CourseType } from "../../interfaces/course";
 import { SemesterType } from "../../interfaces/semester";
 import { EditCoursePanel } from "../courses/EditCoursePanel";
+import { Concentration } from "../../interfaces/concentration";
+import { SaveState } from "../../interfaces/savestate";
 
 /*
 
@@ -31,13 +33,17 @@ export const Semester = (props: {
     ind: number;
     semesterCourses: SemesterType[];
     setSemesterCourses: React.Dispatch<React.SetStateAction<SemesterType[]>>;
+    currConcentration: Concentration;
+    getSavedProgress: (concName: string) => SaveState | undefined;
 }): JSX.Element => {
     const [courses, setCourses] = useState<CourseType[]>([]);
     const [credits, setCredits] = useState<number>(0);
 
     useEffect(() => {
-
+        console.log("IND = ", props.ind);
+        console.log("CURR CONC = ", props.currConcentration);
         if (!props.semesterCourses.find(elem => elem.semesternum === props.ind + 1)) {
+            console.log("IN SEMESTER RENDERING IF");
             const semesters: SemesterType[] = [...props.semesterCourses];
             semesters.push({ courseSetter: (newCourses: CourseType[]) => {
                 setCourses(newCourses);
@@ -45,6 +51,8 @@ export const Semester = (props: {
             props.setSemesterCourses(semesters);
         }
         return () => {
+            setCourses([]);
+            setCredits(0);
             props.setSemesterCourses([]);
         };
     }, []);
@@ -59,6 +67,8 @@ export const Semester = (props: {
     };
 
     useEffect(() => {
+        console.log("courses are now ---- ");
+        console.log(courses);
         getCredits(courses);
     }, [courses]);
 
