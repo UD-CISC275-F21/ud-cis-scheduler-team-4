@@ -19,6 +19,7 @@ import { Footer } from "./util/Footer";
 import { SavingState } from "./util/SaveStateLogic/SavingState";
 import { GetSaveState } from "./util/SaveStateLogic/GetSaveState";
 import { SaveState } from "../interfaces/savestate";
+import { SavedSemesterTable } from "./util/SaveStateLogic/RenderSavedSemesterTable";
 
 export const MainPage = (): JSX.Element => {
     const [concentration, setConcentration] = useState<Concentration>(CONCENTRATIONS[0] as Concentration);
@@ -143,13 +144,24 @@ export const MainPage = (): JSX.Element => {
                         <br />
                         <br />
                         <br />
-                        <SemesterTable
-                            semesters={semesters}
-                            semestersCourses={semesterCourses}
-                            setSemesterCourses={setSemesterCourses}
-                            getSavedProgress={getSavedProgress}
-                            conc={concentration}
-                        />
+                        {
+                            getSavedProgress(concentration.name) === undefined ?
+                                <SemesterTable
+                                    semesters={semesters}
+                                    semestersCourses={semesterCourses}
+                                    setSemesterCourses={setSemesterCourses}
+                                    conc={concentration}
+                                />
+                                :
+                                <>
+                                    {SavedSemesterTable(
+                                        semesters,
+                                        getSavedProgress(concentration.name)?.semesters,
+                                        setSemesterCourses,
+                                        concentration,
+                                    )}
+                                </>
+                        }
                     </Col>
                 </Row>
                 <Row>

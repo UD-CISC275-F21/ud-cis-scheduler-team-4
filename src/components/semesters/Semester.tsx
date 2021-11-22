@@ -34,7 +34,6 @@ export const Semester = (props: {
     semesterCourses: SemesterType[];
     setSemesterCourses: React.Dispatch<React.SetStateAction<SemesterType[]>>;
     currConcentration: Concentration;
-    getSavedProgress: (concName: string) => SaveState | undefined;
 }): JSX.Element => {
     const [courses, setCourses] = useState<CourseType[]>([]);
     const [credits, setCredits] = useState<number>(0);

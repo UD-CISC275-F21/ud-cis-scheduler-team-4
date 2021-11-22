@@ -43,12 +43,13 @@ export const DropdownMenu = (props: {
             })) as SemesterType[];
             console.log("new result = ", result);
             props.setSemesterCourses(result.semesters);
-            console.log("SEMESTER COURSES ", props.semesterCourses);
             props.setSemesters(result.numsemesters);
             props.saveProgress();
         } else {
 
             props.saveProgress();
+
+            console.log("DROPDOWN SEMESTER COURSES ", props.semesterCourses);
 
             const tmpSemesterCourses = [...props.semesterCourses];
 

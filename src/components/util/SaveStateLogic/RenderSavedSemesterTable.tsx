@@ -5,24 +5,30 @@ import { Concentration } from "../../../interfaces/concentration";
 import React from "react";
 
 export const SavedSemesterTable = (
-    semesters: number,
-    semesterCourses: SemesterType[],
+    semesters: number | undefined,
+    semesterCourses: SemesterType[] | undefined,
     setSemesterCourses: React.Dispatch<React.SetStateAction<SemesterType[]>>,
-    getSavedProgress: (concName: string) => SaveState,
     concentration: Concentration
 ): JSX.Element => {
 
-    return(
+    console.log("RENDERING SAVED SEMESTER TABLE");
+    if (semesters !== undefined && semesterCourses !== undefined) {
+        return(
 
-        <SemesterTable
-            semesters={semesters}
-            semestersCourses={semesterCourses}
-            setSemesterCourses={setSemesterCourses}
-            getSavedProgress={getSavedProgress}
-            conc={concentration}
-        />
+            <SemesterTable
+                semesters={semesters}
+                semestersCourses={semesterCourses}
+                setSemesterCourses={setSemesterCourses}
+                conc={concentration}
+            />
 
-    );
+        );
+    } else {
+        return(
+            <>
+            </>
+        );
+    }
 
 
 };
