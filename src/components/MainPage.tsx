@@ -45,6 +45,10 @@ export const MainPage = (): JSX.Element => {
         }, 5000);
     };
 
+    const updateConcentration = (concentration: Concentration) => {
+        setConcentration(concentration);
+    };
+
     const saveProgress = (): void => {
         console.log("MAINPAGE : saving : ", concentration.name);
         SavingState(concentrationContainers, semesterCourses, concentration.name, semesters);
@@ -112,6 +116,10 @@ export const MainPage = (): JSX.Element => {
                                         setSemesterCourses={setSemesterCourses}
                                         saveProgress={saveProgress}
                                         getProgress={getSavedProgress}
+                                        concentrationCourses={concentrationContainers}
+                                        setConcentrationCourses={setConcentrationContainers}
+                                        setSemesters={setSemesters}
+                                        updateConc={updateConcentration}
                                     />
                                     <AddSemesterButton semesters={semesters} setSemesters={setSemesters} />
                                     <DeleteSemesterButton
