@@ -28,19 +28,19 @@ export const getSemesterStr = (semesterNum: number): string => {
     }
 };
 
-export const getCourses = (semesterCourses: SemesterType[], index: number) => {
+export const getCourses = (semesterCourses: SemesterType[], index: number): CourseType[] => {
 
     const result = semesterCourses[index];
     if (result === undefined) {
-        console.log(" undefined ");
+        console.log(">>>> undefined ");
         return [];
     } else {
         const result2 = semesterCourses[index].courses.length > 0;
         if ( result2 ) {
-            console.log(" valid courses ");
+            console.log(">>>> valid courses >>>>> ", semesterCourses[index].courses);
             return semesterCourses[index].courses;
         } else {
-            console.log(" invalid courses ");
+            console.log(">>>> invalid courses ");
             return [];
         }
     }
@@ -59,7 +59,12 @@ export const Semester = (props: {
 }): JSX.Element => {
     console.log("RENDERING SEMESTER ", props.ind, " and semestercourses = ", props.semesterCourses);
     console.log("result = ", props.semesterCourses[props.ind]);
-    const [courses, setCourses] = useState<CourseType[]>(props.semesterCourses[props.ind] !== undefined ? (props.semesterCourses[props.ind].courses.length > 0 ? props.semesterCourses[props.ind].courses : []) : []);
+    const result = getCourses(props.semesterCourses,props.ind);
+    //// BUG: HERE IS WHERE THE BUG IS, FOR SOME REASON THE FIRST SET OF COURSES ARE NOT
+    // BEING SENT IN TO SETCOURSES AND CAUSING THE COURSES STATE TO UPDATE 
+    // , BUT ALL OTHER SEMESTER COURSES ARE UPDATING THE STATE, VERY ODD BUG
+    const [courses, setCourses] = useState<CourseType[]>(
+        [...result]);
     const [credits, setCredits] = useState<number>(0);
     console.log("RENDERING COURSES = ", courses);
     useEffect(() => {

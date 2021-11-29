@@ -41,13 +41,7 @@ export const MainPage = (): JSX.Element => {
             setDisplay(false);
         }, 1);
     }, []);
-
-    useEffect(() => {
-
-        console.log("CHANGING SAVE DATA - ", saveData);
-
-    },[saveData]);
-
+    
     useEffect(() => {
         console.log("UPDATING SAVEDATA CONCENTRATION CONTAINERS");
         const index = saveData.findIndex(eachSaveData => eachSaveData.concentration.name === concentration.name);
