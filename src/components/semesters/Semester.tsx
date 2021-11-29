@@ -28,16 +28,42 @@ export const getSemesterStr = (semesterNum: number): string => {
     }
 };
 
+export const getCourses = (semesterCourses: SemesterType[], index: number) => {
+
+    const result = semesterCourses[index];
+    if (result === undefined) {
+        console.log(" undefined ");
+        return [];
+    } else {
+        const result2 = semesterCourses[index].courses.length > 0;
+        if ( result2 ) {
+            console.log(" valid courses ");
+            return semesterCourses[index].courses;
+        } else {
+            console.log(" invalid courses ");
+            return [];
+        }
+    }
+
+    //const [courses, setCourses] = useState<CourseType[]>(
+    //    props.semesterCourses[props.ind] !== undefined ? 
+    //    (props.semesterCourses[props.ind].courses.length > 0 ? props.semesterCourses[props.ind].courses : [])
+    //    : []);
+
+};
+
 export const Semester = (props: {
     ind: number;
     semesterCourses: SemesterType[];
     setSemesterCourses: React.Dispatch<React.SetStateAction<SemesterType[]>>;
 }): JSX.Element => {
-    const [courses, setCourses] = useState<CourseType[]>(props.semesterCourses[props.ind] ? (props.semesterCourses[props.ind].courses.length > 0 ? props.semesterCourses[props.ind].courses : []) : []);
+    console.log("RENDERING SEMESTER ", props.ind, " and semestercourses = ", props.semesterCourses);
+    console.log("result = ", props.semesterCourses[props.ind]);
+    const [courses, setCourses] = useState<CourseType[]>(props.semesterCourses[props.ind] !== undefined ? (props.semesterCourses[props.ind].courses.length > 0 ? props.semesterCourses[props.ind].courses : []) : []);
     const [credits, setCredits] = useState<number>(0);
-
+    console.log("RENDERING COURSES = ", courses);
     useEffect(() => {
-        //console.log("THE INDEX = ", props.ind);
+        console.log("THE INDEX = ", props.ind);
         if (!props.semesterCourses.find(eachSemester => eachSemester.semesternum === (props.ind+1))) {
             const semesters: SemesterType[] = [...props.semesterCourses];
             semesters.push({ courseSetter: (newCourses: CourseType[]) => {

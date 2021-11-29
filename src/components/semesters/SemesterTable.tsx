@@ -19,14 +19,14 @@ export const SemesterTable = (props: {
     }): JSX.Element => {
     const index = props.saveData.findIndex(eachSaveData => eachSaveData.concentration.name === props.concentration.name);
     if (index !== -1) {
-        console.log("IN SEMESTERTABLE, SAVEDATA = ", props.saveData, "index = ", index, " NUMSEMESTERS = ", props.saveData[index].numberOfSemesters);
+        console.log("IN SEMESTERTABLE, SAVEDATA = ", props.saveData[index], "index = ", index, " NUMSEMESTERS = ", props.saveData[index].numberOfSemesters);
     }
     return(
         index !== -1 ?
             <div>
                 {
                     new Array(props.saveData[index].numberOfSemesters).fill(0)
-                        .map((elem, ind) => <Semester ind={ind} key={`semester-table-key-${elem}`} semesterCourses={props.saveData[index].semesters} setSemesterCourses={props.setSemesterCourses} />)
+                        .map((elem, ind) => <Semester ind={ind} key={`semester-table-key-${ind}`} semesterCourses={props.saveData[index].semesters} setSemesterCourses={props.setSemesterCourses} />)
                 }
             </div>
             :
