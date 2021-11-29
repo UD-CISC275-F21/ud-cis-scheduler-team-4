@@ -9,9 +9,9 @@ export const AddSemesterButton = (props: {
     <Button
         data-testid="addsemesterbutton"
         onClick={() => {
-            let tmpSemesters = props.semesters;
-            tmpSemesters += 1;
-            props.setSemesters(tmpSemesters);
+            let tmpSemesterNumber = props.semesters;
+            tmpSemesterNumber += 1;
+            props.setSemesters(tmpSemesterNumber);
         }}
         variant="outline-primary"
     >

@@ -8,5 +8,5 @@ export const DisplayCourseList = (props: {
         setConcentrationContainers: React.Dispatch<React.SetStateAction<ConcentrationContainerType[]>>;
     }): JSX.Element => {
 
-    return DisplayCourseListMap(props.concentration,props.setConcentrationContainers);
+    return DisplayCourseListMap(props.concentration, props.setConcentrationContainers);
 };
