@@ -6,6 +6,7 @@ import { Course } from "../courses/Course";
 import { Course as CourseType } from "../../interfaces/course";
 import { Semester as SemesterType } from "../../interfaces/semester";
 import { EditCoursePanel } from "../courses/EditCoursePanel";
+import { updateSemesterContainer } from "./SemesterHelperFunctions/UpdateSemesterContainers";
 
 /*
 
@@ -41,6 +42,7 @@ export const Semester = (props: {
             setCourses(newCourses);
         }, courses, semesternum: props.ind + 1 });
         props.setSemesterCourses(semesters);
+        console.log("RENDERING SEMESTER'S FIRST USEEFFECT", semesters);
     }, []);
 
     const getCredits = (courses: CourseType[]) => {
@@ -53,6 +55,9 @@ export const Semester = (props: {
     };
 
     useEffect(() => {
+        if (props.semesterCourses.length <= props.ind-1) {
+            props.setSemesterCourses(updateSemesterContainer(props.semesterCourses, props.ind, courses));
+        }
         getCredits(courses);
     }, [courses]);
 

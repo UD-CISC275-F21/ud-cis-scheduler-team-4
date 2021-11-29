@@ -23,6 +23,7 @@ export const onDragEndLogic = (result: DropResult,
     if (!result.destination) {
         return;
     }
+    console.log("IN DROPLOGIC, semesterCourses = ", semesterCourses);
     /*
     If where you are dropping TO is a semester
     */

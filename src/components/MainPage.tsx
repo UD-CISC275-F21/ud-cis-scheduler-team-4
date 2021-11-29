@@ -46,18 +46,13 @@ export const MainPage = (): JSX.Element => {
     useEffect(() => {
         console.log("UPDATING SAVEDATA CONCENTRATION CONTAINERS");
         const index = saveData.findIndex(eachSaveData => eachSaveData.concentration.name === concentration.name);
-        if ( index == -1 ) { // save data not found
-            setSemesters(0);
-            setSaveData((formerSaveData) => [...formerSaveData, {concentration: concentration, numberOfSemesters: semesters, semesters: semesterCourses}]);
-        } else {
-            const tmpSaveData = [...saveData];
-            tmpSaveData[index] = UpdateConcentration(tmpSaveData[index],concentrationContainers);
-            setSaveData([...tmpSaveData]);
-        }
+        const tmpSaveData = [...saveData];
+        tmpSaveData[index] = UpdateConcentration(tmpSaveData[index],concentrationContainers);
+        setSaveData([...tmpSaveData]);
     }, [concentrationContainers]);
 
     useEffect(() => {
-        console.log("UPDATING SAVEDATA SEMESTER COURSES");
+        console.log("UPDATING SAVEDATA SEMESTER COURSES, SEMESTERCOURSES = ", semesterCourses);
         const index = saveData.findIndex(eachSaveData => eachSaveData.concentration.name === concentration.name);
         const tmpSaveData = [...saveData];
         tmpSaveData[index] = UpdateSemester(tmpSaveData[index],semesterCourses);
@@ -67,10 +62,14 @@ export const MainPage = (): JSX.Element => {
     useEffect(() => {
         const index = saveData.findIndex(eachSaveData => eachSaveData.concentration.name === concentration.name);
         if ( index == -1 ) { // save data not found
-            setSemesters(0);
+            setSemesters(1);
             setSaveData((formerSaveData) => [...formerSaveData, {concentration: concentration, numberOfSemesters: semesters, semesters: semesterCourses}]);
+        } else {
+            const tmpSaveData = saveData;
+            tmpSaveData[index].numberOfSemesters = semesters;
+            setSaveData([...tmpSaveData]);
         }
-    }, [concentration]);
+    }, [concentration, semesters]);
 
     const displayToast = (msg: string) => {
         setToastDisplay(true);
@@ -163,8 +162,7 @@ export const MainPage = (): JSX.Element => {
                         <br />
                         <br />
                         <SemesterTable
-                            semesters={semesters}
-                            semestersCourses={semesterCourses}
+                            concentration={concentration}
                             setSemesterCourses={setSemesterCourses}
                             saveData={saveData}
                         />
