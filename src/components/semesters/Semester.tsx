@@ -58,8 +58,10 @@ export const Semester = (props: {
     };
 
     useEffect(() => {
-        console.log("UPDATING COURSES");
-        if (props.semesterCourses.length < props.ind-1) {
+        console.log("UPDATING COURSES ", props.semesterCourses, " and ind = ", props.ind-1);
+        // if [0] and ind = 1
+        if (props.semesterCourses.length !== 0 && props.semesterCourses.length-1 >= props.ind) {
+            console.log("IN UPDATING COURSES IF");
             props.setSemesterCourses(updateSemesterContainer(props.semesterCourses, props.ind, courses));
         }
         getCredits(courses);
