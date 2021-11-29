@@ -19,6 +19,7 @@ import { Footer } from "./util/Footer";
 import SavedData from "../assets/data/SavedProgress";
 import { SavedProgress } from "../interfaces/savedprogress";
 import { UpdateConcentration } from "./courses/DisplayCourseListHelperFunctions/UpdateConcentration";
+import { UpdateSemester } from "./semesters/SemesterHelperFunctions/UpdateSemesters";
 
 export const MainPage = (): JSX.Element => {
     const [concentration, setConcentration] = useState<Concentration>(CONCENTRATIONS[0] as Concentration);
@@ -29,7 +30,6 @@ export const MainPage = (): JSX.Element => {
     const [toastDisplay, setToastDisplay] = useState<boolean>(false); // Will be implemented once basic drop logic is fully implemented
     const [toastMessage, setToastMessage] = useState<string>(""); // Will be implemented once basic drop logic is fully implemented
     const [deleteTriggered, setDeleteTriggered] = useState<number>(-1);
-    const [foundSaveData, setFoundSaveData] = useState<boolean>(false);
     const [saveData, setSaveData] = useState<SavedProgress[]>([{
         concentration: concentration,
         numberOfSemesters: semesters,
@@ -44,10 +44,8 @@ export const MainPage = (): JSX.Element => {
     }, []);
 
     useEffect(() => {
+        console.log("UPDATING SAVEDATA CONCENTRATION CONTAINERS");
         const index = saveData.findIndex(eachSaveData => eachSaveData.concentration.name === concentration.name);
-        console.log("switching concentration to = ", concentration);
-        console.log("concentration containers = ", concentrationContainers);
-        console.log("index = ", index);
         if ( index == -1 ) { // save data not found
             setSemesters(0);
             setSaveData((formerSaveData) => [...formerSaveData, {concentration: concentration, numberOfSemesters: semesters, semesters: semesterCourses}]);
@@ -56,8 +54,23 @@ export const MainPage = (): JSX.Element => {
             tmpSaveData[index] = UpdateConcentration(tmpSaveData[index],concentrationContainers);
             setSaveData([...tmpSaveData]);
         }
-        console.log("savedata is now = ", saveData);
-    }, [concentration, concentrationContainers]);
+    }, [concentrationContainers]);
+
+    useEffect(() => {
+        console.log("UPDATING SAVEDATA SEMESTER COURSES");
+        const index = saveData.findIndex(eachSaveData => eachSaveData.concentration.name === concentration.name);
+        const tmpSaveData = [...saveData];
+        tmpSaveData[index] = UpdateSemester(tmpSaveData[index],semesterCourses);
+        setSaveData([...tmpSaveData]);
+    }, [semesterCourses]);
+
+    useEffect(() => {
+        const index = saveData.findIndex(eachSaveData => eachSaveData.concentration.name === concentration.name);
+        if ( index == -1 ) { // save data not found
+            setSemesters(0);
+            setSaveData((formerSaveData) => [...formerSaveData, {concentration: concentration, numberOfSemesters: semesters, semesters: semesterCourses}]);
+        }
+    }, [concentration]);
 
     const displayToast = (msg: string) => {
         setToastDisplay(true);
@@ -153,6 +166,7 @@ export const MainPage = (): JSX.Element => {
                             semesters={semesters}
                             semestersCourses={semesterCourses}
                             setSemesterCourses={setSemesterCourses}
+                            saveData={saveData}
                         />
                     </Col>
                 </Row>
