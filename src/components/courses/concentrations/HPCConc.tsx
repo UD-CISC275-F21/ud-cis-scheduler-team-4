@@ -3,86 +3,104 @@ import CONCENTRATIONS from "../../../json/concentrations.json";
 import { CourseContainer } from "../CourseContainer";
 import { ConcentrationContainerType } from "../../../interfaces/concentrationcontainer";
 import React, { useState, useEffect } from "react";
-import { Course as CourseType } from "../../../interfaces/course";
+import { Course as Course } from "../../../interfaces/course";
 
 export const HPCConc = (props: {
-    StringsToCourses: (stringCourses: string[]) => CourseType[];
+    StringsToCourses: (stringCourses: string[]) => Course[];
     setConcentrationContainers: React.Dispatch<React.SetStateAction<ConcentrationContainerType[]>>;
     }): JSX.Element => {
     const [coreCourses,
-        setCoreCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[4].core));
+        setCoreCourses] = useState<Course[]>(props.StringsToCourses(CONCENTRATIONS[4].core));
     const [capstoneCourses,
-        setCapstoneCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[4].capstone));
+        setCapstoneCourses] = useState<Course[]>(props.StringsToCourses(CONCENTRATIONS[4].capstone));
     const [generalCourses,
-        setGeneralCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[4].conc.general));
+        setGeneralCourses] = useState<Course[]>(props.StringsToCourses(CONCENTRATIONS[4].conc.general));
     const [writingCourses,
-        setWritingCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[4].writing));
+        setWritingCourses] = useState<Course[]>(props.StringsToCourses(CONCENTRATIONS[4].writing));
     const [labCourses,
-        setLabCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[4].lab));
+        setLabCourses] = useState<Course[]>(props.StringsToCourses(CONCENTRATIONS[4].lab));
     const [statCourses,
-        setStatCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[4].conc.stats));
+        setStatCourses] = useState<Course[]>(props.StringsToCourses(CONCENTRATIONS[4].conc.stats));
     const [electiveCourses,
-        setElectiveCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[4].conc.elective));
+        setElectiveCourses] = useState<Course[]>(props.StringsToCourses(CONCENTRATIONS[4].conc.elective));
     const [mathCourses,
-        setMathCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[4].conc.data));
+        setMathCourses] = useState<Course[]>(props.StringsToCourses(CONCENTRATIONS[4].conc.data));
     const [dataCourses,
-        setDataCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[4].conc.track));
+        setDataCourses] = useState<Course[]>(props.StringsToCourses(CONCENTRATIONS[4].conc.track));
     const [learningCourses,
-        setLearningCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[4].conc.cybersecurity));
+        setLearningCourses] = useState<Course[]>(props.StringsToCourses(CONCENTRATIONS[4].conc.cybersecurity));
     const [dataTrackCourses,
-        setDataTrackCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[4].conc.ochem));
+        setDataTrackCourses] = useState<Course[]>(props.StringsToCourses(CONCENTRATIONS[4].conc.ochem));
     useEffect(() => {
         props.setConcentrationContainers(
             [
                 {
                     courses: coreCourses,
                     name: "core",
-                    setCourses: setCoreCourses,
+                    setCourses: (courses: Course[]) => {
+                        setCoreCourses(courses);
+                    },
                 },
                 {
                     courses: capstoneCourses,
                     name: "capstone",
-                    setCourses: setCapstoneCourses,
+                    setCourses: (courses: Course[]) => {
+                        setCapstoneCourses(courses);
+                    },
 
                 },
                 {
                     courses: generalCourses,
                     name: "general",
-                    setCourses: setGeneralCourses,
+                    setCourses: (courses: Course[]) => {
+                        setGeneralCourses(courses);
+                    },
                 },
                 {
                     courses: writingCourses,
                     name: "writing",
-                    setCourses: setWritingCourses,
+                    setCourses: (courses: Course[]) => {
+                        setWritingCourses(courses);
+                    },
 
                 },
                 {
                     courses: labCourses,
                     name: "lab-1",
-                    setCourses: setLabCourses,
+                    setCourses: (courses: Course[]) => {
+                        setLabCourses(courses);
+                    },
                 },
                 {
                     courses: statCourses,
                     name: "stat",
-                    setCourses: setStatCourses,
+                    setCourses: (courses: Course[]) => {
+                        setStatCourses(courses);
+                    },
                 },
                 {
                     courses: electiveCourses,
                     name: "elective",
-                    setCourses: setElectiveCourses,
+                    setCourses: (courses: Course[]) => {
+                        setElectiveCourses(courses);
+                    },
                 },
                 {
                     courses: mathCourses,
                     name: "math",
-                    setCourses: setMathCourses,
+                    setCourses: (courses: Course[]) => {
+                        setMathCourses(courses);
+                    },
                 },
                 {
                     courses: dataCourses,
                     name: "dataCourses",
-                    setCourses: setDataCourses,
+                    setCourses: (courses: Course[]) => {
+                        setDataCourses(courses);
+                    },
                 },
-                { courses: learningCourses, name: "machineLearningCourses", setCourses: setLearningCourses },
-                { courses: dataTrackCourses, name: "dataTrack", setCourses: setDataTrackCourses },
+                { courses: learningCourses, name: "machineLearningCourses", setCourses: (courses: Course[]) => setLearningCourses(courses) },
+                { courses: dataTrackCourses, name: "dataTrack", setCourses: (courses: Course[]) => setDataTrackCourses(courses) },
             ],
         );
     }, []);

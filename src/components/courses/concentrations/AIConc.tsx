@@ -3,29 +3,29 @@ import CONCENTRATIONS from "../../../json/concentrations.json";
 import { CourseContainer } from "../CourseContainer";
 import { ConcentrationContainerType } from "../../../interfaces/concentrationcontainer";
 import React, { useState, useEffect } from "react";
-import { Course as CourseType } from "../../../interfaces/course";
+import { Course } from "../../../interfaces/course";
 
 
 export const AIConc = (props: {
-    StringsToCourses: (stringCourses: string[]) => CourseType[];
+    StringsToCourses: (stringCourses: string[]) => Course[];
     setConcentrationContainers: React.Dispatch<React.SetStateAction<ConcentrationContainerType[]>>;
     }): JSX.Element => {
     const [coreCourses,
-        setCoreCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[0].core));
+        setCoreCourses] = useState<Course[]>(props.StringsToCourses(CONCENTRATIONS[0].core));
     const [capstone1Courses,
-        setCapstone1Courses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[0].capstone));
+        setCapstone1Courses] = useState<Course[]>(props.StringsToCourses(CONCENTRATIONS[0].capstone));
     const [general1Courses,
-        setGeneral1Courses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[0].conc.general));
+        setGeneral1Courses] = useState<Course[]>(props.StringsToCourses(CONCENTRATIONS[0].conc.general));
     const [writingCourses,
-        setWritingCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[0].writing));
+        setWritingCourses] = useState<Course[]>(props.StringsToCourses(CONCENTRATIONS[0].writing));
     const [capstone2Courses,
-        setCapstone2Courses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[0].conc.stats));
+        setCapstone2Courses] = useState<Course[]>(props.StringsToCourses(CONCENTRATIONS[0].conc.stats));
     const [general2Courses,
-        setGeneral2Courses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[0].conc.systems));
+        setGeneral2Courses] = useState<Course[]>(props.StringsToCourses(CONCENTRATIONS[0].conc.systems));
     const [electiveCourses,
-        setElectiveCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[0].conc.elective));
+        setElectiveCourses] = useState<Course[]>(props.StringsToCourses(CONCENTRATIONS[0].conc.elective));
     const [labCourses,
-        setLabCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[0].lab));
+        setLabCourses] = useState<Course[]>(props.StringsToCourses(CONCENTRATIONS[0].lab));
 
     useEffect(() => {
         props.setConcentrationContainers(
@@ -34,43 +34,59 @@ export const AIConc = (props: {
                 {
                     courses: coreCourses,
                     name: "core",
-                    setCourses: setCoreCourses,
+                    setCourses: (courses: Course[]) => {
+                        setCoreCourses(courses);
+                    },
                 },
                 {
                     courses: capstone1Courses,
                     name: "capstone-1",
-                    setCourses: setCapstone1Courses,
+                    setCourses: (courses: Course[]) => {
+                        setCapstone1Courses(courses);
+                    },
 
                 },
                 {
                     courses: general1Courses,
                     name: "general-1",
-                    setCourses: setGeneral1Courses,
+                    setCourses: (courses: Course[]) => {
+                        setGeneral1Courses(courses);
+                    },
                 },
                 {
                     courses: writingCourses,
                     name: "writing",
-                    setCourses: setWritingCourses,
+                    setCourses: (courses: Course[]) => {
+                        setWritingCourses(courses);
+                    },
                 },
                 {
                     courses: capstone2Courses,
                     name: "capstone-2",
-                    setCourses: setCapstone2Courses,
+                    setCourses: (courses: Course[]) => {
+                        setCapstone2Courses(courses);
+                    },
                 },
                 {
                     courses: general2Courses,
                     name: "general-2",
-                    setCourses: setGeneral2Courses,
+                    setCourses: (courses: Course[]) => {
+                        setGeneral2Courses(courses);
+                    },
                 },
                 {
                     courses: electiveCourses,
                     name: "elective",
-                    setCourses: setElectiveCourses,
+                    setCourses: (courses: Course[]) => {
+                        setElectiveCourses(courses);
+                    },
                 },
                 {
                     courses: labCourses,
                     name: "lab-1",
-                    setCourses: setLabCourses,
+                    setCourses: (courses: Course[]) => {
+                        setLabCourses(courses);
+                    },
                 },
 
             ],

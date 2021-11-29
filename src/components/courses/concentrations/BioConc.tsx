@@ -3,30 +3,30 @@ import CONCENTRATIONS from "../../../json/concentrations.json";
 import { CourseContainer } from "../CourseContainer";
 import { ConcentrationContainerType } from "../../../interfaces/concentrationcontainer";
 import React, { useState, useEffect } from "react";
-import { Course as CourseType } from "../../../interfaces/course";
+import { Course as Course } from "../../../interfaces/course";
 
 export const BioConc = (props: { StringsToCourses: (
-        stringCourses: string[]) => CourseType[];
+        stringCourses: string[]) => Course[];
         setConcentrationContainers: React.Dispatch<React.SetStateAction<ConcentrationContainerType[]>>;
     }): JSX.Element => {
     const [coreCourses,
-        setCoreCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[1].core));
+        setCoreCourses] = useState<Course[]>(props.StringsToCourses(CONCENTRATIONS[1].core));
     const [capstoneCourses,
-        setCapstoneCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[1].capstone));
+        setCapstoneCourses] = useState<Course[]>(props.StringsToCourses(CONCENTRATIONS[1].capstone));
     const [generalCourses,
-        setGeneralCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[1].conc.general));
+        setGeneralCourses] = useState<Course[]>(props.StringsToCourses(CONCENTRATIONS[1].conc.general));
     const [writingCourses,
-        setWritingCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[1].writing));
+        setWritingCourses] = useState<Course[]>(props.StringsToCourses(CONCENTRATIONS[1].writing));
     const [statCourses,
-        setStatCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[1].conc.stats));
+        setStatCourses] = useState<Course[]>(props.StringsToCourses(CONCENTRATIONS[1].conc.stats));
     const [labCourses,
-        setLabCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[1].lab));
+        setLabCourses] = useState<Course[]>(props.StringsToCourses(CONCENTRATIONS[1].lab));
     const [ochemCourses,
-        setOchemCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[1].conc.ochem));
+        setOchemCourses] = useState<Course[]>(props.StringsToCourses(CONCENTRATIONS[1].conc.ochem));
     const [electiveCourses,
-        setElectiveCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[1].conc.elective));
+        setElectiveCourses] = useState<Course[]>(props.StringsToCourses(CONCENTRATIONS[1].conc.elective));
     const [dataCourses,
-        setDataCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[1].conc.data));
+        setDataCourses] = useState<Course[]>(props.StringsToCourses(CONCENTRATIONS[1].conc.data));
     useEffect(() => {
         props.setConcentrationContainers(
 
@@ -34,48 +34,66 @@ export const BioConc = (props: { StringsToCourses: (
                 {
                     courses: coreCourses,
                     name: "core",
-                    setCourses: setCoreCourses,
+                    setCourses: (courses: Course[]) => {
+                        setCoreCourses(courses);
+                    },
                 },
                 {
                     courses: capstoneCourses,
                     name: "capstone",
-                    setCourses: setCapstoneCourses,
+                    setCourses: (courses: Course[]) => {
+                        setCapstoneCourses(courses);
+                    },
 
                 },
                 {
                     courses: generalCourses,
                     name: "general",
-                    setCourses: setGeneralCourses,
+                    setCourses: (courses: Course[]) => {
+                        setGeneralCourses(courses);
+                    },
                 },
                 {
                     courses: writingCourses,
                     name: "writing",
-                    setCourses: setWritingCourses,
+                    setCourses: (courses: Course[]) => {
+                        setWritingCourses(courses);
+                    },
                 },
                 {
                     courses: statCourses,
                     name: "stat",
-                    setCourses: setStatCourses,
+                    setCourses: (courses: Course[]) => {
+                        setStatCourses(courses);
+                    },
                 },
                 {
                     courses: labCourses,
                     name: "lab-1",
-                    setCourses: setLabCourses,
+                    setCourses: (courses: Course[]) => {
+                        setLabCourses(courses);
+                    },
                 },
                 {
                     courses: electiveCourses,
                     name: "electives",
-                    setCourses: setElectiveCourses,
+                    setCourses: (courses: Course[]) => {
+                        setElectiveCourses(courses);
+                    },
                 },
                 {
                     courses: dataCourses,
                     name: "data",
-                    setCourses: setDataCourses,
+                    setCourses: (courses: Course[]) => {
+                        setDataCourses(courses);
+                    },
                 },
                 {
                     courses: ochemCourses,
                     name: "ochem-1",
-                    setCourses: setOchemCourses,
+                    setCourses: (courses: Course[]) => {
+                        setOchemCourses(courses);
+                    },
                 },
 
             ],
