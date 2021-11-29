@@ -35,13 +35,18 @@ export const MainPage = (): JSX.Element => {
         numberOfSemesters: semesters,
         semesters: semesterCourses
     } as SavedProgress]);
-
     useEffect(() => {
         setDisplay(true);
         setTimeout(() => {
             setDisplay(false);
         }, 1);
     }, []);
+
+    useEffect(() => {
+
+        console.log("CHANGING SAVE DATA - ", saveData);
+
+    },[saveData]);
 
     useEffect(() => {
         console.log("UPDATING SAVEDATA CONCENTRATION CONTAINERS");
@@ -64,6 +69,7 @@ export const MainPage = (): JSX.Element => {
         const tmpSaveData = saveData;
         tmpSaveData[index].numberOfSemesters = semesters;
         setSaveData([...tmpSaveData]);
+        console.log("AFTER MAINPAGE SEMESTERS USEFFECT, SAVEDATA = ", saveData);
     }, [semesters]);
 
     useEffect(() => {

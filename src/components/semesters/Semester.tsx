@@ -37,12 +37,15 @@ export const Semester = (props: {
     const [credits, setCredits] = useState<number>(0);
 
     useEffect(() => {
-        const semesters: SemesterType[] = [...props.semesterCourses];
-        semesters.push({ courseSetter: (newCourses: CourseType[]) => {
-            setCourses(newCourses);
-        }, courses, semesternum: props.ind + 1 });
-        props.setSemesterCourses(semesters);
-        console.log("RENDERING SEMESTER'S FIRST USEEFFECT", semesters);
+        //console.log("THE INDEX = ", props.ind);
+        if (!props.semesterCourses.find(eachSemester => eachSemester.semesternum === (props.ind+1))) {
+            const semesters: SemesterType[] = [...props.semesterCourses];
+            semesters.push({ courseSetter: (newCourses: CourseType[]) => {
+                setCourses(newCourses);
+            }, courses, semesternum: props.ind + 1 });
+            props.setSemesterCourses(semesters);
+        }
+        //console.log("RENDERING SEMESTER'S FIRST USEEFFECT", semesters);
     }, []);
 
     const getCredits = (courses: CourseType[]) => {
