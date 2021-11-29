@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import { Droppable, DroppableProvided } from "react-beautiful-dnd";
 import { Course } from "../courses/Course";
 import { Course as CourseType } from "../../interfaces/course";
-import { SemesterType } from "../../interfaces/semester";
+import { Semester as SemesterType } from "../../interfaces/semester";
 import { EditCoursePanel } from "../courses/EditCoursePanel";
 
 /*

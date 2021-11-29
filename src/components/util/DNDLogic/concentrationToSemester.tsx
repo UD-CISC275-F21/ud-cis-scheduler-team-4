@@ -1,4 +1,4 @@
-import { SemesterType } from "../../../interfaces/semester";
+import { Semester } from "../../../interfaces/semester";
 import { ConcentrationContainerType } from "../../../interfaces/concentrationcontainer";
 import { Course as CourseType } from "../../../interfaces/course";
 
@@ -6,7 +6,7 @@ export const concentrationToSemester = (
     concContainer: ConcentrationContainerType,
     spliceInd: number,
     dropInd: number,
-    droppingSemester: SemesterType,
+    droppingSemester: Semester,
 ): number => {
     console.log("in concentration --> semester");
     const theCourse: CourseType = concContainer.courses.splice(spliceInd, 1)[0];

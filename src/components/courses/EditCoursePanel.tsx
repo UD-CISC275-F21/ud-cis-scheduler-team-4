@@ -2,13 +2,13 @@ import "bootswatch/dist/lux/bootstrap.min.css";
 import { Col, Button } from "react-bootstrap";
 import React, { useState } from "react";
 import { Course as CourseType } from "../../interfaces/course";
-import { SemesterType } from "../../interfaces/semester";
+import { Semester } from "../../interfaces/semester";
 import { EditCourse } from "../util/EditCourse";
 
 
 export const EditCoursePanel = (props: {
-    semesterCourses: SemesterType[];
-    setSemesterCourses: React.Dispatch<React.SetStateAction<SemesterType[]>>;
+    semesterCourses: Semester[];
+    setSemesterCourses: React.Dispatch<React.SetStateAction<Semester[]>>;
     elem: CourseType;
     ind: number;
 }): JSX.Element => {

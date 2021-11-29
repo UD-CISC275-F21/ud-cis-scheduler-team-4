@@ -1,8 +1,8 @@
 import React from "react";
-import { SemesterType } from "../../interfaces/semester";
+import { Semester } from "../../interfaces/semester";
 import { Button } from "react-bootstrap";
 
-export const ExportPlan = (props: { semesterCourses: SemesterType[] }): JSX.Element => {
+export const ExportPlan = (props: { semesterCourses: Semester[] }): JSX.Element => {
     const data: string[][] = [["Semester", "Course", "Credits"]];
 
     return (

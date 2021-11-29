@@ -1,20 +1,20 @@
 import "bootswatch/dist/lux/bootstrap.min.css";
 import React from "react";
-import { SemesterType } from "../../../interfaces/semester";
+import { Semester } from "../../../interfaces/semester";
 
 export const DeleteOneSemester = (
     deleteTriggered: number,
-    semester: SemesterType | undefined,
+    semester: Semester | undefined,
     semesters: number,
-    semesterCourses: SemesterType[],
-    setSemesterCourses: React.Dispatch<React.SetStateAction<SemesterType[]>>,
+    semesterCourses: Semester[],
+    setSemesterCourses: React.Dispatch<React.SetStateAction<Semester[]>>,
     setSemesters: React.Dispatch<React.SetStateAction<number>>,
     displayToast: (msg: string) => void,
     setDeleteTriggered: React.Dispatch<React.SetStateAction<number>>,
 ): void => {
 
     if (deleteTriggered === 0) {
-        const theSemester: SemesterType | undefined = semesterCourses.length > 0 ? semesterCourses[semesters - 1] : undefined;
+        const theSemester: Semester | undefined = semesterCourses.length > 0 ? semesterCourses[semesters - 1] : undefined;
         if (theSemester !== undefined && theSemester.courses.length === 0) {
             theSemester.courseSetter([]);
             setSemesterCourses([...semesterCourses.slice(0, semesters - 1)]);

@@ -1,6 +1,6 @@
 import React from "react";
 import { DropResult } from "react-beautiful-dnd";
-import { SemesterType } from "../../interfaces/semester";
+import { Semester } from "../../interfaces/semester";
 import { ConcentrationContainerType } from "../../interfaces/concentrationcontainer";
 import { semesterToSemester } from "./DNDLogic/semesterToSemester";
 import { semesterToConcentration } from "./DNDLogic/semesterToConcentration";
@@ -16,8 +16,8 @@ export const successPrint = (result: number): void => {
 export const onDragEndLogic = (result: DropResult,
     concentrationContainers: ConcentrationContainerType[],
     setConcentrationContainers: React.Dispatch<React.SetStateAction<ConcentrationContainerType[]>>,
-    semesterCourses: SemesterType[],
-    setSemesterCourses: React.Dispatch<React.SetStateAction<SemesterType[]>>,
+    semesterCourses: Semester[],
+    setSemesterCourses: React.Dispatch<React.SetStateAction<Semester[]>>,
     setErrMsg: (msg: string) => void,
 ): void => {
     if (!result.destination) {

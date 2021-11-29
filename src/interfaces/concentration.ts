@@ -4,7 +4,7 @@ export interface Concentration{
     capstone:string[],
     lab:string[],
     writing: string[],
-    conc:{
+    conc:{      /* Represents concentration fields (general courses, stat courses, systems courses) */
         general:string[],
         stats:string[],
         systems:string[],

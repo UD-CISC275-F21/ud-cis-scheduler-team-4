@@ -1,8 +1,8 @@
-import { SemesterType } from "../../../interfaces/semester";
+import { Semester } from "../../../interfaces/semester";
 
 export const semesterToSemester = (
-    semester: SemesterType,
-    semester2: SemesterType,
+    semester: Semester,
+    semester2: Semester,
     spliceInd: number,
     dropInd: number,
     diffSemester: boolean,
