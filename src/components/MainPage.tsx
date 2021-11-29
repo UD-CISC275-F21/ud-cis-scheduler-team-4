@@ -61,15 +61,22 @@ export const MainPage = (): JSX.Element => {
 
     useEffect(() => {
         const index = saveData.findIndex(eachSaveData => eachSaveData.concentration.name === concentration.name);
+        const tmpSaveData = saveData;
+        tmpSaveData[index].numberOfSemesters = semesters;
+        setSaveData([...tmpSaveData]);
+    }, [semesters]);
+
+    useEffect(() => {
+        const index = saveData.findIndex(eachSaveData => eachSaveData.concentration.name === concentration.name);
         if ( index == -1 ) { // save data not found
             setSemesters(1);
             setSaveData((formerSaveData) => [...formerSaveData, {concentration: concentration, numberOfSemesters: semesters, semesters: semesterCourses}]);
         } else {
             const tmpSaveData = saveData;
-            tmpSaveData[index].numberOfSemesters = semesters;
+            setSemesters(tmpSaveData[index].numberOfSemesters);
             setSaveData([...tmpSaveData]);
         }
-    }, [concentration, semesters]);
+    }, [concentration]);
 
     const displayToast = (msg: string) => {
         setToastDisplay(true);

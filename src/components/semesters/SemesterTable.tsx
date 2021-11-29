@@ -18,7 +18,7 @@ export const SemesterTable = (props: {
         saveData: SavedProgress[];
     }): JSX.Element => {
     const index = props.saveData.findIndex(eachSaveData => eachSaveData.concentration.name === props.concentration.name);
-    console.log("IN SEMESTERTABLE, SAVEDATA = ", props.saveData, "index = ", index);
+    console.log("IN SEMESTERTABLE, SAVEDATA = ", props.saveData, "index = ", index, " NUMSEMESTERS = ", props.saveData[index]?.numberOfSemesters);
     return(
         index !== -1 ?
             <div>
