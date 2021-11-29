@@ -11,20 +11,7 @@ export const DropdownMenu = (props: {
     }): JSX.Element => {
 
     const clickFunc = (ind: number) => {
-
-        const tmpSemesterCourses = [...props.semesterCourses];
-
-        for (let i = 0; i < tmpSemesterCourses.length; i += 1) {
-
-            const tmpSemester = tmpSemesterCourses.splice(i, 1)[0];
-            tmpSemester.courses = [];
-            tmpSemester.courseSetter([]);
-            tmpSemesterCourses.splice(i, 0, tmpSemester);
-
-        }
-        props.setSemesterCourses([...tmpSemesterCourses]);
         props.setConcentration(CONCENTRATIONS[ind]);
-
     };
 
     return (

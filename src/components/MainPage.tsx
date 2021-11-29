@@ -16,6 +16,9 @@ import { onDragEndLogic } from "./util/DropLogic";
 import { ExportPlan } from "./util/ExportPlan";
 import { HowToDisplay } from "./util/howto/howtodisplay";
 import { Footer } from "./util/Footer";
+import SavedData from "../assets/data/SavedProgress";
+import { SavedProgress } from "../interfaces/savedprogress";
+import { UpdateConcentration } from "./courses/DisplayCourseListHelperFunctions/UpdateConcentration";
 
 export const MainPage = (): JSX.Element => {
     const [concentration, setConcentration] = useState<Concentration>(CONCENTRATIONS[0] as Concentration);
@@ -26,6 +29,12 @@ export const MainPage = (): JSX.Element => {
     const [toastDisplay, setToastDisplay] = useState<boolean>(false); // Will be implemented once basic drop logic is fully implemented
     const [toastMessage, setToastMessage] = useState<string>(""); // Will be implemented once basic drop logic is fully implemented
     const [deleteTriggered, setDeleteTriggered] = useState<number>(-1);
+    const [foundSaveData, setFoundSaveData] = useState<boolean>(false);
+    const [saveData, setSaveData] = useState<SavedProgress[]>([{
+        concentration: concentration,
+        numberOfSemesters: semesters,
+        semesters: semesterCourses
+    } as SavedProgress]);
 
     useEffect(() => {
         setDisplay(true);
@@ -33,6 +42,22 @@ export const MainPage = (): JSX.Element => {
             setDisplay(false);
         }, 1);
     }, []);
+
+    useEffect(() => {
+        const index = saveData.findIndex(eachSaveData => eachSaveData.concentration.name === concentration.name);
+        console.log("switching concentration to = ", concentration);
+        console.log("concentration containers = ", concentrationContainers);
+        console.log("index = ", index);
+        if ( index == -1 ) { // save data not found
+            setSemesters(0);
+            setSaveData((formerSaveData) => [...formerSaveData, {concentration: concentration, numberOfSemesters: semesters, semesters: semesterCourses}]);
+        } else {
+            const tmpSaveData = [...saveData];
+            tmpSaveData[index] = UpdateConcentration(tmpSaveData[index],concentrationContainers);
+            setSaveData([...tmpSaveData]);
+        }
+        console.log("savedata is now = ", saveData);
+    }, [concentration, concentrationContainers]);
 
     const displayToast = (msg: string) => {
         setToastDisplay(true);
@@ -116,6 +141,7 @@ export const MainPage = (): JSX.Element => {
                         <DisplayCourseList
                             concentration={concentration}
                             setConcentrationContainers={setConcentrationContainers}
+                            saveData={saveData}
                         />
                     </Col>
                     <Col>

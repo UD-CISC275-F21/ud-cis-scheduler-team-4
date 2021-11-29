@@ -10,16 +10,22 @@ import { TheoryConc } from "../concentrations/TheoryConc";
 import CONCENTRATIONS from "../../../json/concentrations.json";
 import { ConcentrationContainerType } from "../../../interfaces/concentrationcontainer";
 import { StringsToCourses } from "./StringsToCourses";
+import { SavedProgress } from "../../../interfaces/savedprogress";
 
 
-export const DisplayCourseListMap = (concentration: Concentration, setConcentrationContainers: React.Dispatch<React.SetStateAction<ConcentrationContainerType[]>>): JSX.Element => {
+export const DisplayCourseListMap = (concentration: Concentration,
+    setConcentrationContainers: React.Dispatch<React.SetStateAction<ConcentrationContainerType[]>>,
+    saveData: SavedProgress,
+): JSX.Element => {
 
     switch(concentration){
 
     case CONCENTRATIONS[0]: {
+        // we know its AIConc at this point
         return <AIConc
             StringsToCourses={StringsToCourses}
             setConcentrationContainers={setConcentrationContainers}
+            saveData={saveData}
         />;
     }
     case CONCENTRATIONS[1]: {
