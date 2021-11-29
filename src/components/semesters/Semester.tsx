@@ -33,7 +33,7 @@ export const Semester = (props: {
     semesterCourses: SemesterType[];
     setSemesterCourses: React.Dispatch<React.SetStateAction<SemesterType[]>>;
 }): JSX.Element => {
-    const [courses, setCourses] = useState<CourseType[]>([]);
+    const [courses, setCourses] = useState<CourseType[]>(props.semesterCourses[props.ind] ? (props.semesterCourses[props.ind].courses.length > 0 ? props.semesterCourses[props.ind].courses : []) : []);
     const [credits, setCredits] = useState<number>(0);
 
     useEffect(() => {
@@ -62,6 +62,7 @@ export const Semester = (props: {
         // if [0] and ind = 1
         if (props.semesterCourses.length !== 0 && props.semesterCourses.length-1 >= props.ind) {
             console.log("IN UPDATING COURSES IF");
+            // BUG HAPPENING HERE, WE ARE PASSING IT AN EMPTY ARRAY OF COURSES WHEN SEMESTERCOURSES HAS COURSES IN IT
             props.setSemesterCourses(updateSemesterContainer(props.semesterCourses, props.ind, courses));
         }
         getCredits(courses);
