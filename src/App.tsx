@@ -4,9 +4,6 @@ import { MainPage } from "./components/MainPage";
 import "./App.css";
 
 export const App = (): JSX.Element => {
-    useEffect(() => {
-        document.title = "UDCIS Course Scheduling Tool";
-    }, []);
     return (
         <div className="App">
             <MainPage />
