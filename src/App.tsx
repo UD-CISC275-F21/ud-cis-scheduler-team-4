@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "bootswatch/dist/lux/bootstrap.min.css";
 import { MainPage } from "./components/MainPage";
 import "./App.css";

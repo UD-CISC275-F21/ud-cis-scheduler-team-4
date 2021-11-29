@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import { Modal, Button, Badge, Row, Col } from "react-bootstrap";
 import { Course as CourseType } from "../../interfaces/course";
-import { SemesterType } from "../../interfaces/semester";
+import { Semester } from "../../interfaces/semester";
 
 export const EditCourse = (props: {
     display: boolean;
     setDisplay: React.Dispatch<React.SetStateAction<boolean>>;
     course: CourseType;
     semesterNumber: number;
-    semesterCourses: SemesterType[];
-    setSemesterCourses: React.Dispatch<React.SetStateAction<SemesterType[]>>;
+    semesterCourses: Semester[];
+    setSemesterCourses: React.Dispatch<React.SetStateAction<Semester[]>>;
 }): JSX.Element => {
     const [nameText, setNameText] = useState(props.course.name);
     const [titleText, setTitleText] = useState(props.course.title);
@@ -19,7 +19,7 @@ export const EditCourse = (props: {
         props.setDisplay(false);
     };
     const courseEdit = () => {
-        const theSemester: SemesterType = props.semesterCourses[props.semesterNumber];
+        const theSemester: Semester = props.semesterCourses[props.semesterNumber];
         const courseIndex: number = theSemester.courses.findIndex(elem => elem.name === props.course.name);
         const theCourse: CourseType = {...theSemester.courses[courseIndex], description: descText, name: nameText, title: titleText};
         theSemester.courses[courseIndex] = theCourse;

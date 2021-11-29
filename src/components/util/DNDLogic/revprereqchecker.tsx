@@ -1,8 +1,8 @@
 import { Course as CourseType } from "../../../interfaces/course";
-import { SemesterType } from "../../../interfaces/semester";
+import { Semester } from "../../../interfaces/semester";
 
 export const RevPreReqChecker = (
-    semesters: SemesterType[],
+    semesters: Semester[],
     placingIndex: number,
     courseBeingPlaced: CourseType,
     setErrMsg: (msg: string) => void,

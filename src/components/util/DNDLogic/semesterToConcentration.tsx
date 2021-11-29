@@ -1,5 +1,5 @@
 import React from "react";
-import { SemesterType } from "../../../interfaces/semester";
+import { Semester } from "../../../interfaces/semester";
 import { ConcentrationContainerType } from "../../../interfaces/concentrationcontainer";
 import { Course as CourseType } from "../../../interfaces/course";
 
@@ -8,8 +8,8 @@ export const semesterToConcentration = (
     concentrationInd: number,
     courseSpliceInd: number,
     setConcContainers: React.Dispatch<React.SetStateAction<ConcentrationContainerType[]>>,
-    semesterCourses: SemesterType[],
-    setSemesterCourses: React.Dispatch<React.SetStateAction<SemesterType[]>>,
+    semesterCourses: Semester[],
+    setSemesterCourses: React.Dispatch<React.SetStateAction<Semester[]>>,
     semesterInd: number,
     courseDropInd: number,
 ): number => {

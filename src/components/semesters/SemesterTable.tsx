@@ -1,7 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
 import { Semester } from "./Semester";
-import { SemesterType } from "../../interfaces/semester";
+import { Semester as SemesterType } from "../../interfaces/semester";
 
 /*
 

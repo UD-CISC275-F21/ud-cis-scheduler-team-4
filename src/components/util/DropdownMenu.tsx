@@ -1,13 +1,13 @@
 import { NavDropdown } from "react-bootstrap";
 import { Concentration } from "../../interfaces/concentration";
-import { SemesterType } from "../../interfaces/semester";
+import { Semester } from "../../interfaces/semester";
 import CONCENTRATIONS from "../../json/concentrations.json";
 import React from "react";
 
 export const DropdownMenu = (props: {
         setConcentration: React.Dispatch<React.SetStateAction<Concentration>>;
-        semesterCourses: SemesterType[];
-        setSemesterCourses: React.Dispatch<React.SetStateAction<SemesterType[]>>;
+        semesterCourses: Semester[];
+        setSemesterCourses: React.Dispatch<React.SetStateAction<Semester[]>>;
     }): JSX.Element => {
 
     const clickFunc = (ind: number) => {

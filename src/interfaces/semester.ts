@@ -1,6 +1,6 @@
 import { Course } from "./course";
 
-export interface SemesterType{
+export interface Semester{
 
     semesternum: number
     courses: Course[]

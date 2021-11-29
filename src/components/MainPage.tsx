@@ -8,7 +8,7 @@ import { DisplayCourseList } from "./courses/DisplayCourseList";
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
 import { Concentration } from "../interfaces/concentration";
 import CONCENTRATIONS from "../json/concentrations.json";
-import { SemesterType } from "../interfaces/semester";
+import { Semester } from "../interfaces/semester";
 import { AddSemesterButton } from "./semesters/AddSemesterButton";
 import { DeleteSemesterButton } from "./semesters/DeleteSemesterButton";
 import { ConcentrationContainerType } from "../interfaces/concentrationcontainer";
@@ -19,7 +19,7 @@ import { Footer } from "./util/Footer";
 
 export const MainPage = (): JSX.Element => {
     const [concentration, setConcentration] = useState<Concentration>(CONCENTRATIONS[0] as Concentration);
-    const [semesterCourses, setSemesterCourses] = useState<SemesterType[]>([]);
+    const [semesterCourses, setSemesterCourses] = useState<Semester[]>([]);
     const [display, setDisplay] = useState<boolean>(false);
     const [semesters, setSemesters] = useState<number>(1);
     const [concentrationContainers, setConcentrationContainers] = useState<ConcentrationContainerType[]>([]);
@@ -45,7 +45,7 @@ export const MainPage = (): JSX.Element => {
     useEffect(() => {
 
         if (deleteTriggered === 0) {
-            const theSemester: SemesterType | undefined = semesterCourses.length > 0 ? semesterCourses[semesters - 1] : undefined;
+            const theSemester: Semester | undefined = semesterCourses.length > 0 ? semesterCourses[semesters - 1] : undefined;
             if (theSemester !== undefined && theSemester.courses.length === 0) {
                 theSemester.courseSetter([]);
                 setSemesterCourses([...semesterCourses.slice(0, semesters - 1)]);

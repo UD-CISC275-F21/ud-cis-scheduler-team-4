@@ -22,8 +22,8 @@ export const DisplayCourseList = (props: {
          *  Will need to be optimized to not be O^n, since it currently just loops through the entire json.
          */
         const allCourses = COURSES as CourseType[];
-        const tmparr: CourseType[] = stringCourses.map(elem => [...allCourses.filter(i => i.name === elem)]).flat(2);
-        return tmparr;
+        const courseList: CourseType[] = stringCourses.map(elem => [...allCourses.filter(i => i.name === elem)]).flat(2);
+        return courseList;
     }
 
     if (props.concentration === CONCENTRATIONS[0]) {
