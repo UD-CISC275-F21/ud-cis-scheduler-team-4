@@ -68,9 +68,11 @@ export const MainPage = (): JSX.Element => {
 
     useEffect(() => {
         const index = saveData.findIndex(eachSaveData => eachSaveData.concentration.name === concentration.name);
+        console.log("IN MAINPAGE USEFFECT CONC , SAVEDATA = ", saveData);
         if ( index == -1 ) { // save data not found
             setSemesters(1);
-            setSaveData((formerSaveData) => [...formerSaveData, {concentration: concentration, numberOfSemesters: semesters, semesters: semesterCourses}]);
+            setSaveData((formerSaveData) => [...formerSaveData, {concentration: concentration, numberOfSemesters: 1, semesters: []}]);
+            setSemesterCourses([]);
         } else {
             const tmpSaveData = saveData;
             setSemesters(tmpSaveData[index].numberOfSemesters);
