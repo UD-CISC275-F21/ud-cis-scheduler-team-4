@@ -37,7 +37,7 @@ export const onDragEndLogic = (result: DropResult,
         if (sourceIdSemester) {
             // semestertable --> semestertable
             const semesterNum1 = parseInt(sourceId.substring(sourceId.lastIndexOf("-") + 1), 10);
-            const ind1 = semesterCourses.findIndex(elem => elem.semesternum === semesterNum1);
+            const ind1 = semesterCourses.findIndex(elem => elem.semesterNum === semesterNum1);
             semesterToSemester(
                 semesterCourses[ind1],
                 semesterCourses[ind1],
@@ -63,10 +63,10 @@ export const onDragEndLogic = (result: DropResult,
         // semester --> concentration
         const semesterNum = parseInt(sourceId.substring(sourceId.lastIndexOf("-") + 1), 10);
         const semester2Num = destIdSemester ? parseInt(destinationId.substring(destinationId.lastIndexOf("-") + 1), 10) : -1;
-        const ind1 = semesterCourses.findIndex(elem => elem.semesternum === semesterNum);
+        const ind1 = semesterCourses.findIndex(elem => elem.semesterNum === semesterNum);
         let ind2 = destIdSemester ?
             semesterCourses.findIndex(elem =>
-                elem.semesternum === semester2Num)
+                elem.semesterNum === semester2Num)
             :
             concentrationContainers.findIndex(elem =>
                 elem.name === destinationId);
@@ -104,7 +104,7 @@ export const onDragEndLogic = (result: DropResult,
         const semesterNum = parseInt(destinationId.substring(destinationId.lastIndexOf("-") + 1), 10);
         const tmpContainer: ConcentrationContainerType[] = [...concentrationContainers];
         let ind1 = tmpContainer.findIndex(elem => elem.name === sourceId);
-        const ind2 = semesterCourses.findIndex(elem => elem.semesternum === semesterNum);
+        const ind2 = semesterCourses.findIndex(elem => elem.semesterNum === semesterNum);
         if (PreReqChecker(
             semesterCourses,
             semesterNum - 1,

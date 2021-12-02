@@ -37,11 +37,11 @@ export const Semester = (props: {
 
     useEffect(() => {
 
-        if (!props.semesterCourses.find(elem => elem.semesternum === props.ind + 1)) {
+        if (!props.semesterCourses.find(elem => elem.semesterNum === props.ind + 1)) {
             const semesters: SemesterType[] = [...props.semesterCourses];
             semesters.push({ courseSetter: (newCourses: CourseType[]) => {
                 setCourses(newCourses);
-            }, courses, semesternum: props.ind + 1 });
+            }, courses, semesterNum: props.ind + 1 });
             props.setSemesterCourses(semesters);
         }
     }, []);
