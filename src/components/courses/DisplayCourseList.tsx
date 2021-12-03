@@ -7,12 +7,9 @@ import { SavedProgress } from "../../interfaces/savedprogress";
 export const DisplayCourseList = (props: {
         concentration: Concentration;
         setConcentrationContainers: React.Dispatch<React.SetStateAction<ConcentrationContainerType[]>>;
-        saveData: SavedProgress[];
+        saveData: SavedProgress;
     }): JSX.Element => {
-    const index = props.saveData.findIndex(eachSaveData => eachSaveData.concentration.name === props.concentration.name);
-    return(    index !== -1 ?
-        DisplayCourseListMap(props.concentration, props.setConcentrationContainers, props.saveData[index])
-        :
-        <div>Cannot find Concentration Save Data</div>
+    return(
+        DisplayCourseListMap(props.concentration, props.setConcentrationContainers, props.saveData)
     );
 };

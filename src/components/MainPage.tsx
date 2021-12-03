@@ -30,55 +30,22 @@ export const MainPage = (): JSX.Element => {
     const [toastDisplay, setToastDisplay] = useState<boolean>(false); // Will be implemented once basic drop logic is fully implemented
     const [toastMessage, setToastMessage] = useState<string>(""); // Will be implemented once basic drop logic is fully implemented
     const [deleteTriggered, setDeleteTriggered] = useState<number>(-1);
-    const [saveData, setSaveData] = useState<SavedProgress[]>([{
-        concentration: concentration,
-        numberOfSemesters: semesters,
-        semesters: semesterCourses
-    } as SavedProgress]);
+    const [saveData, setSaveData] = useState<SavedProgress>({ concentration: concentration, numberOfSemesters: semesters, semesters: semesterCourses});
     useEffect(() => {
         setDisplay(true);
         setTimeout(() => {
             setDisplay(false);
-        }, 1);
-    }, []);
-    
-    useEffect(() => {
-        console.log("UPDATING SAVEDATA CONCENTRATION CONTAINERS");
-        const index = saveData.findIndex(eachSaveData => eachSaveData.concentration.name === concentration.name);
-        const tmpSaveData = [...saveData];
-        tmpSaveData[index] = UpdateConcentration(tmpSaveData[index],concentrationContainers);
-        setSaveData([...tmpSaveData]);
-    }, [concentrationContainers]);
-
-    useEffect(() => {
-        console.log("UPDATING SAVEDATA SEMESTER COURSES, SEMESTERCOURSES = ", semesterCourses);
-        const index = saveData.findIndex(eachSaveData => eachSaveData.concentration.name === concentration.name);
-        const tmpSaveData = [...saveData];
-        tmpSaveData[index] = UpdateSemester(tmpSaveData[index],semesterCourses);
-        setSaveData([...tmpSaveData]);
-    }, [semesterCourses]);
-
-    useEffect(() => {
-        const index = saveData.findIndex(eachSaveData => eachSaveData.concentration.name === concentration.name);
-        const tmpSaveData = saveData;
-        tmpSaveData[index].numberOfSemesters = semesters;
-        setSaveData([...tmpSaveData]);
-        console.log("AFTER MAINPAGE SEMESTERS USEFFECT, SAVEDATA = ", saveData);
-    }, [semesters]);
-
-    useEffect(() => {
-        const index = saveData.findIndex(eachSaveData => eachSaveData.concentration.name === concentration.name);
-        console.log("IN MAINPAGE USEFFECT CONC , SAVEDATA = ", saveData);
-        if ( index == -1 ) { // save data not found
-            setSemesters(1);
-            setSaveData((formerSaveData) => [...formerSaveData, {concentration: concentration, numberOfSemesters: 1, semesters: []}]);
-            setSemesterCourses([]);
+        }, 1000);
+        let savedData: SavedProgress[] = SavedData;
+        const index = savedData.findIndex((eachSavedData) => eachSavedData.concentration.name === concentration.name);
+        if (index !== -1) {
+            setSaveData(savedData[index]);
         } else {
-            const tmpSaveData = saveData;
-            setSemesters(tmpSaveData[index].numberOfSemesters);
-            setSaveData([...tmpSaveData]);
+            const newSaveData: SavedProgress = { concentration: concentration, numberOfSemesters: semesters, semesters: semesterCourses } as SavedProgress;
+            savedData = [...savedData, newSaveData];
+            setSaveData(() => newSaveData);
         }
-    }, [concentration]);
+    }, []);
 
     const displayToast = (msg: string) => {
         setToastDisplay(true);
@@ -170,11 +137,13 @@ export const MainPage = (): JSX.Element => {
                         <br />
                         <br />
                         <br />
-                        <SemesterTable
-                            concentration={concentration}
-                            setSemesterCourses={setSemesterCourses}
-                            saveData={saveData}
-                        />
+                        {
+                        //<SemesterTable
+                        //    concentration={concentration}
+                        //    setSemesterCourses={setSemesterCourses}
+                        //    saveData={saveData}
+                        ///>
+                        }
                     </Col>
                 </Row>
                 <Row>
