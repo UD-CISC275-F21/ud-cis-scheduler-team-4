@@ -18,8 +18,6 @@ export const DisplayCourseListMap = (concentration: Concentration,
     saveData: SavedProgress,
 ): JSX.Element => {
 
-    console.log("saveData = ", saveData);
-
     switch(concentration){
 
     case CONCENTRATIONS[0]: {

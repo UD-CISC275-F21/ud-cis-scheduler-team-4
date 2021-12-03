@@ -32,15 +32,15 @@ export const getCourses = (semesterCourses: SemesterType[], index: number): Cour
 
     const result = semesterCourses[index];
     if (result === undefined) {
-        console.log(">>>> undefined ");
+        //console.log(">>>> undefined ");
         return [];
     } else {
         const result2 = semesterCourses[index].courses.length > 0;
         if ( result2 ) {
-            console.log(">>>> valid courses >>>>> ", semesterCourses[index].courses);
+            //console.log(">>>> valid courses >>>>> ", semesterCourses[index].courses);
             return semesterCourses[index].courses;
         } else {
-            console.log(">>>> invalid courses ");
+            //console.log(">>>> invalid courses ");
             return [];
         }
     }
@@ -57,8 +57,6 @@ export const Semester = (props: {
     semesterCourses: SemesterType[];
     setSemesterCourses: React.Dispatch<React.SetStateAction<SemesterType[]>>;
 }): JSX.Element => {
-    console.log("RENDERING SEMESTER ", props.ind, " and semestercourses = ", props.semesterCourses);
-    console.log("result = ", props.semesterCourses[props.ind]);
     const result = getCourses(props.semesterCourses,props.ind);
     //// BUG: HERE IS WHERE THE BUG IS, FOR SOME REASON THE FIRST SET OF COURSES ARE NOT
     // BEING SENT IN TO SETCOURSES AND CAUSING THE COURSES STATE TO UPDATE 
@@ -66,15 +64,18 @@ export const Semester = (props: {
     const [courses, setCourses] = useState<CourseType[]>(
         [...result]);
     const [credits, setCredits] = useState<number>(0);
-    console.log("RENDERING COURSES = ", courses);
+    let tmpSemesters: SemesterType[] = props.semesterCourses;
     useEffect(() => {
-        console.log("THE INDEX = ", props.ind);
+        //console.log("THE INDEX = ", props.ind);
         if (!props.semesterCourses.find(eachSemester => eachSemester.semesternum === (props.ind+1))) {
+            //console.log("IN INDEX IF");
             const semesters: SemesterType[] = [...props.semesterCourses];
             semesters.push({ courseSetter: (newCourses: CourseType[]) => {
                 setCourses(newCourses);
             }, courses, semesternum: props.ind + 1 });
             props.setSemesterCourses(semesters);
+            //console.log("semesters = ", semesters);
+            tmpSemesters = semesters;
         }
         //console.log("RENDERING SEMESTER'S FIRST USEEFFECT", semesters);
     }, []);
@@ -89,12 +90,13 @@ export const Semester = (props: {
     };
 
     useEffect(() => {
-        console.log("UPDATING COURSES ", props.semesterCourses, " and ind = ", props.ind-1);
+        //console.log("UPDATING COURSES ", props.semesterCourses, " and ind = ", props.ind-1);
         // if [0] and ind = 1
-        if (props.semesterCourses.length !== 0 && props.semesterCourses.length-1 >= props.ind) {
-            console.log("IN UPDATING COURSES IF");
+        //console.log(tmpSemesters);
+        if (props.semesterCourses.length !== 0) {
+            //console.log("IN UPDATING COURSES IF");
             // BUG HAPPENING HERE, WE ARE PASSING IT AN EMPTY ARRAY OF COURSES WHEN SEMESTERCOURSES HAS COURSES IN IT
-            props.setSemesterCourses(updateSemesterContainer(props.semesterCourses, props.ind, courses));
+            props.setSemesterCourses(updateSemesterContainer(tmpSemesters, props.ind, courses));
         }
         getCredits(courses);
     }, [courses]);

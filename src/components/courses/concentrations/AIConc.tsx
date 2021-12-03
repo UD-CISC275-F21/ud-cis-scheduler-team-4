@@ -100,7 +100,7 @@ export const AIConc = (props: {
         [coreCourses,capstone1Courses,labCourses,writingCourses,general1Courses,general2Courses,capstone2Courses,electiveCourses]
             .forEach((eachCourses,index) => setAIConcentrationContainer(updateAICourses(aiConcentrationContainer,eachCourses,names[index])));
         props.setConcentrationContainers([...aiConcentrationContainer]);
-        console.log("UPDATED AI CONTAINER");
+        //console.log("UPDATED AI CONTAINER");
     }, [coreCourses, capstone1Courses, labCourses, writingCourses, general1Courses, general2Courses, capstone2Courses, electiveCourses]);
 
     return (

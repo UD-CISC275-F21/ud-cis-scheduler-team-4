@@ -9,6 +9,7 @@ import { DragDropContext, DropResult } from "react-beautiful-dnd";
 import { Concentration } from "../interfaces/concentration";
 import CONCENTRATIONS from "../json/concentrations.json";
 import { Semester } from "../interfaces/semester";
+import { Semester as SemesterComponent } from "./semesters/Semester";
 import { AddSemesterButton } from "./semesters/AddSemesterButton";
 import { DeleteSemesterButton } from "./semesters/DeleteSemesterButton";
 import { ConcentrationContainerType } from "../interfaces/concentrationcontainer";
@@ -30,22 +31,61 @@ export const MainPage = (): JSX.Element => {
     const [toastDisplay, setToastDisplay] = useState<boolean>(false); // Will be implemented once basic drop logic is fully implemented
     const [toastMessage, setToastMessage] = useState<string>(""); // Will be implemented once basic drop logic is fully implemented
     const [deleteTriggered, setDeleteTriggered] = useState<number>(-1);
-    const [saveData, setSaveData] = useState<SavedProgress>({ concentration: concentration, numberOfSemesters: semesters, semesters: semesterCourses});
+    const [saveData, setSaveData] = useState<SavedProgress[]>([{
+        concentration: concentration,
+        numberOfSemesters: semesters,
+        semesters: semesterCourses
+    } as SavedProgress]);
+    const [currentSaveData, setCurrentSaveData] = useState<SavedProgress>(saveData[0]);
     useEffect(() => {
         setDisplay(true);
         setTimeout(() => {
             setDisplay(false);
-        }, 1000);
-        let savedData: SavedProgress[] = SavedData;
-        const index = savedData.findIndex((eachSavedData) => eachSavedData.concentration.name === concentration.name);
-        if (index !== -1) {
-            setSaveData(savedData[index]);
-        } else {
-            const newSaveData: SavedProgress = { concentration: concentration, numberOfSemesters: semesters, semesters: semesterCourses } as SavedProgress;
-            savedData = [...savedData, newSaveData];
-            setSaveData(() => newSaveData);
-        }
+        }, 1);
     }, []);
+    
+    useEffect(() => {
+        //console.log("UPDATING SAVEDATA CONCENTRATION CONTAINERS");
+        const index = saveData.findIndex(eachSaveData => eachSaveData.concentration.name === concentration.name);
+        const tmpSaveData = [...saveData];
+        tmpSaveData[index] = UpdateConcentration(tmpSaveData[index],concentrationContainers);
+        setCurrentSaveData(tmpSaveData[index]);
+        setSaveData([...tmpSaveData]);
+    }, [concentrationContainers]);
+
+    useEffect(() => {
+        //console.log("UPDATING SAVEDATA SEMESTER COURSES, SEMESTERCOURSES = ", semesterCourses);
+        const index = saveData.findIndex(eachSaveData => eachSaveData.concentration.name === concentration.name);
+        const tmpSaveData = [...saveData];
+        tmpSaveData[index] = UpdateSemester(tmpSaveData[index],semesterCourses);
+        setCurrentSaveData(tmpSaveData[index]);
+        setSaveData([...tmpSaveData]);
+    }, [semesterCourses]);
+
+    useEffect(() => {
+        const index = saveData.findIndex(eachSaveData => eachSaveData.concentration.name === concentration.name);
+        const tmpSaveData = saveData;
+        tmpSaveData[index].numberOfSemesters = semesters;
+        setCurrentSaveData(tmpSaveData[index]);
+        setSaveData([...tmpSaveData]);
+        //console.log("AFTER MAINPAGE SEMESTERS USEFFECT, SAVEDATA = ", saveData);
+    }, [semesters]);
+
+    useEffect(() => {
+        const index = saveData.findIndex(eachSaveData => eachSaveData.concentration.name === concentration.name);
+        console.log("IN MAINPAGE USEFFECT CONC , SAVEDATA = ", saveData);
+        if ( index == -1 ) { // save data not found
+            setSemesters(1);
+            setSaveData((formerSaveData) => [...formerSaveData, {concentration: concentration, numberOfSemesters: 1, semesters: []}]);
+            setCurrentSaveData({concentration: concentration, numberOfSemesters: 1, semesters: []});
+            setSemesterCourses([]);
+        } else {
+            const tmpSaveData = saveData;
+            setSemesters(tmpSaveData[index].numberOfSemesters);
+            setCurrentSaveData(tmpSaveData[index]);
+            setSaveData([...tmpSaveData]);
+        }
+    }, [concentration]);
 
     const displayToast = (msg: string) => {
         setToastDisplay(true);
@@ -137,13 +177,17 @@ export const MainPage = (): JSX.Element => {
                         <br />
                         <br />
                         <br />
-                        {
-                        //<SemesterTable
-                        //    concentration={concentration}
-                        //    setSemesterCourses={setSemesterCourses}
-                        //    saveData={saveData}
-                        ///>
-                        }
+                        <div>
+                            {
+                                semesters > 0 ?
+                                    new Array(currentSaveData.numberOfSemesters).fill(0)
+                                        .map((elem, ind) => <SemesterComponent ind={ind} key={`semester-table-key-${ind}`} semesterCourses={currentSaveData.semesters} setSemesterCourses={setSemesterCourses} />)
+                                    :
+                                    <div>
+                                    No semesters available
+                                    </div>
+                            }
+                        </div>
                     </Col>
                 </Row>
                 <Row>

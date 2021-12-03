@@ -6,7 +6,7 @@ import { Semester } from "../../../interfaces/semester";
 
 export const UpdateSemester = (saveProgress: SavedProgress, semesterCourses: Semester[]) => {
 
-    console.log("IN UPDATE SEMESTER");
+    //console.log("IN UPDATE SEMESTER");
     let semester: Semester[] = saveProgress.semesters;
     semester = semesterCourses;
     saveProgress.semesters = semester;
