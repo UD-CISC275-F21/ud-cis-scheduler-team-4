@@ -54,30 +54,17 @@ export const getCourses = (semesterCourses: SemesterType[], index: number): Cour
 
 export const Semester = (props: {
     ind: number;
-    semesterCourses: SemesterType[];
+    semesterCourse: SemesterType;
     setSemesterCourses: React.Dispatch<React.SetStateAction<SemesterType[]>>;
 }): JSX.Element => {
-    const result = getCourses(props.semesterCourses,props.ind);
-    //// BUG: HERE IS WHERE THE BUG IS, FOR SOME REASON THE FIRST SET OF COURSES ARE NOT
-    // BEING SENT IN TO SETCOURSES AND CAUSING THE COURSES STATE TO UPDATE 
-    // , BUT ALL OTHER SEMESTER COURSES ARE UPDATING THE STATE, VERY ODD BUG
     const [courses, setCourses] = useState<CourseType[]>(
-        [...result]);
+        props.semesterCourse !== undefined ? props.semesterCourse.courses : []);
     const [credits, setCredits] = useState<number>(0);
-    let tmpSemesters: SemesterType[] = props.semesterCourses;
+
     useEffect(() => {
-        //console.log("THE INDEX = ", props.ind);
-        if (!props.semesterCourses.find(eachSemester => eachSemester.semesternum === (props.ind+1))) {
-            //console.log("IN INDEX IF");
-            const semesters: SemesterType[] = [...props.semesterCourses];
-            semesters.push({ courseSetter: (newCourses: CourseType[]) => {
-                setCourses(newCourses);
-            }, courses, semesternum: props.ind + 1 });
-            props.setSemesterCourses(semesters);
-            //console.log("semesters = ", semesters);
-            tmpSemesters = semesters;
-        }
-        //console.log("RENDERING SEMESTER'S FIRST USEEFFECT", semesters);
+
+        console.log("rendering semester ", props.ind);
+
     }, []);
 
     const getCredits = (courses: CourseType[]) => {
@@ -90,14 +77,6 @@ export const Semester = (props: {
     };
 
     useEffect(() => {
-        //console.log("UPDATING COURSES ", props.semesterCourses, " and ind = ", props.ind-1);
-        // if [0] and ind = 1
-        //console.log(tmpSemesters);
-        if (props.semesterCourses.length !== 0) {
-            //console.log("IN UPDATING COURSES IF");
-            // BUG HAPPENING HERE, WE ARE PASSING IT AN EMPTY ARRAY OF COURSES WHEN SEMESTERCOURSES HAS COURSES IN IT
-            props.setSemesterCourses(updateSemesterContainer(tmpSemesters, props.ind, courses));
-        }
         getCredits(courses);
     }, [courses]);
 
@@ -141,12 +120,6 @@ export const Semester = (props: {
                                                                             title={elem.title}
                                                                         />
                                                                     </Col>
-                                                                    <EditCoursePanel
-                                                                        elem={elem}
-                                                                        ind={props.ind}
-                                                                        semesterCourses={props.semesterCourses}
-                                                                        setSemesterCourses={props.setSemesterCourses}
-                                                                    />
                                                                 </Row>
                                                             </ListGroup.Item>,
                                                         )

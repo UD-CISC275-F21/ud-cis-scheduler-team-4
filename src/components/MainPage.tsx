@@ -37,55 +37,13 @@ export const MainPage = (): JSX.Element => {
         semesters: semesterCourses
     } as SavedProgress]);
     const [currentSaveData, setCurrentSaveData] = useState<SavedProgress>(saveData[0]);
+    //console.log("currentSaveData = ", currentSaveData);
     useEffect(() => {
         setDisplay(true);
         setTimeout(() => {
             setDisplay(false);
         }, 1);
     }, []);
-    
-    useEffect(() => {
-        //console.log("UPDATING SAVEDATA CONCENTRATION CONTAINERS");
-        const index = saveData.findIndex(eachSaveData => eachSaveData.concentration.name === concentration.name);
-        const tmpSaveData = [...saveData];
-        tmpSaveData[index] = UpdateConcentration(tmpSaveData[index],concentrationContainers);
-        setCurrentSaveData(tmpSaveData[index]);
-        setSaveData([...tmpSaveData]);
-    }, [concentrationContainers]);
-
-    useEffect(() => {
-        //console.log("UPDATING SAVEDATA SEMESTER COURSES, SEMESTERCOURSES = ", semesterCourses);
-        const index = saveData.findIndex(eachSaveData => eachSaveData.concentration.name === concentration.name);
-        const tmpSaveData = [...saveData];
-        tmpSaveData[index] = UpdateSemester(tmpSaveData[index],semesterCourses);
-        setCurrentSaveData(tmpSaveData[index]);
-        setSaveData([...tmpSaveData]);
-    }, [semesterCourses]);
-
-    useEffect(() => {
-        const index = saveData.findIndex(eachSaveData => eachSaveData.concentration.name === concentration.name);
-        const tmpSaveData = saveData;
-        tmpSaveData[index].numberOfSemesters = semesters;
-        setCurrentSaveData(tmpSaveData[index]);
-        setSaveData([...tmpSaveData]);
-        //console.log("AFTER MAINPAGE SEMESTERS USEFFECT, SAVEDATA = ", saveData);
-    }, [semesters]);
-
-    useEffect(() => {
-        const index = saveData.findIndex(eachSaveData => eachSaveData.concentration.name === concentration.name);
-        console.log("IN MAINPAGE USEFFECT CONC , SAVEDATA = ", saveData);
-        if ( index == -1 ) { // save data not found
-            setSemesters(1);
-            setSaveData((formerSaveData) => [...formerSaveData, {concentration: concentration, numberOfSemesters: 1, semesters: []}]);
-            setCurrentSaveData({concentration: concentration, numberOfSemesters: 1, semesters: []});
-            setSemesterCourses([]);
-        } else {
-            const tmpSaveData = saveData;
-            setSemesters(tmpSaveData[index].numberOfSemesters);
-            setCurrentSaveData(tmpSaveData[index]);
-            setSaveData([...tmpSaveData]);
-        }
-    }, [concentration]);
 
     const displayToast = (msg: string) => {
         setToastDisplay(true);
@@ -181,7 +139,7 @@ export const MainPage = (): JSX.Element => {
                             {
                                 semesters > 0 ?
                                     new Array(currentSaveData.numberOfSemesters).fill(0)
-                                        .map((elem, ind) => <SemesterComponent ind={ind} key={`semester-table-key-${ind}`} semesterCourses={currentSaveData.semesters} setSemesterCourses={setSemesterCourses} />)
+                                        .map((elem, ind) => <SemesterComponent ind={ind} key={`semester-table-key-${ind}`} semesterCourse={currentSaveData.semesters[ind]} setSemesterCourses={setSemesterCourses} />)
                                     :
                                     <div>
                                     No semesters available
