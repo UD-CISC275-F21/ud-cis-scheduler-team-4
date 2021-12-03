@@ -21,6 +21,8 @@ import SavedData from "../assets/data/SavedProgress";
 import { SavedProgress } from "../interfaces/savedprogress";
 import { UpdateConcentration } from "./courses/DisplayCourseListHelperFunctions/UpdateConcentration";
 import { UpdateSemester } from "./semesters/SemesterHelperFunctions/UpdateSemesters";
+import { Course } from "../interfaces/course";
+import { UpdateSemester as DNDUpdateSemester } from "./util/DNDLogic/UpdateSemester";
 
 export const MainPage = (): JSX.Element => {
     const [concentration, setConcentration] = useState<Concentration>(CONCENTRATIONS[0] as Concentration);
@@ -37,7 +39,6 @@ export const MainPage = (): JSX.Element => {
         semesters: semesterCourses
     } as SavedProgress]);
     const [currentSaveData, setCurrentSaveData] = useState<SavedProgress>(saveData[0]);
-    //console.log("currentSaveData = ", currentSaveData);
     useEffect(() => {
         setDisplay(true);
         setTimeout(() => {
@@ -58,7 +59,7 @@ export const MainPage = (): JSX.Element => {
         if (deleteTriggered === 0) {
             const theSemester: Semester | undefined = semesterCourses.length > 0 ? semesterCourses[semesters - 1] : undefined;
             if (theSemester !== undefined && theSemester.courses.length === 0) {
-                theSemester.courseSetter([]);
+                semesterCourses[semesterCourses.length-1].courses = [];
                 setSemesterCourses([...semesterCourses.slice(0, semesters - 1)]);
                 setSemesters(semesters - 1);
             } else {
@@ -70,12 +71,27 @@ export const MainPage = (): JSX.Element => {
 
     }, [deleteTriggered]);
 
+    useEffect(() => {
+        setCurrentSaveData({...currentSaveData, numberOfSemesters: semesters});
+    },[semesters]);
+
+    useEffect(() => {
+        console.log("Semester courses updated", semesterCourses);
+        if (semesterCourses.length > 0) {
+            console.log("setting semesterCourses");
+            setCurrentSaveData({...currentSaveData, semesters: [...semesterCourses]});
+            setSemesterCourses((fmrSemesters) => semesterCourses);
+        }
+    }, [semesterCourses]);
+
     const onDragEnd = (result: DropResult) => {
         onDragEndLogic(result,
             concentrationContainers,
             setConcentrationContainers,
             semesterCourses,
-            setSemesterCourses,
+            (semesters: Semester[]) => {
+                setSemesterCourses(semesters);
+            },
             displayToast,
         );
     };
@@ -139,7 +155,14 @@ export const MainPage = (): JSX.Element => {
                             {
                                 semesters > 0 ?
                                     new Array(currentSaveData.numberOfSemesters).fill(0)
-                                        .map((elem, ind) => <SemesterComponent ind={ind} key={`semester-table-key-${ind}`} semesterCourse={currentSaveData.semesters[ind]} setSemesterCourses={setSemesterCourses} />)
+                                        .map((elem, ind) =>
+                                            <SemesterComponent
+                                                ind={ind}
+                                                key={`semester-table-key-${ind}`}
+                                                semesterCourse={currentSaveData.semesters[ind]}
+                                                setSemesterCourses={(newSemester: Semester) => setSemesterCourses((fmrSemesters) => [...fmrSemesters, newSemester])}
+                                            />
+                                        )
                                     :
                                     <div>
                                     No semesters available

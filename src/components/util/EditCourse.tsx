@@ -23,7 +23,7 @@ export const EditCourse = (props: {
         const courseIndex: number = theSemester.courses.findIndex(elem => elem.name === props.course.name);
         const theCourse: CourseType = {...theSemester.courses[courseIndex], description: descText, name: nameText, title: titleText};
         theSemester.courses[courseIndex] = theCourse;
-        theSemester.courseSetter(theSemester.courses);
+        //theSemester.courseSetter(theSemester.courses);
         props.semesterCourses[props.semesterNumber] = theSemester;
         props.setSemesterCourses([...props.semesterCourses]);
         props.setDisplay(false);

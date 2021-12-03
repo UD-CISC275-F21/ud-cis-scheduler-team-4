@@ -17,7 +17,7 @@ export const onDragEndLogic = (result: DropResult,
     concentrationContainers: ConcentrationContainerType[],
     setConcentrationContainers: React.Dispatch<React.SetStateAction<ConcentrationContainerType[]>>,
     semesterCourses: Semester[],
-    setSemesterCourses: React.Dispatch<React.SetStateAction<Semester[]>>,
+    setSemesters: (semesters: Semester[]) => void,
     setErrMsg: (msg: string) => void,
 ): void => {
     if (!result.destination) {
@@ -98,11 +98,11 @@ export const onDragEndLogic = (result: DropResult,
                 ind2,
                 result.source.index,
                 setConcentrationContainers,
-                semesterCourses, setSemesterCourses, ind1, result.destination.index);
+                semesterCourses, setSemesters, ind1, result.destination.index);
         successPrint(ind2);
     } else {
         // concentration --> semester
-        console.log("destination = ", destinationId, " and semesterCourses = ", semesterCourses);
+        //console.log("destination = ", destinationId, " and semesterCourses = ", semesterCourses);
         const semesterNum = parseInt(destinationId.substring(destinationId.lastIndexOf("-") + 1), 10);
         const tmpContainer: ConcentrationContainerType[] = [...concentrationContainers];
         let ind1 = tmpContainer.findIndex(elem => elem.name === sourceId);
@@ -118,6 +118,8 @@ export const onDragEndLogic = (result: DropResult,
                     result.source.index,
                     result.destination.index,
                     semesterCourses[ind2],
+                    setSemesters,
+                    semesterCourses
                 ) : -1;
         }
         successPrint(ind1 > -1 ? 1 : 0);

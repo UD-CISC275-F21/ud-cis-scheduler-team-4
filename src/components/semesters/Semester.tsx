@@ -55,16 +55,21 @@ export const getCourses = (semesterCourses: SemesterType[], index: number): Cour
 export const Semester = (props: {
     ind: number;
     semesterCourse: SemesterType;
-    setSemesterCourses: React.Dispatch<React.SetStateAction<SemesterType[]>>;
+    setSemesterCourses: (newSemester: SemesterType) => void;
 }): JSX.Element => {
     const [courses, setCourses] = useState<CourseType[]>(
         props.semesterCourse !== undefined ? props.semesterCourse.courses : []);
     const [credits, setCredits] = useState<number>(0);
 
     useEffect(() => {
-
-        console.log("rendering semester ", props.ind);
-
+        //console.log("Adding semester to semesterCourses from MainPage ", props.ind);
+        props.setSemesterCourses({
+            semesternum: props.ind+1,
+            courses: courses,
+            courseSetter: (courses: CourseType[]) => {
+                setCourses(courses);
+            }
+        });
     }, []);
 
     const getCredits = (courses: CourseType[]) => {
@@ -77,6 +82,7 @@ export const Semester = (props: {
     };
 
     useEffect(() => {
+        console.log("courses changed");
         getCredits(courses);
     }, [courses]);
 
