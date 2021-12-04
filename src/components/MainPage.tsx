@@ -75,35 +75,67 @@ interface SchedulerAction {
 }
 
 const reducerFunction = (state: State, action: SchedulerAction ) => {
+    switch (action.type) {
+    case "setDisplay":{
+
+        return{
+            ...state,
+            display: action.payload.display
+        };
+
+    }
+    case "deleteSemester":{
+        if ( state.semesters > 0) {
+            return {
+                ...state,
+                deleteTriggered: 0
+            };
+        } else {
+            return {...state,
+                deleteTriggered: 0
+            };
+        }
+    }
+    case "displayError":{
+        return {
+            ...state,
+            toastMessage: action.payload.toastMessage,
+            toastDisplay: action.payload.toastDisplay,
+        };
+    }
+    case "deleteSuccess":{
+        return{
+            ...state,
+            deleteTriggered: -1,
+        };
+    }
+    default:{
+        break;
+    }
+    }
     return {...state};
 };
 
 export const MainPage = (): JSX.Element => {
     const [state, dispatch] = useReducer(reducerFunction, initialState);
-    const [concentration, setConcentration] = useState<Concentration>(CONCENTRATIONS[0] as Concentration);
-    const [semesterCourses, setSemesterCourses] = useState<Semester[]>([]);
-    const [display, setDisplay] = useState<boolean>(false);
-    const [semesters, setSemesters] = useState<number>(1);
-    const [concentrationContainers, setConcentrationContainers] = useState<ConcentrationContainerType[]>([]);
-    const [toastDisplay, setToastDisplay] = useState<boolean>(false); // Will be implemented once basic drop logic is fully implemented
-    const [toastMessage, setToastMessage] = useState<string>(""); // Will be implemented once basic drop logic is fully implemented
-    const [deleteTriggered, setDeleteTriggered] = useState<number>(-1);
-    const [saveData, setSaveData] = useState<SavedProgress[]>([{
-        concentration: concentration,
-        numberOfSemesters: 1,
-        semesters: semesterCourses
-    } as SavedProgress]);
-    const [currentSaveData, setCurrentSaveData] = useState<SavedProgress>({
-        concentration: concentration,
-        numberOfSemesters: 1,
-        semesters: semesterCourses
-    } as SavedProgress);
+    const {
+        deleteTriggered,
+        concentration,
+        semesterCourses,
+        display,
+        semesters,
+        concentrationContainer,
+        toastDisplay,
+        toastMessage,
+        saveData,
+        currentSaveData
+    } = state;
 
     useEffect(() => {
-        setDisplay(true);
+        dispatch({type: "setDisplay", payload: {...state, display: true}});
         setTimeout(() => {
-            setDisplay(false);
-        }, 1);
+            dispatch({type: "setDisplay", payload: {...state, display: false}});
+        }, 5000);
     }, []);
 
     const displayToast = (msg: string) => {
@@ -113,23 +145,6 @@ export const MainPage = (): JSX.Element => {
             setToastDisplay(false);
         }, 5000);
     };
-
-    useEffect(() => {
-        //console.log("triggering delete with deleteTriggered ", deleteTriggered);
-        if (deleteTriggered === 0) {
-            const theSemester: Semester | undefined = semesterCourses.length > 0 ? semesterCourses[semesters - 1] : undefined;
-            if (theSemester !== undefined && theSemester.courses.length === 0) {
-                semesterCourses[semesterCourses.length-1].courses = [];
-                setSemesterCourses([...semesterCourses.slice(0, semesters - 1)]);
-                setCurrentSaveData({...currentSaveData, numberOfSemesters: semesters-1});
-                setSemesters((fmrSemesters) => fmrSemesters - 1);
-            } else {
-                console.log("displaying err");
-                displayToast(`Move all courses from Semester ${semesters} back into course list on the left`);
-            }
-            setDeleteTriggered(-1);
-        }
-    }, [deleteTriggered]);
 
     useEffect(() => {
         console.log("-updating semesters = ", semesters);
@@ -237,7 +252,10 @@ export const MainPage = (): JSX.Element => {
                                     />
                                     <AddSemesterButton semesters={semesters} setSemesters={(newNumberOfSemesters: number) => setSemesters(newNumberOfSemesters)} />
                                     <DeleteSemesterButton
-                                        setDelete={(newDeleteNumber: number) => setDeleteTriggered(newDeleteNumber)}
+                                        setDelete={() => {
+                                            dispatch({type: "deleteSemester", payload: state});
+                                            dispatch({type: "deleteSuccess", payload: state});
+                                        }}
                                     />
                                     <ExportPlan semesterCourses={semesterCourses} />
                                     <HowToDisplay />
