@@ -1,4 +1,5 @@
 import "bootswatch/dist/lux/bootstrap.min.css";
+import produce from "immer";
 import { Container, Row, Col, Navbar, Nav, NavDropdown } from "react-bootstrap";
 import { WelcomeToast, PreReqSameSemesterToast } from "./util/Notifications";
 import { SemesterTable } from "./semesters/SemesterTable";
@@ -76,37 +77,46 @@ interface SchedulerAction {
 
 const reducerFunction = (state: State, action: SchedulerAction ) => {
     switch (action.type) {
+    case "updateSaveData":{
+        return produce(state, (draft) => {
+            draft.saveData = action.payload.saveData;
+        });
+    }
+    case "updateCurrentSaveData":{
+        return produce(
+            state, (draft) => {
+                draft.currentSaveData = action.payload.currentSaveData
+            });
+    }
     case "setDisplay":{
-
-        return{
-            ...state,
-            display: action.payload.display
-        };
-
+        return produce(state, (draft) => {
+            draft.display = action.payload.display;
+        });
     }
     case "deleteSemester":{
         if ( state.semesters > 0) {
-            return {
-                ...state,
-                deleteTriggered: 0
-            };
+            const temporarySemesterCourse = action.payload.semeterCourses[action.payload.semesterCourses.length-1];
+            if (temporarySemesterCourse.courses.length > 0) {
+                // display error
+                return produce(state, (draft) => {
+                    draft.toastMessage = `Must remove classes from Semester ${draft.semesterCourses.length} before deleting`;
+                    draft.toastDisplay = true;
+                });
+            } else {
+                return produce(state, (draft) => {
+                    draft.semesterCourses = draft.semesterCourses.slice(0, draft.semesterCourses.length-1);
+                });
+            }
         } else {
             return {...state,
-                deleteTriggered: 0
             };
         }
     }
-    case "displayError":{
+    case "displayToast":{
         return {
             ...state,
             toastMessage: action.payload.toastMessage,
             toastDisplay: action.payload.toastDisplay,
-        };
-    }
-    case "deleteSuccess":{
-        return{
-            ...state,
-            deleteTriggered: -1,
         };
     }
     default:{
@@ -119,12 +129,11 @@ const reducerFunction = (state: State, action: SchedulerAction ) => {
 export const MainPage = (): JSX.Element => {
     const [state, dispatch] = useReducer(reducerFunction, initialState);
     const {
-        deleteTriggered,
         concentration,
         semesterCourses,
         display,
         semesters,
-        concentrationContainer,
+        concentrationContainers,
         toastDisplay,
         toastMessage,
         saveData,
@@ -139,24 +148,31 @@ export const MainPage = (): JSX.Element => {
     }, []);
 
     const displayToast = (msg: string) => {
-        setToastDisplay(true);
-        setToastMessage(msg);
+        dispatch({type: "displayToast", payload: { ...state, toastDisplay: true, toastMessage: msg}});
         setTimeout(() => {
-            setToastDisplay(false);
+            dispatch({type: "displayToast", payload: { ...state, toastDisplay: false}});
         }, 5000);
     };
 
     useEffect(() => {
         console.log("-updating semesters = ", semesters);
-        setCurrentSaveData({...currentSaveData, numberOfSemesters: semesters});
+        dispatch({type: "updateCurrentSaveData", payload: { ...state, currentSaveData: {
+            ...currentSaveData,
+            numberOfSemesters: semesters
+        }}});
     },[semesters]);
 
     useEffect(() => {
-        console.log("-updating savedata = ", saveData);
+        dispatch({type: "updateSaveData", payload: { ...state, saveData:
+            {...saveData}
+        }});
     }, [saveData]);
 
     useEffect(() => {
         console.log("-updating currentSaveData --", currentSaveData);
+        dispatch({type: "updateCurrentSaveData", payload: {...state, currentSaveData: {
+            ...currentSaveData
+        }}});
     },[currentSaveData]);
 
     useEffect(() => {
@@ -254,7 +270,7 @@ export const MainPage = (): JSX.Element => {
                                     <DeleteSemesterButton
                                         setDelete={() => {
                                             dispatch({type: "deleteSemester", payload: state});
-                                            dispatch({type: "deleteSuccess", payload: state});
+                                            dispatch({type: "deleteSemester", payload: state});
                                         }}
                                     />
                                     <ExportPlan semesterCourses={semesterCourses} />
