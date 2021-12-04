@@ -6,7 +6,7 @@ export const UpdateSemester = (
     semesters: Semester[],
     setSemesters: (semesters: Semester[]) => void
 ): void => {
-    console.log("in update semester");
+    //console.log("in update semester");
     setSemesters(semesters.map((eachSemester) => {
         const spreadSemester: Semester = {...eachSemester};
         if (spreadSemester.semesternum === newSemester.semesternum) {

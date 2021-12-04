@@ -23,6 +23,12 @@ import { UpdateConcentration } from "./courses/DisplayCourseListHelperFunctions/
 import { UpdateSemester } from "./semesters/SemesterHelperFunctions/UpdateSemesters";
 import { Course } from "../interfaces/course";
 import { UpdateSemester as DNDUpdateSemester } from "./util/DNDLogic/UpdateSemester";
+import { CheckConcentrationInSaveData } from "./util/SaveDataFunctions/CheckConcentrationInSaveData";
+import { SaveConcentrationToSaveData } from "./util/SaveDataFunctions/SaveConcentrationToSaveData";
+import { UpdateSaveDataOnConcentrationChange } from "./util/SaveDataFunctions/UpdateSaveDataOnConcentrationChange";
+import { UpdateSaveDataOnSemesterCoursesChange } from "./util/SaveDataFunctions/UpdateSaveDataOnSemesterCoursesChange";
+import { UpdateSaveDataOnConcentrationContainerChange } from "./util/SaveDataFunctions/UpdateSaveDataOnConcentrationContainerChange";
+import { UpdateMainPageStateWithSaveData } from "./util/SaveDataFunctions/UpdateMainPageStateWithSaveData";
 
 export const MainPage = (): JSX.Element => {
     const [concentration, setConcentration] = useState<Concentration>(CONCENTRATIONS[0] as Concentration);
@@ -56,7 +62,7 @@ export const MainPage = (): JSX.Element => {
     };
 
     useEffect(() => {
-        console.log("triggering delete with deleteTriggered ", deleteTriggered);
+        //console.log("triggering delete with deleteTriggered ", deleteTriggered);
         if (deleteTriggered === 0) {
             const theSemester: Semester | undefined = semesterCourses.length > 0 ? semesterCourses[semesters - 1] : undefined;
             if (theSemester !== undefined && theSemester.courses.length === 0) {
@@ -73,19 +79,42 @@ export const MainPage = (): JSX.Element => {
     }, [deleteTriggered]);
 
     useEffect(() => {
+        console.log("settings currentSaveData semesters to ", semesters);
         setCurrentSaveData({...currentSaveData, numberOfSemesters: semesters});
     },[semesters]);
 
     useEffect(() => {
         console.log("switching to : ", concentration.name, " from ", currentSaveData.concentration.name);
+        const result = CheckConcentrationInSaveData(concentration,saveData);
+        console.log("result = ", result, " and currentSaveData = ", currentSaveData);
+        if (result === -1) {
+            // concentration was not able to be located
+            UpdateSaveDataOnConcentrationChange(currentSaveData.concentration.name, saveData, currentSaveData, (newSaveData: SavedProgress[]) => setSaveData(newSaveData));
+            saveData.splice(saveData.length, 0, {concentration: concentration, numberOfSemesters: 1, semesters: []});
+            //SaveConcentrationToSaveData(saveData, (newSaveData: SavedProgress[]) => setSaveData(newSaveData), concentration);
+            setSaveData([...saveData]);
+            console.log("new savedata after updating after concentrationchange = ", saveData);
+            setCurrentSaveData({...saveData[saveData.length-1]});
+        } else {
+            console.log("Loading saved data...");
+            setCurrentSaveData({...saveData[result]});
+            UpdateMainPageStateWithSaveData(
+                currentSaveData,
+                (newNumberOfSemesters: number) => setSemesters(newNumberOfSemesters),
+                (newSemesterCourses: Semester[]) => setSemesterCourses(newSemesterCourses),
+            );
+            console.log("New current save data = ", currentSaveData);
+        }
     }, [concentration]);
  
     useEffect(() => {
         console.log("Semester courses updated", semesterCourses);
         if (semesterCourses.length > 0) {
-            console.log("setting semesterCourses");
+            console.log("setting semesterCourses from ", semesterCourses);
             setCurrentSaveData({...currentSaveData, semesters: [...semesterCourses]});
             setSemesterCourses((fmrSemesters) => semesterCourses);
+            UpdateSaveDataOnSemesterCoursesChange(concentration.name, semesterCourses, (newSaveData: SavedProgress[]) => setSaveData(newSaveData), saveData);
+            console.log("after setting semesterCourses, currentSaveData = ", currentSaveData, " and semesterCourses = ", semesterCourses);
         }
     }, [semesterCourses]);
 
@@ -163,7 +192,12 @@ export const MainPage = (): JSX.Element => {
                                                 ind={ind}
                                                 key={`semester-table-key-${ind}`}
                                                 semesterCourse={currentSaveData.semesters[ind]}
-                                                setSemesterCourses={(newSemester: Semester) => setSemesterCourses((fmrSemesters) => [...fmrSemesters, newSemester])}
+                                                setSemesterCourses={
+                                                    (newSemester: Semester) => {
+                                                        semesterCourses.splice(semesterCourses.length,0,newSemester);
+                                                        setSemesterCourses([...semesterCourses]);
+                                                    }
+                                                }
                                             />
                                         )
                                     :

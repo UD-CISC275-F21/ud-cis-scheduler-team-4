@@ -11,6 +11,7 @@ import CONCENTRATIONS from "../../../json/concentrations.json";
 import { ConcentrationContainerType } from "../../../interfaces/concentrationcontainer";
 import { StringsToCourses } from "./StringsToCourses";
 import { SavedProgress } from "../../../interfaces/savedprogress";
+import { Course } from "../../../interfaces/course";
 
 
 export const DisplayCourseListMap = (concentration: Concentration,
@@ -70,3 +71,27 @@ export const DisplayCourseListMap = (concentration: Concentration,
 
     }
 };
+
+export const mapper = (concentration: Concentration): ((props: {
+    StringsToCourses: (stringCourses: string[]) => Course[];
+    setConcentrationContainers: (concentrationContainers: ConcentrationContainerType[]) => void;
+    saveData: SavedProgress;
+}) => JSX.Element) | undefined => {
+    switch(concentration) {
+    case CONCENTRATIONS[0]:
+        return AIConc;
+    case CONCENTRATIONS[1]:
+        return BioConc;
+    case CONCENTRATIONS[2]:
+        return DataScienceConc;
+    case CONCENTRATIONS[3]:
+        return HPCConc;
+    case CONCENTRATIONS[4]:
+        return NetworksConc;
+    case CONCENTRATIONS[5]:
+        return SecurityConc;
+    case CONCENTRATIONS[6]:
+        return TheoryConc;
+    }
+};
+
