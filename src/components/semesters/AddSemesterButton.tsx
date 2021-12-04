@@ -2,7 +2,7 @@ import { Button } from "react-bootstrap";
 import React from "react";
 
 export const AddSemesterButton = (props: {
-        setSemesters: React.Dispatch<React.SetStateAction<number>>;
+        setSemesters: (newNumberOfSemesters: number) => void;
         semesters: number;
     }): JSX.Element =>
 

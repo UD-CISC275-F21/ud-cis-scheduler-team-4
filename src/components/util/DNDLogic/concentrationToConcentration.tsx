@@ -9,7 +9,7 @@ export const concentrationToConcentration = (
     spliceInd: number,
     courseSpliceInd: number,
     dropInd: number,
-    setConcContainers: React.Dispatch<React.SetStateAction<ConcentrationContainerType[]>>,
+    setConcContainers: (newConcentrationContainers: ConcentrationContainerType[]) => void,
     isDifferent: boolean,
 ): number => {
     console.log("in concentration ---> concentration");

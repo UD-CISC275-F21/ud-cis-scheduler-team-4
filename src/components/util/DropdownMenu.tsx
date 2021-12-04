@@ -5,9 +5,7 @@ import CONCENTRATIONS from "../../json/concentrations.json";
 import React from "react";
 
 export const DropdownMenu = (props: {
-        setConcentration: React.Dispatch<React.SetStateAction<Concentration>>;
-        semesterCourses: Semester[];
-        setSemesterCourses: React.Dispatch<React.SetStateAction<Semester[]>>;
+        setConcentration: (theNewConcentration: Concentration) => void;
     }): JSX.Element => {
 
     const clickFunc = (ind: number) => {

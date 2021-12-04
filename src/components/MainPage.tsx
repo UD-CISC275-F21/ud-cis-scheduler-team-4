@@ -92,7 +92,7 @@ export const MainPage = (): JSX.Element => {
     const onDragEnd = (result: DropResult) => {
         onDragEndLogic(result,
             concentrationContainers,
-            setConcentrationContainers,
+            (newConcentrationContainers: ConcentrationContainerType[]) => setConcentrationContainers(newConcentrationContainers),    
             semesterCourses,
             (semesters: Semester[]) => {
                 setSemesterCourses(semesters);
@@ -127,13 +127,11 @@ export const MainPage = (): JSX.Element => {
                                         <NavDropdown.Item data-testid="navdropdownitem4" href="https://ud-cis-teaching.github.io/student-guidance/" >UD CIS Student Guidance</NavDropdown.Item>
                                     </NavDropdown>
                                     <DropdownMenu
-                                        semesterCourses={semesterCourses}
-                                        setConcentration={setConcentration}
-                                        setSemesterCourses={setSemesterCourses}
+                                        setConcentration={(theConcentration: Concentration) => setConcentration(theConcentration)}
                                     />
-                                    <AddSemesterButton semesters={semesters} setSemesters={setSemesters} />
+                                    <AddSemesterButton semesters={semesters} setSemesters={(newNumberOfSemesters: number) => setSemesters(newNumberOfSemesters)} />
                                     <DeleteSemesterButton
-                                        setDelete={setDeleteTriggered}
+                                        setDelete={(newDeleteNumber: number) => setDeleteTriggered(newDeleteNumber)}
                                     />
                                     <ExportPlan semesterCourses={semesterCourses} />
                                     <HowToDisplay />

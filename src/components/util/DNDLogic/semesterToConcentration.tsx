@@ -8,7 +8,7 @@ export const semesterToConcentration = (
     concContainers: ConcentrationContainerType[],
     concentrationInd: number,
     courseSpliceInd: number,
-    setConcContainers: React.Dispatch<React.SetStateAction<ConcentrationContainerType[]>>,
+    setConcContainers: (newConcentrationContainers: ConcentrationContainerType[]) => void,
     semesterCourses: Semester[],
     DNDUpdateSemester: (semesters: Semester[]) => void,
     semesterInd: number,

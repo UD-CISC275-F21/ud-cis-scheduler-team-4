@@ -15,7 +15,7 @@ export const successPrint = (result: number): void => {
 
 export const onDragEndLogic = (result: DropResult,
     concentrationContainers: ConcentrationContainerType[],
-    setConcentrationContainers: React.Dispatch<React.SetStateAction<ConcentrationContainerType[]>>,
+    setConcentrationContainers: (newConcentrationContainers: ConcentrationContainerType[]) => void,
     semesterCourses: Semester[],
     setSemesters: (semesters: Semester[]) => void,
     setErrMsg: (msg: string) => void,

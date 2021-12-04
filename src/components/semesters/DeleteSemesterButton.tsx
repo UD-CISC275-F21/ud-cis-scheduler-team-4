@@ -2,7 +2,7 @@ import { Button } from "react-bootstrap";
 import React from "react";
 
 export const DeleteSemesterButton = (props: {
-        setDelete: React.Dispatch<React.SetStateAction<number>>;
+        setDelete: (newDeleteNumber: number) => void;
     }): JSX.Element =>
 
     <Button
