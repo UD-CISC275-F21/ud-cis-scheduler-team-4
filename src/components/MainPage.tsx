@@ -122,7 +122,7 @@ const reducerFunction = (state: State, action: SchedulerAction ) => {
             const indexToUpdate = draft.saveData.findIndex((eachSaveData) => eachSaveData.concentration.name === draft.currentSaveData.concentration.name);
             draft.saveData[indexToUpdate] = draft.currentSaveData;
             draft.saveData = [...draft.saveData, {
-                concentration: draft.concentration,
+                concentration: action.payload.concentration,
                 numberOfSemesters: 1,
                 semesters: [],
             }];
@@ -130,6 +130,19 @@ const reducerFunction = (state: State, action: SchedulerAction ) => {
             draft.currentSaveData = draft.saveData[draft.saveData.length-1];
         });
     }
+    case "SavedConcentration": {
+
+        return produce(state, (draft) => {
+
+            const indexWhereSaveDataIs = draft.saveData.findIndex((eachSaveData) => eachSaveData.concentration.name === action.payload.concentration.name);
+            draft.currentSaveData = draft.saveData[indexWhereSaveDataIs];
+            draft.semesters = draft.currentSaveData.numberOfSemesters;
+            draft.semesterCourses = draft.currentSaveData.semesters;
+
+        });
+
+    }
+    // draft.currentSaveData = {...draft.currentSaveData, semesters: action.payload.semesterCourses};
     default:{
         break;
     }
@@ -198,22 +211,10 @@ export const MainPage = (): JSX.Element => {
         if (result === -1) {
             // concentration was not able to be located
             dispatch({type: "NoSavedConcentration", payload: { ...state }});
-            const indexToUpdate = UpdateSaveDataOnConcentrationChange(currentSaveData.concentration.name, saveData);
-            const tmpData = [...saveData];
-            tmpData[indexToUpdate] = {...currentSaveData};
-            tmpData.push({
-                concentration: concentration,
-                numberOfSemesters: 1,
-                semesters: [tmpData[indexToUpdate].semesters[0]],
-            });
-            tmpData[tmpData.length-1].semesters[0].courseSetter([]);
-            tmpData[tmpData.length-1].semesters[0].courses = [];
-            setSaveData([...tmpData]);
-            setSemesters(1);
-            setCurrentSaveData(() => ({...tmpData[tmpData.length-1]}));
         } else {
+            dispatch({type: "SavedConcentration", payload: { ...state, concentration: concentration }});
             //console.log("Loading saved data...");
-            setCurrentSaveData({...saveData[result]});
+            setCurrentSaveData({...saveData[result]}); // MAYBE CHANGE TO THE INDEX WHERE THE CONCENTRATION'S name save data is such as indextoUpdate = UpdateSaveDataOnConcentrationChange(concentration.name, saveData);
             setSemesters(currentSaveData.numberOfSemesters);
             UpdateMainPageStateWithSaveData(
                 currentSaveData,
