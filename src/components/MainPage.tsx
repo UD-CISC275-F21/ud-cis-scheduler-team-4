@@ -3,7 +3,7 @@ import produce from "immer";
 import { Container, Row, Col, Navbar, Nav, NavDropdown } from "react-bootstrap";
 import { WelcomeToast, PreReqSameSemesterToast } from "./util/Notifications";
 import { SemesterTable } from "./semesters/SemesterTable";
-import React, { useState, useEffect, useReducer, ReducerWithoutAction } from "react";
+import React, { useState, useEffect, useReducer, useContext } from "react";
 import { DropdownMenu } from "./util/DropdownMenu";
 import { DisplayCourseList } from "./courses/DisplayCourseList";
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
@@ -47,7 +47,7 @@ export interface State{
 }
 
 
-const initialState: State = {
+export const initialState: State = {
     concentration : CONCENTRATIONS[0],
     semesterCourses : [],
     display : false,
@@ -68,14 +68,14 @@ const initialState: State = {
     } as SavedProgress,
 };
 
-interface SchedulerAction {
+export interface SchedulerAction {
 
     type: string,
     payload: State
 
 }
 
-const reducerFunction = (state: State, action: SchedulerAction ) => {
+export const reducerFunction = (state: State, action: SchedulerAction ) => {
     switch (action.type) {
     case "updateSaveData":{
         return produce(state, (draft) => {
@@ -88,6 +88,7 @@ const reducerFunction = (state: State, action: SchedulerAction ) => {
         });
     }
     case "updateConcentration":{
+        console.log("updating concentration with state : ", state);
         return produce(state, (draft) => {
             draft.concentration = action.payload.concentration;
         });
@@ -173,6 +174,25 @@ const reducerFunction = (state: State, action: SchedulerAction ) => {
     return {...state};
 };
 
+export const DispatchContext = React.createContext<{dispatch: React.Dispatch<SchedulerAction>} | undefined>(undefined);
+export const StateContext = React.createContext<{state: State} | undefined>(undefined);
+
+export const UseDispatchContext = (): {dispatch: React.Dispatch<SchedulerAction>} => {
+    const context = React.useContext(DispatchContext);
+    if (context === undefined) {
+        throw new Error("DispatchContext must have a value");
+    }
+    return context;
+};
+
+export const UseStateContext = (): {state: State} => {
+    const context = React.useContext(StateContext);
+    if (context === undefined) {
+        throw new Error("StateContext must have a value");
+    }
+    return context;
+};
+
 export const MainPage = (): JSX.Element => {
     const [state, dispatch] = useReducer(reducerFunction, initialState);
     const {
@@ -186,6 +206,9 @@ export const MainPage = (): JSX.Element => {
         saveData,
         currentSaveData
     } = state;
+
+    const dispatchValue = { dispatch };
+    const stateValue = { state };
 
     const onDragEnd = (result: DropResult) => {
         onDragEndLogic(
@@ -206,96 +229,89 @@ export const MainPage = (): JSX.Element => {
     };
 
     return (
-        <DragDropContext
-            onDragEnd={onDragEnd}
-        >
-            <Container>
-                <br />
-                <Row>
-                    <Col>
-                        <WelcomeToast display={display} />
-                        <PreReqSameSemesterToast display={toastDisplay} errMsg={toastMessage} setToastDisplay={(displayBool: boolean) => {
-                            dispatch({type: "displayToast", payload: { ...state, toastDisplay: displayBool }});
-                        }} />
-                    </Col>
-                </Row>
-                <Row>
-                    <Navbar bg="light" data-testid="navbar" expand="lg" >
-                        <Container>
-                            <Navbar.Brand href="#home">UDCIS Course Scheduler</Navbar.Brand>
-                            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                            <Navbar.Collapse id="basic-navbar-nav">
-                                <Nav className="me-auto">
-                                    <NavDropdown data-testid="navbardropdown" id="basic-navbar-nav" title="Useful Links" >
-                                        <NavDropdown.Item data-testid="navdropdownitem1" href="https://udapps.nss.udel.edu/CoursesSearch/" >Course Search</NavDropdown.Item>
-                                        <NavDropdown.Item data-testid="navdropdownitem2" href="https://www.cis.udel.edu/academics/undergraduate-programs/resources/courses/" >CISC Undergraduate Courses</NavDropdown.Item>
-                                        <NavDropdown.Item data-testid="navdropdownitem3" href="https://webreg.nss.udel.edu/registration/schedule/" >Registration Add/Drop</NavDropdown.Item>
-                                        <NavDropdown.Item data-testid="navdropdownitem4" href="https://ud-cis-teaching.github.io/student-guidance/" >UD CIS Student Guidance</NavDropdown.Item>
-                                    </NavDropdown>
-                                    <DropdownMenu
-                                        setConcentration={(theConcentration: Concentration) => dispatch(
-                                            {
-                                                type: "updateConcentration",
-                                                payload: { ...state, concentration: theConcentration}
-                                            })
-                                        }
-                                    />
-                                    <AddSemesterButton semesters={semesters} setSemesters={(newNumberOfSemesters: number) => dispatch({type: "updateNumberOfSemesters", payload: { ...state, semesters: newNumberOfSemesters }})} />
-                                    <DeleteSemesterButton
-                                        setDelete={() => {
-                                            dispatch({type: "deleteSemester", payload: state});
-                                            dispatch({type: "deleteSemester", payload: state});
-                                        }}
-                                    />
-                                    <ExportPlan semesterCourses={semesterCourses} />
-                                    <HowToDisplay />
-                                </Nav>
-                            </Navbar.Collapse>
-                        </Container>
-                    </Navbar>
-                </Row>
-                <Row>
-                    <Col>
+        <DispatchContext.Provider value={dispatchValue}>
+            <StateContext.Provider value={stateValue}>
+                <DragDropContext
+                    onDragEnd={onDragEnd}
+                >
+                    <Container>
                         <br />
-                        <DisplayCourseList
-                            concentration={concentration}
-                            setConcentrationContainers={(newConcentrationContainers: ConcentrationContainerType[]) => dispatch({type: "updateConcentrationContainers", payload: { ...state, concentrationContainers: newConcentrationContainers}})}
-                            saveData={saveData}
-                        />
-                    </Col>
-                    <Col>
-                        <br />
-                        <br />
-                        <br />
-                        <br />
-                        <div>
-                            {
-                                currentSaveData.numberOfSemesters > 0 ?
-                                    new Array(currentSaveData.numberOfSemesters).fill(0)
-                                        .map((elem, ind) =>
-                                            <SemesterComponent
-                                                ind={ind}
-                                                key={`semester-table-key-${ind}`}
-                                                semesterCourse={currentSaveData.semesters[ind]}
-                                                updateSemesterCourses={
-                                                    (newSemester: Semester) => {
-                                                        dispatch({type: "updateSemesterCourses", payload: { ...state, semesterCourses: [...semesterCourses, newSemester ]}});
-                                                    }
-                                                }
+                        <Row>
+                            <Col>
+                                <WelcomeToast display={display} />
+                                <PreReqSameSemesterToast display={toastDisplay} errMsg={toastMessage} setToastDisplay={(displayBool: boolean) => {
+                                    dispatch({type: "displayToast", payload: { ...state, toastDisplay: displayBool }});
+                                }} />
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Navbar bg="light" data-testid="navbar" expand="lg" >
+                                <Container>
+                                    <Navbar.Brand href="#home">UDCIS Course Scheduler</Navbar.Brand>
+                                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                                    <Navbar.Collapse id="basic-navbar-nav">
+                                        <Nav className="me-auto">
+                                            <NavDropdown data-testid="navbardropdown" id="basic-navbar-nav" title="Useful Links" >
+                                                <NavDropdown.Item data-testid="navdropdownitem1" href="https://udapps.nss.udel.edu/CoursesSearch/" >Course Search</NavDropdown.Item>
+                                                <NavDropdown.Item data-testid="navdropdownitem2" href="https://www.cis.udel.edu/academics/undergraduate-programs/resources/courses/" >CISC Undergraduate Courses</NavDropdown.Item>
+                                                <NavDropdown.Item data-testid="navdropdownitem3" href="https://webreg.nss.udel.edu/registration/schedule/" >Registration Add/Drop</NavDropdown.Item>
+                                                <NavDropdown.Item data-testid="navdropdownitem4" href="https://ud-cis-teaching.github.io/student-guidance/" >UD CIS Student Guidance</NavDropdown.Item>
+                                            </NavDropdown>
+                                            <DropdownMenu/>
+                                            <AddSemesterButton semesters={semesters} setSemesters={(newNumberOfSemesters: number) => dispatch({type: "updateNumberOfSemesters", payload: { ...state, semesters: newNumberOfSemesters }})} />
+                                            <DeleteSemesterButton
+                                                setDelete={() => {
+                                                    dispatch({type: "deleteSemester", payload: state});
+                                                    dispatch({type: "deleteSemester", payload: state});
+                                                }}
                                             />
-                                        )
-                                    :
-                                    <div>
-                                    No semesters available
-                                    </div>
-                            }
-                        </div>
-                    </Col>
-                </Row>
-                <Row>
-                    <Footer />
-                </Row>
-            </Container>
-        </DragDropContext>
+                                            <ExportPlan semesterCourses={semesterCourses} />
+                                            <HowToDisplay />
+                                        </Nav>
+                                    </Navbar.Collapse>
+                                </Container>
+                            </Navbar>
+                        </Row>
+                        <Row>
+                            <Col>
+                                <br />
+                                <DisplayCourseList/>
+                            </Col>
+                            <Col>
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <div>
+                                    {
+                                        currentSaveData.numberOfSemesters > 0 ?
+                                            new Array(currentSaveData.numberOfSemesters).fill(0)
+                                                .map((elem, ind) =>
+                                                    <SemesterComponent
+                                                        ind={ind}
+                                                        key={`semester-table-key-${ind}`}
+                                                        semesterCourse={currentSaveData.semesters[ind]}
+                                                        updateSemesterCourses={
+                                                            (newSemester: Semester) => {
+                                                                dispatch({type: "updateSemesterCourses", payload: { ...state, semesterCourses: [...semesterCourses, newSemester ]}});
+                                                            }
+                                                        }
+                                                    />
+                                                )
+                                            :
+                                            <div>
+                                            No semesters available
+                                            </div>
+                                    }
+                                </div>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Footer />
+                        </Row>
+                    </Container>
+                </DragDropContext>
+            </StateContext.Provider>
+        </DispatchContext.Provider>
     );
 };

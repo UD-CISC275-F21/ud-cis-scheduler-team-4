@@ -3,13 +3,17 @@ import { Concentration } from "../../interfaces/concentration";
 import { Semester } from "../../interfaces/semester";
 import CONCENTRATIONS from "../../json/concentrations.json";
 import React from "react";
+import { DispatchContext } from "../MainPage";
+import { UseDispatchContext } from "../MainPage";
+import { UseStateContext } from "../MainPage";
 
-export const DropdownMenu = (props: {
-        setConcentration: (theNewConcentration: Concentration) => void;
-    }): JSX.Element => {
+export const DropdownMenu = (): JSX.Element => {
 
-    const clickFunc = (ind: number) => {
-        props.setConcentration(CONCENTRATIONS[ind]);
+    const { dispatch } = UseDispatchContext();
+    const { state } = UseStateContext();
+
+    const clickFunc = (concentrationNumber: number) => {
+        dispatch({type: "updateConcentration", payload: { ...state, concentration: CONCENTRATIONS[concentrationNumber]}});
     };
 
     return (

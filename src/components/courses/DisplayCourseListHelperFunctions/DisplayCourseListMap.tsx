@@ -15,7 +15,6 @@ import { Course } from "../../../interfaces/course";
 
 
 export const DisplayCourseListMap = (concentration: Concentration,
-    setConcentrationContainers: (concentrationContainers: ConcentrationContainerType[]) => void,
     saveData: SavedProgress,
 ): JSX.Element => {
 
@@ -25,44 +24,37 @@ export const DisplayCourseListMap = (concentration: Concentration,
         // we know its AIConc at this point
         return <AIConc
             StringsToCourses={StringsToCourses}
-            setConcentrationContainers={setConcentrationContainers}
             saveData={saveData}
         />;
     }
     case CONCENTRATIONS[1]: {
         return <BioConc
             StringsToCourses={StringsToCourses}
-            setConcentrationContainers={setConcentrationContainers}
         />;
     }
     case CONCENTRATIONS[2]: {
         return <SecurityConc
             StringsToCourses={StringsToCourses}
-            setConcentrationContainers={setConcentrationContainers}
         />;
     }
     case CONCENTRATIONS[3]: {
         return <DataScienceConc
             StringsToCourses={StringsToCourses}
-            setConcentrationContainers={setConcentrationContainers}
         />;
     }
     case CONCENTRATIONS[4]: {
         return <HPCConc
             StringsToCourses={StringsToCourses}
-            setConcentrationContainers={setConcentrationContainers}
         />;
     }
     case CONCENTRATIONS[5]: {
         return <NetworksConc
             StringsToCourses={StringsToCourses}
-            setConcentrationContainers={setConcentrationContainers}
         />;
     }
     case CONCENTRATIONS[6]: {
         return <TheoryConc
             StringsToCourses={StringsToCourses}
-            setConcentrationContainers={setConcentrationContainers}
         />;
     }
     default: {
