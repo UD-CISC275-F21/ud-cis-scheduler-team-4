@@ -82,6 +82,11 @@ const reducerFunction = (state: State, action: SchedulerAction ) => {
             draft.saveData = action.payload.saveData;
         });
     }
+    case "updateNumberOfSemesters":{
+        return produce(state, (draft) => {
+            draft.semesters = action.payload.semesters;
+        });
+    }
     case "updateConcentration":{
         return produce(state, (draft) => {
             draft.concentration = action.payload.concentration;
@@ -191,7 +196,12 @@ export const MainPage = (): JSX.Element => {
             (semesters: Semester[]) => {
                 dispatch({type: "updateSemesterCourses", payload: { ...state, semesterCourses: semesters}});
             },
-            displayToast,
+            (msg: string) => {
+                dispatch({ type: "displayToast", payload: { ...state, toastMessage: msg, toastDisplay: true}});
+                setTimeout(() => {
+                    dispatch({ type: "displayToast", payload: { ...state, toastMessage: "", toastDisplay: false}});
+                }, 3000);
+            },
         );
     };
 
@@ -204,7 +214,9 @@ export const MainPage = (): JSX.Element => {
                 <Row>
                     <Col>
                         <WelcomeToast display={display} />
-                        <PreReqSameSemesterToast display={toastDisplay} errMsg={toastMessage} setToastDisplay={setToastDisplay} />
+                        <PreReqSameSemesterToast display={toastDisplay} errMsg={toastMessage} setToastDisplay={(displayBool: boolean) => {
+                            dispatch({type: "displayToast", payload: { ...state, toastDisplay: displayBool }});
+                        }} />
                     </Col>
                 </Row>
                 <Row>
@@ -228,7 +240,7 @@ export const MainPage = (): JSX.Element => {
                                             })
                                         }
                                     />
-                                    <AddSemesterButton semesters={semesters} setSemesters={(newNumberOfSemesters: number) => setSemesters(newNumberOfSemesters)} />
+                                    <AddSemesterButton semesters={semesters} setSemesters={(newNumberOfSemesters: number) => dispatch({type: "updateNumberOfSemesters", payload: { ...state, semesters: newNumberOfSemesters }})} />
                                     <DeleteSemesterButton
                                         setDelete={() => {
                                             dispatch({type: "deleteSemester", payload: state});
@@ -247,7 +259,7 @@ export const MainPage = (): JSX.Element => {
                         <br />
                         <DisplayCourseList
                             concentration={concentration}
-                            setConcentrationContainers={(concentrationContainers: ConcentrationContainerType[]) => setConcentrationContainers([...concentrationContainers])}
+                            setConcentrationContainers={(newConcentrationContainers: ConcentrationContainerType[]) => dispatch({type: "updateConcentrationContainers", payload: { ...state, concentrationContainers: newConcentrationContainers}})}
                             saveData={saveData}
                         />
                     </Col>
@@ -267,8 +279,7 @@ export const MainPage = (): JSX.Element => {
                                                 semesterCourse={currentSaveData.semesters[ind]}
                                                 updateSemesterCourses={
                                                     (newSemester: Semester) => {
-                                                        console.log("updating semester with -- ", newSemester);
-                                                        updateSemesterCourses(newSemester);
+                                                        dispatch({type: "updateSemesterCourses", payload: { ...state, semesterCourses: [...semesterCourses, newSemester ]}});
                                                     }
                                                 }
                                             />

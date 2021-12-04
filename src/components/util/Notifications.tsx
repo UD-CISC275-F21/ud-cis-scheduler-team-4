@@ -18,7 +18,7 @@ export const WelcomeToast = (props: { display: boolean }): JSX.Element =>
     </Modal>;
 
 
-export const PreReqSameSemesterToast = (props: { errMsg: string; display: boolean; setToastDisplay: React.Dispatch<React.SetStateAction<boolean>> }): JSX.Element =>
+export const PreReqSameSemesterToast = (props: { errMsg: string; display: boolean; setToastDisplay: (setToastDisplay: boolean) => void }): JSX.Element =>
     <Toast
         bg="danger"
         onClose={() => {
