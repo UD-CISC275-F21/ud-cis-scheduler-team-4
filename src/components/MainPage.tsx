@@ -2,7 +2,7 @@ import "bootswatch/dist/lux/bootstrap.min.css";
 import { Container, Row, Col, Navbar, Nav, NavDropdown } from "react-bootstrap";
 import { WelcomeToast, PreReqSameSemesterToast } from "./util/Notifications";
 import { SemesterTable } from "./semesters/SemesterTable";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useReducer } from "react";
 import { DropdownMenu } from "./util/DropdownMenu";
 import { DisplayCourseList } from "./courses/DisplayCourseList";
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
@@ -30,7 +30,33 @@ import { UpdateSaveDataOnSemesterCoursesChange } from "./util/SaveDataFunctions/
 import { UpdateSaveDataOnConcentrationContainerChange } from "./util/SaveDataFunctions/UpdateSaveDataOnConcentrationContainerChange";
 import { UpdateMainPageStateWithSaveData } from "./util/SaveDataFunctions/UpdateMainPageStateWithSaveData";
 
+const reducerFunction = (currentState, action) => {
+    return currentState;
+};
+
+const initialState = {
+    concentration : CONCENTRATIONS[0],
+    semesterCourses : [],
+    display : false,
+    semesters : 1,
+    concentrationContainers: [],
+    toastDisplay: false,
+    toastMessage: "",
+    deleteTriggered: -1,
+    saveData: [{
+        concentration: CONCENTRATIONS[0],
+        numberOfSemesters: 1,
+        semesters: [],
+    } as SavedProgress],
+    currentSaveData: {
+        concentration: CONCENTRATIONS[0],
+        numberOfSemesters: 1,
+        semesters: [],
+    } as SavedProgress,
+};
+
 export const MainPage = (): JSX.Element => {
+    const [state, dispatch] = useReducer(reducerFunction, initialState);
     const [concentration, setConcentration] = useState<Concentration>(CONCENTRATIONS[0] as Concentration);
     const [semesterCourses, setSemesterCourses] = useState<Semester[]>([]);
     const [display, setDisplay] = useState<boolean>(false);
@@ -44,7 +70,11 @@ export const MainPage = (): JSX.Element => {
         numberOfSemesters: 1,
         semesters: semesterCourses
     } as SavedProgress]);
-    const [currentSaveData, setCurrentSaveData] = useState<SavedProgress>(saveData[0]);
+    const [currentSaveData, setCurrentSaveData] = useState<SavedProgress>({
+        concentration: concentration,
+        numberOfSemesters: 1,
+        semesters: semesterCourses
+    } as SavedProgress);
 
     useEffect(() => {
         setDisplay(true);
@@ -79,16 +109,20 @@ export const MainPage = (): JSX.Element => {
     }, [deleteTriggered]);
 
     useEffect(() => {
-        //console.log("settings currentSaveData semesters to ", semesters);
+        console.log("-updating semesters = ", semesters);
         setCurrentSaveData({...currentSaveData, numberOfSemesters: semesters});
     },[semesters]);
 
     useEffect(() => {
-        //console.log("-updating currentSaveData");
+        console.log("-updating savedata = ", saveData);
+    }, [saveData]);
+
+    useEffect(() => {
+        console.log("-updating currentSaveData --", currentSaveData);
     },[currentSaveData]);
 
     useEffect(() => {
-        //console.log("switching to : ", concentration.name, " from ", currentSaveData.concentration.name);
+        console.log("switching to : ", concentration.name, " from ", currentSaveData.concentration.name);
         const result = CheckConcentrationInSaveData(concentration,saveData);
         //console.log("result = ", result, " and currentSaveData = ", currentSaveData);
         if (result === -1) {
@@ -96,16 +130,20 @@ export const MainPage = (): JSX.Element => {
             const indexToUpdate = UpdateSaveDataOnConcentrationChange(currentSaveData.concentration.name, saveData);
             const tmpData = [...saveData];
             tmpData[indexToUpdate] = {...currentSaveData};
-            tmpData.splice(tmpData.length,0,{
+            tmpData.push({
                 concentration: concentration,
                 numberOfSemesters: 1,
-                semesters: []
+                semesters: [tmpData[indexToUpdate].semesters[0]],
             });
+            tmpData[tmpData.length-1].semesters[0].courseSetter([]);
+            tmpData[tmpData.length-1].semesters[0].courses = [];
             setSaveData([...tmpData]);
-            setCurrentSaveData({...tmpData[tmpData.length-1]});
+            setSemesters(1);
+            setCurrentSaveData(() => ({...tmpData[tmpData.length-1]}));
         } else {
             //console.log("Loading saved data...");
             setCurrentSaveData({...saveData[result]});
+            setSemesters(currentSaveData.numberOfSemesters);
             UpdateMainPageStateWithSaveData(
                 currentSaveData,
                 (newNumberOfSemesters: number) => setSemesters(newNumberOfSemesters),
@@ -114,9 +152,17 @@ export const MainPage = (): JSX.Element => {
             //console.log("New current save data = ", currentSaveData);
         }
     }, [concentration]);
+
+    const updateSemesterCourses = (newSemester: Semester) => {
+
+        const tmpSemesterCourses = semesterCourses.map(e => ({...e}));
+        tmpSemesterCourses.push(newSemester);
+        setSemesterCourses(tmpSemesterCourses);
+
+    };
  
     useEffect(() => {
-        //console.log("Semester courses updated", semesterCourses);
+        console.log("Semester courses updated", semesterCourses);
         if (semesterCourses.length >= 0) {
             //console.log("setting semesterCourses from ", semesterCourses);
             setCurrentSaveData({...currentSaveData, semesters: [...semesterCourses]});
@@ -200,10 +246,10 @@ export const MainPage = (): JSX.Element => {
                                                 ind={ind}
                                                 key={`semester-table-key-${ind}`}
                                                 semesterCourse={currentSaveData.semesters[ind]}
-                                                setSemesterCourses={
+                                                updateSemesterCourses={
                                                     (newSemester: Semester) => {
-                                                        semesterCourses.splice(semesterCourses.length,0,newSemester);
-                                                        setSemesterCourses([...semesterCourses]);
+                                                        console.log("updating semester with -- ", newSemester);
+                                                        updateSemesterCourses(newSemester);
                                                     }
                                                 }
                                             />
