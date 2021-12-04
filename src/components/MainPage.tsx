@@ -89,9 +89,9 @@ export const MainPage = (): JSX.Element => {
         console.log("result = ", result, " and currentSaveData = ", currentSaveData);
         if (result === -1) {
             // concentration was not able to be located
-            UpdateSaveDataOnConcentrationChange(currentSaveData.concentration.name, saveData, currentSaveData, (newSaveData: SavedProgress[]) => setSaveData(newSaveData));
+            const indexToUpdate = UpdateSaveDataOnConcentrationChange(currentSaveData.concentration.name, saveData);
+            saveData[indexToUpdate] = {...currentSaveData};
             saveData.splice(saveData.length, 0, {concentration: concentration, numberOfSemesters: 1, semesters: []});
-            //SaveConcentrationToSaveData(saveData, (newSaveData: SavedProgress[]) => setSaveData(newSaveData), concentration);
             setSaveData([...saveData]);
             console.log("new savedata after updating after concentrationchange = ", saveData);
             setCurrentSaveData({...saveData[saveData.length-1]});
