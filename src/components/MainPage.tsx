@@ -2,7 +2,7 @@ import "bootswatch/dist/lux/bootstrap.min.css";
 import { Container, Row, Col, Navbar, Nav, NavDropdown } from "react-bootstrap";
 import { WelcomeToast, PreReqSameSemesterToast } from "./util/Notifications";
 import { SemesterTable } from "./semesters/SemesterTable";
-import React, { useState, useEffect, useReducer } from "react";
+import React, { useState, useEffect, useReducer, ReducerWithoutAction } from "react";
 import { DropdownMenu } from "./util/DropdownMenu";
 import { DisplayCourseList } from "./courses/DisplayCourseList";
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
@@ -30,11 +30,23 @@ import { UpdateSaveDataOnSemesterCoursesChange } from "./util/SaveDataFunctions/
 import { UpdateSaveDataOnConcentrationContainerChange } from "./util/SaveDataFunctions/UpdateSaveDataOnConcentrationContainerChange";
 import { UpdateMainPageStateWithSaveData } from "./util/SaveDataFunctions/UpdateMainPageStateWithSaveData";
 
-const reducerFunction = (currentState, action) => {
-    return currentState;
-};
+export interface State{
 
-const initialState = {
+    concentration: Concentration,
+    semesterCourses: Semester[],
+    display: boolean,
+    semesters: number,
+    concentrationContainers: ConcentrationContainerType[],
+    toastDisplay: boolean,
+    toastMessage: string,
+    deleteTriggered: number,
+    saveData: SavedProgress[],
+    currentSaveData: SavedProgress
+
+}
+
+
+const initialState: State = {
     concentration : CONCENTRATIONS[0],
     semesterCourses : [],
     display : false,
@@ -53,6 +65,17 @@ const initialState = {
         numberOfSemesters: 1,
         semesters: [],
     } as SavedProgress,
+};
+
+interface SchedulerAction {
+
+    type: string,
+    payload: State
+
+}
+
+const reducerFunction = (state: State, action: SchedulerAction ) => {
+    return {...state};
 };
 
 export const MainPage = (): JSX.Element => {
