@@ -8,7 +8,8 @@ import { Course as Course } from "../../../interfaces/course";
 export const HPCConc = (props: {
     StringsToCourses: (stringCourses: string[]) => Course[];
     setConcentrationContainers: (concentrationContainers: ConcentrationContainerType[]) => void;
-    }): JSX.Element => {
+    }): void => {
+    /*
     const [coreCourses,
         setCoreCourses] = useState<Course[]>(props.StringsToCourses(CONCENTRATIONS[4].core));
     const [capstoneCourses,
@@ -196,4 +197,5 @@ export const HPCConc = (props: {
             </Accordion>
         </div>
     );
+    */
 };

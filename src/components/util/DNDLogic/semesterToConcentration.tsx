@@ -21,7 +21,7 @@ export const semesterToConcentration = (
     UpdateSemester(semesterCourses[semesterInd], semesterCourses, DNDUpdateSemester);
     concContainers[concentrationInd].courses.splice(courseDropInd, 0, theCourse);
     concContainers[concentrationInd].courses = [...concContainers[concentrationInd].courses];/* may be able to delete this line */
-    concContainers[concentrationInd].setCourses([...concContainers[concentrationInd].courses]);/* may be able to delete this line */
+    // DEBUG concContainers[concentrationInd].setCourses([...concContainers[concentrationInd].courses]);/* may be able to delete this line */
     setConcContainers([...concContainers]);
     return 1;
 };

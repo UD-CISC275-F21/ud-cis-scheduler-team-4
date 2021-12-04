@@ -9,7 +9,8 @@ import { Course as Course } from "../../../interfaces/course";
 export const DataScienceConc = (props: {
     StringsToCourses: (stringCourses: string[]) => Course[];
     setConcentrationContainers: (concentrationContainers: ConcentrationContainerType[]) => void;
-    }): JSX.Element => {
+    }): void => {
+    /*
     const [coreCourses,
         setCoreCourses] = useState<Course[]>(props.StringsToCourses(
             CONCENTRATIONS[3].core));
@@ -175,4 +176,5 @@ export const DataScienceConc = (props: {
 
         </div>
     );
+    */
 };

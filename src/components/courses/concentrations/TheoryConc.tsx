@@ -8,7 +8,8 @@ import { Course as Course } from "../../../interfaces/course";
 export const TheoryConc = (props: {
     StringsToCourses: (stringCourses: string[]) => Course[];
     setConcentrationContainers: (concentrationContainers: ConcentrationContainerType[]) => void;
-    }): JSX.Element => {
+    }): void => {
+    /*
     const [coreCourses,
         setCoreCourses] = useState<Course[]>(props.StringsToCourses(CONCENTRATIONS[6].core));
     const [capstoneCourses,
@@ -178,4 +179,5 @@ export const TheoryConc = (props: {
 
         </div>
     );
+    */
 };

@@ -32,7 +32,6 @@ import { UpdateSaveDataOnConcentrationContainerChange } from "./util/SaveDataFun
 import { UpdateMainPageStateWithSaveData } from "./util/SaveDataFunctions/UpdateMainPageStateWithSaveData";
 
 export interface State{
-
     concentration: Concentration,
     semesterCourses: Semester[],
     display: boolean,
@@ -43,7 +42,6 @@ export interface State{
     deleteTriggered: number,
     saveData: SavedProgress[],
     currentSaveData: SavedProgress
-
 }
 
 
@@ -75,7 +73,7 @@ export interface SchedulerAction {
 
 }
 
-export const reducerFunction = (state: State, action: SchedulerAction ) => {
+export const reducerFunction = (state: State, action: SchedulerAction ): State => {
     switch (action.type) {
     case "updateSaveData":{
         return produce(state, (draft) => {
@@ -99,8 +97,11 @@ export const reducerFunction = (state: State, action: SchedulerAction ) => {
         });
     }
     case "updateConcentrationContainers": {
+        console.log("updating concentrationcontainers with state ", state);
         return produce(state, (draft) => {
+            console.log("payload = ", action.payload);
             draft.concentrationContainers = action.payload.concentrationContainers;
+            return draft;
         });
     }
     case "updateCurrentSaveData":{

@@ -23,10 +23,10 @@ export const DisplayCourseListMap = (concentration: Concentration,
     case CONCENTRATIONS[0]: {
         // we know its AIConc at this point
         return <AIConc
-            StringsToCourses={StringsToCourses}
             saveData={saveData}
         />;
     }
+    /*
     case CONCENTRATIONS[1]: {
         return <BioConc
             StringsToCourses={StringsToCourses}
@@ -57,6 +57,7 @@ export const DisplayCourseListMap = (concentration: Concentration,
             StringsToCourses={StringsToCourses}
         />;
     }
+    */
     default: {
         return <div>Concentration Unavailable</div>;
     }
@@ -72,6 +73,8 @@ export const mapper = (concentration: Concentration): ((props: {
     switch(concentration) {
     case CONCENTRATIONS[0]:
         return AIConc;
+    }
+    /*
     case CONCENTRATIONS[1]:
         return BioConc;
     case CONCENTRATIONS[2]:
@@ -85,5 +88,5 @@ export const mapper = (concentration: Concentration): ((props: {
     case CONCENTRATIONS[6]:
         return TheoryConc;
     }
+    */
 };
-
