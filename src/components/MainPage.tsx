@@ -39,6 +39,7 @@ export const MainPage = (): JSX.Element => {
         semesters: semesterCourses
     } as SavedProgress]);
     const [currentSaveData, setCurrentSaveData] = useState<SavedProgress>(saveData[0]);
+
     useEffect(() => {
         setDisplay(true);
         setTimeout(() => {
@@ -55,13 +56,14 @@ export const MainPage = (): JSX.Element => {
     };
 
     useEffect(() => {
-
+        console.log("triggering delete with deleteTriggered ", deleteTriggered);
         if (deleteTriggered === 0) {
             const theSemester: Semester | undefined = semesterCourses.length > 0 ? semesterCourses[semesters - 1] : undefined;
             if (theSemester !== undefined && theSemester.courses.length === 0) {
                 semesterCourses[semesterCourses.length-1].courses = [];
                 setSemesterCourses([...semesterCourses.slice(0, semesters - 1)]);
-                setSemesters(semesters - 1);
+                setCurrentSaveData({...currentSaveData, numberOfSemesters: semesters-1});
+                setSemesters((fmrSemesters) => fmrSemesters - 1);
             } else {
                 console.log("displaying err");
                 displayToast(`Move all courses from Semester ${semesters} back into course list on the left`);
@@ -153,7 +155,7 @@ export const MainPage = (): JSX.Element => {
                         <br />
                         <div>
                             {
-                                semesters > 0 ?
+                                currentSaveData.numberOfSemesters > 0 ?
                                     new Array(currentSaveData.numberOfSemesters).fill(0)
                                         .map((elem, ind) =>
                                             <SemesterComponent
