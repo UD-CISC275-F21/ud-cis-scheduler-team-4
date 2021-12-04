@@ -8,7 +8,7 @@ import { Course as Course } from "../../../interfaces/course";
 
 export const DataScienceConc = (props: {
     StringsToCourses: (stringCourses: string[]) => Course[];
-    setConcentrationContainers: React.Dispatch<React.SetStateAction<ConcentrationContainerType[]>>;
+    setConcentrationContainers: (concentrationContainers: ConcentrationContainerType[]) => void;
     }): JSX.Element => {
     const [coreCourses,
         setCoreCourses] = useState<Course[]>(props.StringsToCourses(

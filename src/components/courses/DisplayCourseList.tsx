@@ -6,7 +6,7 @@ import { SavedProgress } from "../../interfaces/savedprogress";
 
 export const DisplayCourseList = (props: {
         concentration: Concentration;
-        setConcentrationContainers: React.Dispatch<React.SetStateAction<ConcentrationContainerType[]>>;
+        setConcentrationContainers: (concentrationContainers: ConcentrationContainerType[]) => void;
         saveData: SavedProgress[];
     }): JSX.Element => {
     const index = props.saveData.findIndex(eachSaveData => eachSaveData.concentration.name === props.concentration.name);

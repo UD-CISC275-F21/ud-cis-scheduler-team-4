@@ -14,7 +14,7 @@ import { SavedProgress } from "../../../interfaces/savedprogress";
 
 
 export const DisplayCourseListMap = (concentration: Concentration,
-    setConcentrationContainers: React.Dispatch<React.SetStateAction<ConcentrationContainerType[]>>,
+    setConcentrationContainers: (concentrationContainers: ConcentrationContainerType[]) => void,
     saveData: SavedProgress,
 ): JSX.Element => {
 

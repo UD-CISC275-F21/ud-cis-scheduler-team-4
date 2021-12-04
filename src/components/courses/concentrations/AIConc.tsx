@@ -10,7 +10,7 @@ import { updateAICourses } from "./AIConcentration/AIConcentrationCoursesGenerat
 
 export const AIConc = (props: {
     StringsToCourses: (stringCourses: string[]) => Course[];
-    setConcentrationContainers: React.Dispatch<React.SetStateAction<ConcentrationContainerType[]>>;
+    setConcentrationContainers: (concentrationContainers: ConcentrationContainerType[]) => void;
     saveData: SavedProgress;
     }): JSX.Element => {
     const [coreCourses,

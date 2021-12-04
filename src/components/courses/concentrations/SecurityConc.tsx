@@ -7,7 +7,7 @@ import { Course as Course } from "../../../interfaces/course";
 
 export const SecurityConc = (props: {
     StringsToCourses: (stringCourses: string[]) => Course[];
-    setConcentrationContainers: React.Dispatch<React.SetStateAction<ConcentrationContainerType[]>>;
+    setConcentrationContainers: (concentrationContainers: ConcentrationContainerType[]) => void;
     }): JSX.Element => {
     const [coreCourses,
         setCoreCourses] = useState<Course[]>(props.StringsToCourses(CONCENTRATIONS[2].core));

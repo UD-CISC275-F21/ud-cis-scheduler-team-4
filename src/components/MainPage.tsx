@@ -70,13 +70,16 @@ export const MainPage = (): JSX.Element => {
             }
             setDeleteTriggered(-1);
         }
-
     }, [deleteTriggered]);
 
     useEffect(() => {
         setCurrentSaveData({...currentSaveData, numberOfSemesters: semesters});
     },[semesters]);
 
+    useEffect(() => {
+        console.log("switching to : ", concentration.name, " from ", currentSaveData.concentration.name);
+    }, [concentration]);
+ 
     useEffect(() => {
         console.log("Semester courses updated", semesterCourses);
         if (semesterCourses.length > 0) {
@@ -144,7 +147,7 @@ export const MainPage = (): JSX.Element => {
                         <br />
                         <DisplayCourseList
                             concentration={concentration}
-                            setConcentrationContainers={setConcentrationContainers}
+                            setConcentrationContainers={(concentrationContainers: ConcentrationContainerType[]) => setConcentrationContainers(concentrationContainers)}
                             saveData={saveData}
                         />
                     </Col>
