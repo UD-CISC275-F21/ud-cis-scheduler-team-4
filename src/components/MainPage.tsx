@@ -85,7 +85,7 @@ const reducerFunction = (state: State, action: SchedulerAction ) => {
     case "updateCurrentSaveData":{
         return produce(
             state, (draft) => {
-                draft.currentSaveData = action.payload.currentSaveData
+                draft.currentSaveData = action.payload.currentSaveData;
             });
     }
     case "setDisplay":{
@@ -95,7 +95,7 @@ const reducerFunction = (state: State, action: SchedulerAction ) => {
     }
     case "deleteSemester":{
         if ( state.semesters > 0) {
-            const temporarySemesterCourse = action.payload.semeterCourses[action.payload.semesterCourses.length-1];
+            const temporarySemesterCourse = action.payload.semesterCourses[action.payload.semesterCourses.length-1];
             if (temporarySemesterCourse.courses.length > 0) {
                 // display error
                 return produce(state, (draft) => {
@@ -108,16 +108,27 @@ const reducerFunction = (state: State, action: SchedulerAction ) => {
                 });
             }
         } else {
-            return {...state,
-            };
+            return { ...state };
         }
     }
     case "displayToast":{
-        return {
-            ...state,
-            toastMessage: action.payload.toastMessage,
-            toastDisplay: action.payload.toastDisplay,
-        };
+        return produce(state, (draft) => {
+            draft.toastMessage = action.payload.toastMessage;
+            draft.toastDisplay = action.payload.toastDisplay;
+        });
+    }
+    case "NoSavedConcentration": {
+        return produce(state, (draft) => {
+            const indexToUpdate = draft.saveData.findIndex((eachSaveData) => eachSaveData.concentration.name === draft.currentSaveData.concentration.name);
+            draft.saveData[indexToUpdate] = draft.currentSaveData;
+            draft.saveData = [...draft.saveData, {
+                concentration: draft.concentration,
+                numberOfSemesters: 1,
+                semesters: [],
+            }];
+            draft.semesters = 1;
+            draft.currentSaveData = draft.saveData[draft.saveData.length-1];
+        });
     }
     default:{
         break;
@@ -179,8 +190,14 @@ export const MainPage = (): JSX.Element => {
         console.log("switching to : ", concentration.name, " from ", currentSaveData.concentration.name);
         const result = CheckConcentrationInSaveData(concentration,saveData);
         //console.log("result = ", result, " and currentSaveData = ", currentSaveData);
+
+        // check if concentration is not in save data
+        // if it is not, we update the current save data in the savedata array before switching the current
+        // save data
+
         if (result === -1) {
             // concentration was not able to be located
+            dispatch({type: "NoSavedConcentration", payload: { ...state }});
             const indexToUpdate = UpdateSaveDataOnConcentrationChange(currentSaveData.concentration.name, saveData);
             const tmpData = [...saveData];
             tmpData[indexToUpdate] = {...currentSaveData};
@@ -206,14 +223,6 @@ export const MainPage = (): JSX.Element => {
             //console.log("New current save data = ", currentSaveData);
         }
     }, [concentration]);
-
-    const updateSemesterCourses = (newSemester: Semester) => {
-
-        const tmpSemesterCourses = semesterCourses.map(e => ({...e}));
-        tmpSemesterCourses.push(newSemester);
-        setSemesterCourses(tmpSemesterCourses);
-
-    };
  
     useEffect(() => {
         console.log("Semester courses updated", semesterCourses);
