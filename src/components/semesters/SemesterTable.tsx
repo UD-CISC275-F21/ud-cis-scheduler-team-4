@@ -1,9 +1,10 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
-import { Semester } from "./Semester";
+import { Semester as SemesterComponent } from "./Semester";
 import { Semester as SemesterType } from "../../interfaces/semester";
 import { SavedProgress } from "../../interfaces/savedprogress";
 import { Concentration } from "../../interfaces/concentration";
+import { UseDispatchContext, UseStateContext } from "../MainPage";
 
 /*
 
@@ -12,27 +13,32 @@ import { Concentration } from "../../interfaces/concentration";
 
 */
 
-export const SemesterTable = (props: {
-        concentration: Concentration;
-        setSemesterCourses: React.Dispatch<React.SetStateAction<SemesterType[]>>;
-        saveData: SavedProgress[];
-    }): JSX.Element => {
-    return(<></>);
-    /*
-    const index = props.saveData.findIndex(eachSaveData => eachSaveData.concentration.name === props.concentration.name);
-    if (index !== -1) {
-        console.log("IN SEMESTERTABLE, SAVEDATA = ", props.saveData[index], "index = ", index, " NUMSEMESTERS = ", props.saveData[index].numberOfSemesters);
-    }
+export const SemesterTable = (): JSX.Element => {
+        
+    const { state } = UseStateContext();
+    const { dispatch } = UseDispatchContext();
     return(
-        index !== -1 ?
-            <div>
-                {
-                    new Array(props.saveData[index].numberOfSemesters).fill(0)
-                        .map((elem, ind) => <Semester ind={ind} key={`semester-table-key-${ind}`} semesterCourses={props.saveData[index].semesters} setSemesterCourses={props.setSemesterCourses} />)
-                }
-            </div>
-            :
-            <div>Cannot find semester courses</div>
+        <>
+            {
+                state.currentSaveData.numberOfSemesters > 0 ?
+                    new Array(state.currentSaveData.numberOfSemesters).fill(0)
+                        .map((elem, ind) =>
+                            <SemesterComponent
+                                ind={ind}
+                                key={`semester-table-key-${ind}`}
+                                semesterCourse={state.currentSaveData.semesters[ind]}
+                                updateSemesterCourses={
+                                    (newSemester: SemesterType) => {
+                                        dispatch({type: "updateSemesterCourses", payload: { ...state, semesterCourses: [...state.semesterCourses, newSemester ]}});
+                                    }
+                                }
+                            />
+                        )
+                    :
+                    <div>
+                No semesters available
+                    </div>
+            }
+        </>
     );
-    */
 };

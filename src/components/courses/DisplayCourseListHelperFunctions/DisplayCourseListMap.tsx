@@ -22,9 +22,7 @@ export const DisplayCourseListMap = (concentration: Concentration,
 
     case CONCENTRATIONS[0]: {
         // we know its AIConc at this point
-        return <AIConc
-            saveData={saveData}
-        />;
+        return <AIConc/>;
     }
     /*
     case CONCENTRATIONS[1]: {

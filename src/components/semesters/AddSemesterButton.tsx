@@ -1,19 +1,19 @@
 import { Button } from "react-bootstrap";
 import React from "react";
+import { UseStateContext, UseDispatchContext } from "../MainPage";
 
-export const AddSemesterButton = (props: {
-        setSemesters: (newNumberOfSemesters: number) => void;
-        semesters: number;
-    }): JSX.Element =>
-
-    <Button
-        data-testid="addsemesterbutton"
-        onClick={() => {
-            let tmpSemesterNumber = props.semesters;
-            tmpSemesterNumber += 1;
-            props.setSemesters(tmpSemesterNumber);
-        }}
-        variant="outline-primary"
-    >
-        Add Semester
-    </Button>;
+export const AddSemesterButton = (): JSX.Element => {
+    const { state } = UseStateContext();
+    const { dispatch } = UseDispatchContext();
+    return(
+        <Button
+            data-testid="addsemesterbutton"
+            onClick={() => {
+                dispatch({type: "updateNumberOfSemesters", payload: { ...state, semesters: state.semesters + 1}});
+            }}
+            variant="outline-primary"
+        >
+            Add Semester
+        </Button>
+    );
+};

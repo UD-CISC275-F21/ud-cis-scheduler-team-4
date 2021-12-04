@@ -9,9 +9,7 @@ import { StringsToCourses } from "../DisplayCourseListHelperFunctions/StringsToC
 import { UseDispatchContext, UseStateContext } from "../../MainPage";
 
 
-export const AIConc = (props: {
-    saveData: SavedProgress;
-    }): JSX.Element => {
+export const AIConc = (): JSX.Element => {
     
     const { state } = UseStateContext();
     const { dispatch } = UseDispatchContext();
@@ -56,8 +54,6 @@ export const AIConc = (props: {
             ]
         }});
     },[]);
-    
-    console.log("state = ", state);
 
     return (
         state.concentrationContainers.length !== 0 ?

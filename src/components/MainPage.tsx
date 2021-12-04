@@ -214,18 +214,8 @@ export const MainPage = (): JSX.Element => {
     const onDragEnd = (result: DropResult) => {
         onDragEndLogic(
             result,
-            concentrationContainers,
-            (newConcentrationContainers: ConcentrationContainerType[]) => dispatch({type: "updateConcentrationContainers", payload: { ...state, concentrationContainers: newConcentrationContainers}}),    
-            semesterCourses,
-            (semesters: Semester[]) => {
-                dispatch({type: "updateSemesterCourses", payload: { ...state, semesterCourses: semesters}});
-            },
-            (msg: string) => {
-                dispatch({ type: "displayToast", payload: { ...state, toastMessage: msg, toastDisplay: true}});
-                setTimeout(() => {
-                    dispatch({ type: "displayToast", payload: { ...state, toastMessage: "", toastDisplay: false}});
-                }, 3000);
-            },
+            state,
+            dispatch
         );
     };
 
@@ -259,7 +249,7 @@ export const MainPage = (): JSX.Element => {
                                                 <NavDropdown.Item data-testid="navdropdownitem4" href="https://ud-cis-teaching.github.io/student-guidance/" >UD CIS Student Guidance</NavDropdown.Item>
                                             </NavDropdown>
                                             <DropdownMenu/>
-                                            <AddSemesterButton semesters={semesters} setSemesters={(newNumberOfSemesters: number) => dispatch({type: "updateNumberOfSemesters", payload: { ...state, semesters: newNumberOfSemesters }})} />
+                                            <AddSemesterButton/>
                                             <DeleteSemesterButton
                                                 setDelete={() => {
                                                     dispatch({type: "deleteSemester", payload: state});
@@ -284,26 +274,7 @@ export const MainPage = (): JSX.Element => {
                                 <br />
                                 <br />
                                 <div>
-                                    {
-                                        currentSaveData.numberOfSemesters > 0 ?
-                                            new Array(currentSaveData.numberOfSemesters).fill(0)
-                                                .map((elem, ind) =>
-                                                    <SemesterComponent
-                                                        ind={ind}
-                                                        key={`semester-table-key-${ind}`}
-                                                        semesterCourse={currentSaveData.semesters[ind]}
-                                                        updateSemesterCourses={
-                                                            (newSemester: Semester) => {
-                                                                dispatch({type: "updateSemesterCourses", payload: { ...state, semesterCourses: [...semesterCourses, newSemester ]}});
-                                                            }
-                                                        }
-                                                    />
-                                                )
-                                            :
-                                            <div>
-                                            No semesters available
-                                            </div>
-                                    }
+                                    <SemesterTable />
                                 </div>
                             </Col>
                         </Row>

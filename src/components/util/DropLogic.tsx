@@ -8,17 +8,17 @@ import { concentrationToConcentration } from "./DNDLogic/concentrationToConcentr
 import { concentrationToSemester } from "./DNDLogic/concentrationToSemester";
 import { PreReqChecker } from "./DNDLogic/prereqchecker";
 import { RevPreReqChecker } from "./DNDLogic/revprereqchecker";
+import { State } from "../MainPage";
+import { SchedulerAction } from "../MainPage";
 
 export const successPrint = (result: number): void => {
     console.log(result >= 1 ? "Success!" : "Failure");
 };
 
-export const onDragEndLogic = (result: DropResult,
-    concentrationContainers: ConcentrationContainerType[],
-    setConcentrationContainers: (newConcentrationContainers: ConcentrationContainerType[]) => void,
-    semesterCourses: Semester[],
-    setSemesters: (semesters: Semester[]) => void,
-    setErrMsg: (msg: string) => void,
+export const onDragEndLogic = (
+    result: DropResult,
+    state: State,
+    dispatch: React.Dispatch<SchedulerAction>,
 ): void => {
     if (!result.destination) {
         return;
@@ -38,50 +38,51 @@ export const onDragEndLogic = (result: DropResult,
         if (sourceIdSemester) {
             // semestertable --> semestertable
             const semesterNum1 = parseInt(sourceId.substring(sourceId.lastIndexOf("-") + 1), 10);
-            const ind1 = semesterCourses.findIndex(elem => elem.semesternum === semesterNum1);
+            const ind1 = state.semesterCourses.findIndex(elem => elem.semesternum === semesterNum1);
             semesterToSemester(
-                semesterCourses[ind1],
-                semesterCourses[ind1],
+                state.semesterCourses[ind1],
+                state.semesterCourses[ind1],
                 result.source.index,
                 result.destination.index,
-                false);
+                false,
+                state);
         } else {
             // concentration --> concentration
-            const tmpContainer: ConcentrationContainerType[] = [...concentrationContainers];
+            const tmpContainer: ConcentrationContainerType[] = [...state.concentrationContainers];
             let ind1 = tmpContainer.findIndex(elem => elem.name === destinationId);
             ind1 = sourceId === destinationId ?
                 concentrationToConcentration(result,
-                    concentrationContainers,
-                    concentrationContainers.splice(ind1, 1)[0],
-                    ind1, sourceIndex, dropIndex, setConcentrationContainers, false) :
+                    state.concentrationContainers,
+                    state.concentrationContainers.splice(ind1, 1)[0],
+                    ind1, sourceIndex, dropIndex, dispatch, false, state) :
                 concentrationToConcentration(result,
-                    concentrationContainers,
-                    concentrationContainers.splice(ind1, 1)[0],
-                    ind1, sourceIndex, dropIndex, setConcentrationContainers, true);
+                    state.concentrationContainers,
+                    state.concentrationContainers.splice(ind1, 1)[0],
+                    ind1, sourceIndex, dropIndex, dispatch, true, state);
             successPrint(ind1);
         }
     } else if (sourceIdSemester) {
         // semester --> concentration
         const semesterNum = parseInt(sourceId.substring(sourceId.lastIndexOf("-") + 1), 10);
         const semester2Num = destIdSemester ? parseInt(destinationId.substring(destinationId.lastIndexOf("-") + 1), 10) : -1;
-        const ind1 = semesterCourses.findIndex(elem => elem.semesternum === semesterNum);
+        const ind1 = state.semesterCourses.findIndex(elem => elem.semesternum === semesterNum);
         let ind2 = destIdSemester ?
-            semesterCourses.findIndex(elem =>
+            state.semesterCourses.findIndex(elem =>
                 elem.semesternum === semester2Num)
             :
-            concentrationContainers.findIndex(elem =>
+            state.concentrationContainers.findIndex(elem =>
                 elem.name === destinationId);
         const preReqResult = destIdSemester ?
             PreReqChecker(
-                semesterCourses,
+                state.semesterCourses,
                 semester2Num - 1,
-                semesterCourses[ind1].courses[sourceIndex],
-                setErrMsg,
+                state.semesterCourses[ind1].courses[sourceIndex],
+                dispatch,
             ) && RevPreReqChecker(
-                semesterCourses,
+                state.semesterCourses,
                 semester2Num - 1,
-                semesterCourses[ind1].courses[sourceIndex],
-                setErrMsg,
+                state.semesterCourses[ind1].courses[sourceIndex],
+                dispatch,
             )
             :
             true;
@@ -91,35 +92,35 @@ export const onDragEndLogic = (result: DropResult,
         }
         ind2 = destIdSemester ?
             semesterToSemester(
-                semesterCourses[ind1],
-                semesterCourses[ind2],
+                state.semesterCourses[ind1],
+                state.semesterCourses[ind2],
                 sourceIndex, dropIndex, true) :
-            semesterToConcentration(concentrationContainers,
+            semesterToConcentration(
+                state.concentrationContainers,
                 ind2,
                 result.source.index,
-                setConcentrationContainers,
-                semesterCourses, setSemesters, ind1, result.destination.index);
+                dispatch,
+                state.semesterCourses, dispatch, ind1, result.destination.index);
         successPrint(ind2);
     } else {
         // concentration --> semester
         //console.log("destination = ", destinationId, " and semesterCourses = ", semesterCourses);
         const semesterNum = parseInt(destinationId.substring(destinationId.lastIndexOf("-") + 1), 10);
-        const tmpContainer: ConcentrationContainerType[] = [...concentrationContainers];
+        const tmpContainer: ConcentrationContainerType[] = [...state.concentrationContainers];
         let ind1 = tmpContainer.findIndex(elem => elem.name === sourceId);
-        const ind2 = semesterCourses.findIndex(elem => elem.semesternum === semesterNum);
+        const ind2 = state.semesterCourses.findIndex(elem => elem.semesternum === semesterNum);
         if (PreReqChecker(
-            semesterCourses,
+            state.semesterCourses,
             semesterNum - 1,
-            concentrationContainers[ind1].courses[result.source.index],
-            setErrMsg)) {
+            state.concentrationContainers[ind1].courses[result.source.index],
+            dispatch)) {
             ind1 = ind1 > -1 ?
                 concentrationToSemester(
-                    concentrationContainers[ind1],
+                    state.concentrationContainers[ind1],
                     result.source.index,
                     result.destination.index,
-                    semesterCourses[ind2],
-                    setSemesters,
-                    semesterCourses
+                    state.semesterCourses[ind2],
+                    dispatch,
                 ) : -1;
         }
         successPrint(ind1 > -1 ? 1 : 0);
