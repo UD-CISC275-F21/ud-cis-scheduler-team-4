@@ -66,12 +66,29 @@ export const initialState: State = {
     } as SavedProgress,
 };
 
+export interface DNDAction {
+
+    type: string,
+    payload: State,
+    extraSnippets: {
+        sourceIndex: number,
+        destinationIndex: number,
+        container1Index: number,
+        container2Index: number
+    }
+
+}
+
 export interface SchedulerAction {
 
     type: string,
     payload: State
 
 }
+
+export const dndReducer = (state: State, action: DNDAction): State => {
+    return {...state};
+};
 
 export const reducerFunction = (state: State, action: SchedulerAction ): State => {
     switch (action.type) {
@@ -177,6 +194,7 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
 
 export const DispatchContext = React.createContext<{dispatch: React.Dispatch<SchedulerAction>} | undefined>(undefined);
 export const StateContext = React.createContext<{state: State} | undefined>(undefined);
+export const DNDDispatchContext = React.createContext<{dispatch: React.Dispatch<DNDAction>} | undefined>(undefined);
 
 export const UseDispatchContext = (): {dispatch: React.Dispatch<SchedulerAction>} => {
     const context = React.useContext(DispatchContext);
