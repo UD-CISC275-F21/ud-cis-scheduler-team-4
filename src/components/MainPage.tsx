@@ -41,7 +41,7 @@ export const MainPage = (): JSX.Element => {
     const [deleteTriggered, setDeleteTriggered] = useState<number>(-1);
     const [saveData, setSaveData] = useState<SavedProgress[]>([{
         concentration: concentration,
-        numberOfSemesters: semesters,
+        numberOfSemesters: 1,
         semesters: semesterCourses
     } as SavedProgress]);
     const [currentSaveData, setCurrentSaveData] = useState<SavedProgress>(saveData[0]);
@@ -79,52 +79,60 @@ export const MainPage = (): JSX.Element => {
     }, [deleteTriggered]);
 
     useEffect(() => {
-        console.log("settings currentSaveData semesters to ", semesters);
+        //console.log("settings currentSaveData semesters to ", semesters);
         setCurrentSaveData({...currentSaveData, numberOfSemesters: semesters});
     },[semesters]);
 
     useEffect(() => {
-        console.log("switching to : ", concentration.name, " from ", currentSaveData.concentration.name);
+        //console.log("-updating currentSaveData");
+    },[currentSaveData]);
+
+    useEffect(() => {
+        //console.log("switching to : ", concentration.name, " from ", currentSaveData.concentration.name);
         const result = CheckConcentrationInSaveData(concentration,saveData);
-        console.log("result = ", result, " and currentSaveData = ", currentSaveData);
+        //console.log("result = ", result, " and currentSaveData = ", currentSaveData);
         if (result === -1) {
             // concentration was not able to be located
             const indexToUpdate = UpdateSaveDataOnConcentrationChange(currentSaveData.concentration.name, saveData);
-            saveData[indexToUpdate] = {...currentSaveData};
-            saveData.splice(saveData.length, 0, {concentration: concentration, numberOfSemesters: 1, semesters: []});
-            setSaveData([...saveData]);
-            console.log("new savedata after updating after concentrationchange = ", saveData);
-            setCurrentSaveData({...saveData[saveData.length-1]});
+            const tmpData = [...saveData];
+            tmpData[indexToUpdate] = {...currentSaveData};
+            tmpData.splice(tmpData.length,0,{
+                concentration: concentration,
+                numberOfSemesters: 1,
+                semesters: []
+            });
+            setSaveData([...tmpData]);
+            setCurrentSaveData({...tmpData[tmpData.length-1]});
         } else {
-            console.log("Loading saved data...");
+            //console.log("Loading saved data...");
             setCurrentSaveData({...saveData[result]});
             UpdateMainPageStateWithSaveData(
                 currentSaveData,
                 (newNumberOfSemesters: number) => setSemesters(newNumberOfSemesters),
                 (newSemesterCourses: Semester[]) => setSemesterCourses(newSemesterCourses),
             );
-            console.log("New current save data = ", currentSaveData);
+            //console.log("New current save data = ", currentSaveData);
         }
     }, [concentration]);
  
     useEffect(() => {
-        console.log("Semester courses updated", semesterCourses);
-        if (semesterCourses.length > 0) {
-            console.log("setting semesterCourses from ", semesterCourses);
+        //console.log("Semester courses updated", semesterCourses);
+        if (semesterCourses.length >= 0) {
+            //console.log("setting semesterCourses from ", semesterCourses);
             setCurrentSaveData({...currentSaveData, semesters: [...semesterCourses]});
             setSemesterCourses((fmrSemesters) => semesterCourses);
             UpdateSaveDataOnSemesterCoursesChange(concentration.name, semesterCourses, (newSaveData: SavedProgress[]) => setSaveData(newSaveData), saveData);
-            console.log("after setting semesterCourses, currentSaveData = ", currentSaveData, " and semesterCourses = ", semesterCourses);
+            //console.log("after setting semesterCourses, currentSaveData = ", currentSaveData, " and semesterCourses = ", semesterCourses);
         }
     }, [semesterCourses]);
 
     const onDragEnd = (result: DropResult) => {
         onDragEndLogic(result,
             concentrationContainers,
-            (newConcentrationContainers: ConcentrationContainerType[]) => setConcentrationContainers(newConcentrationContainers),    
+            (newConcentrationContainers: ConcentrationContainerType[]) => setConcentrationContainers([...newConcentrationContainers]),    
             semesterCourses,
             (semesters: Semester[]) => {
-                setSemesterCourses(semesters);
+                setSemesterCourses([...semesters]);
             },
             displayToast,
         );
@@ -174,7 +182,7 @@ export const MainPage = (): JSX.Element => {
                         <br />
                         <DisplayCourseList
                             concentration={concentration}
-                            setConcentrationContainers={(concentrationContainers: ConcentrationContainerType[]) => setConcentrationContainers(concentrationContainers)}
+                            setConcentrationContainers={(concentrationContainers: ConcentrationContainerType[]) => setConcentrationContainers([...concentrationContainers])}
                             saveData={saveData}
                         />
                     </Col>

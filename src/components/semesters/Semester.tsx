@@ -70,6 +70,10 @@ export const Semester = (props: {
                 setCourses(courses);
             }
         });
+        return(() => {
+            console.log("unmounting");
+            setCourses([]);
+        });
     }, []);
 
     const getCredits = (courses: CourseType[]) => {
