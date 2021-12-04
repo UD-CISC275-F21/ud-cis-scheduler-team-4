@@ -82,6 +82,21 @@ const reducerFunction = (state: State, action: SchedulerAction ) => {
             draft.saveData = action.payload.saveData;
         });
     }
+    case "updateConcentration":{
+        return produce(state, (draft) => {
+            draft.concentration = action.payload.concentration;
+        });
+    }
+    case "updateSemesterCourses":{
+        return produce(state, (draft) => {
+            draft.semesterCourses = action.payload.semesterCourses;
+        });
+    }
+    case "updateConcentrationContainers": {
+        return produce(state, (draft) => {
+            draft.concentrationContainers = action.payload.concentrationContainers;
+        });
+    }
     case "updateCurrentSaveData":{
         return produce(
             state, (draft) => {
@@ -131,18 +146,21 @@ const reducerFunction = (state: State, action: SchedulerAction ) => {
         });
     }
     case "SavedConcentration": {
-
         return produce(state, (draft) => {
-
             const indexWhereSaveDataIs = draft.saveData.findIndex((eachSaveData) => eachSaveData.concentration.name === action.payload.concentration.name);
             draft.currentSaveData = draft.saveData[indexWhereSaveDataIs];
             draft.semesters = draft.currentSaveData.numberOfSemesters;
             draft.semesterCourses = draft.currentSaveData.semesters;
 
         });
-
     }
-    // draft.currentSaveData = {...draft.currentSaveData, semesters: action.payload.semesterCourses};
+    case "SetSemesterCourses": {
+        return produce(state, (draft) => {
+            draft.currentSaveData = {...draft.currentSaveData, semesters: action.payload.semesterCourses};
+            draft.semesterCourses = action.payload.semesterCourses;
+            draft.saveData[draft.saveData.findIndex((eachSaveData) => eachSaveData.concentration.name === draft.currentSaveData.concentration.name)].semesters = draft.semesterCourses;
+        });
+    }
     default:{
         break;
     }
@@ -164,85 +182,14 @@ export const MainPage = (): JSX.Element => {
         currentSaveData
     } = state;
 
-    useEffect(() => {
-        dispatch({type: "setDisplay", payload: {...state, display: true}});
-        setTimeout(() => {
-            dispatch({type: "setDisplay", payload: {...state, display: false}});
-        }, 5000);
-    }, []);
-
-    const displayToast = (msg: string) => {
-        dispatch({type: "displayToast", payload: { ...state, toastDisplay: true, toastMessage: msg}});
-        setTimeout(() => {
-            dispatch({type: "displayToast", payload: { ...state, toastDisplay: false}});
-        }, 5000);
-    };
-
-    useEffect(() => {
-        console.log("-updating semesters = ", semesters);
-        dispatch({type: "updateCurrentSaveData", payload: { ...state, currentSaveData: {
-            ...currentSaveData,
-            numberOfSemesters: semesters
-        }}});
-    },[semesters]);
-
-    useEffect(() => {
-        dispatch({type: "updateSaveData", payload: { ...state, saveData:
-            {...saveData}
-        }});
-    }, [saveData]);
-
-    useEffect(() => {
-        console.log("-updating currentSaveData --", currentSaveData);
-        dispatch({type: "updateCurrentSaveData", payload: {...state, currentSaveData: {
-            ...currentSaveData
-        }}});
-    },[currentSaveData]);
-
-    useEffect(() => {
-        console.log("switching to : ", concentration.name, " from ", currentSaveData.concentration.name);
-        const result = CheckConcentrationInSaveData(concentration,saveData);
-        //console.log("result = ", result, " and currentSaveData = ", currentSaveData);
-
-        // check if concentration is not in save data
-        // if it is not, we update the current save data in the savedata array before switching the current
-        // save data
-
-        if (result === -1) {
-            // concentration was not able to be located
-            dispatch({type: "NoSavedConcentration", payload: { ...state }});
-        } else {
-            dispatch({type: "SavedConcentration", payload: { ...state, concentration: concentration }});
-            //console.log("Loading saved data...");
-            setCurrentSaveData({...saveData[result]}); // MAYBE CHANGE TO THE INDEX WHERE THE CONCENTRATION'S name save data is such as indextoUpdate = UpdateSaveDataOnConcentrationChange(concentration.name, saveData);
-            setSemesters(currentSaveData.numberOfSemesters);
-            UpdateMainPageStateWithSaveData(
-                currentSaveData,
-                (newNumberOfSemesters: number) => setSemesters(newNumberOfSemesters),
-                (newSemesterCourses: Semester[]) => setSemesterCourses(newSemesterCourses),
-            );
-            //console.log("New current save data = ", currentSaveData);
-        }
-    }, [concentration]);
- 
-    useEffect(() => {
-        console.log("Semester courses updated", semesterCourses);
-        if (semesterCourses.length >= 0) {
-            //console.log("setting semesterCourses from ", semesterCourses);
-            setCurrentSaveData({...currentSaveData, semesters: [...semesterCourses]});
-            setSemesterCourses((fmrSemesters) => semesterCourses);
-            UpdateSaveDataOnSemesterCoursesChange(concentration.name, semesterCourses, (newSaveData: SavedProgress[]) => setSaveData(newSaveData), saveData);
-            //console.log("after setting semesterCourses, currentSaveData = ", currentSaveData, " and semesterCourses = ", semesterCourses);
-        }
-    }, [semesterCourses]);
-
     const onDragEnd = (result: DropResult) => {
-        onDragEndLogic(result,
+        onDragEndLogic(
+            result,
             concentrationContainers,
-            (newConcentrationContainers: ConcentrationContainerType[]) => setConcentrationContainers([...newConcentrationContainers]),    
+            (newConcentrationContainers: ConcentrationContainerType[]) => dispatch({type: "updateConcentrationContainers", payload: { ...state, concentrationContainers: newConcentrationContainers}}),    
             semesterCourses,
             (semesters: Semester[]) => {
-                setSemesterCourses([...semesters]);
+                dispatch({type: "updateSemesterCourses", payload: { ...state, semesterCourses: semesters}});
             },
             displayToast,
         );
@@ -274,7 +221,12 @@ export const MainPage = (): JSX.Element => {
                                         <NavDropdown.Item data-testid="navdropdownitem4" href="https://ud-cis-teaching.github.io/student-guidance/" >UD CIS Student Guidance</NavDropdown.Item>
                                     </NavDropdown>
                                     <DropdownMenu
-                                        setConcentration={(theConcentration: Concentration) => setConcentration(theConcentration)}
+                                        setConcentration={(theConcentration: Concentration) => dispatch(
+                                            {
+                                                type: "updateConcentration",
+                                                payload: { ...state, concentration: theConcentration}
+                                            })
+                                        }
                                     />
                                     <AddSemesterButton semesters={semesters} setSemesters={(newNumberOfSemesters: number) => setSemesters(newNumberOfSemesters)} />
                                     <DeleteSemesterButton
