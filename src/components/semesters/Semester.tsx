@@ -66,9 +66,6 @@ export const Semester = (props: {
         props.updateSemesterCourses({
             semesternum: props.ind+1,
             courses: courses,
-            courseSetter: (courses: CourseType[]) => {
-                setCourses(courses);
-            }
         });
         return(() => {
             console.log("unmounting");
@@ -86,9 +83,12 @@ export const Semester = (props: {
     };
 
     useEffect(() => {
-        console.log("courses changed -- ", courses);
-        getCredits(courses);
-    }, [courses]);
+        console.log("courses changed -- ", props.semesterCourse);
+        if (props.semesterCourse !== undefined) {
+            setCourses(props.semesterCourse.courses);
+            getCredits(props.semesterCourse.courses);
+        }
+    }, [props.semesterCourse]);
 
     return (
         <Accordion data-testid="semesteraccordian" defaultActiveKey="0" key={`accordion ${props.ind}`} >

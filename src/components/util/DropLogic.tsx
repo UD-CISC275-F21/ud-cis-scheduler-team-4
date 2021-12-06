@@ -21,6 +21,8 @@ export const onDragEndLogic = (
     result: DropResult,
     state: State,
     dispatch: React.Dispatch<SchedulerAction>,
+    concentrationContainers: ConcentrationContainerType[],
+    semesters: Semester[],
 ): void => {
     if (!result.destination) {
         return;
@@ -53,10 +55,19 @@ export const onDragEndLogic = (
         // concentration --> semester
         const semesterNum = parseInt(destinationId.substring(destinationId.lastIndexOf("-") + 1), 10);
         // idOfSemester
-        const concentrationContainerInd = state.concentrationContainers.findIndex((eachContainer) => eachContainer.name === sourceId);
+        const concentrationContainerIndex = state.concentrationContainers.findIndex((eachContainer) => eachContainer.name === sourceId);
         // found container
         const semesterCoursesIndex = state.semesterCourses.findIndex((eachSemester) => eachSemester.semesternum === semesterNum);
-        concentrationToSemesterV2(result.source.index, result.destination.index, concentrationContainerInd, semesterCoursesIndex, dispatch, state);
+        concentrationToSemesterV2(
+            result.source.index,
+            result.destination.index,
+            concentrationContainers,
+            semesters, 
+            concentrationContainerIndex,
+            semesterCoursesIndex,
+            dispatch,
+            state
+        );
     }
     
 };

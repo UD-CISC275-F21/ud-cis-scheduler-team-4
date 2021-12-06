@@ -19,26 +19,6 @@ export const SemesterTable = (): JSX.Element => {
     const { dispatch } = UseDispatchContext();
     return(
         <>
-            {
-                state.currentSaveData.numberOfSemesters > 0 ?
-                    new Array(state.currentSaveData.numberOfSemesters).fill(0)
-                        .map((elem, ind) =>
-                            <SemesterComponent
-                                ind={ind}
-                                key={`semester-table-key-${ind}`}
-                                semesterCourse={state.currentSaveData.semesters[ind]}
-                                updateSemesterCourses={
-                                    (newSemester: SemesterType) => {
-                                        dispatch({type: "updateSemesterCourses", payload: { ...state, semesterCourses: [...state.semesterCourses, newSemester ]}});
-                                    }
-                                }
-                            />
-                        )
-                    :
-                    <div>
-                No semesters available
-                    </div>
-            }
         </>
     );
 };

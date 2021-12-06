@@ -17,7 +17,7 @@ export const semesterToConcentration = (
     console.log("in semester ---> concentration");
     const theCourse: CourseType = semesterCourses[semesterInd].courses.splice(courseSpliceInd, 1)[0];
     semesterCourses[semesterInd].courses = [...semesterCourses[semesterInd].courses];/* may be able to delete this line*/
-    semesterCourses[semesterInd].courseSetter([...semesterCourses[semesterInd].courses]);/* may be able to delete this line*/
+    //semesterCourses[semesterInd].courseSetter([...semesterCourses[semesterInd].courses]);/* may be able to delete this line*/
     UpdateSemester(semesterCourses[semesterInd], semesterCourses, DNDUpdateSemester);
     concContainers[concentrationInd].courses.splice(courseDropInd, 0, theCourse);
     concContainers[concentrationInd].courses = [...concContainers[concentrationInd].courses];/* may be able to delete this line */

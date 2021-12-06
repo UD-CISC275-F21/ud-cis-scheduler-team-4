@@ -11,12 +11,12 @@ export const semesterToSemester = (
     if (diffSemester) {
         const splicedCourse = semester.courses.splice(spliceInd, 1)[0];
         semester2.courses.splice(dropInd, 0, splicedCourse);
-        semester.courseSetter([...semester.courses]);
-        semester2.courseSetter([...semester2.courses]);
+        //semester.courseSetter([...semester.courses]);
+        //semester2.courseSetter([...semester2.courses]);
     } else {
         const splicedCourse = semester.courses.splice(spliceInd, 1)[0];
         semester.courses.splice(dropInd, 0, splicedCourse);
-        semester.courseSetter([...semester.courses]);
+        //semester.courseSetter([...semester.courses]);
     }
     return 1;
 };

@@ -30,6 +30,7 @@ import { UpdateSaveDataOnConcentrationChange } from "./util/SaveDataFunctions/Up
 import { UpdateSaveDataOnSemesterCoursesChange } from "./util/SaveDataFunctions/UpdateSaveDataOnSemesterCoursesChange";
 import { UpdateSaveDataOnConcentrationContainerChange } from "./util/SaveDataFunctions/UpdateSaveDataOnConcentrationContainerChange";
 import { UpdateMainPageStateWithSaveData } from "./util/SaveDataFunctions/UpdateMainPageStateWithSaveData";
+import { MessagePayload } from "discord.js";
 
 export interface State{
     concentration: Concentration,
@@ -41,7 +42,11 @@ export interface State{
     toastMessage: string,
     deleteTriggered: number,
     saveData: SavedProgress[],
-    currentSaveData: SavedProgress
+    currentSaveData: SavedProgress,
+    concentrationContainerCourseIndex: number,
+    semesterCoursesCourseIndex: number,
+    concentrationContainerIndex: number,
+    semesterCourseIndex: number
 }
 
 
@@ -64,20 +69,11 @@ export const initialState: State = {
         numberOfSemesters: 1,
         semesters: [],
     } as SavedProgress,
+    concentrationContainerCourseIndex: 0,
+    concentrationContainerIndex: 0,
+    semesterCoursesCourseIndex: 0,
+    semesterCourseIndex: 0
 };
-
-export interface DNDAction {
-
-    type: string,
-    payload: State,
-    extraSnippets: {
-        sourceIndex: number,
-        destinationIndex: number,
-        container1Index: number,
-        container2Index: number
-    }
-
-}
 
 export interface SchedulerAction {
 
@@ -86,12 +82,20 @@ export interface SchedulerAction {
 
 }
 
-export const dndReducer = (state: State, action: DNDAction): State => {
-    return {...state};
-};
-
 export const reducerFunction = (state: State, action: SchedulerAction ): State => {
+    console.log("state = ", state);
     switch (action.type) {
+    case "concentrationToSemester": {
+        return produce(state, (draft) => {
+            const theConcentration: ConcentrationContainerType = draft.concentrationContainers[action.payload.concentrationContainerIndex];
+            const theSemester: Semester = draft.semesterCourses[action.payload.semesterCourseIndex];
+            const theCourse = theConcentration.courses.splice(action.payload.concentrationContainerCourseIndex,1)[0];
+            theSemester.courses.splice(action.payload.semesterCoursesCourseIndex,0,theCourse);
+            draft.concentrationContainers[action.payload.concentrationContainerIndex] = theConcentration;
+            draft.semesterCourses[action.payload.semesterCourseIndex] = theSemester;
+            draft.currentSaveData.semesters[action.payload.semesterCourseIndex].courses = theSemester.courses;
+        });
+    }
     case "updateSaveData":{
         return produce(state, (draft) => {
             draft.saveData = action.payload.saveData;
@@ -100,6 +104,7 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
     case "updateNumberOfSemesters":{
         return produce(state, (draft) => {
             draft.semesters = action.payload.semesters;
+            draft.currentSaveData.numberOfSemesters = action.payload.semesters;
         });
     }
     case "updateConcentration":{
@@ -111,6 +116,7 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
     case "updateSemesterCourses":{
         return produce(state, (draft) => {
             draft.semesterCourses = action.payload.semesterCourses;
+            draft.currentSaveData.semesters = action.payload.semesterCourses;
         });
     }
     case "updateConcentrationContainers": {
@@ -194,7 +200,6 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
 
 export const DispatchContext = React.createContext<{dispatch: React.Dispatch<SchedulerAction>} | undefined>(undefined);
 export const StateContext = React.createContext<{state: State} | undefined>(undefined);
-export const DNDDispatchContext = React.createContext<{dispatch: React.Dispatch<DNDAction>} | undefined>(undefined);
 
 export const UseDispatchContext = (): {dispatch: React.Dispatch<SchedulerAction>} => {
     const context = React.useContext(DispatchContext);
@@ -223,7 +228,11 @@ export const MainPage = (): JSX.Element => {
         toastDisplay,
         toastMessage,
         saveData,
-        currentSaveData
+        currentSaveData,
+        concentrationContainerCourseIndex,
+        concentrationContainerIndex,
+        semesterCoursesCourseIndex,
+        semesterCourseIndex
     } = state;
 
     const dispatchValue = { dispatch };
@@ -233,7 +242,9 @@ export const MainPage = (): JSX.Element => {
         onDragEndLogic(
             result,
             state,
-            dispatch
+            dispatch,
+            concentrationContainers,
+            semesterCourses
         );
     };
 
@@ -292,7 +303,26 @@ export const MainPage = (): JSX.Element => {
                                 <br />
                                 <br />
                                 <div>
-                                    <SemesterTable />
+                                    {
+                                        state.currentSaveData.numberOfSemesters > 0 ?
+                                            new Array(state.currentSaveData.numberOfSemesters).fill(0)
+                                                .map((elem, ind) =>
+                                                    <SemesterComponent
+                                                        ind={ind}
+                                                        key={`semester-table-key-${ind}`}
+                                                        semesterCourse={state.currentSaveData.semesters[ind]}
+                                                        updateSemesterCourses={
+                                                            (newSemester: Semester) => {
+                                                                dispatch({type: "updateSemesterCourses", payload: { ...state, semesterCourses: [...state.semesterCourses, newSemester ]}});
+                                                            }
+                                                        }
+                                                    />
+                                                )
+                                            :
+                                            <div>
+                                        No semesters available
+                                            </div>
+                                    }
                                 </div>
                             </Col>
                         </Row>

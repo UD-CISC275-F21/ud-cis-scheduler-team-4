@@ -17,6 +17,6 @@ export const concentrationToSemester = (
     // DEBUG concContainer.setCourses([...concContainer.courses]); /*  Optional line - may be able to remove  */
     droppingSemester.courses.splice(dropInd, 0, theCourse);
     UpdateSemester(droppingSemester, semesters, setSemesters);
-    droppingSemester.courseSetter([...droppingSemester.courses]); /* Optional line - may be able to remove */
+    //droppingSemester.courseSetter([...droppingSemester.courses]); /* Optional line - may be able to remove */
     return 1;
 };
