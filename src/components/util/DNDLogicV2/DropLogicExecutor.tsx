@@ -1,5 +1,5 @@
-import { State } from "../../MainPage";
-import { SchedulerAction } from "../../MainPage";
+import { State } from "../../../interfaces/State";
+import { SchedulerAction } from "../../../interfaces/SchedulerAction";
 import React from "react";
 
 export const DropLogicExecutor = (

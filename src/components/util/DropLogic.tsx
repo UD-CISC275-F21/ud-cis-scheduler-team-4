@@ -4,8 +4,8 @@ import { Semester } from "../../interfaces/semester";
 import { ConcentrationContainerType } from "../../interfaces/concentrationcontainer";
 import { PreReqChecker } from "./DNDLogic/prereqchecker";
 import { RevPreReqChecker } from "./DNDLogic/revprereqchecker";
-import { State } from "../MainPage";
-import { SchedulerAction } from "../MainPage";
+import { State } from "../../interfaces/State";
+import { SchedulerAction } from "../../interfaces/SchedulerAction";
 import { DropLogicExecutor } from "./DNDLogicV2/DropLogicExecutor";
 
 // TODO: Implement PreReq Checker

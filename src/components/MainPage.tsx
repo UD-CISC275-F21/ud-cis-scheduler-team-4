@@ -6,7 +6,6 @@ import React, { useReducer } from "react";
 import { DropdownMenu } from "./util/DropdownMenu";
 import { DisplayCourseList } from "./courses/DisplayCourseList";
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
-import { Concentration } from "../interfaces/concentration";
 import CONCENTRATIONS from "../json/concentrations.json";
 import { Semester } from "../interfaces/semester";
 import { Semester as SemesterComponent } from "./semesters/Semester";
@@ -19,56 +18,9 @@ import { HowToDisplay } from "./util/howto/howtodisplay";
 import { Footer } from "./util/Footer";
 import { SavedProgress } from "../interfaces/savedprogress";
 import { Course } from "../interfaces/course";
-
-export interface State{
-    concentration: Concentration,
-    semesterCourses: Semester[],
-    display: boolean,
-    semesters: number,
-    concentrationContainers: ConcentrationContainerType[],
-    toastDisplay: boolean,
-    toastMessage: string,
-    deleteTriggered: number,
-    saveData: SavedProgress[],
-    currentSaveData: SavedProgress,
-    sourceIndex: number,
-    sourceContainerIndex: number,
-    destIndex: number,
-    destContainerIndex: number
-}
-
-
-export const initialState: State = {
-    concentration : CONCENTRATIONS[0],
-    semesterCourses : [],
-    display : false,
-    semesters : 1,
-    concentrationContainers: [],
-    toastDisplay: false,
-    toastMessage: "",
-    deleteTriggered: -1,
-    saveData: [{
-        concentration: CONCENTRATIONS[0],
-        numberOfSemesters: 1,
-        semesters: [],
-    } as SavedProgress],
-    currentSaveData: {
-        concentration: CONCENTRATIONS[0],
-        numberOfSemesters: 1,
-        semesters: [],
-    } as SavedProgress,
-    sourceIndex: 0,
-    sourceContainerIndex: 0,
-    destIndex: 0,
-    destContainerIndex: 0
-};
-
-export interface SchedulerAction {
-
-    type: string,
-    payload: State
-
-}
+import { State } from "../interfaces/State";
+import { initialState } from "../assets/data/statedata/InitialState";
+import { SchedulerAction } from "../interfaces/SchedulerAction";
 
 export const reducerFunction = (state: State, action: SchedulerAction ): State => {
     //console.log("state = ", state);
