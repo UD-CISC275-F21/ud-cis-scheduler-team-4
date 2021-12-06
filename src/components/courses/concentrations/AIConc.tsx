@@ -21,48 +21,42 @@ export const AIConc = (): JSX.Element => {
             [ 
                 {
                     name: "core",
-                    courses: StringsToCourses(CONCENTRATIONS[0].core)
+                    courses: StringsToCourses(state.saveData[0].concentration.core)
                 },
                 {
                     name: "capstone-1",
-                    courses: StringsToCourses(CONCENTRATIONS[0].capstone)
+                    courses: StringsToCourses(state.saveData[0].concentration.capstone)
                 },
                 {
                     name: "general-1",
-                    courses: StringsToCourses(CONCENTRATIONS[0].conc.general)
+                    courses: StringsToCourses(state.saveData[0].concentration.conc.general)
                 },
                 {
                     name: "writing",
-                    courses: StringsToCourses(CONCENTRATIONS[0].writing)
+                    courses: StringsToCourses(state.saveData[0].concentration.writing)
                 },
                 {
                     name: "capstone-2",
-                    courses: StringsToCourses(CONCENTRATIONS[0].conc.stats)
+                    courses: StringsToCourses(state.saveData[0].concentration.conc.stats)
                 },
                 {
                     name: "general-2",
-                    courses: StringsToCourses(CONCENTRATIONS[0].conc.systems)
+                    courses: StringsToCourses(state.saveData[0].concentration.conc.systems)
                 },
                 {
                     name: "elective",
-                    courses: StringsToCourses(CONCENTRATIONS[0].conc.elective)
+                    courses: StringsToCourses(state.saveData[0].concentration.conc.elective)
                 },
                 {
                     name: "lab-1",
-                    courses: StringsToCourses(CONCENTRATIONS[0].lab)
+                    courses: StringsToCourses(state.saveData[0].concentration.lab)
                 }
             ]
         }});
     },[]);
 
-    useEffect(() => {
-        if (state.concentrationContainers !== undefined) {
-            const x = 10;
-        }
-    }, [state.concentrationContainers]);
-
     return (
-        state.concentrationContainers.length !== 0 ?
+        state.concentrationContainers.length >= 8 ?
             <div>
                 <h2>Artificial Intelligence and Robotics</h2>
                 <Accordion defaultActiveKey="8">

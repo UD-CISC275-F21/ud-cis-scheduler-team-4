@@ -1,7 +1,5 @@
 import { Accordion } from "react-bootstrap";
-import CONCENTRATIONS from "../../../json/concentrations.json";
 import { CourseContainer } from "../CourseContainer";
-import { ConcentrationContainerType } from "../../../interfaces/concentrationcontainer";
 import React, { useEffect } from "react";
 import { Course as Course } from "../../../interfaces/course";
 import { UseDispatchContext } from "../../MainPage";
