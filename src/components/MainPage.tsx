@@ -20,10 +20,18 @@ import { State } from "../interfaces/State";
 import { initialState } from "../assets/data/statedata/InitialState";
 import { SchedulerAction } from "../interfaces/SchedulerAction";
 import { mapCoursesToNames } from "./util/ConcentrationHelperFunctions/ConcentrationHelperFunctions";
+import { Button } from "react-bootstrap";
 
 export const reducerFunction = (state: State, action: SchedulerAction ): State => {
     //console.log("state = ", state);
     switch (action.type) {
+    case "checkState": {
+        return produce(state, (draft) => {
+
+            console.log("current state = ", state);
+
+        });
+    }
     case "concentrationToSemester": {
         return produce(state, (draft) => {
             // PreReqChecker here
@@ -39,34 +47,21 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
             const index = draft.saveData.findIndex((eachSaveData) => eachSaveData.concentration.name === draft.currentSaveData.concentration.name);
             if (index !== -1) {
                 switch (theName) {
-
                 case "general":{ draft.currentSaveData.concentration.conc.general = mapCoursesToNames(theConcentration.courses); break; }
-
                 case "core":{ draft.currentSaveData.concentration.core = mapCoursesToNames(theConcentration.courses); break; }
-
                 case "capstone":{ draft.currentSaveData.concentration.capstone = mapCoursesToNames(theConcentration.courses); break; }
-
                 case "lab":{ draft.currentSaveData.concentration.lab = mapCoursesToNames(theConcentration.courses); break; }
-
                 case "writing":{ draft.currentSaveData.concentration.writing = mapCoursesToNames(theConcentration.courses); break; }
-
                 case "stats":{ draft.currentSaveData.concentration.conc.stats = mapCoursesToNames(theConcentration.courses); break; }
-
                 case "systems":{ draft.currentSaveData.concentration.conc.systems = mapCoursesToNames(theConcentration.courses); break; }
-
                 case "elective":{ draft.currentSaveData.concentration.conc.elective = mapCoursesToNames(theConcentration.courses); break; }
-
                 case "ochem":{ draft.currentSaveData.concentration.conc.ochem = mapCoursesToNames(theConcentration.courses); break; }
-
                 case "data":{ draft.currentSaveData.concentration.conc.data = mapCoursesToNames(theConcentration.courses); break; }
-
                 case "cybersecurity":{ draft.currentSaveData.concentration.conc.cybersecurity = mapCoursesToNames(theConcentration.courses); break; }
-
                 case "track":{ draft.currentSaveData.concentration.conc.track = mapCoursesToNames(theConcentration.courses); break; }
-
                 default:{ break; }
                 }
-                draft.concentration = draft.saveData[index].concentration;
+                draft.concentration = draft.currentSaveData.concentration;
             }
         });
     }
@@ -80,6 +75,26 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
             draft.concentrationContainers[draft.destContainerIndex].courses = theConcentration.courses;
             draft.semesterCourses[draft.sourceContainerIndex].courses = theSemester.courses;
             draft.currentSaveData.semesters[draft.sourceContainerIndex].courses = theSemester.courses;
+            const theName = theConcentration.name.split("-")[0];
+            const index = draft.saveData.findIndex((eachSaveData) => eachSaveData.concentration.name === draft.currentSaveData.concentration.name);
+            if (index !== -1) {
+                switch (theName) {
+                case "general":{ draft.currentSaveData.concentration.conc.general = mapCoursesToNames(theConcentration.courses); break; }
+                case "core":{ draft.currentSaveData.concentration.core = mapCoursesToNames(theConcentration.courses); break; }
+                case "capstone":{ draft.currentSaveData.concentration.capstone = mapCoursesToNames(theConcentration.courses); break; }
+                case "lab":{ draft.currentSaveData.concentration.lab = mapCoursesToNames(theConcentration.courses); break; }
+                case "writing":{ draft.currentSaveData.concentration.writing = mapCoursesToNames(theConcentration.courses); break; }
+                case "stats":{ draft.currentSaveData.concentration.conc.stats = mapCoursesToNames(theConcentration.courses); break; }
+                case "systems":{ draft.currentSaveData.concentration.conc.systems = mapCoursesToNames(theConcentration.courses); break; }
+                case "elective":{ draft.currentSaveData.concentration.conc.elective = mapCoursesToNames(theConcentration.courses); break; }
+                case "ochem":{ draft.currentSaveData.concentration.conc.ochem = mapCoursesToNames(theConcentration.courses); break; }
+                case "data":{ draft.currentSaveData.concentration.conc.data = mapCoursesToNames(theConcentration.courses); break; }
+                case "cybersecurity":{ draft.currentSaveData.concentration.conc.cybersecurity = mapCoursesToNames(theConcentration.courses); break; }
+                case "track":{ draft.currentSaveData.concentration.conc.track = mapCoursesToNames(theConcentration.courses); break; }
+                default:{ break; }
+                }
+                draft.concentration = draft.currentSaveData.concentration;
+            }
         });
     }
     case "semesterToSemester": {
@@ -104,8 +119,47 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
             theDestinationConcentration.courses.splice(action.payload.destIndex, 0, theCourse);
             draft.concentrationContainers[action.payload.sourceContainerIndex].courses = theSourceConcentration.courses;
             draft.concentrationContainers[action.payload.destContainerIndex].courses = theDestinationConcentration.courses;
-            //draft.concentration = updateConcentration(draft.concentration, theSourceConcentration);
-            //draft.concentration = updateConcentration(draft.concentration, theDestinationConcentration);
+            const theName = theSourceConcentration.name.split("-")[0];
+            const index = draft.saveData.findIndex((eachSaveData) => eachSaveData.concentration.name === draft.currentSaveData.concentration.name);
+            const concentrationCourses = theSourceConcentration.courses;
+            if (index !== -1) {
+                switch (theName) {
+                case "general":{ draft.currentSaveData.concentration.conc.general = mapCoursesToNames(concentrationCourses); break; }
+                case "core":{ draft.currentSaveData.concentration.core = mapCoursesToNames(concentrationCourses); break; }
+                case "capstone":{ draft.currentSaveData.concentration.capstone = mapCoursesToNames(concentrationCourses); break; }
+                case "lab":{ draft.currentSaveData.concentration.lab = mapCoursesToNames(concentrationCourses); break; }
+                case "writing":{ draft.currentSaveData.concentration.writing = mapCoursesToNames(concentrationCourses); break; }
+                case "stats":{ draft.currentSaveData.concentration.conc.stats = mapCoursesToNames(concentrationCourses); break; }
+                case "systems":{ draft.currentSaveData.concentration.conc.systems = mapCoursesToNames(concentrationCourses); break; }
+                case "elective":{ draft.currentSaveData.concentration.conc.elective = mapCoursesToNames(concentrationCourses); break; }
+                case "ochem":{ draft.currentSaveData.concentration.conc.ochem = mapCoursesToNames(concentrationCourses); break; }
+                case "data":{ draft.currentSaveData.concentration.conc.data = mapCoursesToNames(concentrationCourses); break; }
+                case "cybersecurity":{ draft.currentSaveData.concentration.conc.cybersecurity = mapCoursesToNames(concentrationCourses); break; }
+                case "track":{ draft.currentSaveData.concentration.conc.track = mapCoursesToNames(concentrationCourses); break; }
+                default:{ break; }
+                }
+                draft.concentration = draft.currentSaveData.concentration;
+            }
+            const concentration2Courses = theDestinationConcentration.courses;
+            const theName2 = theDestinationConcentration.name.split("-")[0];
+            if (index !== -1) {
+                switch (theName2) {
+                case "general":{ draft.currentSaveData.concentration.conc.general = mapCoursesToNames(concentration2Courses); break; }
+                case "core":{ draft.currentSaveData.concentration.core = mapCoursesToNames(concentration2Courses); break; }
+                case "capstone":{ draft.currentSaveData.concentration.capstone = mapCoursesToNames(concentration2Courses); break; }
+                case "lab":{ draft.currentSaveData.concentration.lab = mapCoursesToNames(concentration2Courses); break; }
+                case "writing":{ draft.currentSaveData.concentration.writing = mapCoursesToNames(concentration2Courses); break; }
+                case "stats":{ draft.currentSaveData.concentration.conc.stats = mapCoursesToNames(concentration2Courses); break; }
+                case "systems":{ draft.currentSaveData.concentration.conc.systems = mapCoursesToNames(concentration2Courses); break; }
+                case "elective":{ draft.currentSaveData.concentration.conc.elective = mapCoursesToNames(concentration2Courses); break; }
+                case "ochem":{ draft.currentSaveData.concentration.conc.ochem = mapCoursesToNames(concentration2Courses); break; }
+                case "data":{ draft.currentSaveData.concentration.conc.data = mapCoursesToNames(concentration2Courses); break; }
+                case "cybersecurity":{ draft.currentSaveData.concentration.conc.cybersecurity = mapCoursesToNames(concentration2Courses); break; }
+                case "track":{ draft.currentSaveData.concentration.conc.track = mapCoursesToNames(concentration2Courses); break; }
+                default:{ break; }
+                }
+                draft.concentration = draft.currentSaveData.concentration;
+            }
         });
     }
     case "updateSaveData":{
@@ -114,6 +168,7 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
         });
     }
     case "updateNumberOfSemesters":{
+        console.log("--- adding semester, state = ", state);
         return produce(state, (draft) => {
             draft.semesters = action.payload.semesters;
             draft.currentSaveData.numberOfSemesters = action.payload.semesters;
@@ -151,6 +206,7 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
     }
     case "updateSemesterCourses":{
         return produce(state, (draft) => {
+            console.log("updating semesterCourses");
             draft.semesterCourses = action.payload.semesterCourses;
             draft.currentSaveData.semesters = action.payload.semesterCourses;
         });
@@ -333,6 +389,12 @@ export const MainPage = (): JSX.Element => {
                                             <DeleteSemesterButton />
                                             <ExportPlan semesterCourses={semesterCourses} />
                                             <HowToDisplay />
+                                            <Button
+                                                onClick={() => {
+                                                    dispatch({type: "checkState", payload: {...state}});
+                                                }
+                                                }>Check state
+                                            </Button>
                                         </Nav>
                                     </Navbar.Collapse>
                                 </Container>
