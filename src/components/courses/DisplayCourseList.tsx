@@ -8,7 +8,6 @@ import { UseStateContext } from "../MainPage";
 export const DisplayCourseList = ({concentration}: {concentration: Concentration}): JSX.Element => {
     const { state } = UseStateContext();
     const index = state.saveData.findIndex(eachSaveData => eachSaveData.concentration.name === state.concentration.name);
-    console.log("saveData = ", state.saveData);
     return(    index !== -1 ?
         DisplayCourseListMap(concentration, state.saveData[index])
         :

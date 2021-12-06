@@ -19,16 +19,15 @@ export const DisplayCourseListMap = (concentration: Concentration,
     saveData: SavedProgress,
 ): JSX.Element => {
 
-    console.log(" in display course map with saveData = ", saveData);
     const { state } = UseStateContext();
+    console.log("concentration = ", concentration);
+    switch(concentration.name){
 
-    switch(concentration){
-
-    case CONCENTRATIONS[0]: {
+    case CONCENTRATIONS[0].name: {
         // we know its AIConc at this point
         return <AIConc/>;
     }
-    case CONCENTRATIONS[1]: {
+    case CONCENTRATIONS[1].name: {
         return <BioConc/>;
     }
     /*

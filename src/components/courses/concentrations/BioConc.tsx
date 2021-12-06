@@ -12,7 +12,6 @@ export const BioConc = (): JSX.Element => {
     const { dispatch } = UseDispatchContext();
 
     useEffect(() => {
-        console.log("in BioConc useEffect");
         dispatch({type: "updateConcentrationContainers", payload: {
             ...state,
             concentrationContainers:
@@ -57,10 +56,6 @@ export const BioConc = (): JSX.Element => {
         }});
     },[]);
 
-    useEffect(() => {
-        console.log("state = ", state.concentrationContainers);
-    }, [state.concentrationContainers]);
-    console.log(state.concentrationContainers);
     return (
         state.concentrationContainers.length >= 9 ?
             <div>

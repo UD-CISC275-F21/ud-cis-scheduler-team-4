@@ -60,7 +60,6 @@ export const Semester = (props: {
     const [courses, setCourses] = useState<CourseType[]>(
         props.semesterCourse !== undefined ? props.semesterCourse.courses : []);
     const [credits, setCredits] = useState<number>(0);
-
     useEffect(() => {
         //console.log("Adding semester to semesterCourses from MainPage ", props.ind);
         props.updateSemesterCourses({
