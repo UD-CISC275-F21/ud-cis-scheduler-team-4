@@ -55,6 +55,12 @@ export const AIConc = (): JSX.Element => {
         }});
     },[]);
 
+    useEffect(() => {
+        if (state.concentrationContainers !== undefined) {
+            const x = 10;
+        }
+    }, [state.concentrationContainers]);
+
     return (
         state.concentrationContainers.length !== 0 ?
             <div>

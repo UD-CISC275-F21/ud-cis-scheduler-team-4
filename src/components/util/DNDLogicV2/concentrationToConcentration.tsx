@@ -2,7 +2,7 @@ import { State } from "../../MainPage";
 import { SchedulerAction } from "../../MainPage";
 import React from "react";
 
-export const semesterToSemester = (
+export const concentrationToConcentration = (
 
     state: State,
     dispatch: React.Dispatch<SchedulerAction>,
@@ -12,7 +12,7 @@ export const semesterToSemester = (
     dropIndex: number,
 
 ): void => {
-    dispatch({type: "semesterToSemester", payload: {
+    dispatch({type: "concentrationToConcentration", payload: {
         ...state,
         sourceContainerIndex: sourceContainerIndex,
         destContainerIndex: destinationContainerIndex,

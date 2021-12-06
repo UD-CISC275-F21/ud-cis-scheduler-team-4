@@ -2,21 +2,20 @@ import { State } from "../../MainPage";
 import { SchedulerAction } from "../../MainPage";
 import React from "react";
 
-export const semesterToSemester = (
-
+export const DropLogicExecutor = (
     state: State,
     dispatch: React.Dispatch<SchedulerAction>,
+    dispatchType: string,
     sourceContainerIndex: number,
     destinationContainerIndex: number,
     sourceIndex: number,
-    dropIndex: number,
-
+    droppingIndex: number,
 ): void => {
-    dispatch({type: "semesterToSemester", payload: {
+    dispatch({type: dispatchType, payload: {
         ...state,
+        sourceIndex: sourceIndex,
         sourceContainerIndex: sourceContainerIndex,
-        destContainerIndex: destinationContainerIndex,
-        destIndex: dropIndex,
-        sourceIndex: sourceIndex
+        destIndex: droppingIndex,
+        destContainerIndex: destinationContainerIndex
     }});
 };

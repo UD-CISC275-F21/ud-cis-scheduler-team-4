@@ -62,7 +62,7 @@ export const Semester = (props: {
     const [credits, setCredits] = useState<number>(0);
 
     useEffect(() => {
-        console.log("Adding semester to semesterCourses from MainPage ", props.ind);
+        //console.log("Adding semester to semesterCourses from MainPage ", props.ind);
         props.updateSemesterCourses({
             semesternum: props.ind+1,
             courses: courses,
@@ -83,7 +83,7 @@ export const Semester = (props: {
     };
 
     useEffect(() => {
-        console.log("courses changed -- ", props.semesterCourse);
+        //console.log("courses changed -- ", props.semesterCourse);
         if (props.semesterCourse !== undefined) {
             setCourses(props.semesterCourse.courses);
             getCredits(props.semesterCourse.courses);
