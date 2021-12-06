@@ -2,8 +2,7 @@ import "bootswatch/dist/lux/bootstrap.min.css";
 import produce from "immer";
 import { Container, Row, Col, Navbar, Nav, NavDropdown } from "react-bootstrap";
 import { WelcomeToast, PreReqSameSemesterToast } from "./util/Notifications";
-import { SemesterTable } from "./semesters/SemesterTable";
-import React, { useState, useEffect, useReducer, useContext } from "react";
+import React, { useReducer } from "react";
 import { DropdownMenu } from "./util/DropdownMenu";
 import { DisplayCourseList } from "./courses/DisplayCourseList";
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
@@ -18,18 +17,8 @@ import { onDragEndLogic } from "./util/DropLogic";
 import { ExportPlan } from "./util/ExportPlan";
 import { HowToDisplay } from "./util/howto/howtodisplay";
 import { Footer } from "./util/Footer";
-import SavedData from "../assets/data/SavedProgress";
 import { SavedProgress } from "../interfaces/savedprogress";
-import { UpdateConcentration } from "./courses/DisplayCourseListHelperFunctions/UpdateConcentration";
-import { UpdateSemester } from "./semesters/SemesterHelperFunctions/UpdateSemesters";
 import { Course } from "../interfaces/course";
-import { UpdateSemester as DNDUpdateSemester } from "./util/DNDLogic/UpdateSemester";
-import { CheckConcentrationInSaveData } from "./util/SaveDataFunctions/CheckConcentrationInSaveData";
-import { SaveConcentrationToSaveData } from "./util/SaveDataFunctions/SaveConcentrationToSaveData";
-import { UpdateSaveDataOnConcentrationChange } from "./util/SaveDataFunctions/UpdateSaveDataOnConcentrationChange";
-import { UpdateSaveDataOnSemesterCoursesChange } from "./util/SaveDataFunctions/UpdateSaveDataOnSemesterCoursesChange";
-import { UpdateSaveDataOnConcentrationContainerChange } from "./util/SaveDataFunctions/UpdateSaveDataOnConcentrationContainerChange";
-import { UpdateMainPageStateWithSaveData } from "./util/SaveDataFunctions/UpdateMainPageStateWithSaveData";
 
 export interface State{
     concentration: Concentration,

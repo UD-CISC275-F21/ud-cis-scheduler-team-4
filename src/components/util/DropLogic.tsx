@@ -2,17 +2,13 @@ import React from "react";
 import { DropResult } from "react-beautiful-dnd";
 import { Semester } from "../../interfaces/semester";
 import { ConcentrationContainerType } from "../../interfaces/concentrationcontainer";
-import { concentrationToConcentration } from "./DNDLogicV2/concentrationToConcentration";
-import { semesterToConcentration } from "./DNDLogic/semesterToConcentration";
-import { concentrationToSemester } from "./DNDLogic/concentrationToSemester";
 import { PreReqChecker } from "./DNDLogic/prereqchecker";
 import { RevPreReqChecker } from "./DNDLogic/revprereqchecker";
 import { State } from "../MainPage";
 import { SchedulerAction } from "../MainPage";
-import { concentrationToSemesterV2 } from "./DNDLogicV2/concentrationToSemester";
-import { ConcentrationContainerInfo } from "./howto/howtosteps/howtoconcentrationcontainer";
-import { semesterToSemester } from "./DNDLogicV2/semesterToSemester";
 import { DropLogicExecutor } from "./DNDLogicV2/DropLogicExecutor";
+
+// TODO: Implement PreReq Checker
 
 export const successPrint = (result: number): void => {
     console.log(result >= 1 ? "Success!" : "Failure");
