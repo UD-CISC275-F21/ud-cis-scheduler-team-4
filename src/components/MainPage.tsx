@@ -30,7 +30,6 @@ import { UpdateSaveDataOnConcentrationChange } from "./util/SaveDataFunctions/Up
 import { UpdateSaveDataOnSemesterCoursesChange } from "./util/SaveDataFunctions/UpdateSaveDataOnSemesterCoursesChange";
 import { UpdateSaveDataOnConcentrationContainerChange } from "./util/SaveDataFunctions/UpdateSaveDataOnConcentrationContainerChange";
 import { UpdateMainPageStateWithSaveData } from "./util/SaveDataFunctions/UpdateMainPageStateWithSaveData";
-import { MessagePayload } from "discord.js";
 
 export interface State{
     concentration: Concentration,
@@ -96,6 +95,17 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
             draft.currentSaveData.semesters[action.payload.destContainerIndex].courses = theSemester.courses;
         });
     }
+    case "semesterToConcentration": {
+        return produce(state, (draft) => {
+            const theConcentration: ConcentrationContainerType = draft.concentrationContainers[action.payload.destContainerIndex];
+            const theSemester: Semester = draft.semesterCourses[action.payload.sourceContainerIndex];
+            const theCourse: Course = theSemester.courses.splice(action.payload.sourceIndex, 1)[0];
+            theConcentration.courses.splice(action.payload.destIndex, 0, theCourse);
+            draft.concentrationContainers[draft.destContainerIndex].courses = theConcentration.courses;
+            draft.semesterCourses[draft.sourceContainerIndex].courses = theSemester.courses;
+            draft.currentSaveData.semesters[draft.sourceContainerIndex].courses = theSemester.courses;
+        });
+    }
     case "semesterToSemester": {
         return produce(state, (draft) => {
             //console.log("draft = ", state, " and payload = ", action.payload);
@@ -114,8 +124,6 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
             const theDestinationConcentration: ConcentrationContainerType = draft.concentrationContainers[action.payload.destContainerIndex];
             const theCourse = theSourceConcentration.courses.splice(action.payload.sourceIndex, 1)[0];
             theDestinationConcentration.courses.splice(action.payload.destIndex, 0, theCourse);
-            draft.concentrationContainers[action.payload.sourceContainerIndex] = theSourceConcentration;
-            draft.concentrationContainers[action.payload.destContainerIndex] = theDestinationConcentration;
             draft.concentrationContainers[action.payload.sourceContainerIndex].courses = theSourceConcentration.courses;
             draft.concentrationContainers[action.payload.destContainerIndex].courses = theDestinationConcentration.courses;
         });

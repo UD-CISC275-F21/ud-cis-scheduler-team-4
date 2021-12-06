@@ -62,6 +62,10 @@ export const onDragEndLogic = (
         } else {
             console.log("Executing DropLogic elseif1->else");
             // semester --> concentration
+            const semester1Num = parseInt(sourceId.substring(sourceId.lastIndexOf("-") + 1), 10);
+            const ind1 = semesters.findIndex((eachSemester) => eachSemester.semesternum === semester1Num);
+            const ind2 = concentrationContainers.findIndex((eachConcentrationContainer) => eachConcentrationContainer.name === destinationId);
+            DropLogicExecutor(state, dispatch, "semesterToConcentration", ind1, ind2, sourceIndex, dropIndex);
         }
     } else if (destIdSemester) {
         // concentration --> semester
