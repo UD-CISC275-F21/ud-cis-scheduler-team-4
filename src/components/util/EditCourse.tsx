@@ -22,13 +22,7 @@ export const EditCourse = (props: {
     const courseEdit = () => {
         const theSemester: Semester = state.semesterCourses[props.semesterNumber];
         const courseIndex: number = theSemester.courses.findIndex(elem => elem.name === props.course.name);
-        //const theCourse: CourseType = {...theSemester.courses[courseIndex], description: descText, name: nameText, title: titleText};
-        // sourceIndex: index where course lies, courseIndex: index where semester we are editing is, toastMessage: Formatted to be "descriptionText newName newTitle"
         dispatch({type: "updateCourse", payload: { ...state, sourceIndex: courseIndex, sourceContainerIndex: props.semesterNumber,  toastMessage: `${descText}_${nameText}_${titleText}`}});
-        //theSemester.courses[courseIndex] = theCourse;
-        //theSemester.courseSetter(theSemester.courses);
-        //props.semesterCourses[props.semesterNumber] = theSemester;
-        //props.setSemesterCourses([...props.semesterCourses]);
         props.setDisplay(false);
     };
     return (

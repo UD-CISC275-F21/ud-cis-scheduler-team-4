@@ -86,8 +86,12 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
         });
     }
     case "updateConcentration":{
-        //console.log("updating concentration with state : ", state);
+        console.log("updating concentration with payload : ", action.payload);
         return produce(state, (draft) => {
+            if (!draft.saveData.find((eachSaveData) => eachSaveData.concentration.name === action.payload.concentration.name)) {
+                console.log("inserting newSaveData");
+                draft.saveData.splice(draft.saveData.length, 0, { concentration: action.payload.concentration, numberOfSemesters: 1, semesters: []});
+            }
             draft.concentration = action.payload.concentration;
         });
     }
@@ -98,7 +102,7 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
         });
     }
     case "updateConcentrationContainers": {
-        //console.log("updating concentrationcontainers with state ", state);
+        console.log("updating concentrationcontainers with payload ", action.payload);
         return produce(state, (draft) => {
             //console.log("payload = ", action.payload);
             draft.concentrationContainers = action.payload.concentrationContainers;
@@ -176,14 +180,12 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
     case "updateCourse": {
 
         return produce(state, (draft) => {
-
             console.log("in update course with msg = ", action.payload);
             const theSemester: Semester = draft.semesterCourses[action.payload.sourceContainerIndex];
             const newTextFields = action.payload.toastMessage.split("_"); // [desc, name, title]
             const theClass = { ...theSemester.courses[action.payload.sourceIndex], description: newTextFields[0], name: newTextFields[1], title: newTextFields[2]};
             draft.currentSaveData.semesters[action.payload.sourceContainerIndex].courses[action.payload.sourceIndex] = theClass;
             draft.semesterCourses[action.payload.sourceContainerIndex].courses[action.payload.sourceIndex] = theClass;
-
         });
         break;
     }
@@ -284,7 +286,7 @@ export const MainPage = (): JSX.Element => {
                         <Row>
                             <Col>
                                 <br />
-                                <DisplayCourseList/>
+                                <DisplayCourseList concentration={concentration}/>
                             </Col>
                             <Col>
                                 <br />
