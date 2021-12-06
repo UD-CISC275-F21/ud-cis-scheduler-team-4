@@ -1,9 +1,6 @@
 import { NavDropdown } from "react-bootstrap";
-import { Concentration } from "../../interfaces/concentration";
-import { Semester } from "../../interfaces/semester";
 import CONCENTRATIONS from "../../json/concentrations.json";
 import React from "react";
-import { DispatchContext } from "../MainPage";
 import { UseDispatchContext } from "../MainPage";
 import { UseStateContext } from "../MainPage";
 

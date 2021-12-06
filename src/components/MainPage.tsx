@@ -6,7 +6,6 @@ import React, { useReducer } from "react";
 import { DropdownMenu } from "./util/DropdownMenu";
 import { DisplayCourseList } from "./courses/DisplayCourseList";
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
-import CONCENTRATIONS from "../json/concentrations.json";
 import { Semester } from "../interfaces/semester";
 import { Semester as SemesterComponent } from "./semesters/Semester";
 import { AddSemesterButton } from "./semesters/AddSemesterButton";
@@ -16,17 +15,19 @@ import { onDragEndLogic } from "./util/DropLogic";
 import { ExportPlan } from "./util/ExportPlan";
 import { HowToDisplay } from "./util/howto/howtodisplay";
 import { Footer } from "./util/Footer";
-import { SavedProgress } from "../interfaces/savedprogress";
 import { Course } from "../interfaces/course";
 import { State } from "../interfaces/State";
 import { initialState } from "../assets/data/statedata/InitialState";
 import { SchedulerAction } from "../interfaces/SchedulerAction";
+import { PreReqChecker } from "./util/DNDLogic/prereqchecker";
+import { RevPreReqChecker } from "./util/DNDLogic/revprereqchecker";
 
 export const reducerFunction = (state: State, action: SchedulerAction ): State => {
     //console.log("state = ", state);
     switch (action.type) {
     case "concentrationToSemester": {
         return produce(state, (draft) => {
+            // PreReqChecker here
             console.log("C-->StateContext state = ", state, " and payload = ", action.payload);
             const theConcentration: ConcentrationContainerType = draft.concentrationContainers[action.payload.sourceContainerIndex];
             const theSemester: Semester = draft.semesterCourses[action.payload.destContainerIndex];
@@ -127,9 +128,13 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
             } else {
                 return produce(state, (draft) => {
                     draft.semesterCourses = draft.semesterCourses.slice(0, draft.semesterCourses.length-1);
+                    draft.semesters -= 1;
+                    draft.currentSaveData.numberOfSemesters = 0;
+                    draft.currentSaveData.semesters = draft.currentSaveData.semesters.slice(0,draft.currentSaveData.semesters.length-1);
                 });
             }
         } else {
+            console.log("indeleteelse");
             return { ...state };
         }
     }
@@ -236,9 +241,7 @@ export const MainPage = (): JSX.Element => {
                         <Row>
                             <Col>
                                 <WelcomeToast display={display} />
-                                <PreReqSameSemesterToast display={toastDisplay} errMsg={toastMessage} setToastDisplay={(displayBool: boolean) => {
-                                    dispatch({type: "displayToast", payload: { ...state, toastDisplay: displayBool }});
-                                }} />
+                                <PreReqSameSemesterToast display={toastDisplay} errMsg={toastMessage} />
                             </Col>
                         </Row>
                         <Row>
@@ -256,12 +259,7 @@ export const MainPage = (): JSX.Element => {
                                             </NavDropdown>
                                             <DropdownMenu/>
                                             <AddSemesterButton/>
-                                            <DeleteSemesterButton
-                                                setDelete={() => {
-                                                    dispatch({type: "deleteSemester", payload: state});
-                                                    dispatch({type: "deleteSemester", payload: state});
-                                                }}
-                                            />
+                                            <DeleteSemesterButton />
                                             <ExportPlan semesterCourses={semesterCourses} />
                                             <HowToDisplay />
                                         </Nav>

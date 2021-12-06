@@ -54,7 +54,10 @@ export const onDragEndLogic = (
             const semester2Num = destIdSemester ? parseInt(destinationId.substring(destinationId.lastIndexOf("-") + 1), 10) : -1;
             const ind1 = semesters.findIndex(elem => elem.semesternum === semester1Num);
             const ind2 = semesters.findIndex(elem => elem.semesternum === semester2Num);
-            DropLogicExecutor(state, dispatch, "semesterToSemester", ind1, ind2, result.source.index, result.destination.index);
+            const preReqCheckerResult = PreReqChecker(semesters, ind2, semesters[ind1].courses[sourceIndex], state, dispatch) && RevPreReqChecker(semesters, ind2, semesters[ind1].courses[sourceIndex], state, dispatch);
+            if (preReqCheckerResult) {
+                DropLogicExecutor(state, dispatch, "semesterToSemester", ind1, ind2, result.source.index, result.destination.index);
+            }
         } else {
             console.log("Executing DropLogic elseif1->else");
             // semester --> concentration
@@ -69,7 +72,10 @@ export const onDragEndLogic = (
         const semesterNum = parseInt(destinationId.substring(destinationId.lastIndexOf("-") + 1), 10);
         const concentrationContainerIndex = state.concentrationContainers.findIndex((eachContainer) => eachContainer.name === sourceId);
         const semesterCoursesIndex = state.semesterCourses.findIndex((eachSemester) => eachSemester.semesternum === semesterNum);
-        DropLogicExecutor(state, dispatch, "concentrationToSemester", concentrationContainerIndex, semesterCoursesIndex, sourceIndex, dropIndex);
+        const PreReqResult = PreReqChecker(semesters, semesterCoursesIndex, concentrationContainers[concentrationContainerIndex].courses[sourceIndex], state, dispatch);
+        if (PreReqResult) {
+            DropLogicExecutor(state, dispatch, "concentrationToSemester", concentrationContainerIndex, semesterCoursesIndex, sourceIndex, dropIndex);
+        }
     } else {
         console.log("Executing DropLogic else");
         // concentration --> semester
