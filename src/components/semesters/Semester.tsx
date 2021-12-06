@@ -130,6 +130,10 @@ export const Semester = (props: {
                                                                             title={elem.title}
                                                                         />
                                                                     </Col>
+                                                                    <EditCoursePanel 
+                                                                        elem={elem}
+                                                                        ind={props.ind}
+                                                                    />
                                                                 </Row>
                                                             </ListGroup.Item>,
                                                         )

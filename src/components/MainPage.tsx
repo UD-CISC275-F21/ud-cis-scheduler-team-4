@@ -173,6 +173,20 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
             draft.saveData[draft.saveData.findIndex((eachSaveData) => eachSaveData.concentration.name === draft.currentSaveData.concentration.name)].semesters = draft.semesterCourses;
         });
     }
+    case "updateCourse": {
+
+        return produce(state, (draft) => {
+
+            console.log("in update course with msg = ", action.payload);
+            const theSemester: Semester = draft.semesterCourses[action.payload.sourceContainerIndex];
+            const newTextFields = action.payload.toastMessage.split("_"); // [desc, name, title]
+            const theClass = { ...theSemester.courses[action.payload.sourceIndex], description: newTextFields[0], name: newTextFields[1], title: newTextFields[2]};
+            draft.currentSaveData.semesters[action.payload.sourceContainerIndex].courses[action.payload.sourceIndex] = theClass;
+            draft.semesterCourses[action.payload.sourceContainerIndex].courses[action.payload.sourceIndex] = theClass;
+
+        });
+        break;
+    }
     default:{
         break;
     }

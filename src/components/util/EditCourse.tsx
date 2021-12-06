@@ -2,30 +2,33 @@ import React, { useState } from "react";
 import { Modal, Button, Badge, Row, Col } from "react-bootstrap";
 import { Course as CourseType } from "../../interfaces/course";
 import { Semester } from "../../interfaces/semester";
+import { UseDispatchContext, UseStateContext } from "../MainPage";
 
 export const EditCourse = (props: {
     display: boolean;
     setDisplay: React.Dispatch<React.SetStateAction<boolean>>;
     course: CourseType;
     semesterNumber: number;
-    semesterCourses: Semester[];
-    setSemesterCourses: React.Dispatch<React.SetStateAction<Semester[]>>;
 }): JSX.Element => {
     const [nameText, setNameText] = useState(props.course.name);
     const [titleText, setTitleText] = useState(props.course.title);
     const [descText, setDescText] = useState(props.course.description);
+    const { state } = UseStateContext();
+    const { dispatch } = UseDispatchContext();
 
     const closeDisplay = (): void => {
         props.setDisplay(false);
     };
     const courseEdit = () => {
-        const theSemester: Semester = props.semesterCourses[props.semesterNumber];
+        const theSemester: Semester = state.semesterCourses[props.semesterNumber];
         const courseIndex: number = theSemester.courses.findIndex(elem => elem.name === props.course.name);
-        const theCourse: CourseType = {...theSemester.courses[courseIndex], description: descText, name: nameText, title: titleText};
-        theSemester.courses[courseIndex] = theCourse;
+        //const theCourse: CourseType = {...theSemester.courses[courseIndex], description: descText, name: nameText, title: titleText};
+        // sourceIndex: index where course lies, courseIndex: index where semester we are editing is, toastMessage: Formatted to be "descriptionText newName newTitle"
+        dispatch({type: "updateCourse", payload: { ...state, sourceIndex: courseIndex, sourceContainerIndex: props.semesterNumber,  toastMessage: `${descText}_${nameText}_${titleText}`}});
+        //theSemester.courses[courseIndex] = theCourse;
         //theSemester.courseSetter(theSemester.courses);
-        props.semesterCourses[props.semesterNumber] = theSemester;
-        props.setSemesterCourses([...props.semesterCourses]);
+        //props.semesterCourses[props.semesterNumber] = theSemester;
+        //props.setSemesterCourses([...props.semesterCourses]);
         props.setDisplay(false);
     };
     return (
