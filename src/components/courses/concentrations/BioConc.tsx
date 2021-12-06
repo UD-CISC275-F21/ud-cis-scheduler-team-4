@@ -2,8 +2,8 @@ import { Accordion } from "react-bootstrap";
 import { CourseContainer } from "../CourseContainer";
 import React, { useEffect } from "react";
 import { Course as Course } from "../../../interfaces/course";
-import { UseDispatchContext } from "../../MainPage";
-import { UseStateContext } from "../../MainPage";
+import { UseDispatchContext } from "../../util/DispatchLogic/UseDispatchContext";
+import { UseStateContext } from "../../util/DispatchLogic/UseStateContext";
 import { StringsToCourses } from "../DisplayCourseListHelperFunctions/StringsToCourses";
 
 export const BioConc = (): JSX.Element => {

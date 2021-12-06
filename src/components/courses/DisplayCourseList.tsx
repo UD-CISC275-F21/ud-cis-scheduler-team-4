@@ -3,7 +3,7 @@ import { Concentration } from "../../interfaces/concentration";
 import { ConcentrationContainerType } from "../../interfaces/concentrationcontainer";
 import { DisplayCourseListMap } from "./DisplayCourseListHelperFunctions/DisplayCourseListMap";
 import { SavedProgress } from "../../interfaces/savedprogress";
-import { UseStateContext } from "../MainPage";
+import { UseStateContext } from "../util/DispatchLogic/UseStateContext";
 
 export const DisplayCourseList = ({concentration}: {concentration: Concentration}): JSX.Element => {
     const { state } = UseStateContext();

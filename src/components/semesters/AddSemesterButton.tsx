@@ -1,6 +1,7 @@
 import { Button } from "react-bootstrap";
 import React from "react";
-import { UseStateContext, UseDispatchContext } from "../MainPage";
+import { UseDispatchContext } from "../util/DispatchLogic/UseDispatchContext";
+import { UseStateContext } from "../util/DispatchLogic/UseStateContext";
 
 export const AddSemesterButton = (): JSX.Element => {
     const { state } = UseStateContext();

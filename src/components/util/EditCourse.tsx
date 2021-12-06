@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { Modal, Button, Badge, Row, Col } from "react-bootstrap";
 import { Course as CourseType } from "../../interfaces/course";
 import { Semester } from "../../interfaces/semester";
-import { UseDispatchContext, UseStateContext } from "../MainPage";
+import { UseDispatchContext } from "./DispatchLogic/UseDispatchContext";
+import { UseStateContext } from "./DispatchLogic/UseStateContext";
 
 export const EditCourse = (props: {
     display: boolean;

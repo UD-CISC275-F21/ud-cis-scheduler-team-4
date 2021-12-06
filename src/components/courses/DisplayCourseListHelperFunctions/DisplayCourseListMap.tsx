@@ -12,7 +12,7 @@ import { ConcentrationContainerType } from "../../../interfaces/concentrationcon
 import { StringsToCourses } from "./StringsToCourses";
 import { SavedProgress } from "../../../interfaces/savedprogress";
 import { Course } from "../../../interfaces/course";
-import { UseStateContext } from "../../MainPage";
+import { UseStateContext } from "../../util/DispatchLogic/UseStateContext";
 
 
 export const DisplayCourseListMap = (concentration: Concentration,

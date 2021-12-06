@@ -4,7 +4,8 @@ import { Semester as SemesterComponent } from "./Semester";
 import { Semester as SemesterType } from "../../interfaces/semester";
 import { SavedProgress } from "../../interfaces/savedprogress";
 import { Concentration } from "../../interfaces/concentration";
-import { UseDispatchContext, UseStateContext } from "../MainPage";
+import { UseDispatchContext } from "../util/DispatchLogic/UseDispatchContext";
+import { UseStateContext } from "../util/DispatchLogic/UseStateContext";
 
 /*
 

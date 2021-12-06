@@ -1,8 +1,8 @@
 import { NavDropdown } from "react-bootstrap";
 import CONCENTRATIONS from "../../json/concentrations.json";
 import React from "react";
-import { UseDispatchContext } from "../MainPage";
-import { UseStateContext } from "../MainPage";
+import { UseDispatchContext } from "../util/DispatchLogic/UseDispatchContext";
+import { UseStateContext } from "../util/DispatchLogic/UseStateContext";
 
 export const DropdownMenu = (): JSX.Element => {
 

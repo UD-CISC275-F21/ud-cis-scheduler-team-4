@@ -6,7 +6,8 @@ import React, { useState, useEffect, useReducer } from "react";
 import { Course } from "../../../interfaces/course";
 import { SavedProgress } from "../../../interfaces/savedprogress";
 import { StringsToCourses } from "../DisplayCourseListHelperFunctions/StringsToCourses";
-import { UseDispatchContext, UseStateContext } from "../../MainPage";
+import { UseDispatchContext } from "../../util/DispatchLogic/UseDispatchContext";
+import { UseStateContext } from "../../util/DispatchLogic/UseStateContext";
 
 
 export const AIConc = (): JSX.Element => {

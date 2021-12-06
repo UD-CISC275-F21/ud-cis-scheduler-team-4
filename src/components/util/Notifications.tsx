@@ -1,6 +1,7 @@
 import { Modal, Toast } from "react-bootstrap";
 import React, { useEffect } from "react";
-import { UseDispatchContext, UseStateContext } from "../MainPage";
+import { UseDispatchContext } from "../util/DispatchLogic/UseDispatchContext";
+import { UseStateContext } from "../util/DispatchLogic/UseStateContext";
 
 export const WelcomeToast = (props: { display: boolean }): JSX.Element =>
     <Modal show={props.display}>
