@@ -17,9 +17,9 @@ export const concentrationToSemesterV2 = (
     console.log("running concentrationToSemester");
     dispatch({type: "concentrationToSemester", payload: {
         ...state,
-        concentrationContainerCourseIndex: sourceIndex,
-        concentrationContainerIndex: concentrationIndex,
-        semesterCoursesCourseIndex: droppingIndex,
-        semesterCourseIndex: semesterIndex
+        sourceIndex: sourceIndex,
+        sourceContainerIndex: concentrationIndex,
+        destIndex: droppingIndex,
+        destContainerIndex: semesterIndex
     }});
 };

@@ -43,10 +43,10 @@ export interface State{
     deleteTriggered: number,
     saveData: SavedProgress[],
     currentSaveData: SavedProgress,
-    concentrationContainerCourseIndex: number,
-    semesterCoursesCourseIndex: number,
-    concentrationContainerIndex: number,
-    semesterCourseIndex: number
+    sourceIndex: number,
+    sourceContainerIndex: number,
+    destIndex: number,
+    destContainerIndex: number
 }
 
 
@@ -69,10 +69,10 @@ export const initialState: State = {
         numberOfSemesters: 1,
         semesters: [],
     } as SavedProgress,
-    concentrationContainerCourseIndex: 0,
-    concentrationContainerIndex: 0,
-    semesterCoursesCourseIndex: 0,
-    semesterCourseIndex: 0
+    sourceIndex: 0,
+    sourceContainerIndex: 0,
+    destIndex: 0,
+    destContainerIndex: 0
 };
 
 export interface SchedulerAction {
@@ -87,13 +87,24 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
     switch (action.type) {
     case "concentrationToSemester": {
         return produce(state, (draft) => {
-            const theConcentration: ConcentrationContainerType = draft.concentrationContainers[action.payload.concentrationContainerIndex];
-            const theSemester: Semester = draft.semesterCourses[action.payload.semesterCourseIndex];
-            const theCourse = theConcentration.courses.splice(action.payload.concentrationContainerCourseIndex,1)[0];
-            theSemester.courses.splice(action.payload.semesterCoursesCourseIndex,0,theCourse);
-            draft.concentrationContainers[action.payload.concentrationContainerIndex] = theConcentration;
-            draft.semesterCourses[action.payload.semesterCourseIndex] = theSemester;
-            draft.currentSaveData.semesters[action.payload.semesterCourseIndex].courses = theSemester.courses;
+            const theConcentration: ConcentrationContainerType = draft.concentrationContainers[action.payload.sourceContainerIndex];
+            const theSemester: Semester = draft.semesterCourses[action.payload.destContainerIndex];
+            const theCourse = theConcentration.courses.splice(action.payload.sourceIndex,1)[0];
+            theSemester.courses.splice(action.payload.destIndex,0,theCourse);
+            draft.concentrationContainers[action.payload.sourceContainerIndex] = theConcentration;
+            draft.semesterCourses[action.payload.destContainerIndex] = theSemester;
+            draft.currentSaveData.semesters[action.payload.destContainerIndex].courses = theSemester.courses;
+        });
+    }
+    case "semesterToSemester": {
+        return produce(state, (draft) => {
+            console.log("draft = ", state, " and payload = ", action.payload);
+            const theSourceSemester: Semester = draft.currentSaveData.semesters[action.payload.sourceContainerIndex];
+            const theDestSemester: Semester = draft.currentSaveData.semesters[action.payload.destContainerIndex];
+            const theSplicedCourse: Course = theSourceSemester.courses.splice(action.payload.sourceIndex, 1)[0];
+            theDestSemester.courses.splice(action.payload.destIndex, 0, theSplicedCourse);
+            draft.currentSaveData.semesters[action.payload.destContainerIndex].courses = theDestSemester.courses;
+            draft.currentSaveData.semesters[action.payload.sourceContainerIndex].courses = theSourceSemester.courses;
         });
     }
     case "updateSaveData":{
@@ -229,10 +240,10 @@ export const MainPage = (): JSX.Element => {
         toastMessage,
         saveData,
         currentSaveData,
-        concentrationContainerCourseIndex,
-        concentrationContainerIndex,
-        semesterCoursesCourseIndex,
-        semesterCourseIndex
+        destIndex,
+        destContainerIndex,
+        sourceIndex,
+        sourceContainerIndex
     } = state;
 
     const dispatchValue = { dispatch };

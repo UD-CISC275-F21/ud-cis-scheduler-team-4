@@ -2,7 +2,6 @@ import React from "react";
 import { DropResult } from "react-beautiful-dnd";
 import { Semester } from "../../interfaces/semester";
 import { ConcentrationContainerType } from "../../interfaces/concentrationcontainer";
-import { semesterToSemester } from "./DNDLogic/semesterToSemester";
 import { semesterToConcentration } from "./DNDLogic/semesterToConcentration";
 import { concentrationToConcentration } from "./DNDLogic/concentrationToConcentration";
 import { concentrationToSemester } from "./DNDLogic/concentrationToSemester";
@@ -12,6 +11,7 @@ import { State } from "../MainPage";
 import { SchedulerAction } from "../MainPage";
 import { concentrationToSemesterV2 } from "./DNDLogicV2/concentrationToSemester";
 import { ConcentrationContainerInfo } from "./howto/howtosteps/howtoconcentrationcontainer";
+import { semesterToSemester } from "./DNDLogicV2/semesterToSemester";
 
 export const successPrint = (result: number): void => {
     console.log(result >= 1 ? "Success!" : "Failure");
@@ -41,6 +41,8 @@ export const onDragEndLogic = (
 
         if (sourceIdSemester) {
             // semester --> same semesters
+            const semesterNum1 = parseInt(sourceId.substring(sourceId.lastIndexOf("-") + 1), 10);
+            semesterToSemester(state, dispatch, semesterNum1-1, result.source.index, result.destination.index);
         } else {
             // concentration --> concentration
         }
