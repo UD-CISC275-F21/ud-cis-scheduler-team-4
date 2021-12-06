@@ -27,6 +27,7 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
     switch (action.type) {
     case "concentrationToSemester": {
         return produce(state, (draft) => {
+            console.log("C-->StateContext state = ", state, " and payload = ", action.payload);
             const theConcentration: ConcentrationContainerType = draft.concentrationContainers[action.payload.sourceContainerIndex];
             const theSemester: Semester = draft.semesterCourses[action.payload.destContainerIndex];
             const theCourse = theConcentration.courses.splice(action.payload.sourceIndex,1)[0];
@@ -38,6 +39,7 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
     }
     case "semesterToConcentration": {
         return produce(state, (draft) => {
+            console.log("S-->C state = ", state, " and payload = ", action.payload);
             const theConcentration: ConcentrationContainerType = draft.concentrationContainers[action.payload.destContainerIndex];
             const theSemester: Semester = draft.semesterCourses[action.payload.sourceContainerIndex];
             const theCourse: Course = theSemester.courses.splice(action.payload.sourceIndex, 1)[0];
@@ -49,18 +51,20 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
     }
     case "semesterToSemester": {
         return produce(state, (draft) => {
-            //console.log("draft = ", state, " and payload = ", action.payload);
+            console.log("S-->S state = ", state, " and payload = ", action.payload);
             const theSourceSemester: Semester = draft.currentSaveData.semesters[action.payload.sourceContainerIndex];
             const theDestSemester: Semester = draft.currentSaveData.semesters[action.payload.destContainerIndex];
             const theSplicedCourse: Course = theSourceSemester.courses.splice(action.payload.sourceIndex, 1)[0];
             theDestSemester.courses.splice(action.payload.destIndex, 0, theSplicedCourse);
+            draft.semesterCourses[action.payload.sourceContainerIndex].courses = theSourceSemester.courses;
+            draft.semesterCourses[action.payload.destContainerIndex].courses = theDestSemester.courses;
             draft.currentSaveData.semesters[action.payload.destContainerIndex].courses = theDestSemester.courses;
             draft.currentSaveData.semesters[action.payload.sourceContainerIndex].courses = theSourceSemester.courses;
         });
     }
     case "concentrationToConcentration": {
         return produce(state, (draft) => {
-            console.log("payload = ", action.payload);
+            console.log("C-->C state = ", state, " and payload = ", action.payload);
             const theSourceConcentration: ConcentrationContainerType = draft.concentrationContainers[action.payload.sourceContainerIndex];
             const theDestinationConcentration: ConcentrationContainerType = draft.concentrationContainers[action.payload.destContainerIndex];
             const theCourse = theSourceConcentration.courses.splice(action.payload.sourceIndex, 1)[0];
