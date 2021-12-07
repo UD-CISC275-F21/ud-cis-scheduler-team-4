@@ -54,6 +54,11 @@ export const AIConc = (): JSX.Element => {
                 }
             ]
         }});
+        return(() => {
+
+            dispatch({type: "updateSaveDataAI", payload: { ...state, }});
+
+        });
     },[]);
 
     return (

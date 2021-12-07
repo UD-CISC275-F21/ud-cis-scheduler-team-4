@@ -79,6 +79,19 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
             tmpSaveData.concentration.conc.elective = CoursesToStrings(state.concentrationContainers[6].courses);
         });
     }
+    case "updateSaveDataAI":{
+        return produce(state, (draft) => {
+            console.log("updating Save Data");
+            // set saveData index to be sourceContainerIndex
+            const tmpSaveData = draft.saveData[0];
+            tmpSaveData.concentration.core = CoursesToStrings(state.concentrationContainers[0].courses);
+            tmpSaveData.concentration.capstone = [...CoursesToStrings(state.concentrationContainers[1].courses), ...CoursesToStrings(state.concentrationContainers[4].courses)];
+            tmpSaveData.concentration.conc.general = [...CoursesToStrings(state.concentrationContainers[2].courses), ...CoursesToStrings(state.concentrationContainers[5].courses)];
+            tmpSaveData.concentration.lab = CoursesToStrings(state.concentrationContainers[7].courses);
+            tmpSaveData.concentration.writing = CoursesToStrings(state.concentrationContainers[3].courses);
+            tmpSaveData.concentration.conc.elective = CoursesToStrings(state.concentrationContainers[6].courses);
+        });
+    }
     case "updateNumberOfSemesters":{
         console.log("--- adding semester, state = ", state);
         return produce(state, (draft) => {

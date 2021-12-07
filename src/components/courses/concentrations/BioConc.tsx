@@ -11,6 +11,7 @@ export const BioConc = (): JSX.Element => {
 
     const { state } = UseStateContext();
     const { dispatch } = UseDispatchContext();
+    const index = state.saveData.findIndex((eachSaveData) => eachSaveData.concentration.name === "Bioinformatics");
 
     useEffect(() => {
         dispatch({type: "updateConcentrationContainers", payload: {
@@ -19,45 +20,45 @@ export const BioConc = (): JSX.Element => {
             [
                 {
                     name: "core",
-                    courses: StringsToCourses(state.saveData[1].concentration.core)
+                    courses: StringsToCourses(state.saveData[index].concentration.core)
                 },
                 {
                     name: "capstone",
-                    courses: StringsToCourses(state.saveData[1].concentration.capstone)
+                    courses: StringsToCourses(state.saveData[index].concentration.capstone)
                 },
                 {
                     name: "general",
-                    courses: StringsToCourses(state.saveData[1].concentration.conc.general)
+                    courses: StringsToCourses(state.saveData[index].concentration.conc.general)
                 },
                 {
                     name: "writing",
-                    courses: StringsToCourses(state.saveData[1].concentration.writing)
+                    courses: StringsToCourses(state.saveData[index].concentration.writing)
                 },
                 {
                     name: "stat",
-                    courses: StringsToCourses(state.saveData[1].concentration.conc.stats)
+                    courses: StringsToCourses(state.saveData[index].concentration.conc.stats)
                 },
                 {
                     name: "lab-1",
-                    courses: StringsToCourses(state.saveData[1].concentration.lab)
+                    courses: StringsToCourses(state.saveData[index].concentration.lab)
                 },
                 {
                     name: "electives",
-                    courses: StringsToCourses(state.saveData[1].concentration.conc.elective)
+                    courses: StringsToCourses(state.saveData[index].concentration.conc.elective)
                 },
                 {
                     name: "data",
-                    courses: StringsToCourses(state.saveData[1].concentration.conc.data)
+                    courses: StringsToCourses(state.saveData[index].concentration.conc.data)
                 },
                 {
                     name: "ochem-1",
-                    courses: StringsToCourses(state.saveData[1].concentration.conc.ochem)
+                    courses: StringsToCourses(state.saveData[index].concentration.conc.ochem)
                 }
             ]
         }});
         return(() => {
             console.log("BIO CONC UNMOUNTING");
-            dispatch({type: "updateSaveDataBio", payload: { ...state, sourceContainerIndex: 0 }});
+            dispatch({type: "updateSaveDataBio", payload: { ...state }});
         });
     },[]);
 
