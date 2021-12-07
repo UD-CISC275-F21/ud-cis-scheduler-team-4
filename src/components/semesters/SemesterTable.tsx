@@ -18,7 +18,8 @@ export const SemesterTable = (): JSX.Element => {
         
     const { state } = UseStateContext();
     const { dispatch } = UseDispatchContext();
-    const [semesters, setSemesters] = useState<JSX.Element[]>([
+
+    return(
         <>
             {
                 state.currentSaveData.numberOfSemesters > 0 ?
@@ -40,44 +41,6 @@ export const SemesterTable = (): JSX.Element => {
                 No semesters available
                     </div>
             }
-        </>
-    ]);
-
-    useEffect(() => {
-        console.log("changing concentration with state : ", state);
-    }, [state.concentration]);
-
-    useEffect(() => {
-        console.log("render new Semster with new concentration : ", state.concentration);
-        setSemesters([
-            <>
-                {
-                    state.currentSaveData.numberOfSemesters > 0 ?
-                        new Array(state.currentSaveData.numberOfSemesters).fill(0)
-                            .map((elem, ind) =>
-                                <SemesterComponent
-                                    ind={ind}
-                                    key={`semester-table-key-${ind}`}
-                                    semesterCourse={state.currentSaveData.semesters[ind]}
-                                    updateSemesterCourses={
-                                        (newSemester: Semester) => {
-                                            dispatch({type: "updateSemesterCourses", payload: { ...state, semesterCourses: [...state.semesterCourses, newSemester ]}});
-                                        }
-                                    }
-                                />
-                            )
-                        :
-                        <div>
-                    No semesters available
-                        </div>
-                }
-            </>
-        ]);
-    }, [state.semesterCourses, state.currentSaveData.numberOfSemesters]);
-
-    return(
-        <>
-            {semesters}
         </>
     );
 };

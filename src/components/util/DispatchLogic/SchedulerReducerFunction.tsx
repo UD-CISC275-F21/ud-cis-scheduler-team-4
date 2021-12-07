@@ -31,12 +31,18 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
         return produce(state, (draft) => {
             console.log("S-->C state = ", state, " and payload = ", action.payload);
             const theConcentration: ConcentrationContainerType = draft.concentrationContainers[action.payload.destContainerIndex];
+            console.log("-semesterCoursesLength0 = ", draft.semesterCourses[0].courses.length);
+            console.log("-semesterCoursesLength1 = ", draft.semesterCourses[1].courses.length);
             const theSemester: Semester = draft.semesterCourses[action.payload.sourceContainerIndex];
             const theCourse: Course = theSemester.courses.splice(action.payload.sourceIndex, 1)[0];
+            console.log("--semesterCoursesLength0 = ", draft.semesterCourses[0].courses.length);
+            console.log("--semesterCoursesLength1 = ", draft.semesterCourses[1].courses.length);
             theConcentration.courses.splice(action.payload.destIndex, 0, theCourse);
             draft.concentrationContainers[draft.destContainerIndex].courses = theConcentration.courses;
-            draft.semesterCourses[draft.sourceContainerIndex].courses = theSemester.courses;
-            draft.currentSaveData.semesters[draft.sourceContainerIndex].courses = theSemester.courses;
+            draft.semesterCourses[action.payload.sourceContainerIndex].courses = theSemester.courses;
+            console.log("---semesterCoursesLength0 = ", draft.semesterCourses[0].courses.length);
+            console.log("---semesterCoursesLength1 = ", draft.semesterCourses[1].courses.length);
+            draft.currentSaveData.semesters[action.payload.sourceContainerIndex].courses = theSemester.courses;
         });
     }
     case "semesterToSemester": {
@@ -78,8 +84,27 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
     case "updateConcentration":{
         //console.log("updating concentration with payload : ", action.payload);
         return produce(state, (draft) => {
-            draft.concentration = action.payload.concentration;
-            console.log("updateConcentrationPayload = ", action.payload);
+            draft.concentration = action.payload.concentration; 
+            // update checklist --- concentrationContainers, semesterCourses, concentration
+            const saveDataIndex = draft.saveData.findIndex((eachSaveData) => eachSaveData.concentration.name === state.currentSaveData.concentration.name);
+            // found where we store previous currentSaveData, so then we can update it
+            draft.saveData[saveDataIndex] = state.currentSaveData;
+            const newSaveDataIndex = draft.saveData.findIndex((eachSaveData) => eachSaveData.concentration.name === action.payload.concentration.name);
+            if (newSaveDataIndex === -1) {
+                // saveData is not present, create new one and append onto end
+                const tmpSaveData = [...state.saveData];
+                tmpSaveData.push({ concentration: action.payload.concentration, numberOfSemesters: 1, semesters: []});
+                draft.saveData = tmpSaveData;
+                draft.semesterCourses = [];
+                draft.semesters = 1;
+                draft.currentSaveData = draft.saveData[draft.saveData.length-1];
+            } else {
+                draft.currentSaveData = draft.saveData[newSaveDataIndex];
+                draft.semesterCourses = draft.currentSaveData.semesters;
+                draft.semesters = draft.currentSaveData.numberOfSemesters;
+            }
+            // updated saveData and currentSaveData -- cannot update concentrationContainers because that has not been rendered yet <-- if its been saved before, upload it, if not, just leave it
+            // update semesterCourses <-- check
         });
     }
     case "updateSemesterCourses":{
