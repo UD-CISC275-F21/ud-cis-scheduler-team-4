@@ -3,35 +3,36 @@ import CONCENTRATIONS from "../../../json/concentrations.json";
 import { CourseContainer } from "../CourseContainer";
 import { ConcentrationContainerType } from "../../../interfaces/concentrationcontainer";
 import React, { useState, useEffect } from "react";
-import { Course as CourseType } from "../../../interfaces/course";
+import { Course as Course } from "../../../interfaces/course";
 
 
 export const DataScienceConc = (props: {
-    StringsToCourses: (stringCourses: string[]) => CourseType[];
-    setConcentrationContainers: React.Dispatch<React.SetStateAction<ConcentrationContainerType[]>>;
-    }): JSX.Element => {
+    StringsToCourses: (stringCourses: string[]) => Course[];
+    setConcentrationContainers: (concentrationContainers: ConcentrationContainerType[]) => void;
+    }): void => {
+    /*
     const [coreCourses,
-        setCoreCourses] = useState<CourseType[]>(props.StringsToCourses(
+        setCoreCourses] = useState<Course[]>(props.StringsToCourses(
             CONCENTRATIONS[3].core));
     const [capstoneCourses,
-        setCapstoneCourses] = useState<CourseType[]>(props.StringsToCourses(
+        setCapstoneCourses] = useState<Course[]>(props.StringsToCourses(
             CONCENTRATIONS[3].capstone));
     const [generalCourses,
-        setGeneralCourses] = useState<CourseType[]>(props.StringsToCourses(
+        setGeneralCourses] = useState<Course[]>(props.StringsToCourses(
             CONCENTRATIONS[3].conc.general));
     const [writingCourses,
-        setWritingCourses] = useState<CourseType[]>(props.StringsToCourses(
+        setWritingCourses] = useState<Course[]>(props.StringsToCourses(
             CONCENTRATIONS[3].writing));
     const [labCourses,
-        setLabCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[3].lab));
+        setLabCourses] = useState<Course[]>(props.StringsToCourses(CONCENTRATIONS[3].lab));
     const [dataCourses,
-        setDataCourses] = useState<CourseType[]>(props.StringsToCourses(
+        setDataCourses] = useState<Course[]>(props.StringsToCourses(
             CONCENTRATIONS[3].conc.data));
     const [mathCourses,
-        setMathCourses] = useState<CourseType[]>(props.StringsToCourses(
+        setMathCourses] = useState<Course[]>(props.StringsToCourses(
             CONCENTRATIONS[3].conc.stats));
     const [electiveCourses,
-        setElectiveCourses] = useState<CourseType[]>(props.StringsToCourses(
+        setElectiveCourses] = useState<Course[]>(props.StringsToCourses(
             CONCENTRATIONS[3].conc.elective));
 
     useEffect(() => {
@@ -41,43 +42,59 @@ export const DataScienceConc = (props: {
                 {
                     courses: coreCourses,
                     name: "core",
-                    setCourses: setCoreCourses,
+                    setCourses: (courses: Course[]) => {
+                        setCoreCourses(courses);
+                    },
                 },
                 {
                     courses: capstoneCourses,
                     name: "capstone",
-                    setCourses: setCapstoneCourses,
+                    setCourses: (courses: Course[]) => {
+                        setCapstoneCourses(courses);
+                    },
 
                 },
                 {
                     courses: generalCourses,
                     name: "general",
-                    setCourses: setGeneralCourses,
+                    setCourses: (courses: Course[]) => {
+                        setGeneralCourses(courses);
+                    },
                 },
                 {
                     courses: writingCourses,
                     name: "writing",
-                    setCourses: setWritingCourses,
+                    setCourses: (courses: Course[]) => {
+                        setWritingCourses(courses);
+                    },
                 },
                 {
                     courses: labCourses,
                     name: "lab-1",
-                    setCourses: setLabCourses,
+                    setCourses: (courses: Course[]) => {
+                        setLabCourses(courses);
+                    },
                 },
                 {
                     courses: electiveCourses,
                     name: "electives",
-                    setCourses: setElectiveCourses,
+                    setCourses: (courses: Course[]) => {
+                        setElectiveCourses(courses);
+                    },
                 },
                 {
                     courses: dataCourses,
                     name: "datascience",
-                    setCourses: setDataCourses,
+                    setCourses: (courses: Course[]) => {
+                        setDataCourses(courses);
+                    },
                 },
                 {
                     courses: mathCourses,
                     name: "math",
-                    setCourses: setMathCourses,
+                    setCourses: (courses: Course[]) => {
+                        setMathCourses(courses);
+                    },
                 },
 
             ],
@@ -159,4 +176,5 @@ export const DataScienceConc = (props: {
 
         </div>
     );
+    */
 };
