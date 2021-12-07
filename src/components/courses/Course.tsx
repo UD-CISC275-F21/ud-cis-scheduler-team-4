@@ -30,6 +30,7 @@ export const Course = (
                         className="add-course-button"
                         onClick={()=>{
                             setAddCourseDisplay(!addCourseDisplay);
+                            console.log(props.semesterCourses);
                         }}
                         type="button"
                     >
@@ -39,9 +40,9 @@ export const Course = (
                     <AddCourse
                         display={addCourseDisplay}
                         setDisplay={setAddCourseDisplay}
-                        ind={props.ind}
                         semesterCourses={props.semesterCourses}
                         setSemesterCourses={props.setSemesterCourses}
+                        courseName={props.name}
                     ></AddCourse>
                     }
                     <button

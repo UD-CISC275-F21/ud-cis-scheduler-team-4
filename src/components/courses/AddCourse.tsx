@@ -6,12 +6,16 @@ export const AddCourse = (
     props: {
         display:boolean;
         setDisplay:React.Dispatch<React.SetStateAction<boolean>>;
-        ind: number;
         semesterCourses: Semester[];
         setSemesterCourses: React.Dispatch<React.SetStateAction<Semester[]>>;
+        courseName: string;
     }
 ) => {
-    const numberOfSemesters = 4; // debug purposes
+    let numberOfSemesters;
+    for(let i=0; i<props.semesterCourses.length; i++){
+        numberOfSemesters = props.semesterCourses[i].semesterNum;
+    }
+
     return (
         <Modal
             onHide={() => {
@@ -26,7 +30,13 @@ export const AddCourse = (
                 <ListGroup>
                     {
                         new Array(numberOfSemesters).fill(0).map((eachelement,index) => 
-                            <ListGroup.Item action key={index}>
+                            <ListGroup.Item action
+                                key={index}
+                                onClick={()=>{
+                                    const tmpSemester = props.semesterCourses[index+1];
+                                    
+                                }}
+                            >
                                 {`Semester ${index+1}`}
                             </ListGroup.Item>
                         )
