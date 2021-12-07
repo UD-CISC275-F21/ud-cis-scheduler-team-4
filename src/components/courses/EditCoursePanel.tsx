@@ -23,7 +23,7 @@ export const EditCoursePanel = (props: {
                     setDisplay(true);
                 }}
             >
-                <img src="editbutton.png" />
+                <img src={`${process.env.PUBLIC_URL}/editbutton.png`} id="edit-img" />
             </button>
             {
                 display
