@@ -20,7 +20,7 @@ export const DisplayCourseListMap = (concentration: Concentration,
 ): JSX.Element => {
 
     const { state } = UseStateContext();
-    console.log("concentration = ", concentration);
+    //console.log("concentration = ", concentration);
     switch(concentration.name){
 
     case CONCENTRATIONS[0].name: {

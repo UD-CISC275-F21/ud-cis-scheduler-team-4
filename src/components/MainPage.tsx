@@ -26,6 +26,7 @@ import { UseStateContext } from "./util/DispatchLogic/UseStateContext";
 import { UseDispatchContext } from "./util/DispatchLogic/UseDispatchContext";
 import { DispatchContext } from "./util/DispatchLogic/DispatchContext";
 import { StateContext } from "./util/DispatchLogic/StateContext";
+import { SemesterTable } from "./semesters/SemesterTable";
 
 export const MainPage = (): JSX.Element => {
     const [state, dispatch] = useReducer(reducerFunction, initialState);
@@ -112,26 +113,7 @@ export const MainPage = (): JSX.Element => {
                                 <br />
                                 <br />
                                 <div>
-                                    {
-                                        state.currentSaveData.numberOfSemesters > 0 ?
-                                            new Array(state.currentSaveData.numberOfSemesters).fill(0)
-                                                .map((elem, ind) =>
-                                                    <SemesterComponent
-                                                        ind={ind}
-                                                        key={`semester-table-key-${ind}`}
-                                                        semesterCourse={state.currentSaveData.semesters[ind]}
-                                                        updateSemesterCourses={
-                                                            (newSemester: Semester) => {
-                                                                dispatch({type: "updateSemesterCourses", payload: { ...state, semesterCourses: [...state.semesterCourses, newSemester ]}});
-                                                            }
-                                                        }
-                                                    />
-                                                )
-                                            :
-                                            <div>
-                                        No semesters available
-                                            </div>
-                                    }
+                                    <SemesterTable />
                                 </div>
                             </Col>
                         </Row>

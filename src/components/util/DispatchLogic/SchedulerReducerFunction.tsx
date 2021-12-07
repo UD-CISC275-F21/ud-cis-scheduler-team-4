@@ -11,9 +11,7 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
     switch (action.type) {
     case "checkState": {
         return produce(state, (draft) => {
-
             console.log("current state = ", state);
-
         });
     }
     case "concentrationToSemester": {
@@ -67,7 +65,7 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
     }
     case "updateSaveData":{
         return produce(state, (draft) => {
-            draft.saveData = action.payload.saveData;
+            console.log("updating Save Data");
         });
     }
     case "updateNumberOfSemesters":{
@@ -80,39 +78,18 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
     case "updateConcentration":{
         //console.log("updating concentration with payload : ", action.payload);
         return produce(state, (draft) => {
-            if (!draft.saveData.find((eachSaveData) => eachSaveData.concentration.name === action.payload.concentration.name)) {
-                console.log("inserting newSaveData");
-                const currSaveIndex = draft.saveData.findIndex((eachSaveData) => eachSaveData.concentration.name === draft.currentSaveData.concentration.name);
-                if (currSaveIndex !== -1) {
-                    draft.saveData[currSaveIndex] = draft.currentSaveData;
-                }
-                draft.saveData.splice(draft.saveData.length, 0, { concentration: action.payload.concentration, numberOfSemesters: 1, semesters: []});
-                draft.semesters = 1;
-                draft.currentSaveData = draft.saveData[draft.saveData.length-1];
-                draft.currentSaveData.semesters = [];
-            } else {
-                console.log("Found save data");
-                const result = draft.saveData.findIndex((eachSaveData) => eachSaveData.concentration.name === action.payload.concentration.name);
-                if (result !== -1) {
-                    console.log("currstate and result = ", state, " ", result);
-                    draft.currentSaveData = draft.saveData[result];
-                    draft.semesters = draft.saveData[result].numberOfSemesters;
-                    draft.semesterCourses = draft.saveData[result].semesters;
-                    console.log("foundsavedata = ", action.payload);
-                }
-            }
             draft.concentration = action.payload.concentration;
         });
     }
     case "updateSemesterCourses":{
         return produce(state, (draft) => {
-            console.log("updating semesterCourses");
+            //console.log("updating semesterCourses");
             draft.semesterCourses = action.payload.semesterCourses;
             draft.currentSaveData.semesters = action.payload.semesterCourses;
         });
     }
     case "updateConcentrationContainers": {
-        console.log("updating concentrationcontainers with payload ", action.payload);
+        //console.log("updating concentrationcontainers with payload ", action.payload);
         return produce(state, (draft) => {
             //console.log("payload = ", action.payload);
             draft.concentrationContainers = action.payload.concentrationContainers;
