@@ -1,10 +1,6 @@
 import { Accordion } from "react-bootstrap";
-import CONCENTRATIONS from "../../../json/concentrations.json";
 import { CourseContainer } from "../CourseContainer";
-import { ConcentrationContainerType } from "../../../interfaces/concentrationcontainer";
-import React, { useState, useEffect, useReducer } from "react";
-import { Course } from "../../../interfaces/course";
-import { SavedProgress } from "../../../interfaces/savedprogress";
+import React, { useEffect } from "react";
 import { StringsToCourses } from "../DisplayCourseListHelperFunctions/StringsToCourses";
 import { UseDispatchContext } from "../../util/DispatchLogic/UseDispatchContext";
 import { UseStateContext } from "../../util/DispatchLogic/UseStateContext";
@@ -54,11 +50,11 @@ export const AIConc = (): JSX.Element => {
                 }
             ]
         }});
-        return(() => {
+        return() => {
 
             dispatch({type: "updateSaveDataAI", payload: { ...state, }});
 
-        });
+        };
     },[]);
 
     return (

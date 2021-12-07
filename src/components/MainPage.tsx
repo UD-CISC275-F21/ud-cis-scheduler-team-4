@@ -1,29 +1,19 @@
 import "bootswatch/dist/lux/bootstrap.min.css";
-import produce, { current } from "immer";
 import { Container, Row, Col, Navbar, Nav, NavDropdown } from "react-bootstrap";
 import { WelcomeToast, PreReqSameSemesterToast } from "./util/Notifications";
 import React, { useReducer } from "react";
 import { DropdownMenu } from "./util/DropdownMenu";
 import { DisplayCourseList } from "./courses/DisplayCourseList";
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
-import { Semester } from "../interfaces/semester";
-import { Semester as SemesterComponent } from "./semesters/Semester";
 import { AddSemesterButton } from "./semesters/AddSemesterButton";
 import { DeleteSemesterButton } from "./semesters/DeleteSemesterButton";
-import { ConcentrationContainerType } from "../interfaces/concentrationcontainer";
 import { onDragEndLogic } from "./util/DropLogic";
 import { ExportPlan } from "./util/ExportPlan";
 import { HowToDisplay } from "./util/howto/howtodisplay";
 import { Footer } from "./util/Footer";
-import { Course } from "../interfaces/course";
-import { State } from "../interfaces/State";
 import { initialState } from "../assets/data/statedata/InitialState";
-import { SchedulerAction } from "../interfaces/SchedulerAction";
-import { mapCoursesToNames } from "./util/ConcentrationHelperFunctions/ConcentrationHelperFunctions";
 import { Button } from "react-bootstrap";
 import { reducerFunction } from "./util/DispatchLogic/SchedulerReducerFunction";
-import { UseStateContext } from "./util/DispatchLogic/UseStateContext";
-import { UseDispatchContext } from "./util/DispatchLogic/UseDispatchContext";
 import { DispatchContext } from "./util/DispatchLogic/DispatchContext";
 import { StateContext } from "./util/DispatchLogic/StateContext";
 import { SemesterTable } from "./semesters/SemesterTable";
@@ -34,16 +24,9 @@ export const MainPage = (): JSX.Element => {
         concentration,
         semesterCourses,
         display,
-        semesters,
         concentrationContainers,
         toastDisplay,
         toastMessage,
-        saveData,
-        currentSaveData,
-        destIndex,
-        destContainerIndex,
-        sourceIndex,
-        sourceContainerIndex
     } = state;
 
     const dispatchValue = { dispatch };

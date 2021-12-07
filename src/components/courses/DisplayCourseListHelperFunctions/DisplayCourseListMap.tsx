@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Concentration } from "../../../interfaces/concentration";
 import { AIConc } from "../concentrations/AIConc";
 import { BioConc } from "../concentrations/BioConc";
@@ -12,14 +12,10 @@ import { ConcentrationContainerType } from "../../../interfaces/concentrationcon
 import { StringsToCourses } from "./StringsToCourses";
 import { SavedProgress } from "../../../interfaces/savedprogress";
 import { Course } from "../../../interfaces/course";
-import { UseStateContext } from "../../util/DispatchLogic/UseStateContext";
 
 
-export const DisplayCourseListMap = (concentration: Concentration,
-    saveData: SavedProgress,
-): JSX.Element => {
+export const DisplayCourseListMap = (concentration: Concentration): JSX.Element => {
 
-    const { state } = UseStateContext();
     //console.log("concentration = ", concentration);
     switch(concentration.name){
 

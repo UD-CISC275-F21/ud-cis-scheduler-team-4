@@ -6,8 +6,6 @@ import { Course } from "../courses/Course";
 import { Course as CourseType } from "../../interfaces/course";
 import { Semester as SemesterType } from "../../interfaces/semester";
 import { EditCoursePanel } from "../courses/EditCoursePanel";
-import { updateSemesterContainer } from "./SemesterHelperFunctions/UpdateSemesterContainers";
-
 /*
 
     @param : integer - semester number
@@ -66,10 +64,10 @@ export const Semester = (props: {
             semesternum: props.ind+1,
             courses: courses,
         });
-        return(() => {
+        return() => {
             console.log("unmounting");
             setCourses([]);
-        });
+        };
     }, []);
 
     const getCredits = (courses: CourseType[]) => {

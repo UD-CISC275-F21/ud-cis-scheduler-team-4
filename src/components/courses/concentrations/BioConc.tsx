@@ -1,11 +1,9 @@
 import { Accordion } from "react-bootstrap";
 import { CourseContainer } from "../CourseContainer";
 import React, { useEffect } from "react";
-import { Course as Course } from "../../../interfaces/course";
 import { UseDispatchContext } from "../../util/DispatchLogic/UseDispatchContext";
 import { UseStateContext } from "../../util/DispatchLogic/UseStateContext";
 import { StringsToCourses } from "../DisplayCourseListHelperFunctions/StringsToCourses";
-import { CoursesToStrings } from "../DisplayCourseListHelperFunctions/CoursesToStrings";
 
 export const BioConc = (): JSX.Element => {
 
@@ -56,10 +54,10 @@ export const BioConc = (): JSX.Element => {
                 }
             ]
         }});
-        return(() => {
+        return() => {
             console.log("BIO CONC UNMOUNTING");
             dispatch({type: "updateSaveDataBio", payload: { ...state }});
-        });
+        };
     },[]);
 
     return (

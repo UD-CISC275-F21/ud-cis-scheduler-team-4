@@ -12,6 +12,7 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
     case "checkState": {
         return produce(state, (draft) => {
             console.log("current state = ", state);
+            console.log("draft = ", draft);
         });
     }
     case "concentrationToSemester": {

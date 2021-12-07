@@ -1,9 +1,6 @@
-import "bootstrap/dist/css/bootstrap.min.css";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Semester as SemesterComponent } from "./Semester";
 import { Semester } from "../../interfaces/semester";
-import { SavedProgress } from "../../interfaces/savedprogress";
-import { Concentration } from "../../interfaces/concentration";
 import { UseDispatchContext } from "../util/DispatchLogic/UseDispatchContext";
 import { UseStateContext } from "../util/DispatchLogic/UseStateContext";
 
