@@ -94,6 +94,37 @@ test("renders course listgroup", () => {
     }
 });
 
+test("concentration dropdown is in the document", ()=> {
+    render(<App />);
+    const concentrationMenu = screen.getByTestId("concentrationMenu");
+    expect(concentrationMenu).toBeInTheDocument();
+});
+
+test("Selecting concentrations dropdown displays concentrations to choose from", ()=> {
+    render(<App />);
+    const concentrationMenu = screen.getByTestId("concentrationMenu");
+    act(()=> {
+        concentrationMenu.click();
+    });
+    const bioConcentration = screen.getByTestId("bioConcentration");
+    expect(bioConcentration).toBeInTheDocument();
+});
+
+test("Selecting new concentration renders that concentration", ()=> {
+    render(<App />);
+    const concentrationMenu = screen.getByTestId("concentrationMenu");
+    act(()=> {
+        concentrationMenu.click();
+        console.log
+    });
+    const bioConcentration = screen.getByTestId("bioConcentration");
+    act(()=> {
+        bioConcentration.click();
+    });
+    const concentrationHeaderElem = screen.getByText(/Bioinformatics/i);
+    expect(concentrationHeaderElem).toBeInTheDocument();
+});
+
 /**
  * 
  * Testing button functionality

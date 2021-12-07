@@ -29,7 +29,7 @@ export const DropdownMenu = (props: {
 
     return (
         <div>
-            <NavDropdown id="basic-navbar-nav" title="Concentrations" >
+            <NavDropdown id="basic-navbar-nav" title="Concentrations" data-testid="concentrationMenu">
 
                 <NavDropdown.Item
                     as="button"
@@ -40,7 +40,7 @@ export const DropdownMenu = (props: {
                 </NavDropdown.Item>
 
 
-                <NavDropdown.Item
+                <NavDropdown.Item data-testid="bioConcentration"
                     as="button"
                     onClick={() => {
                         clickFunc(1);
