@@ -17,6 +17,10 @@ export const CourseContainer = (props: { courses: CourseType[]; name: string }):
                         key={eachcourse.name}
                         name={`${eachcourse.name}${eachcourse.title.length > 0 ? `-${eachcourse.title}` : ""}`}
                         title={eachcourse.title}
+                        semesterCourses={[]}
+                        setSemesterCourses={()=>{
+                            return;
+                        }}
                     />,
                 )}
                 {prov.placeholder}

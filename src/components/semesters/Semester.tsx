@@ -97,6 +97,8 @@ export const Semester = (props: {
                                                                             ind={index}
                                                                             name={`${elem.name}${elem.title.length > 0 ? `-${elem.title}` : ""}`}
                                                                             title={elem.title}
+                                                                            semesterCourses={props.semesterCourses}
+                                                                            setSemesterCourses={props.setSemesterCourses}
                                                                         />
                                                                     </Col>
                                                                     <EditCoursePanel
