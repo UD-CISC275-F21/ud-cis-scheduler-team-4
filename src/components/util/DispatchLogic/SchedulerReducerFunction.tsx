@@ -79,6 +79,7 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
         //console.log("updating concentration with payload : ", action.payload);
         return produce(state, (draft) => {
             draft.concentration = action.payload.concentration;
+            console.log("updateConcentrationPayload = ", action.payload);
         });
     }
     case "updateSemesterCourses":{
