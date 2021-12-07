@@ -102,6 +102,7 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
             }
             // updated saveData and currentSaveData -- cannot update concentrationContainers because that has not been rendered yet <-- if its been saved before, upload it, if not, just leave it
             // update semesterCourses <-- check
+            
         });
     }
     case "updateSemesterCourses":{
