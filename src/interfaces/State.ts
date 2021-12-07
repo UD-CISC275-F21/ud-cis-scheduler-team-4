@@ -20,6 +20,5 @@ export interface State{
     sourceIndex: number,
     sourceContainerIndex: number,
     destIndex: number,
-    destContainerIndex: number,
-    addCourseButtonIsDisplayed: boolean
+    destContainerIndex: number
 }

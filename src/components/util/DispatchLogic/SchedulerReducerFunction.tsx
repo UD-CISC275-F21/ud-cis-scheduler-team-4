@@ -230,12 +230,7 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
             draft.semesterCourses[action.payload.sourceContainerIndex].courses[action.payload.sourceIndex] = theClass;
         });
     }
-    
-    case "updateAddButtonDisplay": {
-        return produce(state, (draft) => {
-            draft.addCourseButtonIsDisplayed = action.payload.addCourseButtonIsDisplayed;
-        });
-    }
+
     default:{
         break;
     }

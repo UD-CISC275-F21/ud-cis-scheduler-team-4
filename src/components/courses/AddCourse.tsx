@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { ListGroup, Modal } from "react-bootstrap";
 import { Semester } from "../../interfaces/semester";
 import { UseDispatchContext } from "../util/DispatchLogic/UseDispatchContext";
@@ -6,11 +6,14 @@ import { UseStateContext } from "../util/DispatchLogic/UseStateContext";
 
 export const AddCourse = (
     props: {
-        display:boolean;
-        setDisplay:React.Dispatch<React.SetStateAction<boolean>>;
+        modalDisplay:boolean;
+        setModalDisplay:React.Dispatch<React.SetStateAction<boolean>>;
         courseName: string;
+        buttonDisplay: boolean;
+        setButtonDisplay: React.Dispatch<React.SetStateAction<boolean>>
     }
 ) => {
+    
     const { state } = UseStateContext();
     const { dispatch } = UseDispatchContext();
     const numberOfSemesters = state.semesterCourses.length;
@@ -32,9 +35,9 @@ export const AddCourse = (
     return (
         <Modal
             onHide={() => {
-                props.setDisplay(false);
+                props.setModalDisplay(false);
             }}
-            show={props.display}
+            show={props.modalDisplay}
         >
             <Modal.Header>
                 Please Choose a Semester:
@@ -48,8 +51,9 @@ export const AddCourse = (
                                 onClick={()=>{
                                     if (courseIndex !== -1) {
                                         dispatch({type: "concentrationToSemester", payload: { ...state, sourceContainerIndex: containerIndex, sourceIndex: courseIndex, destContainerIndex: index, destIndex: 0 }});
-                                        dispatch({type: "updateAddCourseButtonDisplay", payload: { ...state, addCourseButtonIsDisplayed:false}});
-                                        console.log(state.addCourseButtonIsDisplayed);
+                                        console.log(props.buttonDisplay);
+                                        props.setButtonDisplay(!props.buttonDisplay); 
+                                        console.log(props.buttonDisplay);
                                     }
                                 }}
                             >
