@@ -4,7 +4,7 @@ import { ConcentrationContainerType } from "../../../interfaces/concentrationcon
 import { Course } from "../../../interfaces/course";
 import { State } from "../../../interfaces/State";
 import { SchedulerAction } from "../../../interfaces/SchedulerAction";
-
+import { CoursesToStrings } from "../../courses/DisplayCourseListHelperFunctions/CoursesToStrings";
 
 export const reducerFunction = (state: State, action: SchedulerAction ): State => {
     //console.log("state = ", state);
@@ -63,9 +63,20 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
             draft.concentrationContainers[action.payload.destContainerIndex].courses = theDestinationConcentration.courses;
         });
     }
-    case "updateSaveData":{
+    case "updateSaveDataBio":{
         return produce(state, (draft) => {
             console.log("updating Save Data");
+            // set saveData index to be sourceContainerIndex
+            const tmpSaveData = draft.saveData[draft.saveData.findIndex((eachSaveData) => eachSaveData.concentration.name === action.payload.concentration.name)];
+            tmpSaveData.concentration.core = CoursesToStrings(state.concentrationContainers[0].courses);
+            tmpSaveData.concentration.capstone = CoursesToStrings(state.concentrationContainers[1].courses);
+            tmpSaveData.concentration.conc.general = CoursesToStrings(state.concentrationContainers[2].courses);
+            tmpSaveData.concentration.lab = CoursesToStrings(state.concentrationContainers[5].courses);
+            tmpSaveData.concentration.conc.ochem = CoursesToStrings(state.concentrationContainers[8].courses);
+            tmpSaveData.concentration.writing = CoursesToStrings(state.concentrationContainers[8].courses);
+            tmpSaveData.concentration.conc.stats = CoursesToStrings(state.concentrationContainers[4].courses);
+            tmpSaveData.concentration.conc.data = CoursesToStrings(state.concentrationContainers[7].courses);
+            tmpSaveData.concentration.conc.elective = CoursesToStrings(state.concentrationContainers[6].courses);
         });
     }
     case "updateNumberOfSemesters":{
@@ -102,7 +113,7 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
             }
             // updated saveData and currentSaveData -- cannot update concentrationContainers because that has not been rendered yet <-- if its been saved before, upload it, if not, just leave it
             // update semesterCourses <-- check
-            
+
         });
     }
     case "updateSemesterCourses":{
@@ -138,6 +149,11 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
                 // display error
                 return produce(state, (draft) => {
                     draft.toastMessage = `Must remove classes from Semester ${draft.semesterCourses.length} before deleting`;
+                    draft.toastDisplay = true;
+                });
+            } else if(action.payload.semesterCourses.length === 1) {
+                return produce(state, (draft) => {
+                    draft.toastMessage = "Must have atleast 1 semester present";
                     draft.toastDisplay = true;
                 });
             } else {

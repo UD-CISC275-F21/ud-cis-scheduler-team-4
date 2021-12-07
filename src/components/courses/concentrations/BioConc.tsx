@@ -5,6 +5,7 @@ import { Course as Course } from "../../../interfaces/course";
 import { UseDispatchContext } from "../../util/DispatchLogic/UseDispatchContext";
 import { UseStateContext } from "../../util/DispatchLogic/UseStateContext";
 import { StringsToCourses } from "../DisplayCourseListHelperFunctions/StringsToCourses";
+import { CoursesToStrings } from "../DisplayCourseListHelperFunctions/CoursesToStrings";
 
 export const BioConc = (): JSX.Element => {
 
@@ -54,6 +55,10 @@ export const BioConc = (): JSX.Element => {
                 }
             ]
         }});
+        return(() => {
+            console.log("BIO CONC UNMOUNTING");
+            dispatch({type: "updateSaveDataBio", payload: { ...state, sourceContainerIndex: 0 }});
+        });
     },[]);
 
     return (
