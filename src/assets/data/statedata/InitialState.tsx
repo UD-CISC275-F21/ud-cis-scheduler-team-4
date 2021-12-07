@@ -24,5 +24,6 @@ export const initialState: State = {
     sourceIndex: 0,
     sourceContainerIndex: 0,
     destIndex: 0,
-    destContainerIndex: 0
+    destContainerIndex: 0,
+    addCourseButtonIsDisplayed: true
 };

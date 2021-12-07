@@ -1,11 +1,12 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../../css/style.css";
 import { Draggable } from "react-beautiful-dnd";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ListGroup } from "react-bootstrap";
 import { CourseInfo } from "./CourseInfo";
 import { AddCourse } from "./AddCourse";
 import { Semester } from "../../interfaces/semester";
+import { UseStateContext } from "../util/DispatchLogic/UseStateContext";
 
 
 export const Course = (
@@ -16,34 +17,36 @@ export const Course = (
         title: string;
         credits: number; 
         ind: number; 
-        semesterCourses: Semester[]; 
-        setSemesterCourses: React.Dispatch<React.SetStateAction<Semester[]>>
     }): JSX.Element => {
+    const { state } = UseStateContext();
     const [courseInfoDisplay, setCourseInfoDisplay] = useState<boolean>(false);
     const [addCourseDisplay, setAddCourseDisplay] = useState<boolean>(false);
+
+    useEffect(() => {
+        console.log("addCourseButtonIsDisplayed is set to : ", state.addCourseButtonIsDisplayed);
+    }, [state.addCourseButtonIsDisplayed]);
+
+
     return (
         <Draggable draggableId={props.name} index={props.ind} key={props.name}>
             {prov =>
                 <ListGroup.Item data-testid="courseitem" ref={prov.innerRef} {...prov.draggableProps} {...prov.dragHandleProps}>
                     {props.name}
-                    <button 
+                    {state.addCourseButtonIsDisplayed && <button 
                         className="add-course-button"
                         onClick={()=>{
                             setAddCourseDisplay(!addCourseDisplay);
-                            console.log(props.semesterCourses);
                         }}
                         type="button"
                     >
                         <span>&#43;</span>
-                    </button>
+                    </button>}
                     {addCourseDisplay &&
                     <AddCourse
                         display={addCourseDisplay}
                         setDisplay={setAddCourseDisplay}
-                        semesterCourses={props.semesterCourses}
-                        setSemesterCourses={props.setSemesterCourses}
                         courseName={props.name}
-                    ></AddCourse>
+                    />
                     }
                     <button
                         className="course-button"

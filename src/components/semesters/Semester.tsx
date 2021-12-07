@@ -61,7 +61,7 @@ export const Semester = (props: {
     useEffect(() => {
         console.log("Adding semester to semesterCourses from MainPage ", props.ind, " courses = ", courses);
         props.updateSemesterCourses({
-            semesternum: props.ind+1,
+            semesterNum: props.ind + 1,
             courses: courses,
         });
         return() => {
@@ -127,8 +127,6 @@ export const Semester = (props: {
                                                                             ind={index}
                                                                             name={`${elem.name}${elem.title.length > 0 ? `-${elem.title}` : ""}`}
                                                                             title={elem.title}
-                                                                            semesterCourses={props.semesterCourses}
-                                                                            setSemesterCourses={props.setSemesterCourses}
                                                                         />
                                                                     </Col>
                                                                     <EditCoursePanel 

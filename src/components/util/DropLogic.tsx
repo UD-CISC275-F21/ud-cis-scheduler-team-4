@@ -39,17 +39,7 @@ export const onDragEndLogic = (
             // semester --> same semesters
             console.log("Executing DropLogic if->if");
             const semesterNum1 = parseInt(sourceId.substring(sourceId.lastIndexOf("-") + 1), 10);
-<<<<<<< HEAD
-            const ind1 = semesterCourses.findIndex(elem => elem.semesterNum === semesterNum1);
-            semesterToSemester(
-                semesterCourses[ind1],
-                semesterCourses[ind1],
-                result.source.index,
-                result.destination.index,
-                false);
-=======
             DropLogicExecutor(state,dispatch,"semesterToSemester",semesterNum1-1,semesterNum1-1,result.source.index,result.destination.index);
->>>>>>> issue-refactoring-4
         } else {
             // concentration --> concentration
             console.log("Executing DropLogic if->else");
@@ -57,42 +47,13 @@ export const onDragEndLogic = (
             DropLogicExecutor(state, dispatch, "concentrationToConcentration", concentrationNumber1, concentrationNumber1, sourceIndex, dropIndex);
         }
     } else if (sourceIdSemester) {
-<<<<<<< HEAD
-        // semester --> concentration
-        const semesterNum = parseInt(sourceId.substring(sourceId.lastIndexOf("-") + 1), 10);
-        const semester2Num = destIdSemester ? parseInt(destinationId.substring(destinationId.lastIndexOf("-") + 1), 10) : -1;
-        const ind1 = semesterCourses.findIndex(elem => elem.semesterNum === semesterNum);
-        let ind2 = destIdSemester ?
-            semesterCourses.findIndex(elem =>
-                elem.semesterNum === semester2Num)
-            :
-            concentrationContainers.findIndex(elem =>
-                elem.name === destinationId);
-        const preReqResult = destIdSemester ?
-            PreReqChecker(
-                semesterCourses,
-                semester2Num - 1,
-                semesterCourses[ind1].courses[sourceIndex],
-                setErrMsg,
-            ) && RevPreReqChecker(
-                semesterCourses,
-                semester2Num - 1,
-                semesterCourses[ind1].courses[sourceIndex],
-                setErrMsg,
-            )
-            :
-            true;
-        console.log("prereqResult = ",preReqResult);
-        if ((destIdSemester || sourceIdSemester) && !preReqResult) {
-            return;
-=======
         if (destIdSemester) {
             // semester --> different semester
             console.log("Executing DropLogic elseif1->if");
             const semester1Num = parseInt(sourceId.substring(sourceId.lastIndexOf("-") + 1), 10);
             const semester2Num = destIdSemester ? parseInt(destinationId.substring(destinationId.lastIndexOf("-") + 1), 10) : -1;
-            const ind1 = semesters.findIndex(elem => elem.semesternum === semester1Num);
-            const ind2 = semesters.findIndex(elem => elem.semesternum === semester2Num);
+            const ind1 = semesters.findIndex(elem => elem.semesterNum === semester1Num);
+            const ind2 = semesters.findIndex(elem => elem.semesterNum === semester2Num);
             const preReqCheckerResult = PreReqChecker(semesters, ind2, semesters[ind1].courses[sourceIndex], state, dispatch) && RevPreReqChecker(semesters, ind2, semesters[ind1].courses[sourceIndex], state, dispatch);
             if (preReqCheckerResult) {
                 DropLogicExecutor(state, dispatch, "semesterToSemester", ind1, ind2, result.source.index, result.destination.index);
@@ -101,38 +62,19 @@ export const onDragEndLogic = (
             console.log("Executing DropLogic elseif1->else");
             // semester --> concentration
             const semester1Num = parseInt(sourceId.substring(sourceId.lastIndexOf("-") + 1), 10);
-            const ind1 = semesters.findIndex((eachSemester) => eachSemester.semesternum === semester1Num);
+            const ind1 = semesters.findIndex((eachSemester) => eachSemester.semesterNum === semester1Num);
             const ind2 = concentrationContainers.findIndex((eachConcentrationContainer) => eachConcentrationContainer.name === destinationId);
             DropLogicExecutor(state, dispatch, "semesterToConcentration", ind1, ind2, sourceIndex, dropIndex);
->>>>>>> issue-refactoring-4
         }
     } else if (destIdSemester) {
         // concentration --> semester
         console.log("Executing DropLogic elseif2");
         const semesterNum = parseInt(destinationId.substring(destinationId.lastIndexOf("-") + 1), 10);
-<<<<<<< HEAD
-        const tmpContainer: ConcentrationContainerType[] = [...concentrationContainers];
-        let ind1 = tmpContainer.findIndex(elem => elem.name === sourceId);
-        const ind2 = semesterCourses.findIndex(elem => elem.semesterNum === semesterNum);
-        if (PreReqChecker(
-            semesterCourses,
-            semesterNum - 1,
-            concentrationContainers[ind1].courses[result.source.index],
-            setErrMsg)) {
-            ind1 = ind1 > -1 ?
-                concentrationToSemester(
-                    concentrationContainers[ind1],
-                    result.source.index,
-                    result.destination.index,
-                    semesterCourses[ind2],
-                ) : -1;
-=======
         const concentrationContainerIndex = state.concentrationContainers.findIndex((eachContainer) => eachContainer.name === sourceId);
-        const semesterCoursesIndex = state.semesterCourses.findIndex((eachSemester) => eachSemester.semesternum === semesterNum);
+        const semesterCoursesIndex = state.semesterCourses.findIndex((eachSemester) => eachSemester.semesterNum === semesterNum);
         const PreReqResult = PreReqChecker(semesters, semesterCoursesIndex, concentrationContainers[concentrationContainerIndex].courses[sourceIndex], state, dispatch);
         if (PreReqResult) {
             DropLogicExecutor(state, dispatch, "concentrationToSemester", concentrationContainerIndex, semesterCoursesIndex, sourceIndex, dropIndex);
->>>>>>> issue-refactoring-4
         }
     } else {
         console.log("Executing DropLogic else");

@@ -113,7 +113,7 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
                 // saveData is not present, create new one and append onto end
                 console.log("before settign newSaveData, saveData = ", draft.saveData);
                 const tmpSaveData = [...draft.saveData];
-                tmpSaveData.push({ concentration: action.payload.concentration, numberOfSemesters: 1, semesters: [{semesternum: 1, courses: []}]});
+                tmpSaveData.push({ concentration: action.payload.concentration, numberOfSemesters: 1, semesters: [{semesterNum: 1, courses: []}]});
                 draft.saveData = tmpSaveData;
                 console.log("saveData = ", draft.saveData);
                 draft.semesters = 1;
@@ -228,6 +228,12 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
             const theClass = { ...theSemester.courses[action.payload.sourceIndex], description: newTextFields[0], name: newTextFields[1], title: newTextFields[2]};
             draft.currentSaveData.semesters[action.payload.sourceContainerIndex].courses[action.payload.sourceIndex] = theClass;
             draft.semesterCourses[action.payload.sourceContainerIndex].courses[action.payload.sourceIndex] = theClass;
+        });
+    }
+    
+    case "updateAddButtonDisplay": {
+        return produce(state, (draft) => {
+            draft.addCourseButtonIsDisplayed = action.payload.addCourseButtonIsDisplayed;
         });
     }
     default:{
