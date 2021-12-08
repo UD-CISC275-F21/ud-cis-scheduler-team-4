@@ -1,5 +1,5 @@
 import "bootswatch/dist/lux/bootstrap.min.css";
-import { Col, Button } from "react-bootstrap";
+import { Col } from "react-bootstrap";
 import React, { useState } from "react";
 import { Course as CourseType } from "../../interfaces/course";
 import { EditCourse } from "../util/EditCourse";
@@ -14,12 +14,14 @@ export const EditCoursePanel = (props: {
 
     return (
         <Col lg="1" xs>
-            <Button
+            <button
+                className="edit-course-button"
                 onClick={() => {
                     setDisplay(true);
                 }}
-                variant="warning"
-            />
+            >
+                <img src={`${process.env.PUBLIC_URL}/editbutton.png`} id="edit-img" />
+            </button>
             {
                 display
                 &&
