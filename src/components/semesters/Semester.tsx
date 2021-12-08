@@ -46,7 +46,7 @@ export const getCourses = (semesterCourses: SemesterType[], index: number): Cour
     //const [courses, setCourses] = useState<CourseType[]>(
     //    props.semesterCourses[props.ind] !== undefined ? 
     //    (props.semesterCourses[props.ind].courses.length > 0 ? props.semesterCourses[props.ind].courses : [])
-    //    : []);
+    //    : []);w
 
 };
 

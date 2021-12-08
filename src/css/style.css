@@ -1,9 +1,21 @@
 .course-button {
-  background-color: transparent;
+    background-color: transparent;
     background-repeat: no-repeat;
     border: none;
     cursor: pointer;
     overflow: hidden;
     outline: none;
     float: right;
+}
+.add-course-button {
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    position: absolute;
+    right: 2.5em;
+    font-size: 13pt;
+    font-weight: bold
 }
