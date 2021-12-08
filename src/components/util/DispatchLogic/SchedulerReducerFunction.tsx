@@ -121,6 +121,7 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
                 draft.semesterCourses = draft.currentSaveData.semesters;
                 console.log("currentsavedata = ", state.currentSaveData);
             } else {
+                console.log("found save data");
                 draft.currentSaveData = draft.saveData[newSaveDataIndex];
                 draft.semesterCourses = draft.currentSaveData.semesters;
                 draft.semesters = draft.currentSaveData.numberOfSemesters;

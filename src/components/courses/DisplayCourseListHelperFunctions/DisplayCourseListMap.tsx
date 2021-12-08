@@ -26,17 +26,13 @@ export const DisplayCourseListMap = (concentration: Concentration): JSX.Element 
     case CONCENTRATIONS[1].name: {
         return <BioConc/>;
     }
+    case CONCENTRATIONS[2].name: {
+        return <SecurityConc/>;
+    }
+    case CONCENTRATIONS[3].name: {
+        return <DataScienceConc/>;
+    }
     /*
-    case CONCENTRATIONS[2]: {
-        return <SecurityConc
-            StringsToCourses={StringsToCourses}
-        />;
-    }
-    case CONCENTRATIONS[3]: {
-        return <DataScienceConc
-            StringsToCourses={StringsToCourses}
-        />;
-    }
     case CONCENTRATIONS[4]: {
         return <HPCConc
             StringsToCourses={StringsToCourses}
