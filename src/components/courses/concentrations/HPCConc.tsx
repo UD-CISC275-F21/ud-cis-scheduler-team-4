@@ -4,107 +4,51 @@ import { CourseContainer } from "../CourseContainer";
 import { ConcentrationContainerType } from "../../../interfaces/concentrationcontainer";
 import React, { useState, useEffect } from "react";
 import { Course as Course } from "../../../interfaces/course";
+import { UseStateContext } from "../../util/DispatchLogic/UseStateContext";
+import { UseDispatchContext } from "../../util/DispatchLogic/UseDispatchContext";
+import { StringsToCourses } from "../DisplayCourseListHelperFunctions/StringsToCourses";
 
-export const HPCConc = (props: {
-    StringsToCourses: (stringCourses: string[]) => Course[];
-    setConcentrationContainers: (concentrationContainers: ConcentrationContainerType[]) => void;
-    }): void => {
-    /*
-    const [coreCourses,
-        setCoreCourses] = useState<Course[]>(props.StringsToCourses(CONCENTRATIONS[4].core));
-    const [capstoneCourses,
-        setCapstoneCourses] = useState<Course[]>(props.StringsToCourses(CONCENTRATIONS[4].capstone));
-    const [generalCourses,
-        setGeneralCourses] = useState<Course[]>(props.StringsToCourses(CONCENTRATIONS[4].conc.general));
-    const [writingCourses,
-        setWritingCourses] = useState<Course[]>(props.StringsToCourses(CONCENTRATIONS[4].writing));
-    const [labCourses,
-        setLabCourses] = useState<Course[]>(props.StringsToCourses(CONCENTRATIONS[4].lab));
-    const [statCourses,
-        setStatCourses] = useState<Course[]>(props.StringsToCourses(CONCENTRATIONS[4].conc.stats));
-    const [electiveCourses,
-        setElectiveCourses] = useState<Course[]>(props.StringsToCourses(CONCENTRATIONS[4].conc.elective));
-    const [mathCourses,
-        setMathCourses] = useState<Course[]>(props.StringsToCourses(CONCENTRATIONS[4].conc.data));
-    const [dataCourses,
-        setDataCourses] = useState<Course[]>(props.StringsToCourses(CONCENTRATIONS[4].conc.track));
-    const [learningCourses,
-        setLearningCourses] = useState<Course[]>(props.StringsToCourses(CONCENTRATIONS[4].conc.cybersecurity));
-    const [dataTrackCourses,
-        setDataTrackCourses] = useState<Course[]>(props.StringsToCourses(CONCENTRATIONS[4].conc.ochem));
+export const HPCConc = (): JSX.Element => {
+    const { state } = UseStateContext();
+    const { dispatch } = UseDispatchContext();
+    const index = state.saveData.findIndex((eachSaveData) => eachSaveData.concentration.name === "Cybersecurity");
+    
     useEffect(() => {
-        props.setConcentrationContainers(
-            [
+
+        dispatch({type: "updateConcentrationContainers", payload: {
+
+            ...state,
+            concentrationContainers: [
+
                 {
-                    courses: coreCourses,
                     name: "core",
-                    setCourses: (courses: Course[]) => {
-                        setCoreCourses(courses);
-                    },
+                    courses: StringsToCourses(state.saveData[index].concentration.core)
                 },
                 {
-                    courses: capstoneCourses,
                     name: "capstone",
-                    setCourses: (courses: Course[]) => {
-                        setCapstoneCourses(courses);
-                    },
-
+                    courses: StringsToCourses(state.saveData[index].concentration.capstone)
                 },
                 {
-                    courses: generalCourses,
                     name: "general",
-                    setCourses: (courses: Course[]) => {
-                        setGeneralCourses(courses);
-                    },
+                    courses: StringsToCourses(state.saveData[index].concentration.conc.general)
                 },
                 {
-                    courses: writingCourses,
                     name: "writing",
-                    setCourses: (courses: Course[]) => {
-                        setWritingCourses(courses);
-                    },
-
+                    courses: StringsToCourses(state.saveData[index].concentration.writing)
                 },
                 {
-                    courses: labCourses,
                     name: "lab-1",
-                    setCourses: (courses: Course[]) => {
-                        setLabCourses(courses);
-                    },
+                    courses: StringsToCourses(state.saveData[index].concentration.lab)
                 },
                 {
-                    courses: statCourses,
                     name: "stat",
-                    setCourses: (courses: Course[]) => {
-                        setStatCourses(courses);
-                    },
-                },
-                {
-                    courses: electiveCourses,
-                    name: "elective",
-                    setCourses: (courses: Course[]) => {
-                        setElectiveCourses(courses);
-                    },
-                },
-                {
-                    courses: mathCourses,
-                    name: "math",
-                    setCourses: (courses: Course[]) => {
-                        setMathCourses(courses);
-                    },
-                },
-                {
-                    courses: dataCourses,
-                    name: "dataCourses",
-                    setCourses: (courses: Course[]) => {
-                        setDataCourses(courses);
-                    },
-                },
-                { courses: learningCourses, name: "machineLearningCourses", setCourses: (courses: Course[]) => setLearningCourses(courses) },
-                { courses: dataTrackCourses, name: "dataTrack", setCourses: (courses: Course[]) => setDataTrackCourses(courses) },
-            ],
-        );
-    }, []);
+                }
+
+            ]
+
+        }})
+
+    })
 
     return (
         <div>
