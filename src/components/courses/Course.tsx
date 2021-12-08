@@ -1,7 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../../css/style.css";
 import { Draggable } from "react-beautiful-dnd";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ListGroup } from "react-bootstrap";
 import { CourseInfo } from "./CourseInfo";
 import { AddCourse } from "./AddCourse";
@@ -22,6 +22,12 @@ export const Course = (
     const [courseInfoDisplay, setCourseInfoDisplay] = useState<boolean>(false);
     const [addCourseModalDisplay, setAddCourseModalDisplay] = useState<boolean>(false);
     const [addCourseButtonDisplay, setAddCourseButtonDisplay] = useState<boolean>(true);
+    
+    useEffect(() => {
+        const splitName = props.name.split("-")[0];
+        const result = !state.semesterCourses.map((eachSemester) => eachSemester.courses.map(eachCourse => eachCourse.name)).flat(2).includes(splitName);
+        setAddCourseButtonDisplay(result);
+    }, [state.semesterCourses]);
 
     return (
         <Draggable draggableId={props.name} index={props.ind} key={props.name}>
@@ -33,7 +39,7 @@ export const Course = (
                         className="add-course-button"
                         onClick={()=>{
                             setAddCourseModalDisplay(!addCourseModalDisplay);
-                            console.log("display is: "  + addCourseButtonDisplay);
+                            setAddCourseButtonDisplay(!addCourseButtonDisplay);
                         }}
                         type="button"
                     >

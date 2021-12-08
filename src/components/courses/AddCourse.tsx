@@ -50,12 +50,8 @@ export const AddCourse = (
                                 key={index}
                                 onClick={()=>{
                                     if (courseIndex !== -1) {
-                                        console.log("buttonDisplay = " + props.buttonDisplay);
                                         props.setButtonDisplay(false); 
-                                        console.log("***AFTER setButtonDisplay(false)***");
-                                        console.log("buttonDisplay = " + props.buttonDisplay);
                                         dispatch({type: "concentrationToSemester", payload: { ...state, sourceContainerIndex: containerIndex, sourceIndex: courseIndex, destContainerIndex: index, destIndex: 0 }});
-                                        
                                     }
                                 }}
                             >
