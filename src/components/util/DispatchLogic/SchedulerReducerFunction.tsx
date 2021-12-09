@@ -32,11 +32,11 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
         return produce(state, (draft) => {
             console.log("S-->C state = ", state, " and payload = ", action.payload);
             const theConcentration: ConcentrationContainerType = draft.concentrationContainers[action.payload.destContainerIndex];
-            const theSemester: Semester = draft.semesterCourses[action.payload.sourceContainerIndex];
+            const theSemester: Semester = draft.currentSaveData.semesters[action.payload.sourceContainerIndex];
             const theCourse: Course = theSemester.courses.splice(action.payload.sourceIndex, 1)[0];
             theConcentration.courses.splice(action.payload.destIndex, 0, theCourse);
             draft.concentrationContainers[draft.destContainerIndex].courses = theConcentration.courses;
-            draft.semesterCourses[action.payload.sourceContainerIndex].courses = theSemester.courses;
+            draft.currentSaveData.semesters[action.payload.sourceContainerIndex].courses = theSemester.courses;
             draft.currentSaveData.semesters[action.payload.sourceContainerIndex].courses = theSemester.courses;
         });
     }
@@ -47,8 +47,8 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
             const theDestSemester: Semester = draft.currentSaveData.semesters[action.payload.destContainerIndex];
             const theSplicedCourse: Course = theSourceSemester.courses.splice(action.payload.sourceIndex, 1)[0];
             theDestSemester.courses.splice(action.payload.destIndex, 0, theSplicedCourse);
-            draft.semesterCourses[action.payload.sourceContainerIndex].courses = theSourceSemester.courses;
-            draft.semesterCourses[action.payload.destContainerIndex].courses = theDestSemester.courses;
+            draft.currentSaveData.semesters[action.payload.sourceContainerIndex].courses = theSourceSemester.courses;
+            draft.currentSaveData.semesters[action.payload.destContainerIndex].courses = theDestSemester.courses;
             draft.currentSaveData.semesters[action.payload.destContainerIndex].courses = theDestSemester.courses;
             draft.currentSaveData.semesters[action.payload.sourceContainerIndex].courses = theSourceSemester.courses;
         });
@@ -176,7 +176,7 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
     case "updateNumberOfSemesters":{
         console.log("--- adding semester, state = ", state);
         return produce(state, (draft) => {
-            draft.currentSaveData.semesters = [...draft.currentSaveData.semesters, { semesternum: action.payload.semesters, courses: []}];
+            draft.currentSaveData.semesters = [...draft.currentSaveData.semesters, { semesternum: action.payload.currentSaveData.semesters.length+1, courses: []}];
         });
     }
     case "updateConcentration":{
@@ -190,24 +190,13 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
             const newSaveDataIndex = draft.saveData.findIndex((eachSaveData) => eachSaveData.concentration.name === action.payload.concentration.name);
             if (newSaveDataIndex === -1) {
                 // saveData is not present, create new one and append onto end
-                console.log("before settign newSaveData, saveData = ", draft.saveData);
                 const tmpSaveData = [...draft.saveData];
                 tmpSaveData.push({ concentration: action.payload.concentration, numberOfSemesters: 1, semesters: [{semesternum: 1, courses: []}]});
                 draft.saveData = tmpSaveData;
-                console.log("saveData = ", draft.saveData);
-                draft.semesters = 1;
                 draft.currentSaveData = draft.saveData[draft.saveData.length-1];
-                draft.semesterCourses = draft.currentSaveData.semesters;
-                console.log("currentsavedata = ", draft.saveData[draft.saveData.length-1]);
             } else {
                 console.log("found save data");
                 draft.currentSaveData = draft.saveData[newSaveDataIndex];
-                draft.semesterCourses = draft.currentSaveData.semesters;
-                console.log("updated semesterCourses = ", draft.semesterCourses);
-                draft.semesters = draft.currentSaveData.numberOfSemesters;
-                console.log("updated with found save data = ", state.saveData);
-                console.log("state when loading in found save data =", state);
-                console.log("currentSaveData updating to = ", state.saveData[newSaveDataIndex]);
             }
             // updated saveData and currentSaveData -- cannot update concentrationContainers because that has not been rendered yet <-- if its been saved before, upload it, if not, just leave it
             // update semesterCourses <-- check
@@ -236,7 +225,7 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
     case "deleteSemester":{
         console.log("semesterCourses = ", state.semesterCourses, " and number of semesters = ", state.currentSaveData.numberOfSemesters);
         if ( state.semesters > 0) {
-            const temporarySemesterCourse = action.payload.semesterCourses[action.payload.semesterCourses.length-1];
+            const temporarySemesterCourse = action.payload.currentSaveData.semesters[action.payload.currentSaveData.semesters.length-1];
             if (temporarySemesterCourse.courses.length > 0) {
                 console.log("indelete if -> if");
                 // display error
@@ -244,7 +233,7 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
                     draft.toastMessage = `Must remove classes from Semester ${draft.semesterCourses.length} before deleting`;
                     draft.toastDisplay = true;
                 });
-            } else if(action.payload.semesterCourses.length === 1 || state.semesters === 1) {
+            } else if(action.payload.currentSaveData.semesters.length === 1 || state.semesters === 1) {
                 console.log("indelete if -> else if");
                 return produce(state, (draft) => {
                     draft.toastMessage = "Must have atleast 1 semester present";
@@ -253,9 +242,9 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
             } else {
                 return produce(state, (draft) => {
                     console.log("indelete if -> else");
-                    draft.semesterCourses = draft.semesterCourses.slice(0, draft.semesterCourses.length-1);
+                    draft.currentSaveData.semesters = draft.currentSaveData.semesters.slice(0, draft.currentSaveData.semesters.length-1);
                     draft.semesters -= 1;
-                    draft.currentSaveData.numberOfSemesters = draft.semesterCourses.length;
+                    draft.currentSaveData.numberOfSemesters = draft.currentSaveData.semesters.length;
                     draft.currentSaveData.semesters = draft.currentSaveData.semesters.slice(0,draft.currentSaveData.semesters.length-1);
                 });
             }
@@ -289,26 +278,26 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
             const indexWhereSaveDataIs = draft.saveData.findIndex((eachSaveData) => eachSaveData.concentration.name === action.payload.concentration.name);
             draft.currentSaveData = draft.saveData[indexWhereSaveDataIs];
             draft.semesters = draft.currentSaveData.numberOfSemesters;
-            draft.semesterCourses = draft.currentSaveData.semesters;
+            //draft.currentSaveData.semesters = draft.currentSaveData.semesters;
 
         });
     }
     case "SetSemesterCourses": {
         return produce(state, (draft) => {
-            draft.currentSaveData = {...draft.currentSaveData, semesters: action.payload.semesterCourses};
-            draft.semesterCourses = action.payload.semesterCourses;
-            draft.saveData[draft.saveData.findIndex((eachSaveData) => eachSaveData.concentration.name === draft.currentSaveData.concentration.name)].semesters = draft.semesterCourses;
+            draft.currentSaveData = {...draft.currentSaveData, semesters: action.payload.currentSaveData.semesters};
+            draft.currentSaveData.semesters = action.payload.currentSaveData.semesters;
+            draft.saveData[draft.saveData.findIndex((eachSaveData) => eachSaveData.concentration.name === draft.currentSaveData.concentration.name)].semesters = draft.currentSaveData.semesters;
         });
     }
     case "updateCourse": {
 
         return produce(state, (draft) => {
             console.log("in update course with msg = ", action.payload);
-            const theSemester: Semester = draft.semesterCourses[action.payload.sourceContainerIndex];
+            const theSemester: Semester = draft.currentSaveData.semesters[action.payload.sourceContainerIndex];
             const newTextFields = action.payload.toastMessage.split("_"); // [desc, name, title]
             const theClass = { ...theSemester.courses[action.payload.sourceIndex], description: newTextFields[0], name: newTextFields[1], title: newTextFields[2]};
             draft.currentSaveData.semesters[action.payload.sourceContainerIndex].courses[action.payload.sourceIndex] = theClass;
-            draft.semesterCourses[action.payload.sourceContainerIndex].courses[action.payload.sourceIndex] = theClass;
+            draft.currentSaveData.semesters[action.payload.sourceContainerIndex].courses[action.payload.sourceIndex] = theClass;
         });
     }
     default:{
