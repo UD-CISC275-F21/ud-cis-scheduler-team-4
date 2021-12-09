@@ -4,93 +4,49 @@ import { CourseContainer } from "../CourseContainer";
 import { ConcentrationContainerType } from "../../../interfaces/concentrationcontainer";
 import React, { useState, useEffect } from "react";
 import { Course as Course } from "../../../interfaces/course";
+import { UseStateContext } from "../../util/DispatchLogic/UseStateContext";
+import { UseDispatchContext } from "../../util/DispatchLogic/UseDispatchContext";
+import { StringsToCourses } from "../DisplayCourseListHelperFunctions/StringsToCourses";
 
-export const TheoryConc = (props: {
-    StringsToCourses: (stringCourses: string[]) => Course[];
-    setConcentrationContainers: (concentrationContainers: ConcentrationContainerType[]) => void;
-    }): void => {
-    /*
-    const [coreCourses,
-        setCoreCourses] = useState<Course[]>(props.StringsToCourses(CONCENTRATIONS[6].core));
-    const [capstoneCourses,
-        setCapstoneCourses] = useState<Course[]>(props.StringsToCourses(CONCENTRATIONS[6].capstone));
-    const [generalCourses,
-        setGeneralCourses] = useState<Course[]>(props.StringsToCourses(CONCENTRATIONS[6].conc.general));
-    const [writingCourses,
-        setWritingCourses] = useState<Course[]>(props.StringsToCourses(CONCENTRATIONS[6].writing));
-    const [statCourses,
-        setStatCourses] = useState<Course[]>(props.StringsToCourses(CONCENTRATIONS[6].conc.stats));
-    const [labCourses,
-        setLabCourses] = useState<Course[]>(props.StringsToCourses(CONCENTRATIONS[6].lab));
-    const [discCourses,
-        setDiscCourses] = useState<Course[]>(props.StringsToCourses(CONCENTRATIONS[6].conc.track));
-    const [contCourses,
-        setContCourses] = useState<Course[]>(props.StringsToCourses(CONCENTRATIONS[6].conc.cybersecurity));
-
+export const TheoryConc = (): void => {
+    const { state } = UseStateContext();
+    const { dispatch } = UseDispatchContext();
+    const index = state.saveData.findIndex((eachSaveData) => eachSaveData.concentration.name === "Cybersecurity");
+    
     useEffect(() => {
-        props.setConcentrationContainers(
 
-            [
+        dispatch({type: "updateConcentrationContainers", payload: {
+
+            ...state,
+            concentrationContainers: [
+
                 {
-                    courses: coreCourses,
                     name: "core",
-                    setCourses: (courses: Course[]) => {
-                        setCoreCourses(courses);
-                    },
+                    courses: StringsToCourses(state.saveData[index].concentration.core)
                 },
                 {
-                    courses: capstoneCourses,
                     name: "capstone",
-                    setCourses: (courses: Course[]) => {
-                        setCapstoneCourses(courses);
-                    },
-
+                    courses: StringsToCourses(state.saveData[index].concentration.capstone)
                 },
                 {
-                    courses: generalCourses,
                     name: "general",
-                    setCourses: (courses: Course[]) => {
-                        setGeneralCourses(courses);
-                    },
+                    courses: StringsToCourses(state.saveData[index].concentration.conc.general)
                 },
                 {
-                    courses: writingCourses,
                     name: "writing",
-                    setCourses: (courses: Course[]) => {
-                        setWritingCourses(courses);
-                    },
+                    courses: StringsToCourses(state.saveData[index].concentration.writing
                 },
                 {
-                    courses: statCourses,
                     name: "stat",
-                    setCourses: (courses: Course[]) => {
-                        setStatCourses(courses);
-                    },
-                },
-                {
-                    courses: labCourses,
-                    name: "lab-1",
-                    setCourses: (courses: Course[]) => {
-                        setLabCourses(courses);
-                    },
-                },
-                {
-                    courses: discCourses,
-                    name: "discrete",
-                    setCourses: (courses: Course[]) => {
-                        setDiscCourses(courses);
-                    },
-                },
-                {
-                    courses: contCourses,
-                    name: "continuous",
-                    setCourses: (courses: Course[]) => {
-                        setContCourses(courses);
-                    },
-                },
-            ],
-        );
-    }, []);
+                    courses: StringsToCourses(state.saveData[index].concentration.conc.stats)
+                }
+
+            ]
+
+        }})
+
+    },[]);
+
     return (
         <div>
             <h2>Theory</h2>

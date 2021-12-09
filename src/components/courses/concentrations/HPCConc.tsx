@@ -42,13 +42,36 @@ export const HPCConc = (): JSX.Element => {
                 },
                 {
                     name: "stat",
+                    courses: StringsToCourses(state.saveData[index].concentration.conc.stats)
+                },
+                {
+                    name: "elective",
+                    courses: StringsToCourses(state.saveData[index].concentration.conc.elective)
+                },
+                {
+                    name: "math",
+                    courses: StringsToCourses(state.saveData[index].concentration.conc.data)
+                },
+                {
+                    name: "dataCourses",
+                    courses: StringsToCourses(state.saveData[index].concentration.conc.ochem)
+                },
+                {
+                    name: "machineLearningCourses",
+                    courses: StringsToCourses(state.saveData[index].concentration.conc.cybersecurity)
+                },
+                {
+                    name: "dataTrack",
+                    courses: StringsToCourses(state.saveData[index].concentration.conc.ochem)
                 }
 
             ]
 
-        }})
-
-    })
+        }});
+        return() => {
+            dispatch({type: "saveHPC", payload: { ...state }});
+        };
+    },[]);
 
     return (
         <div>
@@ -61,9 +84,9 @@ export const HPCConc = (): JSX.Element => {
                         CISC Core and Concentration
                     </Accordion.Header>
                     <Accordion.Body>
-                        <CourseContainer courses={coreCourses} name="core" />
-                        <CourseContainer courses={capstoneCourses} name="capstone" />
-                        <CourseContainer courses={generalCourses} name="general" />
+                        <CourseContainer courses={state.concentrationContainers[0].courses} name="core" />
+                        <CourseContainer courses={state.concentrationContainers[1].courses} name="capstone" />
+                        <CourseContainer courses={state.concentrationContainers[2].courses} name="general" />
                     </Accordion.Body>
                 </Accordion.Item>
 
@@ -72,7 +95,7 @@ export const HPCConc = (): JSX.Element => {
                         Two Lab Courses
                     </Accordion.Header>
                     <Accordion.Body>
-                        <CourseContainer courses={labCourses} name="lab-1" />
+                        <CourseContainer courses={state.concentrationContainers[4].courses} name="lab-1" />
                     </Accordion.Body>
                 </Accordion.Item>
 
@@ -81,7 +104,7 @@ export const HPCConc = (): JSX.Element => {
                         One Writing
                     </Accordion.Header>
                     <Accordion.Body>
-                        <CourseContainer courses={writingCourses} name="writing" />
+                        <CourseContainer courses={state.concentrationContainers[3].courses} name="writing" />
                     </Accordion.Body>
                 </Accordion.Item>
 
@@ -102,9 +125,9 @@ export const HPCConc = (): JSX.Element => {
                                 </Accordion.Header>
                                 <Accordion.Body>
 
-                                    <CourseContainer courses={electiveCourses} name="elective" />
-                                    <CourseContainer courses={mathCourses} name="math" />
-                                    <CourseContainer courses={statCourses} name="stat" />
+                                    <CourseContainer courses={state.concentrationContainers[6].courses} name="elective" />
+                                    <CourseContainer courses={state.concentrationContainers[7].courses} name="math" />
+                                    <CourseContainer courses={state.concentrationContainers[5].courses} name="stat" />
 
                                 </Accordion.Body>
 
@@ -115,8 +138,8 @@ export const HPCConc = (): JSX.Element => {
                                     Data Track
                                 </Accordion.Header>
                                 <Accordion.Body>
-                                    <CourseContainer courses={dataCourses} name="dataCourses" />
-                                    <CourseContainer courses={dataTrackCourses} name="dataTrack" />
+                                    <CourseContainer courses={state.concentrationContainers[8].courses} name="dataCourses" />
+                                    <CourseContainer courses={state.concentrationContainers[10].courses} name="dataTrack" />
                                 </Accordion.Body>
 
                             </Accordion.Item>
@@ -133,7 +156,7 @@ export const HPCConc = (): JSX.Element => {
                         One Machine Learning
                     </Accordion.Header>
                     <Accordion.Body>
-                        <CourseContainer courses={learningCourses} name="machineLearningCourses" />
+                        <CourseContainer courses={state.concentrationContainers[9].courses} name="machineLearningCourses" />
                     </Accordion.Body>
 
                 </Accordion.Item>
@@ -141,5 +164,4 @@ export const HPCConc = (): JSX.Element => {
             </Accordion>
         </div>
     );
-    */
 };
