@@ -176,7 +176,7 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
     case "updateNumberOfSemesters":{
         //console.log("--- adding semester, state = ", state);
         return produce(state, (draft) => {
-            draft.currentSaveData.semesters = [...draft.currentSaveData.semesters, { semesternum: action.payload.currentSaveData.semesters.length+1, courses: []}];
+            draft.currentSaveData.semesters = [...draft.currentSaveData.semesters, { semesterNum: action.payload.currentSaveData.semesters.length+1, courses: []}];
         });
     }
     case "updateConcentration":{
@@ -191,7 +191,7 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
             if (newSaveDataIndex === -1) {
                 // saveData is not present, create new one and append onto end
                 const tmpSaveData = [...draft.saveData];
-                tmpSaveData.push({ concentration: action.payload.concentration, numberOfSemesters: 1, semesters: [{semesternum: 1, courses: []}]});
+                tmpSaveData.push({ concentration: action.payload.concentration, numberOfSemesters: 1, semesters: [{semesterNum: 1, courses: []}]});
                 draft.saveData = tmpSaveData;
                 draft.currentSaveData = draft.saveData[draft.saveData.length-1];
             } else {

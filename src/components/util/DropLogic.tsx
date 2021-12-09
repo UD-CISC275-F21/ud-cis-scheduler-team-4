@@ -52,8 +52,8 @@ export const onDragEndLogic = (
             //console.log("Executing DropLogic elseif1->if");
             const semester1Num = parseInt(sourceId.substring(sourceId.lastIndexOf("-") + 1), 10);
             const semester2Num = destIdSemester ? parseInt(destinationId.substring(destinationId.lastIndexOf("-") + 1), 10) : -1;
-            const ind1 = semesters.findIndex(elem => elem.semesternum === semester1Num);
-            const ind2 = semesters.findIndex(elem => elem.semesternum === semester2Num);
+            const ind1 = semesters.findIndex(elem => elem.semesterNum === semester1Num);
+            const ind2 = semesters.findIndex(elem => elem.semesterNum === semester2Num);
             const preReqCheckerResult = PreReqChecker(semesters, ind2, semesters[ind1].courses[sourceIndex], state, dispatch) && RevPreReqChecker(semesters, ind2, semesters[ind1].courses[sourceIndex], state, dispatch);
             if (preReqCheckerResult) {
                 DropLogicExecutor(state, dispatch, "semesterToSemester", ind1, ind2, result.source.index, result.destination.index);
@@ -62,7 +62,7 @@ export const onDragEndLogic = (
             //console.log("Executing DropLogic elseif1->else");
             // semester --> concentration
             const semester1Num = parseInt(sourceId.substring(sourceId.lastIndexOf("-") + 1), 10);
-            const ind1 = semesters.findIndex((eachSemester) => eachSemester.semesternum === semester1Num);
+            const ind1 = semesters.findIndex((eachSemester) => eachSemester.semesterNum === semester1Num);
             const ind2 = concentrationContainers.findIndex((eachConcentrationContainer) => eachConcentrationContainer.name === destinationId);
             DropLogicExecutor(state, dispatch, "semesterToConcentration", ind1, ind2, sourceIndex, dropIndex);
         }
@@ -71,7 +71,7 @@ export const onDragEndLogic = (
         //console.log("Executing DropLogic elseif2");
         const semesterNum = parseInt(destinationId.substring(destinationId.lastIndexOf("-") + 1), 10);
         const concentrationContainerIndex = state.concentrationContainers.findIndex((eachContainer) => eachContainer.name === sourceId);
-        const semesterCoursesIndex = semesters.findIndex((eachSemester) => eachSemester.semesternum === semesterNum);
+        const semesterCoursesIndex = semesters.findIndex((eachSemester) => eachSemester.semesterNum === semesterNum);
         const PreReqResult = PreReqChecker(semesters, semesterCoursesIndex, concentrationContainers[concentrationContainerIndex].courses[sourceIndex], state, dispatch);
         if (PreReqResult) {
             DropLogicExecutor(state, dispatch, "concentrationToSemester", concentrationContainerIndex, semesterCoursesIndex, sourceIndex, dropIndex);
