@@ -58,14 +58,6 @@ export const Semester = (props: {
         props.semesterCourse !== undefined ? props.semesterCourse.courses : []);
     const [credits, setCredits] = useState<number>(0);
     useEffect(() => {
-<<<<<<< HEAD
-        console.log("Adding semester to semesterCourses from MainPage ", props.ind, " courses = ", courses);
-        props.updateSemesterCourses({
-            semesterNum: props.ind + 1,
-            courses: courses,
-        });
-=======
->>>>>>> main
         return() => {
             //console.log("unmounting");
             setCourses([]);
