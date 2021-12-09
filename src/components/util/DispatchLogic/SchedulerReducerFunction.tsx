@@ -18,7 +18,7 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
     case "concentrationToSemester": {
         return produce(state, (draft) => {
             // PreReqChecker here
-            console.log("C-->StateContext state = ", state, " and payload = ", action.payload);
+            //console.log("C-->StateContext state = ", state, " and payload = ", action.payload);
             const theConcentration: ConcentrationContainerType = draft.concentrationContainers[action.payload.sourceContainerIndex];
             const theSemester: Semester = draft.currentSaveData.semesters[action.payload.destContainerIndex];
             const theCourse = theConcentration.courses.splice(action.payload.sourceIndex,1)[0];
@@ -30,7 +30,7 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
     }
     case "semesterToConcentration": {
         return produce(state, (draft) => {
-            console.log("S-->C state = ", state, " and payload = ", action.payload);
+            //console.log("S-->C state = ", state, " and payload = ", action.payload);
             const theConcentration: ConcentrationContainerType = draft.concentrationContainers[action.payload.destContainerIndex];
             const theSemester: Semester = draft.currentSaveData.semesters[action.payload.sourceContainerIndex];
             const theCourse: Course = theSemester.courses.splice(action.payload.sourceIndex, 1)[0];
@@ -42,7 +42,7 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
     }
     case "semesterToSemester": {
         return produce(state, (draft) => {
-            console.log("S-->S state = ", state, " and payload = ", action.payload);
+            //console.log("S-->S state = ", state, " and payload = ", action.payload);
             const theSourceSemester: Semester = draft.currentSaveData.semesters[action.payload.sourceContainerIndex];
             const theDestSemester: Semester = draft.currentSaveData.semesters[action.payload.destContainerIndex];
             const theSplicedCourse: Course = theSourceSemester.courses.splice(action.payload.sourceIndex, 1)[0];
@@ -55,7 +55,7 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
     }
     case "concentrationToConcentration": {
         return produce(state, (draft) => {
-            console.log("C-->C state = ", state, " and payload = ", action.payload);
+            //console.log("C-->C state = ", state, " and payload = ", action.payload);
             const theSourceConcentration: ConcentrationContainerType = draft.concentrationContainers[action.payload.sourceContainerIndex];
             const theDestinationConcentration: ConcentrationContainerType = draft.concentrationContainers[action.payload.destContainerIndex];
             const theCourse = theSourceConcentration.courses.splice(action.payload.sourceIndex, 1)[0];
@@ -66,7 +66,7 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
     }
     case "updateSaveDataBio":{
         return produce(state, (draft) => {
-            console.log("updating Save Data");
+            //console.log("updating Save Data");
             // set saveData index to be sourceContainerIndex
             const tmpSaveData = draft.saveData[draft.saveData.findIndex((eachSaveData) => eachSaveData.concentration.name === action.payload.concentration.name)];
             tmpSaveData.concentration.core = CoursesToStrings(state.concentrationContainers[0].courses);
@@ -82,7 +82,7 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
     }
     case "updateSaveDataAI":{
         return produce(state, (draft) => {
-            console.log("updating Save Data");
+            //console.log("updating Save Data");
             // set saveData index to be sourceContainerIndex
             const tmpSaveData = draft.saveData[0];
             tmpSaveData.concentration.core = CoursesToStrings(state.concentrationContainers[0].courses);
@@ -96,7 +96,7 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
     case "saveHPC": {
         return produce(state, (draft) => {
 
-            console.log("Updating HPC Concentration");
+            //console.log("Updating HPC Concentration");
             const tmpSaveData = draft.saveData[draft.saveData.findIndex((eachSaveData) => eachSaveData.concentration.name === action.payload.concentration.name)];// found saveData
             tmpSaveData.concentration.core = CoursesToStrings(state.concentrationContainers[0].courses);
             tmpSaveData.concentration.capstone = CoursesToStrings(state.concentrationContainers[1].courses);
@@ -161,7 +161,7 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
 
         return produce(state, (draft) => {
             const tmpSaveData = draft.saveData[draft.saveData.findIndex((eachSaveData) => eachSaveData.concentration.name === action.payload.concentration.name)];// found saveData
-            console.log("SAVEDATA = ", tmpSaveData);
+            //console.log("SAVEDATA = ", tmpSaveData);
             tmpSaveData.concentration.core = CoursesToStrings(state.concentrationContainers[0].courses);
             tmpSaveData.concentration.capstone = CoursesToStrings(state.concentrationContainers[1].courses);
             tmpSaveData.concentration.conc.general = CoursesToStrings(state.concentrationContainers[2].courses);
@@ -174,7 +174,7 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
 
     }
     case "updateNumberOfSemesters":{
-        console.log("--- adding semester, state = ", state);
+        //console.log("--- adding semester, state = ", state);
         return produce(state, (draft) => {
             draft.currentSaveData.semesters = [...draft.currentSaveData.semesters, { semesternum: action.payload.currentSaveData.semesters.length+1, courses: []}];
         });
@@ -195,7 +195,7 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
                 draft.saveData = tmpSaveData;
                 draft.currentSaveData = draft.saveData[draft.saveData.length-1];
             } else {
-                console.log("found save data");
+                //console.log("found save data");
                 draft.currentSaveData = draft.saveData[newSaveDataIndex];
             }
             // updated saveData and currentSaveData -- cannot update concentrationContainers because that has not been rendered yet <-- if its been saved before, upload it, if not, just leave it
@@ -223,30 +223,30 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
         });
     }
     case "deleteSemester":{
-        console.log("semesterCourses = ", state.semesterCourses, " and number of semesters = ", state.currentSaveData.numberOfSemesters);
+        //console.log("semesterCourses = ", state.semesterCourses, " and number of semesters = ", state.currentSaveData.numberOfSemesters);
         if ( state.currentSaveData.semesters.length > 0) {
             const temporarySemesterCourse = action.payload.currentSaveData.semesters[action.payload.currentSaveData.semesters.length-1];
             if (temporarySemesterCourse.courses.length > 0) {
-                console.log("indelete if -> if");
+                //console.log("indelete if -> if");
                 // display error
                 return produce(state, (draft) => {
-                    draft.toastMessage = `Must remove classes from Semester ${draft.semesterCourses.length} before deleting`;
+                    draft.toastMessage = `Must remove classes from Semester ${draft.currentSaveData.semesters.length} before deleting`;
                     draft.toastDisplay = true;
                 });
             } else if(action.payload.currentSaveData.semesters.length === 1) {
-                console.log("indelete if -> else if");
+                //console.log("indelete if -> else if");
                 return produce(state, (draft) => {
                     draft.toastMessage = "Must have atleast 1 semester present";
                     draft.toastDisplay = true;
                 });
             } else {
                 return produce(state, (draft) => {
-                    console.log("indelete if -> else");
+                    //console.log("indelete if -> else");
                     draft.currentSaveData.semesters = draft.currentSaveData.semesters.slice(0,draft.currentSaveData.semesters.length-1);
                 });
             }
         } else {
-            console.log("indeleteelse");
+            //console.log("indeleteelse");
             return { ...state };
         }
     }
@@ -289,7 +289,7 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
     case "updateCourse": {
 
         return produce(state, (draft) => {
-            console.log("in update course with msg = ", action.payload);
+            //console.log("in update course with msg = ", action.payload);
             const theSemester: Semester = draft.currentSaveData.semesters[action.payload.sourceContainerIndex];
             const newTextFields = action.payload.toastMessage.split("_"); // [desc, name, title]
             const theClass = { ...theSemester.courses[action.payload.sourceIndex], description: newTextFields[0], name: newTextFields[1], title: newTextFields[2]};

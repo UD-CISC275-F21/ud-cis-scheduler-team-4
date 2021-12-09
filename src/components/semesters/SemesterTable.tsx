@@ -14,7 +14,7 @@ import { UseStateContext } from "../util/DispatchLogic/UseStateContext";
 export const SemesterTable = (): JSX.Element => {
         
     const { state } = UseStateContext();
-    console.log("IN SEMESTER TABLE --- state = ", state);
+    //console.log("IN SEMESTER TABLE --- state = ", state);
     return(
         <>
             {

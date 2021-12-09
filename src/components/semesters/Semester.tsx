@@ -59,7 +59,7 @@ export const Semester = (props: {
     const [credits, setCredits] = useState<number>(0);
     useEffect(() => {
         return() => {
-            console.log("unmounting");
+            //console.log("unmounting");
             setCourses([]);
         };
     }, []);
@@ -74,12 +74,12 @@ export const Semester = (props: {
     };
 
     useEffect(() => {
-        console.log("courses changed -- ", props.semesterCourse);
+        //console.log("courses changed -- ", props.semesterCourse);
         if (props.semesterCourse !== undefined) {
-            console.log("courses changed [in if]-- ", props.semesterCourse);
+            //console.log("courses changed [in if]-- ", props.semesterCourse);
             setCourses(props.semesterCourse.courses);
             getCredits(props.semesterCourse.courses);
-            console.log(courses);
+            //console.log(courses);
         }
     }, [props.semesterCourse]);
 
