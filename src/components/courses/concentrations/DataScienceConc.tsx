@@ -57,7 +57,7 @@ export const DataScienceConc = (): JSX.Element => {
         }});
         return() => {
             console.log("DATA SCIENCE UNMOUNTING");
-            dispatch({type: "updateSaveDataScience", payload: { ...state }});
+            dispatch({type: "updateSaveDataScience", payload: { ...state, sourceContainerIndex: index }});
         };
     },[]);
 

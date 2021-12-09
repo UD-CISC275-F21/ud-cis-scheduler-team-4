@@ -128,6 +128,24 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
         });
 
     }
+    case "saveNetworks": {
+
+        return produce(state, (draft) => {
+
+            const tmpSaveData = draft.saveData[action.payload.sourceContainerIndex];
+            // found saveData
+            tmpSaveData.concentration.core = CoursesToStrings(state.concentrationContainers[0].courses);
+            tmpSaveData.concentration.capstone = CoursesToStrings(state.concentrationContainers[1].courses);
+            tmpSaveData.concentration.conc.general = CoursesToStrings(state.concentrationContainers[2].courses);
+            tmpSaveData.concentration.writing = CoursesToStrings(state.concentrationContainers[3].courses);
+            tmpSaveData.concentration.conc.stats = CoursesToStrings(state.concentrationContainers[4].courses);
+            tmpSaveData.concentration.lab = CoursesToStrings(state.concentrationContainers[5].courses);
+            tmpSaveData.concentration.conc.cybersecurity = CoursesToStrings(state.concentrationContainers[6].courses);
+            tmpSaveData.concentration.conc.systems = CoursesToStrings(state.concentrationContainers[7].courses);
+            tmpSaveData.concentration.conc.elective = CoursesToStrings(state.concentrationContainers[8].courses);
+        
+        });
+    }
     case "updateNumberOfSemesters":{
         console.log("--- adding semester, state = ", state);
         return produce(state, (draft) => {

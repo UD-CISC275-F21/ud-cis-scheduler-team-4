@@ -62,7 +62,7 @@ export const NetworksConc = (): JSX.Element => {
 
         }});
         return() => {
-            dispatch({type: "saveNetworks", payload: { ...state }});
+            dispatch({type: "saveNetworks", payload: { ...state, sourceContainerIndex: index }});
         };
     },[]);
     
