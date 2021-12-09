@@ -15,7 +15,7 @@ export const SemesterTable = (): JSX.Element => {
         
     const { state } = UseStateContext();
     const { dispatch } = UseDispatchContext();
-
+    console.log("IN SEMESTER TABLE --- state = ", state);
     return(
         <>
             {

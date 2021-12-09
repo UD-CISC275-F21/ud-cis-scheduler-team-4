@@ -177,6 +177,7 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
         console.log("--- adding semester, state = ", state);
         return produce(state, (draft) => {
             draft.semesters = action.payload.semesters;
+            console.log("--- adding semesters, payload = ", action.payload);
             draft.currentSaveData.numberOfSemesters = action.payload.semesters;
         });
     }
@@ -199,13 +200,16 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
                 draft.semesters = 1;
                 draft.currentSaveData = draft.saveData[draft.saveData.length-1];
                 draft.semesterCourses = draft.currentSaveData.semesters;
-                console.log("currentsavedata = ", state.currentSaveData);
+                console.log("currentsavedata = ", draft.saveData[draft.saveData.length-1]);
             } else {
                 console.log("found save data");
                 draft.currentSaveData = draft.saveData[newSaveDataIndex];
-                draft.semesterCourses[0] = draft.currentSaveData.semesters[0];
+                draft.semesterCourses = draft.currentSaveData.semesters;
+                console.log("updated semesterCourses = ", draft.semesterCourses);
                 draft.semesters = draft.currentSaveData.numberOfSemesters;
                 console.log("updated with found save data = ", state.saveData);
+                console.log("state when loading in found save data =", state);
+                console.log("currentSaveData updating to = ", state.saveData[newSaveDataIndex]);
             }
             // updated saveData and currentSaveData -- cannot update concentrationContainers because that has not been rendered yet <-- if its been saved before, upload it, if not, just leave it
             // update semesterCourses <-- check
