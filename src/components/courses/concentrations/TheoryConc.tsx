@@ -39,11 +39,26 @@ export const TheoryConc = (): void => {
                 {
                     name: "stat",
                     courses: StringsToCourses(state.saveData[index].concentration.conc.stats)
+                },
+                {
+                    name: "lab-1",
+                    courses: StringsToCourses(state.saveData[index].concentration.lab)
+                },
+                {
+                    name: "discrete",
+                    courses: StringsToCourses(state.saveData[index].concentration.conc.track)
+                },
+                {
+                    name: "continuous",
+                    courses: StringsToCourses(state.saveData[index].concentration.conc.cybersecurity)
                 }
 
             ]
 
-        }})
+        }});
+        return() => {
+            dispatch({type: "saveTheory", payload: { ...state }});
+        };
 
     },[]);
 
@@ -58,9 +73,9 @@ export const TheoryConc = (): void => {
                         CISC Core and Concentration
                     </Accordion.Header>
                     <Accordion.Body>
-                        <CourseContainer courses={coreCourses} name="core" />
-                        <CourseContainer courses={capstoneCourses} name="capstone" />
-                        <CourseContainer courses={generalCourses} name="general" />
+                        <CourseContainer courses={state.concentrationContainers[0].courses} name="core" />
+                        <CourseContainer courses={state.concentrationContainers[1].courses} name="capstone" />
+                        <CourseContainer courses={state.concentrationContainers[2].courses} name="general" />
                     </Accordion.Body>
                 </Accordion.Item>
 
@@ -69,7 +84,7 @@ export const TheoryConc = (): void => {
                         Two Lab Courses
                     </Accordion.Header>
                     <Accordion.Body>
-                        <CourseContainer courses={labCourses} name="lab-1" />
+                        <CourseContainer courses={state.concentrationContainers[5].courses} name="lab-1" />
                     </Accordion.Body>
                 </Accordion.Item>
 
@@ -78,7 +93,7 @@ export const TheoryConc = (): void => {
                         One Writing
                     </Accordion.Header>
                     <Accordion.Body>
-                        <CourseContainer courses={writingCourses} name="writing" />
+                        <CourseContainer courses={state.concentrationContainers[3].courses} name="writing" />
                     </Accordion.Body>
                 </Accordion.Item>
 
@@ -88,7 +103,7 @@ export const TheoryConc = (): void => {
                         One Statistics Course
                     </Accordion.Header>
                     <Accordion.Body>
-                        <CourseContainer courses={statCourses} name="stat" />
+                        <CourseContainer courses={state.concentrationContainers[4].courses} name="stat" />
                     </Accordion.Body>
                 </Accordion.Item>
 
@@ -108,7 +123,7 @@ export const TheoryConc = (): void => {
                                     Discrete
                                 </Accordion.Header>
                                 <Accordion.Body>
-                                    <CourseContainer courses={discCourses} name="discrete" />
+                                    <CourseContainer courses={state.concentrationContainers[6].courses} name="discrete" />
                                 </Accordion.Body>
 
                             </Accordion.Item>
@@ -119,7 +134,7 @@ export const TheoryConc = (): void => {
                                     Continuous
                                 </Accordion.Header>
                                 <Accordion.Body>
-                                    <CourseContainer courses={contCourses} name="continuous" />
+                                    <CourseContainer courses={state.concentrationContainers[7].courses} name="continuous" />
                                 </Accordion.Body>
 
                             </Accordion.Item>
