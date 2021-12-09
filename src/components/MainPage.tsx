@@ -38,7 +38,7 @@ export const MainPage = (): JSX.Element => {
             state,
             dispatch,
             concentrationContainers,
-            semesterCourses
+            state.currentSaveData.semesters
         );
     };
 

@@ -71,7 +71,7 @@ export const onDragEndLogic = (
         console.log("Executing DropLogic elseif2");
         const semesterNum = parseInt(destinationId.substring(destinationId.lastIndexOf("-") + 1), 10);
         const concentrationContainerIndex = state.concentrationContainers.findIndex((eachContainer) => eachContainer.name === sourceId);
-        const semesterCoursesIndex = state.semesterCourses.findIndex((eachSemester) => eachSemester.semesternum === semesterNum);
+        const semesterCoursesIndex = semesters.findIndex((eachSemester) => eachSemester.semesternum === semesterNum);
         const PreReqResult = PreReqChecker(semesters, semesterCoursesIndex, concentrationContainers[concentrationContainerIndex].courses[sourceIndex], state, dispatch);
         if (PreReqResult) {
             DropLogicExecutor(state, dispatch, "concentrationToSemester", concentrationContainerIndex, semesterCoursesIndex, sourceIndex, dropIndex);

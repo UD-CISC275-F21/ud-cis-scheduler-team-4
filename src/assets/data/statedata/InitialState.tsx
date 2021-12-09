@@ -19,7 +19,7 @@ export const initialState: State = {
     currentSaveData: {
         concentration: CONCENTRATIONS[0],
         numberOfSemesters: 1,
-        semesters: [],
+        semesters: [{semesternum: 1, courses: []}],
     } as SavedProgress,
     sourceIndex: 0,
     sourceContainerIndex: 0,

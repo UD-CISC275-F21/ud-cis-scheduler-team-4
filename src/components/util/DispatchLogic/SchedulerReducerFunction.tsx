@@ -20,11 +20,11 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
             // PreReqChecker here
             console.log("C-->StateContext state = ", state, " and payload = ", action.payload);
             const theConcentration: ConcentrationContainerType = draft.concentrationContainers[action.payload.sourceContainerIndex];
-            const theSemester: Semester = draft.semesterCourses[action.payload.destContainerIndex];
+            const theSemester: Semester = draft.currentSaveData.semesters[action.payload.destContainerIndex];
             const theCourse = theConcentration.courses.splice(action.payload.sourceIndex,1)[0];
             theSemester.courses.splice(action.payload.destIndex,0,theCourse);
             draft.concentrationContainers[action.payload.sourceContainerIndex] = theConcentration;
-            draft.semesterCourses[action.payload.destContainerIndex] = theSemester;
+            //draft.semesterCourses[action.payload.destContainerIndex] = theSemester;
             draft.currentSaveData.semesters[action.payload.destContainerIndex].courses = theSemester.courses;
         });
     }
@@ -176,9 +176,7 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
     case "updateNumberOfSemesters":{
         console.log("--- adding semester, state = ", state);
         return produce(state, (draft) => {
-            draft.semesters = action.payload.semesters;
-            console.log("--- adding semesters, payload = ", action.payload);
-            draft.currentSaveData.numberOfSemesters = action.payload.semesters;
+            draft.currentSaveData.semesters = [...draft.currentSaveData.semesters, { semesternum: action.payload.semesters, courses: []}];
         });
     }
     case "updateConcentration":{
@@ -214,13 +212,6 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
             // updated saveData and currentSaveData -- cannot update concentrationContainers because that has not been rendered yet <-- if its been saved before, upload it, if not, just leave it
             // update semesterCourses <-- check
 
-        });
-    }
-    case "updateSemesterCourses":{
-        return produce(state, (draft) => {
-            console.log("updating semesterCourses with ", action.payload.semesterCourses);
-            draft.semesterCourses = action.payload.semesterCourses;
-            draft.currentSaveData.semesters = action.payload.semesterCourses;
         });
     }
     case "updateConcentrationContainers": {

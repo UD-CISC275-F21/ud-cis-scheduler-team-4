@@ -53,17 +53,11 @@ export const getCourses = (semesterCourses: SemesterType[], index: number): Cour
 export const Semester = (props: {
     ind: number;
     semesterCourse: SemesterType;
-    updateSemesterCourses: (newSemester: SemesterType) => void;
 }): JSX.Element => {
     const [courses, setCourses] = useState<CourseType[]>(
         props.semesterCourse !== undefined ? props.semesterCourse.courses : []);
     const [credits, setCredits] = useState<number>(0);
     useEffect(() => {
-        console.log("Adding semester to semesterCourses from MainPage ", props.ind, " courses = ", courses);
-        props.updateSemesterCourses({
-            semesternum: props.ind+1,
-            courses: courses,
-        });
         return() => {
             console.log("unmounting");
             setCourses([]);
