@@ -1,7 +1,5 @@
 import React from "react";
 import { Semester as SemesterComponent } from "./Semester";
-import { Semester } from "../../interfaces/semester";
-import { UseDispatchContext } from "../util/DispatchLogic/UseDispatchContext";
 import { UseStateContext } from "../util/DispatchLogic/UseStateContext";
 
 /*

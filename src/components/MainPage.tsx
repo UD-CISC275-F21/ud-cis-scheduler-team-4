@@ -12,7 +12,6 @@ import { ExportPlan } from "./util/ExportPlan";
 import { HowToDisplay } from "./util/howto/howtodisplay";
 import { Footer } from "./util/Footer";
 import { initialState } from "../assets/data/statedata/InitialState";
-import { Button } from "react-bootstrap";
 import { reducerFunction } from "./util/DispatchLogic/SchedulerReducerFunction";
 import { DispatchContext } from "./util/DispatchLogic/DispatchContext";
 import { StateContext } from "./util/DispatchLogic/StateContext";

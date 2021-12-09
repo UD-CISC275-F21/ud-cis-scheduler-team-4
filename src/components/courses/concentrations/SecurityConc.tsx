@@ -1,9 +1,6 @@
 import { Accordion } from "react-bootstrap";
-import CONCENTRATIONS from "../../../json/concentrations.json";
 import { CourseContainer } from "../CourseContainer";
-import { ConcentrationContainerType } from "../../../interfaces/concentrationcontainer";
-import React, { useState, useEffect } from "react";
-import { Course as Course } from "../../../interfaces/course";
+import React, { useEffect } from "react";
 import { StringsToCourses } from "../DisplayCourseListHelperFunctions/StringsToCourses";
 import { UseStateContext } from "../../util/DispatchLogic/UseStateContext";
 import { UseDispatchContext } from "../../util/DispatchLogic/UseDispatchContext";
