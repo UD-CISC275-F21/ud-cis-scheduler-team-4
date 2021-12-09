@@ -14,6 +14,7 @@ export const Course = (props: { name: string; description: string; title: string
                 <ListGroup.Item data-testid="courseitem" ref={prov.innerRef} {...prov.draggableProps} {...prov.dragHandleProps}>
                     {props.name}
                     <button
+                        data-testid="dotsButton"
                         className="course-button"
                         onClick={() => {
                             setDisplay(!display);
@@ -26,6 +27,7 @@ export const Course = (props: { name: string; description: string; title: string
                     </button>
                     {display &&
                     <CourseInfo
+                        data-testid="course description"
                         credits={props.credits}
                         description={props.description}
                         display={display}

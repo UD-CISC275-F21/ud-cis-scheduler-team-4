@@ -84,7 +84,7 @@ export const AIConc = (props: {
             <Accordion defaultActiveKey="8">
 
                 <Accordion.Item eventKey="0">
-                    <Accordion.Header>CISC Core and Concentration</Accordion.Header>
+                    <Accordion.Header data-testid="Core Accordion">CISC Core and Concentration</Accordion.Header>
                     <Accordion.Body>
                         <CourseContainer courses={coreCourses} name="core" />
                         <CourseContainer courses={capstone1Courses} name="capstone-1" />
