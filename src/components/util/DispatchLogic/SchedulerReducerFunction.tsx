@@ -74,7 +74,7 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
             tmpSaveData.concentration.conc.general = CoursesToStrings(state.concentrationContainers[2].courses);
             tmpSaveData.concentration.lab = CoursesToStrings(state.concentrationContainers[5].courses);
             tmpSaveData.concentration.conc.ochem = CoursesToStrings(state.concentrationContainers[8].courses);
-            tmpSaveData.concentration.writing = CoursesToStrings(state.concentrationContainers[8].courses);
+            tmpSaveData.concentration.writing = CoursesToStrings(state.concentrationContainers[3].courses);
             tmpSaveData.concentration.conc.stats = CoursesToStrings(state.concentrationContainers[4].courses);
             tmpSaveData.concentration.conc.data = CoursesToStrings(state.concentrationContainers[7].courses);
             tmpSaveData.concentration.conc.elective = CoursesToStrings(state.concentrationContainers[6].courses);
