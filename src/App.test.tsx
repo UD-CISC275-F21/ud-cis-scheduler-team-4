@@ -12,34 +12,45 @@ import App from "./App";
     Testing initial render elements
 
 */
+describe("testing initial render elements", () => {
+    beforeEach(() => {
+        render(<App />);
+    })
+    test("renders UD CIS Scheduler text", () => {
+        const linkElement = screen.getByText(/Course Scheduler/i);
+        expect(linkElement).toBeInTheDocument();
+    });
+    
+    test("renders Semester Table", () => {
+        const semesterTableElement = screen.getByText(/Semester 1/i);
+        expect(semesterTableElement).toBeInTheDocument();
+    });
+    
+    test("renders concentration header", () => {
+        const concentrationHeaderElem = screen.getByText(/Artificial Intelligence and Robotics/i);
+        expect(concentrationHeaderElem).toBeInTheDocument();
+    
+    });
+    
+    test("renders nav bar", () => {
+        const navBar = screen.getByTestId("navbar");
+        expect(navBar).toBeInTheDocument();
+    
+    });
 
-test("renders UD CIS Scheduler text", () => {
-    render(<App />);
-    const linkElement = screen.getByText(/Course Scheduler/i);
-    expect(linkElement).toBeInTheDocument();
-});
+    test("concentration dropdown is in the document", ()=> {
+        const concentrationMenu = screen.getByTestId("concentrationMenu");
+        expect(concentrationMenu).toBeInTheDocument();
+    });
 
-test("renders Semester Table", () => {
-    render(<App />);
-    const semesterTableElement = screen.getByText(/Semester 1/i);
-    expect(semesterTableElement).toBeInTheDocument();
-});
+    test("renders course listgroup", () => {
+        const courses = screen.getAllByTestId("courseitem");
+        for(const c in courses){
+            expect(courses[c]).toBeInTheDocument();
+        }
+    });
+})
 
-test("renders concentration header", () => {
-
-    render(<App />);
-    const concentrationHeaderElem = screen.getByText(/Artificial Intelligence and Robotics/i);
-    expect(concentrationHeaderElem).toBeInTheDocument();
-
-});
-
-test("renders nav bar", () => {
-
-    render(<App />);
-    const navBar = screen.getByTestId("navbar");
-    expect(navBar).toBeInTheDocument();
-
-});
 
 describe("Testing useful links dropdown", () => {
 
@@ -62,43 +73,56 @@ describe("Testing useful links dropdown", () => {
     });
 });
 
-test("renders add semester button", () => {
-    render(<App />);
-    const addSemesterButton = screen.getByTestId("addsemesterbutton");
-    expect(addSemesterButton).toBeInTheDocument();
-});
+describe("testing navbar buttons", () => {
+    beforeEach(() => {
+        render(<App />);
+    })
+    test("renders add semester button", () => {
+        const addSemesterButton = screen.getByTestId("addsemesterbutton");
+        expect(addSemesterButton).toBeInTheDocument();
+    });
+    
+    test("renders delete semester button", () => {
+        const deleteSemesterButton = screen.getByTestId("deletesemesterbutton");
+        expect(deleteSemesterButton).toBeInTheDocument();
+    });
+    
+    test("renders export csv button", () => {
+        const exportCSV = screen.getByTestId("exportcsvbutton");
+        expect(exportCSV).toBeInTheDocument();
+    });
+    
+    test("renders how to button", () => {
+        const howToButton = screen.getByTestId("howtobutton");
+        expect(howToButton).toBeInTheDocument();
+    });
 
-test("renders delete semester button", () => {
-    render(<App />);
-    const deleteSemesterButton = screen.getByTestId("deletesemesterbutton");
-    expect(deleteSemesterButton).toBeInTheDocument();
-});
+    test("add semester button renders a new semester", () => {
+        const addSemesterButton = screen.getByTestId("addsemesterbutton");
+        const initialSemesters = screen.getAllByText(/Semester/);
+        act(() => {
+            addSemesterButton.click();
+        });
+        const secondSemesters = screen.getAllByText(/Semester/);
+        expect(secondSemesters.length).toBeGreaterThan(initialSemesters.length);
+    });
 
-test("renders export csv button", () => {
-    render(<App />);
-    const exportCSV = screen.getByTestId("exportcsvbutton");
-    expect(exportCSV).toBeInTheDocument();
-});
+    test("delete semester button removes a semester from the screen", () => {
+        const addSemesterButton = screen.getByTestId("addsemesterbutton");
+        const deleteSemesterButton = screen.getByTestId("deletesemesterbutton");
+        act(() => {
+            addSemesterButton.click();
+        });
+        const beforeDelete = screen.getAllByTestId("semesteraccordian");
+        act(() => {
+            deleteSemesterButton.click();
+        });
+        const afterDelete = screen.getAllByTestId("semesteraccordian");
+        expect(beforeDelete.length).toBeGreaterThan(afterDelete.length);
+    
+    });
+})
 
-test("renders how to button", () => {
-    render(<App />);
-    const howToButton = screen.getByTestId("howtobutton");
-    expect(howToButton).toBeInTheDocument();
-});
-
-test("renders course listgroup", () => {
-    render(<App />);
-    const courses = screen.getAllByTestId("courseitem");
-    for(const c in courses){
-        expect(courses[c]).toBeInTheDocument();
-    }
-});
-
-test("concentration dropdown is in the document", ()=> {
-    render(<App />);
-    const concentrationMenu = screen.getByTestId("concentrationMenu");
-    expect(concentrationMenu).toBeInTheDocument();
-});
 
 test("Selecting concentrations dropdown displays concentrations to choose from", ()=> {
     render(<App />);
@@ -127,60 +151,37 @@ test("Selecting new concentration renders that concentration", ()=> {
  * 
  */
 
-test("add semester button renders a new semester", () => {
-    render(<App />);
-    const addSemesterButton = screen.getByTestId("addsemesterbutton");
-    const initialSemesters = screen.getAllByText(/Semester/);
-    act(() => {
-        addSemesterButton.click();
+describe("testing button clicking features", () => {
+    beforeEach(() => {
+        render(<App />);
+    })
+    test("Clicking accordions opens and closes them", ()=> {
+        const coreAccordion = screen.getByTestId("Core Accordion");
+        coreAccordion.click();
+        const cisc108 = screen.getByText("CISC108-Intro to CS 1");
+        expect(cisc108).toBeInTheDocument();
+        coreAccordion.click();
+        const cisc181 = screen.queryByText("CISC181");
+        expect(cisc181).toBeNull();
     });
-    const secondSemesters = screen.getAllByText(/Semester/);
-    expect(secondSemesters.length).toBeGreaterThan(initialSemesters.length);
-});
-
-test("delete semester button removes a semester from the screen", () => {
-    render(<App />);
-    const addSemesterButton = screen.getByTestId("addsemesterbutton");
-    const deleteSemesterButton = screen.getByTestId("deletesemesterbutton");
-    act(() => {
-        addSemesterButton.click();
+    
+    test("Clicking triple dots displays detailed course info", ()=> {
+        const coreAccordion = screen.getByTestId("Core Accordion");
+        coreAccordion.click();
+        const dotsButtons = screen.getAllByTestId("dotsButton");
+        dotsButtons[0].click();
+        const coursedescription = screen.getByText(/Computing/);
+        expect(coursedescription).toBeVisible();
     });
-    const beforeDelete = screen.getAllByTestId("semesteraccordian");
-    act(() => {
-        deleteSemesterButton.click();
-    });
-    const afterDelete = screen.getAllByTestId("semesteraccordian");
-    expect(beforeDelete.length).toBeGreaterThan(afterDelete.length);
+})
 
-});
-
-test("Clicking accordions opens and closes them", ()=> {
-    render(<App />);
-    const coreAccordion = screen.getByTestId("Core Accordion");
-    coreAccordion.click();
-    const cisc108 = screen.getByText("CISC108-Intro to CS 1");
-    expect(cisc108).toBeInTheDocument();
-    coreAccordion.click();
-    const cisc181 = screen.queryByText("CISC181");
-    expect(cisc181).toBeNull();
-});
-
-test("Clicking triple dots displays detailed course info", ()=> {
-    render(<App />);
-    const coreAccordion = screen.getByTestId("Core Accordion");
-    coreAccordion.click();
-    const dotsButtons = screen.getAllByTestId("dotsButton");
-    dotsButtons[0].click();
-    const coursedescription = screen.getByText(/Computing/);
-    expect(coursedescription).toBeVisible();
-});
  
 // This test doesn't consistently pass? Seems to be a problem with the testing-util package
 describe("testing drag and drop features", ()=> {
-
-    test("moves a task down inside a column", async () => {
+    beforeEach(() => {
         render(<App />);
-    
+    })
+    test("moves a task down inside a column", async () => {
         const courses = screen.getAllByTestId("courseitem");
 
         screen.getByText(/CISC Core and Concentration/).click();
@@ -202,8 +203,6 @@ describe("testing drag and drop features", ()=> {
     });
 
     test("moves a task up inside a column", async () => {
-        render(<App />);
-
         const courses = screen.getAllByTestId("courseitem");
 
         screen.getByText(/CISC Core and Concentration/).click();
