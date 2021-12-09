@@ -51,11 +51,11 @@ describe("Testing useful links dropdown", () => {
 
         const navBarDropDown = screen.getByTestId("navbardropdown");
         navBarDropDown.click();
-        //const firstLink = screen.getByTestId("navdropdownitem1");
+        const firstLink = screen.getByTestId("navdropdownitem1");
         //const secondLink = screen.getByTestId("navdropdownitem2");
         //const thirdLink = screen.getByTestId("navbardropdownitem3");
         //const fourthLink = screen.getByTestId("navbardropdownitem4");
-        //expect(firstLink).toBeVisible();
+        expect(firstLink).toBeVisible();
         //expect(secondLink).toBeVisible();
         //expect(thirdLink).toBeVisible();
         //expect(fourthLink).toBeVisible();
@@ -112,16 +112,14 @@ test("Selecting concentrations dropdown displays concentrations to choose from",
 
 test("Selecting new concentration renders that concentration", ()=> {
     render(<App />);
-    const concentrationMenu = screen.getByTestId("concentrationMenu");
-    act(()=> {
-        concentrationMenu.click();
-        console.log
-    });
-    const bioConcentration = screen.getByTestId("bioConcentration");
+    const concentrationMenu = screen.getByText(/Concentrations/);
+    concentrationMenu.click();
+    const bioConcentration = screen.getByText(/Bioinformatics/)
+    expect(bioConcentration).toBeInTheDocument();
     act(()=> {
         bioConcentration.click();
     });
-    const concentrationHeaderElem = screen.getByText(/Bioinformatics/i);
+    const concentrationHeaderElem = screen.getByTestId("bio-header");
     expect(concentrationHeaderElem).toBeInTheDocument();
 });
 

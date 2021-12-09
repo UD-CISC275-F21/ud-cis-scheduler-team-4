@@ -85,7 +85,7 @@ export const BioConc = (props: { StringsToCourses: (
 
     return (
         <div>
-            <h2>Bioinformatics</h2>
+            <h2 data-testid="bio-header">Bioinformatics</h2>
             <Accordion defaultActiveKey="8">
 
                 <Accordion.Item eventKey="0">
