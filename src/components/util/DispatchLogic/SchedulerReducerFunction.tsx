@@ -224,7 +224,7 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
     }
     case "deleteSemester":{
         console.log("semesterCourses = ", state.semesterCourses, " and number of semesters = ", state.currentSaveData.numberOfSemesters);
-        if ( state.semesters > 0) {
+        if ( state.currentSaveData.semesters.length > 0) {
             const temporarySemesterCourse = action.payload.currentSaveData.semesters[action.payload.currentSaveData.semesters.length-1];
             if (temporarySemesterCourse.courses.length > 0) {
                 console.log("indelete if -> if");
@@ -233,7 +233,7 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
                     draft.toastMessage = `Must remove classes from Semester ${draft.semesterCourses.length} before deleting`;
                     draft.toastDisplay = true;
                 });
-            } else if(action.payload.currentSaveData.semesters.length === 1 || state.semesters === 1) {
+            } else if(action.payload.currentSaveData.semesters.length === 1) {
                 console.log("indelete if -> else if");
                 return produce(state, (draft) => {
                     draft.toastMessage = "Must have atleast 1 semester present";
@@ -242,9 +242,6 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
             } else {
                 return produce(state, (draft) => {
                     console.log("indelete if -> else");
-                    draft.currentSaveData.semesters = draft.currentSaveData.semesters.slice(0, draft.currentSaveData.semesters.length-1);
-                    draft.semesters -= 1;
-                    draft.currentSaveData.numberOfSemesters = draft.currentSaveData.semesters.length;
                     draft.currentSaveData.semesters = draft.currentSaveData.semesters.slice(0,draft.currentSaveData.semesters.length-1);
                 });
             }
