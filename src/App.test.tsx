@@ -169,9 +169,7 @@ describe("testing button clicking features", () => {
         const coreAccordion = screen.getByTestId("Core Accordion");
         coreAccordion.click();
         const dotsButtons = screen.getAllByTestId("dotsButton");
-        act(() => {
-            dotsButtons[0].click();
-        })
+        dotsButtons[0].click();
         const coursedescription = screen.getByText(/Computing/);
         expect(coursedescription).toBeVisible();
     });
