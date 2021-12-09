@@ -1,10 +1,8 @@
-import { ConcentrationContainerType } from "../../../interfaces/concentrationcontainer";
 import { SavedProgress } from "../../../interfaces/savedprogress";
-import { Concentration } from "../../../interfaces/concentration";
 import { Semester } from "../../../interfaces/semester";
 
 
-export const UpdateSemester = (saveProgress: SavedProgress, semesterCourses: Semester[]) => {
+export const UpdateSemester = (saveProgress: SavedProgress, semesterCourses: Semester[]): SavedProgress => {
 
     //console.log("IN UPDATE SEMESTER");
     let semester: Semester[] = saveProgress.semesters;

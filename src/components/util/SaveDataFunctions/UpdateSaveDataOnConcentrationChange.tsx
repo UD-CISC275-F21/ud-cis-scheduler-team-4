@@ -1,4 +1,3 @@
-import { Concentration } from "../../../interfaces/concentration";
 import { SavedProgress } from "../../../interfaces/savedprogress";
 
 export const UpdateSaveDataOnConcentrationChange = (
