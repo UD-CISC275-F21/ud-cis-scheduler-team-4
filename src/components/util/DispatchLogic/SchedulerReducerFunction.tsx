@@ -238,6 +238,7 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
         });
     }
     case "deleteSemester":{
+        console.log("semesterCourses = ", state.semesterCourses);
         if ( state.semesters > 0) {
             const temporarySemesterCourse = action.payload.semesterCourses[action.payload.semesterCourses.length-1];
             if (temporarySemesterCourse.courses.length > 0) {
@@ -253,7 +254,7 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
                 });
             } else {
                 return produce(state, (draft) => {
-                    draft.semesterCourses = draft.semesterCourses.slice(0, draft.semesterCourses.length-1);
+                    draft.semesterCourses = draft.semesterCourses.slice(0, draft.semesterCourses.length);
                     draft.semesters -= 1;
                     draft.currentSaveData.numberOfSemesters = draft.semesterCourses.length-1;
                     draft.currentSaveData.semesters = draft.currentSaveData.semesters.slice(0,draft.currentSaveData.semesters.length-1);
