@@ -49,16 +49,16 @@ describe("Testing useful links dropdown", () => {
 
     it("should display all links when useful links dropdown is pressed", async () => {
 
-       // const navBarDropDown = screen.getByTestId("navbardropdown");
-       // navBarDropDown.click();
-        //const firstLink = screen.getByTestId("navdropdownitem1");
-        //const secondLink = screen.getByTestId("navdropdownitem2");
-        //const thirdLink = screen.getByTestId("navbardropdownitem3");
-        //const fourthLink = screen.getByTestId("navbardropdownitem4");
-        //expect(firstLink).toBeVisible();
-        //expect(secondLink).toBeVisible();
-        //expect(thirdLink).toBeVisible();
-        //expect(fourthLink).toBeVisible();
+        const navBarDropDown = screen.getByText(/Useful Links/);
+        navBarDropDown.click();
+        const firstLink = screen.getByTestId("navdropdownitem1");
+        const secondLink = screen.getByTestId("navdropdownitem2");
+        const thirdLink = screen.getByTestId("navdropdownitem3");
+        const fourthLink = screen.getByTestId("navdropdownitem4");
+        expect(firstLink).toBeVisible();
+        expect(secondLink).toBeVisible();
+        expect(thirdLink).toBeVisible();
+        expect(fourthLink).toBeVisible();
     });
 });
 
