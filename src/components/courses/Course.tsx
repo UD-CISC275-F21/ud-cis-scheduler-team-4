@@ -7,6 +7,8 @@ import { CourseInfo } from "./CourseInfo";
 import { AddCourse } from "./AddCourse";
 import { Semester } from "../../interfaces/semester";
 import { UseStateContext } from "../util/DispatchLogic/UseStateContext";
+import { removeCourse } from "../util/RemoveCourseLogic";
+
 
 
 export const Course = (
@@ -22,6 +24,7 @@ export const Course = (
     const [courseInfoDisplay, setCourseInfoDisplay] = useState<boolean>(false);
     const [addCourseModalDisplay, setAddCourseModalDisplay] = useState<boolean>(false);
     const [addCourseButtonDisplay, setAddCourseButtonDisplay] = useState<boolean>(true);
+    let containerIndex: number;
     
     useEffect(() => {
         const splitName = props.name.split("-")[0];
@@ -40,6 +43,12 @@ export const Course = (
                         onClick={()=>{
                             setAddCourseModalDisplay(!addCourseModalDisplay);
                             setAddCourseButtonDisplay(!addCourseButtonDisplay);
+                            console.log(state.sourceIndex);
+                            console.log(state.sourceContainerIndex);
+                            console.log(state.concentration);
+                            const formattedCourseName = props.name.split("-")[0];
+                            const concentrationContainers = state.concentrationContainers;
+                            containerIndex = concentrationContainers.findIndex((eachContainer) => eachContainer.courses.map((eachCourse) => eachCourse.name).includes(formattedCourseName));
                         }}
                         type="button"
                     >
@@ -53,6 +62,17 @@ export const Course = (
                         buttonDisplay={addCourseButtonDisplay}
                         setButtonDisplay={setAddCourseButtonDisplay}
                     />
+                    }
+                    {!addCourseButtonDisplay &&
+                    <button
+                        className="remove-course-button"
+                        onClick={()=>{
+                            setAddCourseButtonDisplay(!addCourseButtonDisplay);
+                            console.log(state.concentrationContainers[containerIndex].courses);
+                        }}
+                    >
+                        -
+                    </button>
                     }
                     <button
                         className="course-button"
