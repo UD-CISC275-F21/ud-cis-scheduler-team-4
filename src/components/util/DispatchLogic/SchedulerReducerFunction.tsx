@@ -212,6 +212,7 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
         });
     }
     case "updateCurrentSaveData":{
+        console.log("IN UPDATE CURRENT SAVE DATA");
         return produce(
             state, (draft) => {
                 draft.currentSaveData = action.payload.currentSaveData;
@@ -254,36 +255,6 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
         return produce(state, (draft) => {
             draft.toastMessage = action.payload.toastMessage;
             draft.toastDisplay = action.payload.toastDisplay;
-        });
-    }
-    case "NoSavedConcentration": {
-        return produce(state, (draft) => {
-            const indexToUpdate = draft.saveData.findIndex((eachSaveData) => eachSaveData.concentration.name === draft.currentSaveData.concentration.name);
-            draft.saveData[indexToUpdate] = draft.currentSaveData;
-            draft.saveData = [...draft.saveData, {
-                concentration: action.payload.concentration,
-                numberOfSemesters: 1,
-                semesters: [],
-            }];
-            draft.semesters = 1;
-            draft.currentSaveData = draft.saveData[draft.saveData.length-1];
-            draft.currentSaveData.numberOfSemesters = 1;
-        });
-    }
-    case "SavedConcentration": {
-        return produce(state, (draft) => {
-            const indexWhereSaveDataIs = draft.saveData.findIndex((eachSaveData) => eachSaveData.concentration.name === action.payload.concentration.name);
-            draft.currentSaveData = draft.saveData[indexWhereSaveDataIs];
-            draft.semesters = draft.currentSaveData.numberOfSemesters;
-            //draft.currentSaveData.semesters = draft.currentSaveData.semesters;
-
-        });
-    }
-    case "SetSemesterCourses": {
-        return produce(state, (draft) => {
-            draft.currentSaveData = {...draft.currentSaveData, semesters: action.payload.currentSaveData.semesters};
-            draft.currentSaveData.semesters = action.payload.currentSaveData.semesters;
-            draft.saveData[draft.saveData.findIndex((eachSaveData) => eachSaveData.concentration.name === draft.currentSaveData.concentration.name)].semesters = draft.currentSaveData.semesters;
         });
     }
     case "updateCourse": {
