@@ -165,8 +165,8 @@ export const HPCConc = (): JSX.Element => {
                 </Accordion>
             </div>
             :
-            <div>
-                Concentration Unavailable
-            </div>
+            <h2>
+                High-Performance Computing
+            </h2>
     );
 };
