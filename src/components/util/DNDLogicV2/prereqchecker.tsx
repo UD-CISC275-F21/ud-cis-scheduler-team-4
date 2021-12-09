@@ -1,10 +1,15 @@
 import { Course as CourseType } from "../../../interfaces/course";
 import { Semester } from "../../../interfaces/semester";
+import React from "react";
+import { State } from "../../../interfaces/State";
+import { SchedulerAction } from "../../../interfaces/SchedulerAction";
 
-export const PreReqChecker = (semesters: Semester[],
+export const PreReqChecker = (
+    semesters: Semester[],
     placingIndex: number,
     courseBeingPlaced: CourseType,
-    setErrMsg: (msg: string) => void,
+    state: State,
+    dispatch: React.Dispatch<SchedulerAction>
 ): boolean => {
     const semesterCourses: string = semesters.slice(0, placingIndex)
         .map(elem => elem.courses.map(eachcourse => eachcourse.name))
@@ -21,7 +26,7 @@ export const PreReqChecker = (semesters: Semester[],
     }
     if (StringBuffer.length > 0) {
         StringBuffer[StringBuffer.length - 1] = StringBuffer[StringBuffer.length - 1].replace(", and", "");
-        setErrMsg(`PreReq(s) required are : ${StringBuffer.join("\n")}`);
+        dispatch({type: "displayToast", payload: { ...state, toastMessage: `PreReq(s) required are : ${StringBuffer.join("\n")}`, toastDisplay: true}});
         return false;
     }
     return true;

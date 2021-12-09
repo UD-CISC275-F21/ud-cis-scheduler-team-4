@@ -1,79 +1,64 @@
 import { Accordion } from "react-bootstrap";
-import CONCENTRATIONS from "../../../json/concentrations.json";
 import { CourseContainer } from "../CourseContainer";
-import { ConcentrationContainerType } from "../../../interfaces/concentrationcontainer";
-import React, { useState, useEffect } from "react";
-import { Course as CourseType } from "../../../interfaces/course";
+import React, { useEffect } from "react";
+import { UseStateContext } from "../../util/DispatchLogic/UseStateContext";
+import { UseDispatchContext } from "../../util/DispatchLogic/UseDispatchContext";
+import { StringsToCourses } from "../DisplayCourseListHelperFunctions/StringsToCourses";
 
-export const TheoryConc = (props: {
-    StringsToCourses: (stringCourses: string[]) => CourseType[];
-    setConcentrationContainers: React.Dispatch<React.SetStateAction<ConcentrationContainerType[]>>;
-    }): JSX.Element => {
-    const [coreCourses,
-        setCoreCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[6].core));
-    const [capstoneCourses,
-        setCapstoneCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[6].capstone));
-    const [generalCourses,
-        setGeneralCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[6].conc.general));
-    const [writingCourses,
-        setWritingCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[6].writing));
-    const [statCourses,
-        setStatCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[6].conc.stats));
-    const [labCourses,
-        setLabCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[6].lab));
-    const [discCourses,
-        setDiscCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[6].conc.track));
-    const [contCourses,
-        setContCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[6].conc.cybersecurity));
-
+export const TheoryConc = (): JSX.Element => {
+    const { state } = UseStateContext();
+    const { dispatch } = UseDispatchContext();
+    const index = state.saveData.findIndex((eachSaveData) => eachSaveData.concentration.name === "Theory of Computation");
+    
     useEffect(() => {
-        props.setConcentrationContainers(
 
-            [
+        dispatch({type: "updateConcentrationContainers", payload: {
+
+            ...state,
+            concentrationContainers: [
+
                 {
-                    courses: coreCourses,
                     name: "core",
-                    setCourses: setCoreCourses,
+                    courses: StringsToCourses(state.saveData[index].concentration.core)
                 },
                 {
-                    courses: capstoneCourses,
                     name: "capstone",
-                    setCourses: setCapstoneCourses,
-
+                    courses: StringsToCourses(state.saveData[index].concentration.capstone)
                 },
                 {
-                    courses: generalCourses,
                     name: "general",
-                    setCourses: setGeneralCourses,
+                    courses: StringsToCourses(state.saveData[index].concentration.conc.general)
                 },
                 {
-                    courses: writingCourses,
                     name: "writing",
-                    setCourses: setWritingCourses,
+                    courses: StringsToCourses(state.saveData[index].concentration.writing)
                 },
                 {
-                    courses: statCourses,
                     name: "stat",
-                    setCourses: setStatCourses,
+                    courses: StringsToCourses(state.saveData[index].concentration.conc.stats)
                 },
                 {
-                    courses: labCourses,
                     name: "lab-1",
-                    setCourses: setLabCourses,
+                    courses: StringsToCourses(state.saveData[index].concentration.lab)
                 },
                 {
-                    courses: discCourses,
                     name: "discrete",
-                    setCourses: setDiscCourses,
+                    courses: StringsToCourses(state.saveData[index].concentration.conc.track)
                 },
                 {
-                    courses: contCourses,
                     name: "continuous",
-                    setCourses: setContCourses,
-                },
-            ],
-        );
-    }, []);
+                    courses: StringsToCourses(state.saveData[index].concentration.conc.cybersecurity)
+                }
+
+            ]
+
+        }});
+        return() => {
+            dispatch({type: "saveTheory", payload: { ...state }});
+        };
+
+    },[]);
+
     return (
         <div>
             <h2>Theory</h2>
@@ -85,9 +70,9 @@ export const TheoryConc = (props: {
                         CISC Core and Concentration
                     </Accordion.Header>
                     <Accordion.Body>
-                        <CourseContainer courses={coreCourses} name="core" />
-                        <CourseContainer courses={capstoneCourses} name="capstone" />
-                        <CourseContainer courses={generalCourses} name="general" />
+                        <CourseContainer courses={state.concentrationContainers[0].courses} name="core" />
+                        <CourseContainer courses={state.concentrationContainers[1].courses} name="capstone" />
+                        <CourseContainer courses={state.concentrationContainers[2].courses} name="general" />
                     </Accordion.Body>
                 </Accordion.Item>
 
@@ -96,7 +81,7 @@ export const TheoryConc = (props: {
                         Two Lab Courses
                     </Accordion.Header>
                     <Accordion.Body>
-                        <CourseContainer courses={labCourses} name="lab-1" />
+                        <CourseContainer courses={state.concentrationContainers[5].courses} name="lab-1" />
                     </Accordion.Body>
                 </Accordion.Item>
 
@@ -105,7 +90,7 @@ export const TheoryConc = (props: {
                         One Writing
                     </Accordion.Header>
                     <Accordion.Body>
-                        <CourseContainer courses={writingCourses} name="writing" />
+                        <CourseContainer courses={state.concentrationContainers[3].courses} name="writing" />
                     </Accordion.Body>
                 </Accordion.Item>
 
@@ -115,7 +100,7 @@ export const TheoryConc = (props: {
                         One Statistics Course
                     </Accordion.Header>
                     <Accordion.Body>
-                        <CourseContainer courses={statCourses} name="stat" />
+                        <CourseContainer courses={state.concentrationContainers[4].courses} name="stat" />
                     </Accordion.Body>
                 </Accordion.Item>
 
@@ -135,7 +120,7 @@ export const TheoryConc = (props: {
                                     Discrete
                                 </Accordion.Header>
                                 <Accordion.Body>
-                                    <CourseContainer courses={discCourses} name="discrete" />
+                                    <CourseContainer courses={state.concentrationContainers[6].courses} name="discrete" />
                                 </Accordion.Body>
 
                             </Accordion.Item>
@@ -146,7 +131,7 @@ export const TheoryConc = (props: {
                                     Continuous
                                 </Accordion.Header>
                                 <Accordion.Body>
-                                    <CourseContainer courses={contCourses} name="continuous" />
+                                    <CourseContainer courses={state.concentrationContainers[7].courses} name="continuous" />
                                 </Accordion.Body>
 
                             </Accordion.Item>

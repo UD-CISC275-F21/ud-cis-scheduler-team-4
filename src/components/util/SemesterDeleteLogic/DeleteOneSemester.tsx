@@ -16,7 +16,7 @@ export const DeleteOneSemester = (
     if (deleteTriggered === 0) {
         const theSemester: Semester | undefined = semesterCourses.length > 0 ? semesterCourses[semesters - 1] : undefined;
         if (theSemester !== undefined && theSemester.courses.length === 0) {
-            theSemester.courseSetter([]);
+            //theSemester.courseSetter([]);
             setSemesterCourses([...semesterCourses.slice(0, semesters - 1)]);
             setSemesters(semesters - 1);
         } else {

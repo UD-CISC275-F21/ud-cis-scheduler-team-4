@@ -6,7 +6,6 @@ import { Course } from "../courses/Course";
 import { Course as CourseType } from "../../interfaces/course";
 import { Semester as SemesterType } from "../../interfaces/semester";
 import { EditCoursePanel } from "../courses/EditCoursePanel";
-
 /*
 
     @param : integer - semester number
@@ -27,23 +26,42 @@ export const getSemesterStr = (semesterNum: number): string => {
     }
 };
 
+export const getCourses = (semesterCourses: SemesterType[], index: number): CourseType[] => {
+
+    const result = semesterCourses[index];
+    if (result === undefined) {
+        //console.log(">>>> undefined ");
+        return [];
+    } else {
+        const result2 = semesterCourses[index].courses.length > 0;
+        if ( result2 ) {
+            //console.log(">>>> valid courses >>>>> ", semesterCourses[index].courses);
+            return semesterCourses[index].courses;
+        } else {
+            //console.log(">>>> invalid courses ");
+            return [];
+        }
+    }
+
+    //const [courses, setCourses] = useState<CourseType[]>(
+    //    props.semesterCourses[props.ind] !== undefined ? 
+    //    (props.semesterCourses[props.ind].courses.length > 0 ? props.semesterCourses[props.ind].courses : [])
+    //    : []);
+
+};
+
 export const Semester = (props: {
     ind: number;
-    semesterCourses: SemesterType[];
-    setSemesterCourses: React.Dispatch<React.SetStateAction<SemesterType[]>>;
+    semesterCourse: SemesterType;
 }): JSX.Element => {
-    const [courses, setCourses] = useState<CourseType[]>([]);
+    const [courses, setCourses] = useState<CourseType[]>(
+        props.semesterCourse !== undefined ? props.semesterCourse.courses : []);
     const [credits, setCredits] = useState<number>(0);
-
     useEffect(() => {
-
-        if (!props.semesterCourses.find(elem => elem.semesterNum === props.ind + 1)) {
-            const semesters: SemesterType[] = [...props.semesterCourses];
-            semesters.push({ courseSetter: (newCourses: CourseType[]) => {
-                setCourses(newCourses);
-            }, courses, semesterNum: props.ind + 1 });
-            props.setSemesterCourses(semesters);
-        }
+        return() => {
+            //console.log("unmounting");
+            setCourses([]);
+        };
     }, []);
 
     const getCredits = (courses: CourseType[]) => {
@@ -56,8 +74,14 @@ export const Semester = (props: {
     };
 
     useEffect(() => {
-        getCredits(courses);
-    }, [courses]);
+        //console.log("courses changed -- ", props.semesterCourse);
+        if (props.semesterCourse !== undefined) {
+            //console.log("courses changed [in if]-- ", props.semesterCourse);
+            setCourses(props.semesterCourse.courses);
+            getCredits(props.semesterCourse.courses);
+            //console.log(courses);
+        }
+    }, [props.semesterCourse]);
 
     return (
         <Accordion data-testid="semesteraccordian" defaultActiveKey="0" key={`accordion ${props.ind}`} >
@@ -99,11 +123,9 @@ export const Semester = (props: {
                                                                             title={elem.title}
                                                                         />
                                                                     </Col>
-                                                                    <EditCoursePanel
+                                                                    <EditCoursePanel 
                                                                         elem={elem}
                                                                         ind={props.ind}
-                                                                        semesterCourses={props.semesterCourses}
-                                                                        setSemesterCourses={props.setSemesterCourses}
                                                                     />
                                                                 </Row>
                                                             </ListGroup.Item>,

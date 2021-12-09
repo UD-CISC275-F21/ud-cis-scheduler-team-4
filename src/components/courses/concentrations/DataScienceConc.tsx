@@ -1,89 +1,63 @@
 import { Accordion } from "react-bootstrap";
-import CONCENTRATIONS from "../../../json/concentrations.json";
 import { CourseContainer } from "../CourseContainer";
-import { ConcentrationContainerType } from "../../../interfaces/concentrationcontainer";
-import React, { useState, useEffect } from "react";
-import { Course as CourseType } from "../../../interfaces/course";
+import React, { useEffect } from "react";
+import { UseStateContext } from "../../util/DispatchLogic/UseStateContext";
+import { UseDispatchContext } from "../../util/DispatchLogic/UseDispatchContext";
+import { StringsToCourses } from "../DisplayCourseListHelperFunctions/StringsToCourses";
 
-
-export const DataScienceConc = (props: {
-    StringsToCourses: (stringCourses: string[]) => CourseType[];
-    setConcentrationContainers: React.Dispatch<React.SetStateAction<ConcentrationContainerType[]>>;
-    }): JSX.Element => {
-    const [coreCourses,
-        setCoreCourses] = useState<CourseType[]>(props.StringsToCourses(
-            CONCENTRATIONS[3].core));
-    const [capstoneCourses,
-        setCapstoneCourses] = useState<CourseType[]>(props.StringsToCourses(
-            CONCENTRATIONS[3].capstone));
-    const [generalCourses,
-        setGeneralCourses] = useState<CourseType[]>(props.StringsToCourses(
-            CONCENTRATIONS[3].conc.general));
-    const [writingCourses,
-        setWritingCourses] = useState<CourseType[]>(props.StringsToCourses(
-            CONCENTRATIONS[3].writing));
-    const [labCourses,
-        setLabCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[3].lab));
-    const [dataCourses,
-        setDataCourses] = useState<CourseType[]>(props.StringsToCourses(
-            CONCENTRATIONS[3].conc.data));
-    const [mathCourses,
-        setMathCourses] = useState<CourseType[]>(props.StringsToCourses(
-            CONCENTRATIONS[3].conc.stats));
-    const [electiveCourses,
-        setElectiveCourses] = useState<CourseType[]>(props.StringsToCourses(
-            CONCENTRATIONS[3].conc.elective));
+export const DataScienceConc = (): JSX.Element => {
+    
+    const { state } = UseStateContext();
+    const { dispatch } = UseDispatchContext();
+    const index = state.saveData.findIndex((eachSaveData) => eachSaveData.concentration.name === "Data Science");
 
     useEffect(() => {
-        props.setConcentrationContainers(
+        
+        dispatch({type: "updateConcentrationContainers", payload: {
 
-            [
+            ...state,
+            concentrationContainers: [
                 {
-                    courses: coreCourses,
                     name: "core",
-                    setCourses: setCoreCourses,
+                    courses: StringsToCourses(state.saveData[index].concentration.core)
                 },
                 {
-                    courses: capstoneCourses,
                     name: "capstone",
-                    setCourses: setCapstoneCourses,
-
+                    courses: StringsToCourses(state.saveData[index].concentration.capstone)
                 },
                 {
-                    courses: generalCourses,
                     name: "general",
-                    setCourses: setGeneralCourses,
+                    courses: StringsToCourses(state.saveData[index].concentration.conc.general)
                 },
                 {
-                    courses: writingCourses,
                     name: "writing",
-                    setCourses: setWritingCourses,
+                    courses: StringsToCourses(state.saveData[index].concentration.writing)
                 },
                 {
-                    courses: labCourses,
                     name: "lab-1",
-                    setCourses: setLabCourses,
+                    courses: StringsToCourses(state.saveData[index].concentration.lab)
                 },
                 {
-                    courses: electiveCourses,
                     name: "electives",
-                    setCourses: setElectiveCourses,
+                    courses: StringsToCourses(state.saveData[index].concentration.conc.elective)
                 },
                 {
-                    courses: dataCourses,
                     name: "datascience",
-                    setCourses: setDataCourses,
+                    courses: StringsToCourses(state.saveData[index].concentration.conc.data)
                 },
                 {
-                    courses: mathCourses,
                     name: "math",
-                    setCourses: setMathCourses,
-                },
+                    courses: StringsToCourses(state.saveData[index].concentration.conc.stats)
+                }
+            ]
 
-            ],
+        }});
+        return() => {
+            console.log("DATA SCIENCE UNMOUNTING");
+            dispatch({type: "updateSaveDataScience", payload: { ...state, sourceContainerIndex: index }});
+        };
+    },[]);
 
-        );
-    }, []);
     return (
         <div>
             <h2>Data Science</h2>
@@ -95,9 +69,9 @@ export const DataScienceConc = (props: {
                         CISC Core and Concentration
                     </Accordion.Header>
                     <Accordion.Body>
-                        <CourseContainer courses={coreCourses} name="core" />
-                        <CourseContainer courses={capstoneCourses} name="capstone" />
-                        <CourseContainer courses={generalCourses} name="general" />
+                        <CourseContainer courses={state.concentrationContainers[0].courses} name="core" />
+                        <CourseContainer courses={state.concentrationContainers[1].courses} name="capstone" />
+                        <CourseContainer courses={state.concentrationContainers[2].courses} name="general" />
                     </Accordion.Body>
                 </Accordion.Item>
 
@@ -106,7 +80,7 @@ export const DataScienceConc = (props: {
                         Two Lab Courses
                     </Accordion.Header>
                     <Accordion.Body>
-                        <CourseContainer courses={labCourses} name="lab-1" />
+                        <CourseContainer courses={state.concentrationContainers[3].courses} name="lab-1" />
                     </Accordion.Body>
                 </Accordion.Item>
 
@@ -115,7 +89,7 @@ export const DataScienceConc = (props: {
                         One Writing
                     </Accordion.Header>
                     <Accordion.Body>
-                        <CourseContainer courses={writingCourses} name="writing" />
+                        <CourseContainer courses={state.concentrationContainers[4].courses} name="writing" />
                     </Accordion.Body>
                 </Accordion.Item>
 
@@ -125,7 +99,7 @@ export const DataScienceConc = (props: {
                         One Data Course
                     </Accordion.Header>
                     <Accordion.Body>
-                        <CourseContainer courses={dataCourses} name="datascience" />
+                        <CourseContainer courses={state.concentrationContainers[6].courses} name="datascience" />
                     </Accordion.Body>
                 </Accordion.Item>
 
@@ -134,7 +108,7 @@ export const DataScienceConc = (props: {
                         One Advanced Math
                     </Accordion.Header>
                     <Accordion.Body>
-                        <CourseContainer courses={mathCourses} name="math" />
+                        <CourseContainer courses={state.concentrationContainers[7].courses} name="math" />
                     </Accordion.Body>
                 </Accordion.Item>
 
@@ -146,7 +120,7 @@ export const DataScienceConc = (props: {
 
                     <Accordion.Body>
 
-                        <CourseContainer courses={electiveCourses} name="electives" />
+                        <CourseContainer courses={state.concentrationContainers[5].courses} name="electives" />
 
                     </Accordion.Body>
 
