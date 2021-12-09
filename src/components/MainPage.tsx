@@ -74,12 +74,6 @@ export const MainPage = (): JSX.Element => {
                                             <DeleteSemesterButton />
                                             <ExportPlan semesterCourses={semesterCourses} />
                                             <HowToDisplay />
-                                            <Button
-                                                onClick={() => {
-                                                    dispatch({type: "checkState", payload: {...state}});
-                                                }
-                                                }>Check state
-                                            </Button>
                                         </Nav>
                                     </Navbar.Collapse>
                                 </Container>
