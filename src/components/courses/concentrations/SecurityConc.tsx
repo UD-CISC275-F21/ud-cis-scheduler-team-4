@@ -56,7 +56,7 @@ export const SecurityConc = (): JSX.Element => {
 
         }});
         return() => {
-            dispatch({type: "updateSaveSecurity", payload: { ...state }});
+            dispatch({type: "updateSaveSecurity", payload: { ...state, sourceContainerIndex: index }});
         };
 
     },[]);
