@@ -21,7 +21,7 @@ export const EditCourse = (props: {
         props.setDisplay(false);
     };
     const courseEdit = () => {
-        const theSemester: Semester = state.semesterCourses[props.semesterNumber];
+        const theSemester: Semester = state.currentSaveData.semesters[props.semesterNumber];
         const courseIndex: number = theSemester.courses.findIndex(elem => elem.name === props.course.name);
         dispatch({type: "updateCourse", payload: { ...state, sourceIndex: courseIndex, sourceContainerIndex: props.semesterNumber,  toastMessage: `${descText}_${nameText}_${titleText}`}});
         props.setDisplay(false);
