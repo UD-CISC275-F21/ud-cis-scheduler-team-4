@@ -2,7 +2,7 @@ import { Course } from "./course";
 
 export interface Semester{
 
-    semesternum: number
+    semesterNum: number
     courses: Course[]
 
 }
