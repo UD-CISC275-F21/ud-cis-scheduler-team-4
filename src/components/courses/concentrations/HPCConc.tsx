@@ -69,7 +69,7 @@ export const HPCConc = (): JSX.Element => {
 
         }});
         return() => {
-            dispatch({type: "saveHPC", payload: { ...state }});
+            dispatch({type: "saveHPC", payload: { ...state, sourceContainerIndex: index }});
         };
     },[]);
 
