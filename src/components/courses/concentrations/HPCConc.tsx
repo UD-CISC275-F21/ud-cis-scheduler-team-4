@@ -11,7 +11,7 @@ import { StringsToCourses } from "../DisplayCourseListHelperFunctions/StringsToC
 export const HPCConc = (): JSX.Element => {
     const { state } = UseStateContext();
     const { dispatch } = UseDispatchContext();
-    const index = state.saveData.findIndex((eachSaveData) => eachSaveData.concentration.name === "Cybersecurity");
+    const index = state.saveData.findIndex((eachSaveData) => eachSaveData.concentration.name === "High-Performance Computing");
     
     useEffect(() => {
 
@@ -74,94 +74,99 @@ export const HPCConc = (): JSX.Element => {
     },[]);
 
     return (
-        <div>
-            <h2>High-Performance Computing</h2>
+        state.concentrationContainers.length >= 10 ?
+            <div>
+                <h2>High-Performance Computing</h2>
 
-            <Accordion defaultActiveKey="8">
+                <Accordion defaultActiveKey="8">
 
-                <Accordion.Item eventKey="0">
-                    <Accordion.Header>
-                        CISC Core and Concentration
-                    </Accordion.Header>
-                    <Accordion.Body>
-                        <CourseContainer courses={state.concentrationContainers[0].courses} name="core" />
-                        <CourseContainer courses={state.concentrationContainers[1].courses} name="capstone" />
-                        <CourseContainer courses={state.concentrationContainers[2].courses} name="general" />
-                    </Accordion.Body>
-                </Accordion.Item>
+                    <Accordion.Item eventKey="0">
+                        <Accordion.Header>
+                            CISC Core and Concentration
+                        </Accordion.Header>
+                        <Accordion.Body>
+                            <CourseContainer courses={state.concentrationContainers[0].courses} name="core" />
+                            <CourseContainer courses={state.concentrationContainers[1].courses} name="capstone" />
+                            <CourseContainer courses={state.concentrationContainers[2].courses} name="general" />
+                        </Accordion.Body>
+                    </Accordion.Item>
 
-                <Accordion.Item eventKey="1">
-                    <Accordion.Header>
-                        Two Lab Courses
-                    </Accordion.Header>
-                    <Accordion.Body>
-                        <CourseContainer courses={state.concentrationContainers[4].courses} name="lab-1" />
-                    </Accordion.Body>
-                </Accordion.Item>
+                    <Accordion.Item eventKey="1">
+                        <Accordion.Header>
+                            Two Lab Courses
+                        </Accordion.Header>
+                        <Accordion.Body>
+                            <CourseContainer courses={state.concentrationContainers[4].courses} name="lab-1" />
+                        </Accordion.Body>
+                    </Accordion.Item>
 
-                <Accordion.Item eventKey="2">
-                    <Accordion.Header>
-                        One Writing
-                    </Accordion.Header>
-                    <Accordion.Body>
-                        <CourseContainer courses={state.concentrationContainers[3].courses} name="writing" />
-                    </Accordion.Body>
-                </Accordion.Item>
+                    <Accordion.Item eventKey="2">
+                        <Accordion.Header>
+                            One Writing
+                        </Accordion.Header>
+                        <Accordion.Body>
+                            <CourseContainer courses={state.concentrationContainers[3].courses} name="writing" />
+                        </Accordion.Body>
+                    </Accordion.Item>
 
 
-                <Accordion.Item eventKey="3">
+                    <Accordion.Item eventKey="3">
 
-                    <Accordion.Header>
-                        Choose one of the tracks
-                    </Accordion.Header>
-                    <Accordion.Body>
+                        <Accordion.Header>
+                            Choose one of the tracks
+                        </Accordion.Header>
+                        <Accordion.Body>
 
-                        <Accordion>
+                            <Accordion>
 
-                            <Accordion.Item eventKey="4">
+                                <Accordion.Item eventKey="4">
 
-                                <Accordion.Header>
-                                    Applied Math
-                                </Accordion.Header>
-                                <Accordion.Body>
+                                    <Accordion.Header>
+                                        Applied Math
+                                    </Accordion.Header>
+                                    <Accordion.Body>
 
-                                    <CourseContainer courses={state.concentrationContainers[6].courses} name="elective" />
-                                    <CourseContainer courses={state.concentrationContainers[7].courses} name="math" />
-                                    <CourseContainer courses={state.concentrationContainers[5].courses} name="stat" />
+                                        <CourseContainer courses={state.concentrationContainers[6].courses} name="elective" />
+                                        <CourseContainer courses={state.concentrationContainers[7].courses} name="math" />
+                                        <CourseContainer courses={state.concentrationContainers[5].courses} name="stat" />
 
-                                </Accordion.Body>
+                                    </Accordion.Body>
 
-                            </Accordion.Item>
-                            <Accordion.Item eventKey="5">
+                                </Accordion.Item>
+                                <Accordion.Item eventKey="5">
 
-                                <Accordion.Header>
-                                    Data Track
-                                </Accordion.Header>
-                                <Accordion.Body>
-                                    <CourseContainer courses={state.concentrationContainers[8].courses} name="dataCourses" />
-                                    <CourseContainer courses={state.concentrationContainers[10].courses} name="dataTrack" />
-                                </Accordion.Body>
+                                    <Accordion.Header>
+                                        Data Track
+                                    </Accordion.Header>
+                                    <Accordion.Body>
+                                        <CourseContainer courses={state.concentrationContainers[8].courses} name="dataCourses" />
+                                        <CourseContainer courses={state.concentrationContainers[10].courses} name="dataTrack" />
+                                    </Accordion.Body>
 
-                            </Accordion.Item>
+                                </Accordion.Item>
 
-                        </Accordion>
+                            </Accordion>
 
-                    </Accordion.Body>
+                        </Accordion.Body>
 
-                </Accordion.Item>
+                    </Accordion.Item>
 
-                <Accordion.Item eventKey="6">
+                    <Accordion.Item eventKey="6">
 
-                    <Accordion.Header>
-                        One Machine Learning
-                    </Accordion.Header>
-                    <Accordion.Body>
-                        <CourseContainer courses={state.concentrationContainers[9].courses} name="machineLearningCourses" />
-                    </Accordion.Body>
+                        <Accordion.Header>
+                            One Machine Learning
+                        </Accordion.Header>
+                        <Accordion.Body>
+                            <CourseContainer courses={state.concentrationContainers[9].courses} name="machineLearningCourses" />
+                        </Accordion.Body>
 
-                </Accordion.Item>
+                    </Accordion.Item>
 
-            </Accordion>
-        </div>
+                </Accordion>
+            </div>
+            :
+            <div>
+                Concentration Unavailable
+            </div>
     );
 };

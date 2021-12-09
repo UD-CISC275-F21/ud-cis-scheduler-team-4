@@ -8,10 +8,10 @@ import { UseStateContext } from "../../util/DispatchLogic/UseStateContext";
 import { UseDispatchContext } from "../../util/DispatchLogic/UseDispatchContext";
 import { StringsToCourses } from "../DisplayCourseListHelperFunctions/StringsToCourses";
 
-export const TheoryConc = (): void => {
+export const TheoryConc = (): JSX.Element => {
     const { state } = UseStateContext();
     const { dispatch } = UseDispatchContext();
-    const index = state.saveData.findIndex((eachSaveData) => eachSaveData.concentration.name === "Cybersecurity");
+    const index = state.saveData.findIndex((eachSaveData) => eachSaveData.concentration.name === "Theory of Computation");
     
     useEffect(() => {
 
@@ -34,7 +34,7 @@ export const TheoryConc = (): void => {
                 },
                 {
                     name: "writing",
-                    courses: StringsToCourses(state.saveData[index].concentration.writing
+                    courses: StringsToCourses(state.saveData[index].concentration.writing)
                 },
                 {
                     name: "stat",
@@ -150,5 +150,4 @@ export const TheoryConc = (): void => {
 
         </div>
     );
-    */
 };

@@ -12,7 +12,7 @@ export const NetworksConc = (): JSX.Element => {
 
     const { state } = UseStateContext();
     const { dispatch } = UseDispatchContext();
-    const index = state.saveData.findIndex((eachSaveData) => eachSaveData.concentration.name === "Cybersecurity");
+    const index = state.saveData.findIndex((eachSaveData) => eachSaveData.concentration.name === "Networks and Systems");
 
     useEffect(() => {
 
