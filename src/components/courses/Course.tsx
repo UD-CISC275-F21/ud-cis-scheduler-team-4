@@ -6,6 +6,9 @@ import { ListGroup } from "react-bootstrap";
 import { CourseInfo } from "./CourseInfo";
 import { AddCourse } from "./AddCourse";
 import { UseStateContext } from "../util/DispatchLogic/UseStateContext";
+import { removeCourse } from "../util/RemoveCourseLogic";
+import { UseDispatchContext } from "../util/DispatchLogic/UseDispatchContext";
+
 
 
 export const Course = (
@@ -18,16 +21,15 @@ export const Course = (
         ind: number; 
     }): JSX.Element => {
     const { state } = UseStateContext();
+    const { dispatch } = UseDispatchContext();
     const [courseInfoDisplay, setCourseInfoDisplay] = useState<boolean>(false);
     const [addCourseModalDisplay, setAddCourseModalDisplay] = useState<boolean>(false);
     const [addCourseButtonDisplay, setAddCourseButtonDisplay] = useState<boolean>(true);
-    const [removeCourseButtonDisplay, setRemoveCourseButtonDisplay] = useState<boolean>(false);
-    
+
     useEffect(() => {
         const splitName = props.name.split("-")[0];
         const result = !state.currentSaveData.semesters.map((eachSemester) => eachSemester.courses.map(eachCourse => eachCourse.name)).flat(2).includes(splitName);
         setAddCourseButtonDisplay(result);
-        setRemoveCourseButtonDisplay(!result);
     }, [state.currentSaveData.semesters]);
 
     return (
@@ -46,10 +48,6 @@ export const Course = (
                     >
                         <span>&#43;</span>
                     </button>}
-                    {
-                        removeCourseButtonDisplay &&
-                            <span><img src={`${process.env.PUBLIC_URL}/minus-button.png`} style={{ width: "20px", height: "20px"}}/></span>
-                    }
                     {addCourseModalDisplay &&
                     <AddCourse
                         modalDisplay={addCourseModalDisplay}
@@ -57,8 +55,20 @@ export const Course = (
                         courseName={props.name}
                         buttonDisplay={addCourseButtonDisplay}
                         setButtonDisplay={setAddCourseButtonDisplay}
-                        setRemoveButtonDisplay={() => setRemoveCourseButtonDisplay((fmrDisplay) => !fmrDisplay)}
                     />
+                    }
+                    {!addCourseButtonDisplay &&
+                    <button
+                        className="remove-course-button"
+                        onClick={()=>{
+                            const containerIndex = state.currentSaveData.semesters.findIndex((eachSemester) => eachSemester.courses.map((eachCourse) => eachCourse.name).flat(2).includes(props.name.split("-")[0]));
+                            const courseIndex = state.currentSaveData.semesters[containerIndex].courses.findIndex((eachCourse) => eachCourse.name === props.name.split("-")[0]);
+                            dispatch({type: "removeCourse", payload: { ...state, sourceContainerIndex: containerIndex, sourceIndex: courseIndex } });
+                            setAddCourseButtonDisplay(!addCourseButtonDisplay);
+                        }}
+                    >
+                        <img src={`${process.env.PUBLIC_URL}/minusimage.png`} id="remove-course-image"></img>
+                    </button>
                     }
                     <button
                         data-testid="dotsButton"

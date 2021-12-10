@@ -33,7 +33,25 @@
   top:12px;
 }
 
+.remove-course-button {
+  background-color: transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  float: right;
+  position: absolute;
+  right: 27pt;
+  top: 6.5pt
+}
 #edit-img {
   height:25px;
   width:25px;
 }
+
+#remove-course-image {
+  height:15px;
+  width:15x;
+}
+

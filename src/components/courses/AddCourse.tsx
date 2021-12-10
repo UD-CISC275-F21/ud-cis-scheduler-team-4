@@ -20,9 +20,7 @@ export const AddCourse = (
     const numberOfSemesters = state.currentSaveData.semesters.length;
     const concentrationContainers = state.concentrationContainers;
     console.log(concentrationContainers);
-    console.log("formattedCourseNamebefore = ", props.courseName);
     const formattedCourseName = props.courseName.split("-")[0];
-    console.log("courseName = ", formattedCourseName);
     const containerIndex = concentrationContainers.findIndex((eachContainer) => eachContainer.courses.map((eachCourse) => eachCourse.name).includes(formattedCourseName));
     // container aka sourceContainerIndex
     let courseIndex = -1;
