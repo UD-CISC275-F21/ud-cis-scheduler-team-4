@@ -21,7 +21,6 @@ export const MainPage = (): JSX.Element => {
     const [state, dispatch] = useReducer(reducerFunction, initialState);
     const {
         concentration,
-        semesterCourses,
         display,
         concentrationContainers,
         toastDisplay,
@@ -70,9 +69,9 @@ export const MainPage = (): JSX.Element => {
                                             </NavDropdown>
                                             <DropdownMenu/>
                                             <AddSemesterButton/>
-                                            <DeleteSemesterButton />
-                                            <ExportPlan semesterCourses={semesterCourses} />
-                                            <HowToDisplay />
+                                            <DeleteSemesterButton/>
+                                            <ExportPlan/>
+                                            <HowToDisplay/>
                                         </Nav>
                                     </Navbar.Collapse>
                                 </Container>

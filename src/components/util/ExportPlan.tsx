@@ -1,16 +1,17 @@
 import React from "react";
-import { Semester } from "../../interfaces/semester";
 import { Button } from "react-bootstrap";
+import { UseStateContext } from "./DispatchLogic/UseStateContext";
 
-export const ExportPlan = (props: { semesterCourses: Semester[] }): JSX.Element => {
+export const ExportPlan = (): JSX.Element => {
     const data: string[][] = [["Semester", "Course", "Credits"]];
+    const { state } = UseStateContext();
 
     return (
         <Button
             data-testid="exportcsvbutton"
             onClick={() => {
-                for (let i = 0; i < props.semesterCourses.length; i += 1) {
-                    const courses = props.semesterCourses[i].courses;
+                for (let i = 0; i < state.currentSaveData.semesters.length; i += 1) {
+                    const courses = state.currentSaveData.semesters[i].courses;
                     const semesterNum = (i + 1).toString();
                     for (const eachcourse of courses) {
                         const courseName = eachcourse.name;
