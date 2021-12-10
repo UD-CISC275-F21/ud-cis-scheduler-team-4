@@ -297,6 +297,7 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
             draft.currentSaveData.semesters[action.payload.sourceContainerIndex].courses[action.payload.sourceIndex] = theClass;
         });
     }
+
     default:{
         break;
     }
