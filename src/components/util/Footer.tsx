@@ -6,7 +6,6 @@ import { ProgressBar } from "react-bootstrap";
 export const Footer = (): JSX.Element => {
 
     const { state } = UseStateContext();
-    const { dispatch } = UseDispatchContext();
 
     const percentage = Math.round(((state.currentSaveData.semesters.map((eachSemester) => eachSemester.courses).flat(2).length / 40)*100));
 

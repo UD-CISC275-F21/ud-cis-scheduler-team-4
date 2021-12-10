@@ -18,18 +18,15 @@ export const AddCourse = (
     const { dispatch } = UseDispatchContext();
     const numberOfSemesters = state.currentSaveData.semesters.length;
     const concentrationContainers = state.concentrationContainers;
-    console.log(concentrationContainers);
     const formattedCourseName = props.courseName.split("-")[0];
     const containerIndex = concentrationContainers.findIndex((eachContainer) => eachContainer.courses.map((eachCourse) => eachCourse.name).includes(formattedCourseName));
     // container aka sourceContainerIndex
     let courseIndex = -1;
     if (containerIndex !== -1) {
-        console.log("containerIndex = ", containerIndex);
         const theContainer = concentrationContainers[containerIndex];
         // so now that I have the container the course is in, I just get the index of the course within the container
         courseIndex = theContainer.courses.findIndex((eachCourse) => eachCourse.name === formattedCourseName);
         // source index
-        console.log("courseIndex = ", courseIndex);
     }
     return (
         <Modal

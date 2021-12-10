@@ -37,7 +37,6 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
             theCourse.fromContainerIndex = action.payload.sourceContainerIndex;
             theCourse.fromIndex = action.payload.sourceIndex;
             theSemester.courses.splice(action.payload.destIndex,0,theCourse);
-            console.log("concentrationContainer after splicing = ", theConcentration.courses.map((eachCourse) => eachCourse.name));
             draft.concentrationContainers[action.payload.sourceContainerIndex] = theConcentration;
             draft.currentSaveData.semesters[action.payload.destContainerIndex].courses = theSemester.courses;
         });
