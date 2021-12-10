@@ -42,16 +42,6 @@ export const Course = (
                         data-testid="addcoursebutton"
                         onClick={()=>{
                             setAddCourseModalDisplay(!addCourseModalDisplay);
-<<<<<<< HEAD
-                            setAddCourseButtonDisplay(!addCourseButtonDisplay);
-                            console.log(state.sourceIndex);
-                            console.log(state.sourceContainerIndex);
-                            console.log(state.concentration);
-                            const formattedCourseName = props.name.split("-")[0];
-                            const concentrationContainers = state.concentrationContainers;
-                            containerIndex = concentrationContainers.findIndex((eachContainer) => eachContainer.courses.map((eachCourse) => eachCourse.name).includes(formattedCourseName));
-=======
->>>>>>> main
                         }}
                         type="button"
                     >
@@ -74,7 +64,8 @@ export const Course = (
                             console.log(state.concentrationContainers[containerIndex].courses);
                         }}
                     >
-                        -
+                        <img src={`${process.env.PUBLIC_URL}/minusimage.png`} id="remove-course-image"></img>
+                        <img ></img>
                     </button>
                     }
                     <button
