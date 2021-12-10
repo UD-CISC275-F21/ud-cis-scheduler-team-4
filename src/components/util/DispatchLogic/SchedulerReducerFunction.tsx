@@ -9,6 +9,17 @@ import { CoursesToStrings } from "../../courses/DisplayCourseListHelperFunctions
 export const reducerFunction = (state: State, action: SchedulerAction ): State => {
     //console.log("state = ", state);
     switch (action.type) {
+    case "removeCourse": {
+        return produce(state, (draft) => {
+            const theSemester: Semester = draft.currentSaveData.semesters[action.payload.sourceContainerIndex];
+            const theCourse: Course = theSemester.courses.splice(action.payload.sourceIndex, 1)[0];
+            const theConcentration: ConcentrationContainerType = draft.concentrationContainers[theCourse.fromContainerIndex];
+            theConcentration.courses.splice(theCourse.fromIndex, 0, theCourse);
+            draft.concentrationContainers[draft.destContainerIndex].courses = theConcentration.courses;
+            draft.currentSaveData.semesters[action.payload.sourceContainerIndex].courses = theSemester.courses;
+            draft.currentSaveData.semesters[action.payload.sourceContainerIndex].courses = theSemester.courses;
+        });
+    }
     case "concentrationToSemester": {
         return produce(state, (draft) => {
             const theConcentration: ConcentrationContainerType = draft.concentrationContainers[action.payload.sourceContainerIndex];

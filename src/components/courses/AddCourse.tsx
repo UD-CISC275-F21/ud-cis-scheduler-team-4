@@ -11,7 +11,6 @@ export const AddCourse = (
         courseName: string;
         buttonDisplay: boolean;
         setButtonDisplay: React.Dispatch<React.SetStateAction<boolean>>;
-        setRemoveButtonDisplay: () => void
     }
 ): JSX.Element => {
     
@@ -53,7 +52,6 @@ export const AddCourse = (
                                         //props.setButtonDisplay(false);
                                         const preReqResult = PreReqChecker(state.currentSaveData.semesters, index, concentrationContainers[containerIndex].courses[courseIndex], state, dispatch); 
                                         if(preReqResult){
-                                            props.setRemoveButtonDisplay();
                                             dispatch({type: "concentrationToSemester", payload: { ...state, sourceContainerIndex: containerIndex, sourceIndex: courseIndex, destContainerIndex: index, destIndex: 0 }});
                                         }
                                     }
