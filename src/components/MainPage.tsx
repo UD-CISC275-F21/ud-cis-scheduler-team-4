@@ -59,6 +59,11 @@ export const MainPage = (): JSX.Element => {
                         </Row>
                         <Row>
                             <CourseSchedulerNavbar />
+                            <button onClick={() => {
+                                dispatch({type: "displayState", payload: { ...state }});
+                            }}>
+                                Display State
+                            </button>
                         </Row>
                         <Row>
                             <Col>
