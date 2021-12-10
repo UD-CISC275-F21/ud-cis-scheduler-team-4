@@ -7,7 +7,6 @@ export interface State{
     concentration: Concentration,
     semesterCourses: Semester[],
     display: boolean,
-    semesters: number,
     concentrationContainers: ConcentrationContainerType[],
     toastDisplay: boolean,
     toastMessage: string,

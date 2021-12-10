@@ -6,7 +6,6 @@ export const initialState: State = {
     concentration : CONCENTRATIONS[0],
     semesterCourses : [],
     display : false,
-    semesters : 1,
     concentrationContainers: [],
     toastDisplay: false,
     toastMessage: "",
