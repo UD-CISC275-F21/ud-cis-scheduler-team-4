@@ -36,6 +36,7 @@ export const Course = (
                     {addCourseButtonDisplay && 
                     <button 
                         className="add-course-button"
+                        data-testid="addcoursebutton"
                         onClick={()=>{
                             setAddCourseModalDisplay(!addCourseModalDisplay);
                         }}

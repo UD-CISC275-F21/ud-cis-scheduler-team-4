@@ -84,7 +84,7 @@ export const Semester = (props: {
     }, [props.semesterCourse]);
 
     return (
-        <Accordion data-testid="semesteraccordian" defaultActiveKey="0" key={`accordion ${props.ind}`} >
+        <Accordion data-testid="semesteraccordion" defaultActiveKey="0" key={`accordion ${props.ind}`} >
             <Accordion.Item eventKey="0">
                 <Accordion.Header>
                     <Col xs={2}>
@@ -112,7 +112,10 @@ export const Semester = (props: {
                                                 <ListGroup data-testid="semestertable">
                                                     {
                                                         courses.map((elem: CourseType, index: number) =>
-                                                            <ListGroup.Item key={elem.name}>
+                                                            <ListGroup.Item 
+                                                                key={elem.name}
+                                                                data-testid="courseinsemester"
+                                                            >
                                                                 <Row>
                                                                     <Col>
                                                                         <Course

@@ -113,11 +113,11 @@ describe("testing navbar buttons", () => {
         act(() => {
             addSemesterButton.click();
         });
-        const beforeDelete = screen.getAllByTestId("semesteraccordian");
+        const beforeDelete = screen.getAllByTestId("semesteraccordion");
         act(() => {
             deleteSemesterButton.click();
         });
-        const afterDelete = screen.getAllByTestId("semesteraccordian");
+        const afterDelete = screen.getAllByTestId("semesteraccordion");
         expect(beforeDelete.length).toBeGreaterThan(afterDelete.length);
     
     });
@@ -175,8 +175,100 @@ describe("testing button clicking features", () => {
     });
 })
 
+describe("testing behavior of AddCourse button", () => {
+    beforeEach(() => {
+        render(<App />);
+    })
+    test("AddCourse button is rendered in each Course component", () => {
+        const addCourseButtons = screen.getAllByTestId("addcoursebutton");
+
+        const courseComponents = screen.getAllByTestId("courseitem");
+        expect(addCourseButtons.length).toEqual(courseComponents.length);
+    });
+
+    test("clicking AddCourse button causes a modal to appear", () => {
+        const coreAccordion = screen.getByTestId("Core Accordion");
+        coreAccordion.click();
+        const addCourseButtons = screen.getAllByTestId("addcoursebutton");
+        act(() => {
+            addCourseButtons[0].click();
+        });
+        const chooseSemesterModal = screen.getByText(/Please Choose a Semester:/);
+        expect(chooseSemesterModal).toBeVisible();
+    });
+
+    test("AddCourse button successfully moves courses from concentrationContainer to semesterTable", ()=>{
+        const coreAccordion = screen.getByTestId("Core Accordion");
+        const addSemesterButton = screen.getByTestId("addsemesterbutton");
+        addSemesterButton.click();
+        coreAccordion.click();
+        const addCourseButtons = screen.getAllByTestId("addcoursebutton");
+        act(() => {
+            addCourseButtons[0].click();
+        });
+        const initialChooseSemesterButtons = screen.getAllByTestId("choosesemesterbutton");
+        act(() => {
+            initialChooseSemesterButtons[0].click();
+        })
+        const initialCoursesInSemester = screen.getAllByTestId("courseinsemester");
+        expect(initialCoursesInSemester.length).toEqual(1);
+
+        act(() => {
+            addCourseButtons[1].click();
+        })
+        const newChooseSemesterButtons = screen.getAllByTestId("choosesemesterbutton");
+        act(() => {
+            newChooseSemesterButtons[1].click();
+        })
+        const newCoursesInSemester = screen.getAllByTestId("courseinsemester");
+        expect(newCoursesInSemester.length).toEqual(2);
+    });
+})
+
+describe("testing edit course button inside of semesterTable (the one on the right side)", () => {
+    beforeEach(()=>{
+        render(<App />);
+    });
+    test("edit course button is visible upon adding a course to a semester", () => {
+        const coreAccordion = screen.getByTestId("Core Accordion");
+        coreAccordion.click();
+        const addCourseButtons = screen.getAllByTestId("addcoursebutton");
+        act(() => {
+            addCourseButtons[0].click();
+        });
+        const chooseSemesterButton = screen.getByTestId("choosesemesterbutton");
+        act(() => {
+            chooseSemesterButton.click();
+        })
+        const editCourseButton = screen.getByTestId("editcoursebutton");
+        expect(editCourseButton).toBeVisible();
+    })
+
+    test("clicking edit course button causes a modal to display", () => {
+        const coreAccordion = screen.getByTestId("Core Accordion");
+        coreAccordion.click();
+        const addCourseButtons = screen.getAllByTestId("addcoursebutton");
+        act(() => {
+            addCourseButtons[0].click();
+        });
+        const chooseSemesterButton = screen.getByTestId("choosesemesterbutton");
+        act(() => {
+            chooseSemesterButton.click();
+        })
+        const editCourseButton = screen.getByTestId("editcoursebutton");
+        act(() => {
+            editCourseButton.click();
+        })
+        const editCourseModal = screen.getByText(/Edit Course Details/);
+        expect(editCourseModal).toBeVisible();
+    })
+})
+
  
 // This test doesn't consistently pass? Seems to be a problem with the testing-util package
+// Also, these tests are definitely going to throw a warning, saying I simulated a change in state without wrapping it in act()
+// Unfortunately, it will be extremely difficult to test any drag and drop features while also calling act(), because I am using
+// an imported module to test these features. Basically, we must live with the warning in order to test drag and drop features.
 describe("testing drag and drop features", ()=> {
     beforeEach(() => {
         render(<App />);
@@ -187,13 +279,14 @@ describe("testing drag and drop features", ()=> {
         screen.getByText(/CISC Core and Concentration/).click();
     
         await makeDnd({
-            getDragElement: () =>
-                screen
-                    .getByText(/CISC108/)
-                    .closest(DND_DRAGGABLE_DATA_ATTR),
-            direction: DND_DIRECTION_DOWN,
+        getDragElement: () =>
+            screen
+                .getByText(/CISC108/)
+                .closest(DND_DRAGGABLE_DATA_ATTR),
+        direction: DND_DIRECTION_DOWN,
             positions: 2
         });
+        
         const newCourses = screen.getAllByTestId("courseitem");
         //These shouldn't be equal because the courses should  now be in a different order
         expect(newCourses).not.toEqual(courses);
@@ -206,7 +299,6 @@ describe("testing drag and drop features", ()=> {
         const courses = screen.getAllByTestId("courseitem");
 
         screen.getByText(/CISC Core and Concentration/).click();
-
         await makeDnd({
             getDragElement: () => 
                 screen
@@ -221,23 +313,4 @@ describe("testing drag and drop features", ()=> {
         const CISC210 = screen.getByText(/CISC210/);
         expect(newCourses[0]).toEqual(CISC210);
     });
-
-});
-
-describe("moving a course to semester table in order to test semester features", () => {
-    test("inner semester table is rendered", () => {
-        render(<App />);
-        const semesterTable = screen.getByTestId("semestertable");
-        expect(semesterTable).toBeInTheDocument();
-    });
-
-    //this test below is challenging me --- how can we simulate a course inside a semester without doing a drag/drop?
-
-/* test("can move course to semester table", () => {
-        render(<App />);
-        const semesterTable = screen.getByTestId("semestertable");
-        const courses = screen.getAllByTestId("courseitem");
-        const theCourse = courses[0];
-        expect(semesterTable)
-    });*/
 });

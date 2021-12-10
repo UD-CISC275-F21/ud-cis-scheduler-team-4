@@ -47,6 +47,7 @@ export const AddCourse = (
                     {
                         new Array(numberOfSemesters).fill(0).map((eachelement,index) => 
                             <ListGroup.Item action
+                                data-testid="choosesemesterbutton"
                                 key={index}
                                 onClick={()=>{
                                     if (courseIndex !== -1) {
