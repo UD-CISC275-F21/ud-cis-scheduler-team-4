@@ -1,5 +1,5 @@
 import React from "react";
-import { act, getAllByTestId, render, screen } from "@testing-library/react";
+import { act, render, screen } from "@testing-library/react";
 import {
     makeDnd,
     DND_DIRECTION_UP,
@@ -15,7 +15,7 @@ import App from "./App";
 describe("testing initial render elements", () => {
     beforeEach(() => {
         render(<App />);
-    })
+    });
     test("renders UD CIS Scheduler text", () => {
         const linkElement = screen.getByText(/Course Scheduler/i);
         expect(linkElement).toBeInTheDocument();
@@ -49,7 +49,7 @@ describe("testing initial render elements", () => {
             expect(courses[c]).toBeInTheDocument();
         }
     });
-})
+});
 
 
 describe("Testing useful links dropdown", () => {
@@ -76,7 +76,7 @@ describe("Testing useful links dropdown", () => {
 describe("testing navbar buttons", () => {
     beforeEach(() => {
         render(<App />);
-    })
+    });
     test("renders add semester button", () => {
         const addSemesterButton = screen.getByTestId("addsemesterbutton");
         expect(addSemesterButton).toBeInTheDocument();
@@ -121,7 +121,7 @@ describe("testing navbar buttons", () => {
         expect(beforeDelete.length).toBeGreaterThan(afterDelete.length);
     
     });
-})
+});
 
 
 test("Selecting concentrations dropdown displays concentrations to choose from", ()=> {
@@ -154,7 +154,7 @@ test("Selecting new concentration renders that concentration", ()=> {
 describe("testing button clicking features", () => {
     beforeEach(() => {
         render(<App />);
-    })
+    });
     test("Clicking accordions opens and closes them", ()=> {
         const coreAccordion = screen.getByTestId("Core Accordion");
         coreAccordion.click();
@@ -173,12 +173,12 @@ describe("testing button clicking features", () => {
         const coursedescription = screen.getByText(/Computing/);
         expect(coursedescription).toBeVisible();
     });
-})
+});
 
 describe("testing behavior of AddCourse button", () => {
     beforeEach(() => {
         render(<App />);
-    })
+    });
     test("AddCourse button is rendered in each Course component", () => {
         const addCourseButtons = screen.getAllByTestId("addcoursebutton");
 
@@ -209,21 +209,21 @@ describe("testing behavior of AddCourse button", () => {
         const initialChooseSemesterButtons = screen.getAllByTestId("choosesemesterbutton");
         act(() => {
             initialChooseSemesterButtons[0].click();
-        })
+        });
         const initialCoursesInSemester = screen.getAllByTestId("courseinsemester");
         expect(initialCoursesInSemester.length).toEqual(1);
 
         act(() => {
             addCourseButtons[1].click();
-        })
+        });
         const newChooseSemesterButtons = screen.getAllByTestId("choosesemesterbutton");
         act(() => {
             newChooseSemesterButtons[1].click();
-        })
+        });
         const newCoursesInSemester = screen.getAllByTestId("courseinsemester");
         expect(newCoursesInSemester.length).toEqual(2);
     });
-})
+});
 
 describe("testing edit course button inside of semesterTable (the one on the right side)", () => {
     beforeEach(()=>{
@@ -239,10 +239,10 @@ describe("testing edit course button inside of semesterTable (the one on the rig
         const chooseSemesterButton = screen.getByTestId("choosesemesterbutton");
         act(() => {
             chooseSemesterButton.click();
-        })
+        });
         const editCourseButton = screen.getByTestId("editcoursebutton");
         expect(editCourseButton).toBeVisible();
-    })
+    });
 
     test("clicking edit course button causes a modal to display", () => {
         const coreAccordion = screen.getByTestId("Core Accordion");
@@ -254,15 +254,15 @@ describe("testing edit course button inside of semesterTable (the one on the rig
         const chooseSemesterButton = screen.getByTestId("choosesemesterbutton");
         act(() => {
             chooseSemesterButton.click();
-        })
+        });
         const editCourseButton = screen.getByTestId("editcoursebutton");
         act(() => {
             editCourseButton.click();
-        })
+        });
         const editCourseModal = screen.getByText(/Edit Course Details/);
         expect(editCourseModal).toBeVisible();
-    })
-})
+    });
+});
 
  
 // This test doesn't consistently pass? Seems to be a problem with the testing-util package
@@ -272,18 +272,18 @@ describe("testing edit course button inside of semesterTable (the one on the rig
 describe("testing drag and drop features", ()=> {
     beforeEach(() => {
         render(<App />);
-    })
+    });
     test("moves a task down inside a column", async () => {
         const courses = screen.getAllByTestId("courseitem");
 
         screen.getByText(/CISC Core and Concentration/).click();
     
         await makeDnd({
-        getDragElement: () =>
-            screen
-                .getByText(/CISC108/)
-                .closest(DND_DRAGGABLE_DATA_ATTR),
-        direction: DND_DIRECTION_DOWN,
+            getDragElement: () =>
+                screen
+                    .getByText(/CISC108/)
+                    .closest(DND_DRAGGABLE_DATA_ATTR),
+            direction: DND_DIRECTION_DOWN,
             positions: 2
         });
         
