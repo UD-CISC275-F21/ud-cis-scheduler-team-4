@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import { ListGroup, Modal } from "react-bootstrap";
-import { Semester } from "../../interfaces/semester";
 import { UseDispatchContext } from "../util/DispatchLogic/UseDispatchContext";
 import { UseStateContext } from "../util/DispatchLogic/UseStateContext";
 import { PreReqChecker } from "../util/DNDLogicV2/prereqchecker";
@@ -13,7 +12,7 @@ export const AddCourse = (
         buttonDisplay: boolean;
         setButtonDisplay: React.Dispatch<React.SetStateAction<boolean>>
     }
-) => {
+): JSX.Element => {
     
     const { state } = UseStateContext();
     const { dispatch } = UseDispatchContext();

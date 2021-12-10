@@ -5,7 +5,6 @@ import React, { useEffect, useState } from "react";
 import { ListGroup } from "react-bootstrap";
 import { CourseInfo } from "./CourseInfo";
 import { AddCourse } from "./AddCourse";
-import { Semester } from "../../interfaces/semester";
 import { UseStateContext } from "../util/DispatchLogic/UseStateContext";
 
 
