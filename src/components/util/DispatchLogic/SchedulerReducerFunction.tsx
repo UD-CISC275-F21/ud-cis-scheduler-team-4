@@ -28,6 +28,7 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
     }
     case "removeCourse": {
         return produce(state, (draft) => {
+            console.log("currentSemester = ", state.currentSaveData.semesters);
             const theSemester: Semester = draft.currentSaveData.semesters[action.payload.sourceContainerIndex];
             const theCourse: Course = theSemester.courses.splice(action.payload.sourceIndex, 1)[0];
             const theConcentration: ConcentrationContainerType = draft.concentrationContainers[theCourse.fromContainerIndex];
