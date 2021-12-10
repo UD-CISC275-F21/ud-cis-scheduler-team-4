@@ -16,6 +16,7 @@ import { reducerFunction } from "./util/DispatchLogic/SchedulerReducerFunction";
 import { DispatchContext } from "./util/DispatchLogic/DispatchContext";
 import { StateContext } from "./util/DispatchLogic/StateContext";
 import { SemesterTable } from "./semesters/SemesterTable";
+import { ClearAllSemesterButton } from "./semesters/ClearAllSemesterButton";
 
 export const MainPage = (): JSX.Element => {
     const [state, dispatch] = useReducer(reducerFunction, initialState);
@@ -70,8 +71,14 @@ export const MainPage = (): JSX.Element => {
                                             <DropdownMenu/>
                                             <AddSemesterButton/>
                                             <DeleteSemesterButton/>
+                                            <ClearAllSemesterButton/>
                                             <ExportPlan/>
                                             <HowToDisplay/>
+                                            <button onClick={() => {
+                                                dispatch({type: "displayState", payload: {...state}});
+                                            }}>
+                                                Check state
+                                            </button>
                                         </Nav>
                                     </Navbar.Collapse>
                                 </Container>

@@ -9,6 +9,16 @@ import { CoursesToStrings } from "../../courses/DisplayCourseListHelperFunctions
 export const reducerFunction = (state: State, action: SchedulerAction ): State => {
     //console.log("state = ", state);
     switch (action.type) {
+    case "clearAllSemesters": {
+        return produce(state, (draft) => {
+            draft.currentSaveData.semesters = [{semesterNum: 1, courses: []}];
+        });
+    }
+    case "displayState": {
+        return produce(state, (draft) => {
+            console.log("state = ", state);
+        });
+    }
     case "removeCourse": {
         return produce(state, (draft) => {
             const theSemester: Semester = draft.currentSaveData.semesters[action.payload.sourceContainerIndex];
@@ -16,7 +26,6 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
             const theConcentration: ConcentrationContainerType = draft.concentrationContainers[theCourse.fromContainerIndex];
             theConcentration.courses.splice(theCourse.fromIndex, 0, theCourse);
             draft.concentrationContainers[draft.destContainerIndex].courses = theConcentration.courses;
-            draft.currentSaveData.semesters[action.payload.sourceContainerIndex].courses = theSemester.courses;
             draft.currentSaveData.semesters[action.payload.sourceContainerIndex].courses = theSemester.courses;
         });
     }
