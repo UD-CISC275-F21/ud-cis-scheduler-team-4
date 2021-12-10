@@ -5,7 +5,6 @@ import { SavedProgress } from "./savedprogress";
 
 export interface State{
     concentration: Concentration,
-    semesterCourses: Semester[],
     display: boolean,
     concentrationContainers: ConcentrationContainerType[],
     toastDisplay: boolean,

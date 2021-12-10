@@ -29,6 +29,7 @@ export const AddCourse = (
         // so now that I have the container the course is in, I just get the index of the course within the container
         courseIndex = theContainer.courses.findIndex((eachCourse) => eachCourse.name === formattedCourseName);
         // source index
+        console.log("courseIndex = ", courseIndex);
     }
     return (
         <Modal

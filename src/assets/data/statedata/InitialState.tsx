@@ -4,7 +4,6 @@ import { State } from "../../../interfaces/State";
 
 export const initialState: State = {
     concentration : CONCENTRATIONS[0],
-    semesterCourses : [],
     display : false,
     concentrationContainers: [],
     toastDisplay: false,

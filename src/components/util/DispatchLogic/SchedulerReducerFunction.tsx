@@ -25,7 +25,7 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
             const theCourse: Course = theSemester.courses.splice(action.payload.sourceIndex, 1)[0];
             const theConcentration: ConcentrationContainerType = draft.concentrationContainers[theCourse.fromContainerIndex];
             theConcentration.courses.splice(theCourse.fromIndex, 0, theCourse);
-            draft.concentrationContainers[draft.destContainerIndex].courses = theConcentration.courses;
+            draft.concentrationContainers[theCourse.fromContainerIndex].courses = theConcentration.courses;
             draft.currentSaveData.semesters[action.payload.sourceContainerIndex].courses = theSemester.courses;
         });
     }
@@ -37,6 +37,7 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
             theCourse.fromContainerIndex = action.payload.sourceContainerIndex;
             theCourse.fromIndex = action.payload.sourceIndex;
             theSemester.courses.splice(action.payload.destIndex,0,theCourse);
+            console.log("concentrationContainer after splicing = ", theConcentration.courses.map((eachCourse) => eachCourse.name));
             draft.concentrationContainers[action.payload.sourceContainerIndex] = theConcentration;
             draft.currentSaveData.semesters[action.payload.destContainerIndex].courses = theSemester.courses;
         });
