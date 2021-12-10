@@ -25,9 +25,9 @@ export const Course = (
     
     useEffect(() => {
         const splitName = props.name.split("-")[0];
-        const result = !state.semesterCourses.map((eachSemester) => eachSemester.courses.map(eachCourse => eachCourse.name)).flat(2).includes(splitName);
+        const result = !state.currentSaveData.semesters.map((eachSemester) => eachSemester.courses.map(eachCourse => eachCourse.name)).flat(2).includes(splitName);
         setAddCourseButtonDisplay(result);
-    }, [state.semesterCourses]);
+    }, [state.currentSaveData.semesters]);
 
     return (
         <Draggable draggableId={props.name} index={props.ind} key={props.name}>
@@ -39,7 +39,6 @@ export const Course = (
                         className="add-course-button"
                         onClick={()=>{
                             setAddCourseModalDisplay(!addCourseModalDisplay);
-                            setAddCourseButtonDisplay(!addCourseButtonDisplay);
                         }}
                         type="button"
                     >
