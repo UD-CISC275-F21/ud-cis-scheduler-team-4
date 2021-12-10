@@ -1,171 +1,154 @@
 import { Accordion } from "react-bootstrap";
-import CONCENTRATIONS from "../../../json/concentrations.json";
 import { CourseContainer } from "../CourseContainer";
-import { ConcentrationContainerType } from "../../../interfaces/concentrationcontainer";
-import React, { useState, useEffect } from "react";
-import { Course as CourseType } from "../../../interfaces/course";
+import React, { useEffect } from "react";
+import { UseDispatchContext } from "../../util/DispatchLogic/UseDispatchContext";
+import { UseStateContext } from "../../util/DispatchLogic/UseStateContext";
+import { StringsToCourses } from "../DisplayCourseListHelperFunctions/StringsToCourses";
 
-export const BioConc = (props: { StringsToCourses: (
-        stringCourses: string[]) => CourseType[];
-        setConcentrationContainers: React.Dispatch<React.SetStateAction<ConcentrationContainerType[]>>;
-    }): JSX.Element => {
-    const [coreCourses,
-        setCoreCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[1].core));
-    const [capstoneCourses,
-        setCapstoneCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[1].capstone));
-    const [generalCourses,
-        setGeneralCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[1].conc.general));
-    const [writingCourses,
-        setWritingCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[1].writing));
-    const [statCourses,
-        setStatCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[1].conc.stats));
-    const [labCourses,
-        setLabCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[1].lab));
-    const [ochemCourses,
-        setOchemCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[1].conc.ochem));
-    const [electiveCourses,
-        setElectiveCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[1].conc.elective));
-    const [dataCourses,
-        setDataCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[1].conc.data));
+export const BioConc = (): JSX.Element => {
+
+    const { state } = UseStateContext();
+    const { dispatch } = UseDispatchContext();
+    const index = state.saveData.findIndex((eachSaveData) => eachSaveData.concentration.name === "Bioinformatics");
+
     useEffect(() => {
-        props.setConcentrationContainers(
-
+        dispatch({type: "updateConcentrationContainers", payload: {
+            ...state,
+            concentrationContainers:
             [
                 {
-                    courses: coreCourses,
                     name: "core",
-                    setCourses: setCoreCourses,
+                    courses: StringsToCourses(state.saveData[index].concentration.core)
                 },
                 {
-                    courses: capstoneCourses,
                     name: "capstone",
-                    setCourses: setCapstoneCourses,
-
+                    courses: StringsToCourses(state.saveData[index].concentration.capstone)
                 },
                 {
-                    courses: generalCourses,
                     name: "general",
-                    setCourses: setGeneralCourses,
+                    courses: StringsToCourses(state.saveData[index].concentration.conc.general)
                 },
                 {
-                    courses: writingCourses,
                     name: "writing",
-                    setCourses: setWritingCourses,
+                    courses: StringsToCourses(state.saveData[index].concentration.writing)
                 },
                 {
-                    courses: statCourses,
                     name: "stat",
-                    setCourses: setStatCourses,
+                    courses: StringsToCourses(state.saveData[index].concentration.conc.stats)
                 },
                 {
-                    courses: labCourses,
                     name: "lab-1",
-                    setCourses: setLabCourses,
+                    courses: StringsToCourses(state.saveData[index].concentration.lab)
                 },
                 {
-                    courses: electiveCourses,
                     name: "electives",
-                    setCourses: setElectiveCourses,
+                    courses: StringsToCourses(state.saveData[index].concentration.conc.elective)
                 },
                 {
-                    courses: dataCourses,
                     name: "data",
-                    setCourses: setDataCourses,
+                    courses: StringsToCourses(state.saveData[index].concentration.conc.data)
                 },
                 {
-                    courses: ochemCourses,
                     name: "ochem-1",
-                    setCourses: setOchemCourses,
-                },
-
-            ],
-
-        );
-    }, []);
+                    courses: StringsToCourses(state.saveData[index].concentration.conc.ochem)
+                }
+            ]
+        }});
+        return() => {
+            console.log("BIO CONC UNMOUNTING");
+            dispatch({type: "updateSaveDataBio", payload: { ...state }});
+        };
+    },[]);
 
     return (
-        <div>
-            <h2 data-testid="bio-header">Bioinformatics</h2>
-            <Accordion defaultActiveKey="8">
+        state.concentrationContainers.length >= 9 ?
+            <div>
+                <h2 data-testid="bio-header">Bioinformatics</h2>
+                <Accordion defaultActiveKey="8">
 
-                <Accordion.Item eventKey="0">
-                    <Accordion.Header>
-                        CISC Core and Concentration
-                    </Accordion.Header>
-                    <Accordion.Body>
-                        <CourseContainer courses={coreCourses} name="core" />
-                        <CourseContainer courses={capstoneCourses} name="capstone" />
-                        <CourseContainer courses={generalCourses} name="general" />
-                    </Accordion.Body>
-                </Accordion.Item>
+                    <Accordion.Item eventKey="0">
+                        <Accordion.Header>
+                            CISC Core and Concentration
+                        </Accordion.Header>
+                        <Accordion.Body>
+                            <CourseContainer courses={state.concentrationContainers[0].courses} name="core" />
+                            <CourseContainer courses={state.concentrationContainers[1].courses} name="capstone" />
+                            <CourseContainer courses={state.concentrationContainers[2].courses} name="general" />
+                        </Accordion.Body>
+                    </Accordion.Item>
 
-                <Accordion.Item eventKey="1">
-                    <Accordion.Header>
-                        Chem Sequence
-                    </Accordion.Header>
-                    <Accordion.Body>
-                        <CourseContainer courses={labCourses} name="lab-1" />
-                    </Accordion.Body>
-                </Accordion.Item>
+                    <Accordion.Item eventKey="1">
+                        <Accordion.Header>
+                            Chem Sequence
+                        </Accordion.Header>
+                        <Accordion.Body>
+                            <CourseContainer courses={state.concentrationContainers[5].courses} name="lab-1" />
+                        </Accordion.Body>
+                    </Accordion.Item>
 
-                <Accordion.Item eventKey="2">
-                    <Accordion.Header>
-                        One Organic Chem Sequence
-                    </Accordion.Header>
-                    <Accordion.Body>
-                        <CourseContainer courses={ochemCourses} name="ochem-1" />
-                    </Accordion.Body>
-                </Accordion.Item>
+                    <Accordion.Item eventKey="2">
+                        <Accordion.Header>
+                            One Organic Chem Sequence
+                        </Accordion.Header>
+                        <Accordion.Body>
+                            <CourseContainer courses={state.concentrationContainers[8].courses} name="ochem-1" />
+                        </Accordion.Body>
+                    </Accordion.Item>
 
 
-                <Accordion.Item eventKey="3">
-                    <Accordion.Header>
-                        Writing Course
-                    </Accordion.Header>
-                    <Accordion.Body>
-                        <CourseContainer courses={writingCourses} name="writing" />
-                    </Accordion.Body>
-                </Accordion.Item>
+                    <Accordion.Item eventKey="3">
+                        <Accordion.Header>
+                            Writing Course
+                        </Accordion.Header>
+                        <Accordion.Body>
+                            <CourseContainer courses={state.concentrationContainers[3].courses} name="writing" />
+                        </Accordion.Body>
+                    </Accordion.Item>
 
-                <Accordion.Item eventKey="4">
-                    <Accordion.Header>
-                        One Statistics Course
-                    </Accordion.Header>
-                    <Accordion.Body>
-                        <CourseContainer courses={statCourses} name="stat" />
-                    </Accordion.Body>
-                </Accordion.Item>
+                    <Accordion.Item eventKey="4">
+                        <Accordion.Header>
+                            One Statistics Course
+                        </Accordion.Header>
+                        <Accordion.Body>
+                            <CourseContainer courses={state.concentrationContainers[4].courses} name="stat" />
+                        </Accordion.Body>
+                    </Accordion.Item>
 
-                <Accordion.Item eventKey="5">
+                    <Accordion.Item eventKey="5">
 
-                    <Accordion.Header>
-                        One Data Analysis Course
-                    </Accordion.Header>
+                        <Accordion.Header>
+                            One Data Analysis Course
+                        </Accordion.Header>
 
-                    <Accordion.Body>
+                        <Accordion.Body>
 
-                        <CourseContainer courses={dataCourses} name="data" />
+                            <CourseContainer courses={state.concentrationContainers[7].courses} name="data" />
 
-                    </Accordion.Body>
+                        </Accordion.Body>
 
-                </Accordion.Item>
+                    </Accordion.Item>
 
-                <Accordion.Item eventKey="6">
+                    <Accordion.Item eventKey="6">
 
-                    <Accordion.Header>
-                        Two Electives
-                    </Accordion.Header>
+                        <Accordion.Header>
+                            Two Electives
+                        </Accordion.Header>
 
-                    <Accordion.Body>
+                        <Accordion.Body>
 
-                        <CourseContainer courses={electiveCourses} name="electives" />
+                            <CourseContainer courses={state.concentrationContainers[6].courses} name="electives" />
 
-                    </Accordion.Body>
+                        </Accordion.Body>
 
-                </Accordion.Item>
+                    </Accordion.Item>
 
-            </Accordion>
+                </Accordion>
 
-        </div>
+            </div>
+            :
+            <div>
+                Concentration Unavailable
+            </div>
+        
     );
 };

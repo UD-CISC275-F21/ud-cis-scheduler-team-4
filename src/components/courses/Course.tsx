@@ -1,23 +1,62 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../../css/style.css";
 import { Draggable } from "react-beautiful-dnd";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ListGroup } from "react-bootstrap";
 import { CourseInfo } from "./CourseInfo";
+import { AddCourse } from "./AddCourse";
+import { UseStateContext } from "../util/DispatchLogic/UseStateContext";
 
 
-export const Course = (props: { name: string; description: string; title: string; credits: number; ind: number }): JSX.Element => {
-    const [display, setDisplay] = useState<boolean>(false);
+export const Course = (
+    props:
+    { 
+        name: string; 
+        description: string; 
+        title: string;
+        credits: number; 
+        ind: number; 
+    }): JSX.Element => {
+    const { state } = UseStateContext();
+    const [courseInfoDisplay, setCourseInfoDisplay] = useState<boolean>(false);
+    const [addCourseModalDisplay, setAddCourseModalDisplay] = useState<boolean>(false);
+    const [addCourseButtonDisplay, setAddCourseButtonDisplay] = useState<boolean>(true);
+    
+    useEffect(() => {
+        const splitName = props.name.split("-")[0];
+        const result = !state.currentSaveData.semesters.map((eachSemester) => eachSemester.courses.map(eachCourse => eachCourse.name)).flat(2).includes(splitName);
+        setAddCourseButtonDisplay(result);
+    }, [state.currentSaveData.semesters]);
+
     return (
         <Draggable draggableId={props.name} index={props.ind} key={props.name}>
             {prov =>
                 <ListGroup.Item data-testid="courseitem" ref={prov.innerRef} {...prov.draggableProps} {...prov.dragHandleProps}>
                     {props.name}
+                    {addCourseButtonDisplay && 
+                    <button 
+                        className="add-course-button"
+                        onClick={()=>{
+                            setAddCourseModalDisplay(!addCourseModalDisplay);
+                        }}
+                        type="button"
+                    >
+                        <span>&#43;</span>
+                    </button>}
+                    {addCourseModalDisplay &&
+                    <AddCourse
+                        modalDisplay={addCourseModalDisplay}
+                        setModalDisplay={setAddCourseModalDisplay}
+                        courseName={props.name}
+                        buttonDisplay={addCourseButtonDisplay}
+                        setButtonDisplay={setAddCourseButtonDisplay}
+                    />
+                    }
                     <button
                         data-testid="dotsButton"
                         className="course-button"
                         onClick={() => {
-                            setDisplay(!display);
+                            setCourseInfoDisplay(!courseInfoDisplay);
                         }}
                         type="button"
                     >
@@ -25,14 +64,14 @@ export const Course = (props: { name: string; description: string; title: string
                             <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
                         </svg>
                     </button>
-                    {display &&
+                    {courseInfoDisplay &&
                     <CourseInfo
                         data-testid="course description"
                         credits={props.credits}
                         description={props.description}
-                        display={display}
+                        display={courseInfoDisplay}
                         name={props.name}
-                        setDisplay={setDisplay}
+                        setDisplay={setCourseInfoDisplay}
                     />
                     }
                 </ListGroup.Item>

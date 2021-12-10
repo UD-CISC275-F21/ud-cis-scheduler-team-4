@@ -1,30 +1,16 @@
 import { NavDropdown } from "react-bootstrap";
-import { Concentration } from "../../interfaces/concentration";
-import { Semester } from "../../interfaces/semester";
 import CONCENTRATIONS from "../../json/concentrations.json";
 import React from "react";
+import { UseDispatchContext } from "../util/DispatchLogic/UseDispatchContext";
+import { UseStateContext } from "../util/DispatchLogic/UseStateContext";
 
-export const DropdownMenu = (props: {
-        setConcentration: React.Dispatch<React.SetStateAction<Concentration>>;
-        semesterCourses: Semester[];
-        setSemesterCourses: React.Dispatch<React.SetStateAction<Semester[]>>;
-    }): JSX.Element => {
+export const DropdownMenu = (): JSX.Element => {
 
-    const clickFunc = (ind: number) => {
+    const { dispatch } = UseDispatchContext();
+    const { state } = UseStateContext();
 
-        const tmpSemesterCourses = [...props.semesterCourses];
-
-        for (let i = 0; i < tmpSemesterCourses.length; i += 1) {
-
-            const tmpSemester = tmpSemesterCourses.splice(i, 1)[0];
-            tmpSemester.courses = [];
-            tmpSemester.courseSetter([]);
-            tmpSemesterCourses.splice(i, 0, tmpSemester);
-
-        }
-        props.setSemesterCourses([...tmpSemesterCourses]);
-        props.setConcentration(CONCENTRATIONS[ind]);
-
+    const clickFunc = (concentrationNumber: number) => {
+        dispatch({type: "updateConcentration", payload: { ...state, concentration: CONCENTRATIONS[concentrationNumber]}});
     };
 
     return (

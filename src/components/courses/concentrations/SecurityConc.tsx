@@ -1,153 +1,136 @@
 import { Accordion } from "react-bootstrap";
-import CONCENTRATIONS from "../../../json/concentrations.json";
 import { CourseContainer } from "../CourseContainer";
-import { ConcentrationContainerType } from "../../../interfaces/concentrationcontainer";
-import React, { useState, useEffect } from "react";
-import { Course as CourseType } from "../../../interfaces/course";
+import React, { useEffect } from "react";
+import { StringsToCourses } from "../DisplayCourseListHelperFunctions/StringsToCourses";
+import { UseStateContext } from "../../util/DispatchLogic/UseStateContext";
+import { UseDispatchContext } from "../../util/DispatchLogic/UseDispatchContext";
 
-export const SecurityConc = (props: {
-    StringsToCourses: (stringCourses: string[]) => CourseType[];
-    setConcentrationContainers: React.Dispatch<React.SetStateAction<ConcentrationContainerType[]>>;
-    }): JSX.Element => {
-    const [coreCourses,
-        setCoreCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[2].core));
-    const [capstoneCourses,
-        setCapstoneCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[2].capstone));
-    const [generalCourses,
-        setGeneralCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[2].conc.general));
-    const [writingCourses,
-        setWritingCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[2].writing));
-    const [statCourses,
-        setStatCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[2].conc.stats));
-    const [labCourses,
-        setLabCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[2].lab));
-    const [electiveCourses,
-        setElectiveCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[2].conc.elective));
-    const [secCourses,
-        setSecCourses] = useState<CourseType[]>(props.StringsToCourses(CONCENTRATIONS[2].conc.cybersecurity));
+export const SecurityConc = (): JSX.Element => {
+    
+    const { state } = UseStateContext();
+    const { dispatch } = UseDispatchContext();
+    const index = state.saveData.findIndex((eachSaveData) => eachSaveData.concentration.name === "Cybersecurity");
 
     useEffect(() => {
-        props.setConcentrationContainers(
 
-            [
+        dispatch({type: "updateConcentrationContainers", payload: {
+
+            ...state,
+            concentrationContainers: [
                 {
-                    courses: coreCourses,
                     name: "core",
-                    setCourses: setCoreCourses,
+                    courses: StringsToCourses(state.saveData[index].concentration.core)
                 },
                 {
-                    courses: capstoneCourses,
                     name: "capstone",
-                    setCourses: setCapstoneCourses,
-
+                    courses: StringsToCourses(state.saveData[index].concentration.capstone)
                 },
                 {
-                    courses: generalCourses,
                     name: "general",
-                    setCourses: setGeneralCourses,
+                    courses: StringsToCourses(state.saveData[index].concentration.conc.general)
                 },
                 {
-                    courses: writingCourses,
                     name: "writing",
-                    setCourses: setWritingCourses,
+                    courses: StringsToCourses(state.saveData[index].concentration.writing)
                 },
                 {
-                    courses: statCourses,
                     name: "stat",
-                    setCourses: setStatCourses,
+                    courses: StringsToCourses(state.saveData[index].concentration.conc.stats)
                 },
                 {
-                    courses: labCourses,
                     name: "lab-1",
-                    setCourses: setLabCourses,
+                    courses: StringsToCourses(state.saveData[index].concentration.lab)
                 },
                 {
-                    courses: electiveCourses,
                     name: "electives",
-                    setCourses: setElectiveCourses,
+                    courses: StringsToCourses(state.saveData[index].concentration.conc.elective)
                 },
                 {
-                    courses: secCourses,
                     name: "security",
-                    setCourses: setSecCourses,
-                },
+                    courses: StringsToCourses(state.saveData[index].concentration.conc.cybersecurity)
+                }
+            ]
 
-            ],
+        }});
+        return() => {
+            dispatch({type: "updateSaveSecurity", payload: { ...state, sourceContainerIndex: index }});
+        };
 
-        );
-    }, []);
+    },[]);
+
     return (
-        <div>
-            <h2>Cybersecurity</h2>
-            <Accordion defaultActiveKey="8">
+        state.concentrationContainers.length >= 8 ?
+            <div>
+                <h2>Cybersecurity</h2>
+                <Accordion defaultActiveKey="8">
 
-                <Accordion.Item eventKey="0">
-                    <Accordion.Header>
-                        CISC Core and Concentration
-                    </Accordion.Header>
-                    <Accordion.Body>
-                        <CourseContainer courses={coreCourses} name="core" />
-                        <CourseContainer courses={capstoneCourses} name="capstone" />
-                        <CourseContainer courses={generalCourses} name="general" />
-                    </Accordion.Body>
-                </Accordion.Item>
+                    <Accordion.Item eventKey="0">
+                        <Accordion.Header>
+                            CISC Core and Concentration
+                        </Accordion.Header>
+                        <Accordion.Body>
+                            <CourseContainer courses={state.concentrationContainers[0].courses} name="core" />
+                            <CourseContainer courses={state.concentrationContainers[1].courses} name="capstone" />
+                            <CourseContainer courses={state.concentrationContainers[2].courses} name="general" />
+                        </Accordion.Body>
+                    </Accordion.Item>
 
-                <Accordion.Item eventKey="1">
-                    <Accordion.Header>
-                        Two Lab Courses
-                    </Accordion.Header>
-                    <Accordion.Body>
-                        <CourseContainer courses={labCourses} name="lab-1" />
-                    </Accordion.Body>
-                </Accordion.Item>
+                    <Accordion.Item eventKey="1">
+                        <Accordion.Header>
+                            Two Lab Courses
+                        </Accordion.Header>
+                        <Accordion.Body>
+                            <CourseContainer courses={state.concentrationContainers[5].courses} name="lab-1" />
+                        </Accordion.Body>
+                    </Accordion.Item>
 
-                <Accordion.Item eventKey="2">
-                    <Accordion.Header>
-                        One Writing
-                    </Accordion.Header>
-                    <Accordion.Body>
-                        <CourseContainer courses={writingCourses} name="writing" />
-                    </Accordion.Body>
-                </Accordion.Item>
-
-
-                <Accordion.Item eventKey="3">
-                    <Accordion.Header>
-                        Statistics Course
-                    </Accordion.Header>
-                    <Accordion.Body>
-                        <CourseContainer courses={statCourses} name="stat" />
-                    </Accordion.Body>
-                </Accordion.Item>
-
-                <Accordion.Item eventKey="4">
-                    <Accordion.Header>
-                        Two Advanced Requirements
-                    </Accordion.Header>
-                    <Accordion.Body>
-                        <CourseContainer courses={secCourses} name="security" />
-                    </Accordion.Body>
-                </Accordion.Item>
-
-                <Accordion.Item eventKey="5">
-
-                    <Accordion.Header>
-                        Two Electives
-                    </Accordion.Header>
-
-                    <Accordion.Body>
-
-                        <CourseContainer courses={electiveCourses} name="electives" />
-
-                    </Accordion.Body>
-
-                </Accordion.Item>
+                    <Accordion.Item eventKey="2">
+                        <Accordion.Header>
+                            One Writing
+                        </Accordion.Header>
+                        <Accordion.Body>
+                            <CourseContainer courses={state.concentrationContainers[3].courses} name="writing" />
+                        </Accordion.Body>
+                    </Accordion.Item>
 
 
+                    <Accordion.Item eventKey="3">
+                        <Accordion.Header>
+                            Statistics Course
+                        </Accordion.Header>
+                        <Accordion.Body>
+                            <CourseContainer courses={state.concentrationContainers[4].courses} name="stat" />
+                        </Accordion.Body>
+                    </Accordion.Item>
 
-            </Accordion>
+                    <Accordion.Item eventKey="4">
+                        <Accordion.Header>
+                            Two Advanced Requirements
+                        </Accordion.Header>
+                        <Accordion.Body>
+                            <CourseContainer courses={state.concentrationContainers[7].courses} name="security" />
+                        </Accordion.Body>
+                    </Accordion.Item>
+
+                    <Accordion.Item eventKey="5">
+
+                        <Accordion.Header>
+                            Two Electives
+                        </Accordion.Header>
+
+                        <Accordion.Body>
+
+                            <CourseContainer courses={state.concentrationContainers[6].courses} name="electives" />
+
+                        </Accordion.Body>
+
+                    </Accordion.Item>
 
 
-        </div>
+
+                </Accordion>
+            </div>
+            :
+            <div>Concentration Unavailable</div>
     );
 };
