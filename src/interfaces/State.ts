@@ -1,5 +1,4 @@
 import { Concentration } from "./concentration";
-import { Semester } from "./semester";
 import { ConcentrationContainerType } from "./concentrationcontainer";
 import { SavedProgress } from "./savedprogress";
 

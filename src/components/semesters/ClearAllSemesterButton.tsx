@@ -4,7 +4,7 @@ import { UseDispatchContext } from "../util/DispatchLogic/UseDispatchContext";
 import { UseStateContext } from "../util/DispatchLogic/UseStateContext";
 
 
-export const ClearAllSemesterButton = () => {
+export const ClearAllSemesterButton = (): JSX.Element => {
 
     const { state } = UseStateContext();
     const { dispatch } = UseDispatchContext();

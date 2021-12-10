@@ -9,7 +9,7 @@ import { HowToDisplay } from "../howto/howtodisplay";
 import { PreReqToggleButton } from "../PreReqToggleButton";
 
 
-export const CourseSchedulerNavbar = () => {
+export const CourseSchedulerNavbar = (): JSX.Element => {
 
     return(
 
