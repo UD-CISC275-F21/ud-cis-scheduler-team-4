@@ -9,18 +9,6 @@ import { UseStateContext } from "../util/DispatchLogic/UseStateContext";
 
 */
 
-<<<<<<< HEAD
-export const SemesterTable = (props: { semesters: number;
-        semestersCourses: SemesterType[];
-        setSemesterCourses: React.Dispatch<React.SetStateAction<SemesterType[]>>;
-    }): JSX.Element =>
-    <div>
-        {
-            new Array(props.semesters).fill(0)
-                .map((elem, ind) => <Semester ind={ind} key={`semester-table-key-${ind}`} semesterCourses={props.semestersCourses} setSemesterCourses={props.setSemesterCourses} />)
-        }
-    </div>;
-=======
 export const SemesterTable = (): JSX.Element => {
         
     const { state } = UseStateContext();
@@ -45,4 +33,3 @@ export const SemesterTable = (): JSX.Element => {
         </>
     );
 };
->>>>>>> main
