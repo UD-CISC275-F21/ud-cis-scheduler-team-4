@@ -9,6 +9,13 @@ import { CoursesToStrings } from "../../courses/DisplayCourseListHelperFunctions
 export const reducerFunction = (state: State, action: SchedulerAction ): State => {
     //console.log("state = ", state);
     switch (action.type) {
+    case "togglePreReq": {
+
+        return produce(state, (draft) => {
+            console.log("toggling pre req");
+        });
+
+    }
     case "clearAllSemesters": {
         return produce(state, (draft) => {
             draft.currentSaveData.semesters = [{semesterNum: 1, courses: []}];

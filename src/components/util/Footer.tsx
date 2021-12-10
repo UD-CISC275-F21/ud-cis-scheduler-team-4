@@ -2,12 +2,15 @@ import React from "react";
 import { UseStateContext } from "../util/DispatchLogic/UseStateContext";
 import { UseDispatchContext } from "../util/DispatchLogic/UseDispatchContext";
 import { ProgressBar } from "react-bootstrap";
+import { stat } from "fs";
 
 export const Footer = (): JSX.Element => {
 
     const { state } = UseStateContext();
 
-    const percentage = Math.round(((state.currentSaveData.semesters.map((eachSemester) => eachSemester.courses).flat(2).length / 40)*100));
+    const concentrationName = state.concentration.name;
+    const concentrationClasses = concentrationName === "AI and Robotics" ? 31 : concentrationName === "Bioinformatics" ? 33 : concentrationName === "Cybersecurity" ? 35 : concentrationName === "Data Science" ? 35 : concentrationName === "High-Performance Computing" ? 40 : concentrationName === "Networks and Systems" ? 36 : 38;
+    const percentage = Math.ceil(((state.currentSaveData.semesters.map((eachSemester) => eachSemester.courses).flat(2).length / concentrationClasses)*100));
 
     return(
         <div className="footer">
