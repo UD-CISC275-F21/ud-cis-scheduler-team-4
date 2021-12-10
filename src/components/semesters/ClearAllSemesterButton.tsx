@@ -13,6 +13,7 @@ export const ClearAllSemesterButton = (): JSX.Element => {
 
         <Button
             variant="outline-danger"
+            size="sm"
             onClick={() => {
                 const theSemesters = state.currentSaveData.semesters;
                 for(let i = 0; i < theSemesters.length; i++) {

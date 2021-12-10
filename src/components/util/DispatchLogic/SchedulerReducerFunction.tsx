@@ -12,7 +12,7 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
     case "togglePreReq": {
 
         return produce(state, (draft) => {
-            console.log("toggling pre req");
+            draft.preReqToggle = !draft.preReqToggle;
         });
 
     }

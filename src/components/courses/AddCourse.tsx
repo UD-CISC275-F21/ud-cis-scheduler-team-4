@@ -49,7 +49,7 @@ export const AddCourse = (
                                     if (courseIndex !== -1) {
                                         //props.setButtonDisplay(false);
                                         const preReqResult = PreReqChecker(state.currentSaveData.semesters, index, concentrationContainers[containerIndex].courses[courseIndex], state, dispatch); 
-                                        if(preReqResult){
+                                        if(preReqResult  || !state.preReqToggle){
                                             dispatch({type: "concentrationToSemester", payload: { ...state, sourceContainerIndex: containerIndex, sourceIndex: courseIndex, destContainerIndex: index, destIndex: 0 }});
                                         }
                                     }

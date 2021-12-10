@@ -9,6 +9,7 @@ export const AddSemesterButton = (): JSX.Element => {
     return(
         <Button
             data-testid="addsemesterbutton"
+            size="sm"
             onClick={() => {
                 dispatch({type: "updateNumberOfSemesters", payload: { ...state }});
             }}

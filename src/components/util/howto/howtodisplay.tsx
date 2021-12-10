@@ -24,6 +24,7 @@ export const HowToDisplay = (): JSX.Element => {
                 data-testid="howtobutton"
                 onClick={handleShow}
                 variant="outline-success"
+                size="sm"
             >
                 How To
             </Button>

@@ -1,5 +1,5 @@
 import React from "react";
-import { Navbar, Nav, NavDropdown, Container } from "react-bootstrap";
+import { Navbar, Nav, NavDropdown, Container, ButtonToolbar, ButtonGroup } from "react-bootstrap";
 import { DropdownMenu } from "../DropdownMenu";
 import { AddSemesterButton } from "../../semesters/AddSemesterButton";
 import { DeleteSemesterButton } from "../../semesters/DeleteSemesterButton";
@@ -26,12 +26,24 @@ export const CourseSchedulerNavbar = (): JSX.Element => {
                             <NavDropdown.Item data-testid="navdropdownitem4" href="https://ud-cis-teaching.github.io/student-guidance/" >UD CIS Student Guidance</NavDropdown.Item>
                         </NavDropdown>
                         <DropdownMenu/>
-                        <AddSemesterButton/>
-                        <DeleteSemesterButton/>
-                        <ClearAllSemesterButton/>
-                        <ExportPlan/>
-                        <HowToDisplay/>
-                        <PreReqToggleButton />
+                        <ButtonToolbar>
+                            <ButtonGroup className="me-2" aria-label="add semester button">
+                                <AddSemesterButton/>
+                            </ButtonGroup>
+                            <ButtonGroup className="me-2" aria-label="delete semester button">
+                                <DeleteSemesterButton/>
+                            </ButtonGroup>
+                            <ButtonGroup className="me-2" aria-label="clear all semester button">
+                                <ClearAllSemesterButton/>
+                            </ButtonGroup>
+                            <ButtonGroup className="me-2" aria-label="export csv plan">
+                                <ExportPlan/>
+                            </ButtonGroup>
+                            <ButtonGroup className="me-2" aria-label="how to display button">
+                                <HowToDisplay/>
+                            </ButtonGroup>
+                            <PreReqToggleButton />
+                        </ButtonToolbar>
                     </Nav>
                 </Navbar.Collapse>
             </Container>

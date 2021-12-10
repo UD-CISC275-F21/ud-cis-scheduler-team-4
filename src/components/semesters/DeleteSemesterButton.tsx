@@ -9,6 +9,7 @@ export const DeleteSemesterButton = (): JSX.Element => {
     return(
         <Button
             data-testid="deletesemesterbutton"
+            size="sm"
             onClick={() => {
                 dispatch({type: "deleteSemester", payload: { ...state }});
             }}

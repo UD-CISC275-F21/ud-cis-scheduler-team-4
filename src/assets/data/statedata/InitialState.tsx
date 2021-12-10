@@ -20,5 +20,5 @@ export const initialState: State = {
     sourceContainerIndex: 0,
     destIndex: 0,
     destContainerIndex: 0,
-    preReqToggle: false,
+    preReqToggle: true,
 };

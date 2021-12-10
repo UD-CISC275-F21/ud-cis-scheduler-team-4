@@ -9,6 +9,7 @@ export const ExportPlan = (): JSX.Element => {
     return (
         <Button
             data-testid="exportcsvbutton"
+            size="sm"
             onClick={() => {
                 for (let i = 0; i < state.currentSaveData.semesters.length; i += 1) {
                     const courses = state.currentSaveData.semesters[i].courses;
