@@ -36,6 +36,7 @@ export const Course = (
                     {addCourseButtonDisplay && 
                     <button 
                         className="add-course-button"
+                        data-testid="addcoursebutton"
                         onClick={()=>{
                             setAddCourseModalDisplay(!addCourseModalDisplay);
                         }}
@@ -53,6 +54,7 @@ export const Course = (
                     />
                     }
                     <button
+                        data-testid="dotsButton"
                         className="course-button"
                         onClick={() => {
                             setCourseInfoDisplay(!courseInfoDisplay);
@@ -65,6 +67,7 @@ export const Course = (
                     </button>
                     {courseInfoDisplay &&
                     <CourseInfo
+                        data-testid="course description"
                         credits={props.credits}
                         description={props.description}
                         display={courseInfoDisplay}
