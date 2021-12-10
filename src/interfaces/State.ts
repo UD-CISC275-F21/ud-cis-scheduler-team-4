@@ -10,7 +10,6 @@ export interface State{
     concentrationContainers: ConcentrationContainerType[],
     toastDisplay: boolean,
     toastMessage: string,
-    deleteTriggered: number,
     saveData: SavedProgress[],
     currentSaveData: SavedProgress,
     sourceIndex: number,

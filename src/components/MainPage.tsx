@@ -1,7 +1,7 @@
 import "bootswatch/dist/lux/bootstrap.min.css";
 import { Container, Row, Col, Navbar, Nav, NavDropdown } from "react-bootstrap";
 import { WelcomeToast, PreReqSameSemesterToast } from "./util/Notifications";
-import React, { useReducer } from "react";
+import React, { useReducer, useEffect } from "react";
 import { DropdownMenu } from "./util/DropdownMenu";
 import { DisplayCourseList } from "./courses/DisplayCourseList";
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
@@ -27,6 +27,13 @@ export const MainPage = (): JSX.Element => {
         toastDisplay,
         toastMessage,
     } = state;
+
+    useEffect(() => {
+        setTimeout(() => {
+            dispatch({type: "setDisplay", payload: { ...state, display: false } });
+        }, 1000);
+        dispatch({type: "setDisplay", payload: { ...state, display: true } });
+    },[]);
 
     const dispatchValue = { dispatch };
     const stateValue = { state };

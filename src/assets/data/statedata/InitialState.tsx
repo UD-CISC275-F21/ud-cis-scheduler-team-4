@@ -9,15 +9,12 @@ export const initialState: State = {
     concentrationContainers: [],
     toastDisplay: false,
     toastMessage: "",
-    deleteTriggered: -1,
     saveData: [{
         concentration: CONCENTRATIONS[0],
-        numberOfSemesters: 1,
         semesters: [],
     } as SavedProgress],
     currentSaveData: {
         concentration: CONCENTRATIONS[0],
-        numberOfSemesters: 1,
         semesters: [{semesterNum: 1, courses: []}],
     } as SavedProgress,
     sourceIndex: 0,
