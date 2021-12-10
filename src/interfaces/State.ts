@@ -1,6 +1,3 @@
-import "bootswatch/dist/lux/bootstrap.min.css";
-import produce from "immer";
-import { Container, Row, Col, Navbar, Nav, NavDropdown } from "react-bootstrap";
 import { Concentration } from "./concentration";
 import { Semester } from "./semester";
 import { ConcentrationContainerType } from "./concentrationcontainer";

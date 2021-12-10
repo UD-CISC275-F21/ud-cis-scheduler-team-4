@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { ListGroup, Modal } from "react-bootstrap";
-import { Semester } from "../../interfaces/semester";
 import { UseDispatchContext } from "../util/DispatchLogic/UseDispatchContext";
 import { UseStateContext } from "../util/DispatchLogic/UseStateContext";
+import { PreReqChecker } from "../util/DNDLogicV2/prereqchecker";
 
 export const AddCourse = (
     props: {
@@ -12,11 +12,11 @@ export const AddCourse = (
         buttonDisplay: boolean;
         setButtonDisplay: React.Dispatch<React.SetStateAction<boolean>>
     }
-) => {
+): JSX.Element => {
     
     const { state } = UseStateContext();
     const { dispatch } = UseDispatchContext();
-    const numberOfSemesters = state.semesterCourses.length;
+    const numberOfSemesters = state.currentSaveData.semesters.length;
     const concentrationContainers = state.concentrationContainers;
     console.log(concentrationContainers);
     const formattedCourseName = props.courseName.split("-")[0];
@@ -45,11 +45,15 @@ export const AddCourse = (
                     {
                         new Array(numberOfSemesters).fill(0).map((eachelement,index) => 
                             <ListGroup.Item action
+                                data-testid="choosesemesterbutton"
                                 key={index}
                                 onClick={()=>{
                                     if (courseIndex !== -1) {
-                                        props.setButtonDisplay(false); 
-                                        dispatch({type: "concentrationToSemester", payload: { ...state, sourceContainerIndex: containerIndex, sourceIndex: courseIndex, destContainerIndex: index, destIndex: 0 }});
+                                        //props.setButtonDisplay(false);
+                                        const preReqResult = PreReqChecker(state.currentSaveData.semesters, index, concentrationContainers[containerIndex].courses[courseIndex], state, dispatch); 
+                                        if(preReqResult){
+                                            dispatch({type: "concentrationToSemester", payload: { ...state, sourceContainerIndex: containerIndex, sourceIndex: courseIndex, destContainerIndex: index, destIndex: 0 }});
+                                        }
                                     }
                                 }}
                             >

@@ -5,7 +5,6 @@ import React, { useEffect, useState } from "react";
 import { ListGroup } from "react-bootstrap";
 import { CourseInfo } from "./CourseInfo";
 import { AddCourse } from "./AddCourse";
-import { Semester } from "../../interfaces/semester";
 import { UseStateContext } from "../util/DispatchLogic/UseStateContext";
 import { removeCourse } from "../util/RemoveCourseLogic";
 
@@ -28,9 +27,9 @@ export const Course = (
     
     useEffect(() => {
         const splitName = props.name.split("-")[0];
-        const result = !state.semesterCourses.map((eachSemester) => eachSemester.courses.map(eachCourse => eachCourse.name)).flat(2).includes(splitName);
+        const result = !state.currentSaveData.semesters.map((eachSemester) => eachSemester.courses.map(eachCourse => eachCourse.name)).flat(2).includes(splitName);
         setAddCourseButtonDisplay(result);
-    }, [state.semesterCourses]);
+    }, [state.currentSaveData.semesters]);
 
     return (
         <Draggable draggableId={props.name} index={props.ind} key={props.name}>
@@ -40,8 +39,10 @@ export const Course = (
                     {addCourseButtonDisplay && 
                     <button 
                         className="add-course-button"
+                        data-testid="addcoursebutton"
                         onClick={()=>{
                             setAddCourseModalDisplay(!addCourseModalDisplay);
+<<<<<<< HEAD
                             setAddCourseButtonDisplay(!addCourseButtonDisplay);
                             console.log(state.sourceIndex);
                             console.log(state.sourceContainerIndex);
@@ -49,6 +50,8 @@ export const Course = (
                             const formattedCourseName = props.name.split("-")[0];
                             const concentrationContainers = state.concentrationContainers;
                             containerIndex = concentrationContainers.findIndex((eachContainer) => eachContainer.courses.map((eachCourse) => eachCourse.name).includes(formattedCourseName));
+=======
+>>>>>>> main
                         }}
                         type="button"
                     >
@@ -75,6 +78,7 @@ export const Course = (
                     </button>
                     }
                     <button
+                        data-testid="dotsButton"
                         className="course-button"
                         onClick={() => {
                             setCourseInfoDisplay(!courseInfoDisplay);
@@ -87,6 +91,7 @@ export const Course = (
                     </button>
                     {courseInfoDisplay &&
                     <CourseInfo
+                        data-testid="course description"
                         credits={props.credits}
                         description={props.description}
                         display={courseInfoDisplay}

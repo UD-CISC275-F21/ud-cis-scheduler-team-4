@@ -51,9 +51,7 @@ export const AIConc = (): JSX.Element => {
             ]
         }});
         return() => {
-
             dispatch({type: "updateSaveDataAI", payload: { ...state, }});
-
         };
     },[]);
 
@@ -63,7 +61,7 @@ export const AIConc = (): JSX.Element => {
                 <h2>Artificial Intelligence and Robotics</h2>
                 <Accordion defaultActiveKey="8">
 
-                    <Accordion.Item eventKey="0">
+                    <Accordion.Item eventKey="0" data-testid="Core Accordion">
                         <Accordion.Header>CISC Core and Concentration</Accordion.Header>
                         <Accordion.Body>
                             <CourseContainer courses={state.concentrationContainers[0].courses} name="core" />

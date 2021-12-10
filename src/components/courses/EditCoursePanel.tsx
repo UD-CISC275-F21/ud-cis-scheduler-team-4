@@ -16,6 +16,7 @@ export const EditCoursePanel = (props: {
         <Col lg="1" xs>
             <button
                 className="edit-course-button"
+                data-testid="editcoursebutton"
                 onClick={() => {
                     setDisplay(true);
                 }}

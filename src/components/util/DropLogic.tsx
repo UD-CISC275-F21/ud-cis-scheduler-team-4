@@ -37,19 +37,19 @@ export const onDragEndLogic = (
     if(sourceId === destinationId) {
         if (sourceIdSemester) {
             // semester --> same semesters
-            console.log("Executing DropLogic if->if");
+            //console.log("Executing DropLogic if->if");
             const semesterNum1 = parseInt(sourceId.substring(sourceId.lastIndexOf("-") + 1), 10);
             DropLogicExecutor(state,dispatch,"semesterToSemester",semesterNum1-1,semesterNum1-1,result.source.index,result.destination.index);
         } else {
             // concentration --> concentration
-            console.log("Executing DropLogic if->else");
+            //console.log("Executing DropLogic if->else");
             const concentrationNumber1 = concentrationContainers.findIndex((eachConcentrationContainer) => eachConcentrationContainer.name === destinationId);
             DropLogicExecutor(state, dispatch, "concentrationToConcentration", concentrationNumber1, concentrationNumber1, sourceIndex, dropIndex);
         }
     } else if (sourceIdSemester) {
         if (destIdSemester) {
             // semester --> different semester
-            console.log("Executing DropLogic elseif1->if");
+            //console.log("Executing DropLogic elseif1->if");
             const semester1Num = parseInt(sourceId.substring(sourceId.lastIndexOf("-") + 1), 10);
             const semester2Num = destIdSemester ? parseInt(destinationId.substring(destinationId.lastIndexOf("-") + 1), 10) : -1;
             const ind1 = semesters.findIndex(elem => elem.semesterNum === semester1Num);
@@ -59,7 +59,7 @@ export const onDragEndLogic = (
                 DropLogicExecutor(state, dispatch, "semesterToSemester", ind1, ind2, result.source.index, result.destination.index);
             }
         } else {
-            console.log("Executing DropLogic elseif1->else");
+            //console.log("Executing DropLogic elseif1->else");
             // semester --> concentration
             const semester1Num = parseInt(sourceId.substring(sourceId.lastIndexOf("-") + 1), 10);
             const ind1 = semesters.findIndex((eachSemester) => eachSemester.semesterNum === semester1Num);
@@ -68,16 +68,16 @@ export const onDragEndLogic = (
         }
     } else if (destIdSemester) {
         // concentration --> semester
-        console.log("Executing DropLogic elseif2");
+        //console.log("Executing DropLogic elseif2");
         const semesterNum = parseInt(destinationId.substring(destinationId.lastIndexOf("-") + 1), 10);
         const concentrationContainerIndex = state.concentrationContainers.findIndex((eachContainer) => eachContainer.name === sourceId);
-        const semesterCoursesIndex = state.semesterCourses.findIndex((eachSemester) => eachSemester.semesterNum === semesterNum);
+        const semesterCoursesIndex = semesters.findIndex((eachSemester) => eachSemester.semesterNum === semesterNum);
         const PreReqResult = PreReqChecker(semesters, semesterCoursesIndex, concentrationContainers[concentrationContainerIndex].courses[sourceIndex], state, dispatch);
         if (PreReqResult) {
             DropLogicExecutor(state, dispatch, "concentrationToSemester", concentrationContainerIndex, semesterCoursesIndex, sourceIndex, dropIndex);
         }
     } else {
-        console.log("Executing DropLogic else");
+        //console.log("Executing DropLogic else");
         // concentration --> semester
         const concentrationNumberDest = concentrationContainers.findIndex((eachConcentrationContainer) => eachConcentrationContainer.name === destinationId);
         const concentrationNumberSource = concentrationContainers.findIndex((eachConcentrationContainer) => eachConcentrationContainer.name === sourceId);

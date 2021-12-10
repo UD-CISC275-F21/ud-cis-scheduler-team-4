@@ -53,19 +53,13 @@ export const getCourses = (semesterCourses: SemesterType[], index: number): Cour
 export const Semester = (props: {
     ind: number;
     semesterCourse: SemesterType;
-    updateSemesterCourses: (newSemester: SemesterType) => void;
 }): JSX.Element => {
     const [courses, setCourses] = useState<CourseType[]>(
         props.semesterCourse !== undefined ? props.semesterCourse.courses : []);
     const [credits, setCredits] = useState<number>(0);
     useEffect(() => {
-        console.log("Adding semester to semesterCourses from MainPage ", props.ind, " courses = ", courses);
-        props.updateSemesterCourses({
-            semesterNum: props.ind + 1,
-            courses: courses,
-        });
         return() => {
-            console.log("unmounting");
+            //console.log("unmounting");
             setCourses([]);
         };
     }, []);
@@ -80,17 +74,17 @@ export const Semester = (props: {
     };
 
     useEffect(() => {
-        console.log("courses changed -- ", props.semesterCourse);
+        //console.log("courses changed -- ", props.semesterCourse);
         if (props.semesterCourse !== undefined) {
-            console.log("courses changed [in if]-- ", props.semesterCourse);
+            //console.log("courses changed [in if]-- ", props.semesterCourse);
             setCourses(props.semesterCourse.courses);
             getCredits(props.semesterCourse.courses);
-            console.log(courses);
+            //console.log(courses);
         }
     }, [props.semesterCourse]);
 
     return (
-        <Accordion data-testid="semesteraccordian" defaultActiveKey="0" key={`accordion ${props.ind}`} >
+        <Accordion data-testid="semesteraccordion" defaultActiveKey="0" key={`accordion ${props.ind}`} >
             <Accordion.Item eventKey="0">
                 <Accordion.Header>
                     <Col xs={2}>
@@ -118,7 +112,10 @@ export const Semester = (props: {
                                                 <ListGroup data-testid="semestertable">
                                                     {
                                                         courses.map((elem: CourseType, index: number) =>
-                                                            <ListGroup.Item key={elem.name}>
+                                                            <ListGroup.Item 
+                                                                key={elem.name}
+                                                                data-testid="courseinsemester"
+                                                            >
                                                                 <Row>
                                                                     <Col>
                                                                         <Course
