@@ -14,6 +14,8 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
             const theConcentration: ConcentrationContainerType = draft.concentrationContainers[action.payload.sourceContainerIndex];
             const theSemester: Semester = draft.currentSaveData.semesters[action.payload.destContainerIndex];
             const theCourse = theConcentration.courses.splice(action.payload.sourceIndex,1)[0];
+            theCourse.fromContainerIndex = action.payload.sourceContainerIndex;
+            theCourse.fromIndex = action.payload.sourceIndex;
             theSemester.courses.splice(action.payload.destIndex,0,theCourse);
             draft.concentrationContainers[action.payload.sourceContainerIndex] = theConcentration;
             draft.currentSaveData.semesters[action.payload.destContainerIndex].courses = theSemester.courses;

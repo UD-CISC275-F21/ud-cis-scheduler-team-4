@@ -21,11 +21,13 @@ export const Course = (
     const [courseInfoDisplay, setCourseInfoDisplay] = useState<boolean>(false);
     const [addCourseModalDisplay, setAddCourseModalDisplay] = useState<boolean>(false);
     const [addCourseButtonDisplay, setAddCourseButtonDisplay] = useState<boolean>(true);
+    const [removeCourseButtonDisplay, setRemoveCourseButtonDisplay] = useState<boolean>(false);
     
     useEffect(() => {
         const splitName = props.name.split("-")[0];
         const result = !state.currentSaveData.semesters.map((eachSemester) => eachSemester.courses.map(eachCourse => eachCourse.name)).flat(2).includes(splitName);
         setAddCourseButtonDisplay(result);
+        setRemoveCourseButtonDisplay(!result);
     }, [state.currentSaveData.semesters]);
 
     return (
@@ -44,6 +46,10 @@ export const Course = (
                     >
                         <span>&#43;</span>
                     </button>}
+                    {
+                        removeCourseButtonDisplay &&
+                            <span><img src={`${process.env.PUBLIC_URL}/minus-button.png`} style={{ width: "20px", height: "20px"}}/></span>
+                    }
                     {addCourseModalDisplay &&
                     <AddCourse
                         modalDisplay={addCourseModalDisplay}
@@ -51,6 +57,7 @@ export const Course = (
                         courseName={props.name}
                         buttonDisplay={addCourseButtonDisplay}
                         setButtonDisplay={setAddCourseButtonDisplay}
+                        setRemoveButtonDisplay={() => setRemoveCourseButtonDisplay((fmrDisplay) => !fmrDisplay)}
                     />
                     }
                     <button
