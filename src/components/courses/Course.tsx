@@ -6,7 +6,6 @@ import { ListGroup } from "react-bootstrap";
 import { CourseInfo } from "./CourseInfo";
 import { AddCourse } from "./AddCourse";
 import { UseStateContext } from "../util/DispatchLogic/UseStateContext";
-import { removeCourse } from "../util/RemoveCourseLogic";
 import { UseDispatchContext } from "../util/DispatchLogic/UseDispatchContext";
 
 
