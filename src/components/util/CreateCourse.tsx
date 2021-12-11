@@ -1,4 +1,4 @@
-import { Button, ListGroup, Modal, ButtonToolbar, ButtonGroup } from "react-bootstrap";
+import { Button, ListGroup, Modal, ButtonToolbar, ButtonGroup, Form } from "react-bootstrap";
 import React, { useState } from "react";
 import { UseStateContext } from "./DispatchLogic/UseStateContext";
 import { UseDispatchContext } from "./DispatchLogic/UseDispatchContext";
@@ -7,6 +7,9 @@ import { PreReqChecker } from "./DNDLogicV2/prereqchecker";
 export const CreateCourse = () => {
 
     const [show, setShow] = useState<boolean>(false);
+    const [courseName, setCourseName] = useState<string>("");
+    const [courseDescription, setCourseDescription] = useState<string>("");
+    const [courseCredits, setCourseCredits] = useState<number>(0);
 
     const { state } = UseStateContext();
     const { dispatch } = UseDispatchContext();
@@ -27,7 +30,35 @@ export const CreateCourse = () => {
                     <Modal.Title>Create Course Menu</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    This is the body of the modal
+                    <Form>
+                        <Form.Group className="mb-3" controlId="basicCourseName">
+                            <Form.Control type="text" placeholder="e.g. CISC181" onChange={(e) => setCourseName(e.target.value)}/>
+                            <Form.Text>Course Name</Form.Text>
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="basicCourseDescription">
+                            <Form.Control type="text" placeholder="e.g. Introduction to Computer Science 2" onChange={(e) => setCourseDescription(e.target.value)} />
+                            <Form.Text>Course Description</Form.Text>
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="basicCourseCreditSelector">
+                            <Form.Control as="select" aria-label="basicCourseCreditSelector" value={courseCredits} onChange={(e) => setCourseCredits(parseInt(e.target.value,10))}>
+                                <option value={0} key={0}>
+                                    0
+                                </option>
+                                <option value={1} key={1}>
+                                    1
+                                </option>
+                                <option value={2} key={2}>
+                                    2
+                                </option>
+                                <option value={3} key={3}>
+                                    3
+                                </option>
+                                <option value={4} key={4}>
+                                    4
+                                </option>
+                            </Form.Control>
+                        </Form.Group>
+                    </Form>
                 </Modal.Body>
                 <Modal.Footer>
                     <ButtonToolbar>
