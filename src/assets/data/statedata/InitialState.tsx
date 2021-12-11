@@ -21,4 +21,5 @@ export const initialState: State = {
     destIndex: 0,
     destContainerIndex: 0,
     preReqToggle: true,
+    loadedInCourses: [[]]
 };

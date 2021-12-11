@@ -5,6 +5,7 @@ import { Course } from "../../../interfaces/course";
 import { State } from "../../../interfaces/State";
 import { SchedulerAction } from "../../../interfaces/SchedulerAction";
 import { CoursesToStrings } from "../../courses/DisplayCourseListHelperFunctions/CoursesToStrings";
+import { StringsToCourses } from "../../courses/DisplayCourseListHelperFunctions/StringsToCourses";
 
 export const reducerFunction = (state: State, action: SchedulerAction ): State => {
     //console.log("state = ", state);
@@ -201,6 +202,27 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
             draft.concentrationContainers = action.payload.concentrationContainers;
             return draft;
         });
+    }
+    case "updateCurrentSaveDataSemesters": {
+
+        return produce(state, (draft) => {
+            const courses = action.payload.loadedInCourses.flat(2);
+            for (let i = 0; i < action.payload.loadedInCourses.length; i++) {
+                const stringCourses: string[] = action.payload.loadedInCourses[i];
+                if (draft.currentSaveData.semesters.length < (i+1)) {
+                    draft.currentSaveData.semesters.push({semesterNum: i+1, courses: []});
+                }
+                draft.currentSaveData.semesters[i].courses = StringsToCourses(stringCourses);
+            }
+            for (let i = 0; i < draft.concentrationContainers.length; i++) {
+
+                draft.concentrationContainers[i].courses = draft.concentrationContainers[i].courses.filter((eachCourse) => !courses.includes(eachCourse.name));
+
+            }
+            
+
+        });
+
     }
     case "updateCurrentSaveData":{
         return produce(

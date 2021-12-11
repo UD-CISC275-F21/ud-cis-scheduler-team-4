@@ -2,8 +2,14 @@ import React from "react";
 import { Button } from "react-bootstrap";
 import { ProcessCSVData } from "./DataProcessing/ProcessCSVData";
 import * as XLSX from "xlsx";
+import { UseStateContext } from "./DispatchLogic/UseStateContext";
+import { UseDispatchContext } from "./DispatchLogic/UseDispatchContext";
+import { StringsToCourses } from "../courses/DisplayCourseListHelperFunctions/StringsToCourses";
 
 export const ImportPlan = (): JSX.Element => {
+
+    const { state } = UseStateContext();
+    const { dispatch } = UseDispatchContext();
 
     const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files !== null) {
@@ -18,7 +24,7 @@ export const ImportPlan = (): JSX.Element => {
                     const data = XLSX.utils.sheet_to_csv(ws, { RS: "#"});
                     const result: string[][] | undefined = ProcessCSVData(data.split("#"));
                     if (result !== undefined) {
-                        console.log(result);
+                        dispatch({type: "updateCurrentSaveDataSemesters", payload: { ...state, loadedInCourses: result }});
                     }
                 }
             };

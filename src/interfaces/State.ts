@@ -14,5 +14,6 @@ export interface State{
     sourceContainerIndex: number,
     destIndex: number,
     destContainerIndex: number,
-    preReqToggle: boolean
+    preReqToggle: boolean,
+    loadedInCourses: string[][]
 }
