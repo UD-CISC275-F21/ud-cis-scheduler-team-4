@@ -8,6 +8,7 @@ import { ExportPlan } from "../ExportPlan";
 import { HowToDisplay } from "../howto/howtodisplay";
 import { PreReqToggleButton } from "../PreReqToggleButton";
 import { ImportPlan } from "../ImportPlan";
+import { CreateCourse } from "../CreateCourse";
 
 export const CourseSchedulerNavbar = (): JSX.Element => {
 
@@ -45,7 +46,12 @@ export const CourseSchedulerNavbar = (): JSX.Element => {
                             <ButtonGroup className="me-2" aria-label="how to display button">
                                 <HowToDisplay/>
                             </ButtonGroup>
-                            <PreReqToggleButton />
+                            <ButtonGroup className="me-2" aria-label="pre req toggle button">
+                                <PreReqToggleButton />
+                            </ButtonGroup>
+                            <ButtonGroup className="me-2" aria-label="create course button">
+                                <CreateCourse />
+                            </ButtonGroup>
                         </ButtonToolbar>
                     </Nav>
                 </Navbar.Collapse>
