@@ -6,6 +6,12 @@ import Multiselect from "multiselect-react-dropdown";
 import { PreReqChecker } from "./DNDLogicV2/prereqchecker";
 import CourseNames from "../../assets/courseData/CourseNames";
 
+export interface MultiSelectInterface{
+
+    name: string
+
+}
+
 export const CreateCourse = () => {
 
     const [show, setShow] = useState<boolean>(false);
@@ -13,8 +19,8 @@ export const CreateCourse = () => {
     const [courseDescription, setCourseDescription] = useState<string>("");
     const [courseCredits, setCourseCredits] = useState<number>(0);
     const [courseTitle, setCourseTitle] = useState<string>("");
-    const [selectedPreReqs, setSelectedPreReqs] = useState<string[]>([]);
-    const [selectedCoReqs, setSelectedCoReqs] = useState<string[]>([]);
+    const [selectedPreReqs, setSelectedPreReqs] = useState<MultiSelectInterface[]>([]);
+    const [selectedCoReqs, setSelectedCoReqs] = useState<MultiSelectInterface[]>([]);
 
     const { state } = UseStateContext();
     const { dispatch } = UseDispatchContext();
@@ -98,19 +104,25 @@ export const CreateCourse = () => {
                                         key={index}
                                         variant="outline-primary"
                                         onClick={()=>{
-                                            console.log("values = ", selectedPreReqs);
-                                            dispatch({type: "createCourse", payload: { ...state, destContainerIndex: index, newCourse: {
+                                            const formattedPreReqs = selectedPreReqs.map((eachPreReq) => eachPreReq.name);
+                                            const formattedCoReqs = selectedCoReqs.map((eachCoReq) => eachCoReq.name);
+                                            const createdCourse =  {
                                                 name: courseName,
                                                 description: courseDescription,
                                                 credits: courseCredits,
                                                 title: courseTitle,
-                                                prereqs: selectedPreReqs,
-                                                coreqs: selectedCoReqs,
+                                                prereqs: formattedPreReqs,
+                                                coreqs: formattedCoReqs,
                                                 section: 10,
                                                 lab: courseCredits > 3,
                                                 fromIndex: 0,
                                                 fromContainerIndex: 0
-                                            }}});
+                                            };
+                                            console.log("createdCourse = ", createdCourse);
+                                            const preReqResult = PreReqChecker(state.currentSaveData.semesters, index, createdCourse, state, dispatch);
+                                            if (preReqResult) {
+                                                dispatch({type: "createCourse", payload: { ...state, destContainerIndex: index, newCourse: createdCourse }});
+                                            }
                                         }}
                                     >
                                         {`Semester ${index+1}`}
