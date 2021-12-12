@@ -46,8 +46,12 @@ export const CreateCourse = () => {
                             <Form.Text>Course Name</Form.Text>
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="basicCourseDescription">
-                            <Form.Control type="text" placeholder="e.g. Introduction to Computer Science 2" onChange={(e) => setCourseDescription(e.target.value)} />
+                            <Form.Control type="text" placeholder="e.g. Basics of Java" onChange={(e) => setCourseDescription(e.target.value)} />
                             <Form.Text>Course Description</Form.Text>
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="basicCourseTitle">
+                            <Form.Control type="text" placeholder="e.g. Intro to CS 2" onChange={(e) => setCourseTitle(e.target.value)} />
+                            <Form.Text>Course Title</Form.Text>
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="basicCourseCreditSelector">
                             <Form.Control as="select" aria-label="basicCourseCreditSelector" value={courseCredits} onChange={(e) => setCourseCredits(parseInt(e.target.value,10))}>
@@ -121,6 +125,13 @@ export const CreateCourse = () => {
                                             if (preReqResult) {
                                                 dispatch({type: "createCourse", payload: { ...state, destContainerIndex: index, newCourse: createdCourse }});
                                             }
+                                            setCourseName("");
+                                            setCourseDescription("");
+                                            setCourseCredits(0);
+                                            setCourseTitle("");
+                                            setSelectedPreReqs([]);
+                                            setSelectedCoReqs([]);
+                                            setShow(false);
                                         }}
                                     >
                                         {`Semester ${index+1}`}
