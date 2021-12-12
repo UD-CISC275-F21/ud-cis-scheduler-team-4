@@ -6,7 +6,7 @@ export const StringsToCourses = (stringCourses: string[]): Course[] => {
      *  Will need to be optimized to not be O^n, since it currently just loops through the entire json.
      */
     const allCourses = COURSES as Course[];
-    const courseList: Course[] = stringCourses.map(elem => [...allCourses.filter(i => i.name === elem)]).flat(2);
+    const courseList: Course[] = stringCourses.map(elem => [...allCourses.filter(i => i.name === elem).map((eachCourse) => ({...eachCourse, fromIndex: 0, fromContainerIndex: 0}))]).flat(2);
     if (courseList.length != stringCourses.length) {
         // one or all of the courses were not registered in
         const names = courseList.map((eachCourse) => eachCourse.name);
