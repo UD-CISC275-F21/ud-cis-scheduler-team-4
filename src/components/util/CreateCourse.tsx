@@ -2,7 +2,9 @@ import { Button, ListGroup, Modal, ButtonToolbar, ButtonGroup, Form } from "reac
 import React, { useState } from "react";
 import { UseStateContext } from "./DispatchLogic/UseStateContext";
 import { UseDispatchContext } from "./DispatchLogic/UseDispatchContext";
+import Multiselect from "multiselect-react-dropdown";
 import { PreReqChecker } from "./DNDLogicV2/prereqchecker";
+import CourseNames from "../../assets/courseData/CourseNames";
 
 export const CreateCourse = () => {
 
@@ -10,6 +12,9 @@ export const CreateCourse = () => {
     const [courseName, setCourseName] = useState<string>("");
     const [courseDescription, setCourseDescription] = useState<string>("");
     const [courseCredits, setCourseCredits] = useState<number>(0);
+    const [courseTitle, setCourseTitle] = useState<string>("");
+    const [selectedPreReqs, setSelectedPreReqs] = useState<string[]>([]);
+    const [selectedCoReqs, setSelectedCoReqs] = useState<string[]>([]);
 
     const { state } = UseStateContext();
     const { dispatch } = UseDispatchContext();
@@ -57,6 +62,29 @@ export const CreateCourse = () => {
                                     4
                                 </option>
                             </Form.Control>
+                            <Form.Text>
+                                Credits
+                            </Form.Text>
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="basicPreReqSelector">
+                            <Form.Label>Pre Reqs</Form.Label>
+                            <Multiselect 
+                                options={CourseNames.map((eachCourseName) => ({name : eachCourseName}))}
+                                selectedValues={selectedPreReqs}
+                                onSelect={setSelectedPreReqs}
+                                onRemove={setSelectedPreReqs}
+                                displayValue="name"
+                            />
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="basicCoReqSelector">
+                            <Form.Label>Co Reqs</Form.Label>
+                            <Multiselect
+                                options={CourseNames.map((eachCourseName) => ({name : eachCourseName}))}
+                                selectedValues={selectedCoReqs}
+                                onSelect={setSelectedCoReqs}
+                                onRemove={setSelectedCoReqs}
+                                displayValue="name"
+                            />
                         </Form.Group>
                     </Form>
                 </Modal.Body>
@@ -70,7 +98,19 @@ export const CreateCourse = () => {
                                         key={index}
                                         variant="outline-primary"
                                         onClick={()=>{
-                                            console.log("clicked on listgroup item");
+                                            console.log("values = ", selectedPreReqs);
+                                            dispatch({type: "createCourse", payload: { ...state, destContainerIndex: index, newCourse: {
+                                                name: courseName,
+                                                description: courseDescription,
+                                                credits: courseCredits,
+                                                title: courseTitle,
+                                                prereqs: selectedPreReqs,
+                                                coreqs: selectedCoReqs,
+                                                section: 10,
+                                                lab: courseCredits > 3,
+                                                fromIndex: 0,
+                                                fromContainerIndex: 0
+                                            }}});
                                         }}
                                     >
                                         {`Semester ${index+1}`}

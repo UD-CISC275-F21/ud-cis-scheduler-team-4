@@ -21,5 +21,6 @@ export const initialState: State = {
     destIndex: 0,
     destContainerIndex: 0,
     preReqToggle: true,
-    loadedInCourses: [[]]
+    loadedInCourses: [[]],
+    newCourse: {name: "", title: "", description: "", credits: 0, lab: false, fromIndex: 0, fromContainerIndex: 0, section: 0, prereqs: [], coreqs: []}
 };

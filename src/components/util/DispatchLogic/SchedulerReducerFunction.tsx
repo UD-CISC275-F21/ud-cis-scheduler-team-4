@@ -224,6 +224,17 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
         });
 
     }
+    case "createCourse": {
+
+        return produce(state, (draft) => {
+
+            if ((draft.currentSaveData.semesters.length-1) <= action.payload.destContainerIndex) {
+                draft.currentSaveData.semesters[action.payload.destContainerIndex].courses = [...draft.currentSaveData.semesters[action.payload.destContainerIndex].courses, action.payload.newCourse];
+            }
+
+        });
+
+    }
     case "updateCurrentSaveData":{
         return produce(
             state, (draft) => {

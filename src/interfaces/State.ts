@@ -1,5 +1,6 @@
 import { Concentration } from "./concentration";
 import { ConcentrationContainerType } from "./concentrationcontainer";
+import { Course } from "./course";
 import { SavedProgress } from "./savedprogress";
 
 export interface State{
@@ -15,5 +16,6 @@ export interface State{
     destIndex: number,
     destContainerIndex: number,
     preReqToggle: boolean,
-    loadedInCourses: string[][]
+    loadedInCourses: string[][],
+    newCourse: Course
 }
