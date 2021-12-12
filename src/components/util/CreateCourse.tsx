@@ -25,7 +25,6 @@ export const CreateCourse = () => {
     const { state } = UseStateContext();
     const { dispatch } = UseDispatchContext();
     const numberOfSemesters = state.currentSaveData.semesters.length;
-    console.log("numberofsemesters = ", numberOfSemesters);
 
     return(
 
@@ -118,7 +117,6 @@ export const CreateCourse = () => {
                                                 fromIndex: 0,
                                                 fromContainerIndex: 0
                                             };
-                                            console.log("createdCourse = ", createdCourse);
                                             const preReqResult = PreReqChecker(state.currentSaveData.semesters, index, createdCourse, state, dispatch);
                                             if (preReqResult) {
                                                 dispatch({type: "createCourse", payload: { ...state, destContainerIndex: index, newCourse: createdCourse }});
