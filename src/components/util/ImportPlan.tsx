@@ -1,10 +1,8 @@
 import React from "react";
-import { Button } from "react-bootstrap";
 import { ProcessCSVData } from "./DataProcessing/ProcessCSVData";
 import * as XLSX from "xlsx";
 import { UseStateContext } from "./DispatchLogic/UseStateContext";
 import { UseDispatchContext } from "./DispatchLogic/UseDispatchContext";
-import { StringsToCourses } from "../courses/DisplayCourseListHelperFunctions/StringsToCourses";
 
 export const ImportPlan = (): JSX.Element => {
 

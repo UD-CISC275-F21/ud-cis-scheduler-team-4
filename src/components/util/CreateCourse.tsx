@@ -1,4 +1,4 @@
-import { Button, ListGroup, Modal, ButtonToolbar, ButtonGroup, Form } from "react-bootstrap";
+import { Button, Modal, ButtonToolbar, ButtonGroup, Form } from "react-bootstrap";
 import React, { useState } from "react";
 import { UseStateContext } from "./DispatchLogic/UseStateContext";
 import { UseDispatchContext } from "./DispatchLogic/UseDispatchContext";
@@ -12,7 +12,7 @@ export interface MultiSelectInterface{
 
 }
 
-export const CreateCourse = () => {
+export const CreateCourse = (): JSX.Element => {
 
     const [show, setShow] = useState<boolean>(false);
     const [courseName, setCourseName] = useState<string>("");

@@ -25,6 +25,7 @@ export const reducerFunction = (state: State, action: SchedulerAction ): State =
     case "displayState": {
         return produce(state, (draft) => {
             console.log("state = ", state);
+            console.log("draft = ", draft);
         });
     }
     case "removeCourse": {
