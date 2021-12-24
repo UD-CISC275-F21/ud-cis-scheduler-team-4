@@ -6,5 +6,7 @@ export interface Course{
     prereqs:string[],
     coreqs:string[],
     credits:number,
-    lab:boolean
+    lab:boolean,
+    fromIndex: number,
+    fromContainerIndex: number
 }

@@ -4,25 +4,23 @@ import { State } from "../../../interfaces/State";
 
 export const initialState: State = {
     concentration : CONCENTRATIONS[0],
-    semesterCourses : [],
     display : false,
-    semesters : 1,
     concentrationContainers: [],
     toastDisplay: false,
     toastMessage: "",
-    deleteTriggered: -1,
     saveData: [{
         concentration: CONCENTRATIONS[0],
-        numberOfSemesters: 1,
         semesters: [],
     } as SavedProgress],
     currentSaveData: {
         concentration: CONCENTRATIONS[0],
-        numberOfSemesters: 1,
         semesters: [{semesterNum: 1, courses: []}],
     } as SavedProgress,
     sourceIndex: 0,
     sourceContainerIndex: 0,
     destIndex: 0,
-    destContainerIndex: 0
+    destContainerIndex: 0,
+    preReqToggle: true,
+    loadedInCourses: [[]],
+    newCourse: {name: "", title: "", description: "", credits: 0, lab: false, fromIndex: 0, fromContainerIndex: 0, section: 0, prereqs: [], coreqs: []}
 };

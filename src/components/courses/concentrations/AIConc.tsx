@@ -56,60 +56,55 @@ export const AIConc = (): JSX.Element => {
     },[]);
 
     return (
-        state.concentrationContainers.length >= 8 ?
-            <div>
-                <h2>Artificial Intelligence and Robotics</h2>
-                <Accordion defaultActiveKey="8">
+        <div>
+            <h2>Artificial Intelligence and Robotics</h2>
+            <Accordion defaultActiveKey="8">
 
-                    <Accordion.Item eventKey="0" data-testid="Core Accordion">
-                        <Accordion.Header>CISC Core and Concentration</Accordion.Header>
-                        <Accordion.Body>
-                            <CourseContainer courses={state.concentrationContainers[0].courses} name="core" />
-                            <CourseContainer courses={state.concentrationContainers[1].courses} name="capstone-1" />
-                            <CourseContainer courses={state.concentrationContainers[2].courses} name="general-1" />
-                        </Accordion.Body>
-                    </Accordion.Item>
+                <Accordion.Item eventKey="0" data-testid="Core Accordion">
+                    <Accordion.Header>CISC Core and Concentration</Accordion.Header>
+                    <Accordion.Body>
+                        <CourseContainer courses={state.concentrationContainers[0] !== undefined ? state.concentrationContainers[0].courses : []} name="core" />
+                        <CourseContainer courses={state.concentrationContainers[1] !== undefined ? state.concentrationContainers[1].courses : []} name="capstone-1" />
+                        <CourseContainer courses={state.concentrationContainers[2] !== undefined ? state.concentrationContainers[2].courses : []} name="general-1" />
+                    </Accordion.Body>
+                </Accordion.Item>
 
-                    <Accordion.Item eventKey="1">
-                        <Accordion.Header>Two-Course Lab Sequence</Accordion.Header>
-                        <Accordion.Body>
-                            <CourseContainer courses={state.concentrationContainers[7].courses} name="lab-1" />
-                        </Accordion.Body>
-                    </Accordion.Item>
+                <Accordion.Item eventKey="1">
+                    <Accordion.Header>Two-Course Lab Sequence</Accordion.Header>
+                    <Accordion.Body>
+                        <CourseContainer courses={state.concentrationContainers[7] !== undefined ? state.concentrationContainers[7].courses : []} name="lab-1" />
+                    </Accordion.Body>
+                </Accordion.Item>
 
-                    <Accordion.Item eventKey="2">
-                        <Accordion.Header>Writing Course</Accordion.Header>
-                        <Accordion.Body>
-                            <CourseContainer courses={state.concentrationContainers[3].courses} name="writing" />
-                        </Accordion.Body>
-                    </Accordion.Item>
+                <Accordion.Item eventKey="2">
+                    <Accordion.Header>Writing Course</Accordion.Header>
+                    <Accordion.Body>
+                        <CourseContainer courses={state.concentrationContainers[3] !== undefined ? state.concentrationContainers[3].courses : []} name="writing" />
+                    </Accordion.Body>
+                </Accordion.Item>
 
-                    <Accordion.Item eventKey="3">
-                        <Accordion.Header>Statistics Course</Accordion.Header>
-                        <Accordion.Body>
-                            <CourseContainer courses={state.concentrationContainers[4].courses} name="capstone-2" />
-                        </Accordion.Body>
-                    </Accordion.Item>
+                <Accordion.Item eventKey="3">
+                    <Accordion.Header>Statistics Course</Accordion.Header>
+                    <Accordion.Body>
+                        <CourseContainer courses={state.concentrationContainers[4] !== undefined ? state.concentrationContainers[4].courses : []} name="capstone-2" />
+                    </Accordion.Body>
+                </Accordion.Item>
 
-                    <Accordion.Item eventKey="4">
-                        <Accordion.Header>Systems Course</Accordion.Header>
-                        <Accordion.Body>
-                            <CourseContainer courses={state.concentrationContainers[5].courses} name="general-2" />
-                        </Accordion.Body>
-                    </Accordion.Item>
+                <Accordion.Item eventKey="4">
+                    <Accordion.Header>Systems Course</Accordion.Header>
+                    <Accordion.Body>
+                        <CourseContainer courses={state.concentrationContainers[5] !== undefined ? state.concentrationContainers[5].courses : []} name="general-2" />
+                    </Accordion.Body>
+                </Accordion.Item>
 
-                    <Accordion.Item eventKey="5">
-                        <Accordion.Header>Electives(Select Four)</Accordion.Header>
-                        <Accordion.Body>
-                            <CourseContainer courses={state.concentrationContainers[6].courses} name="elective" />
-                        </Accordion.Body>
-                    </Accordion.Item>
+                <Accordion.Item eventKey="5">
+                    <Accordion.Header>Electives(Select Four)</Accordion.Header>
+                    <Accordion.Body>
+                        <CourseContainer courses={state.concentrationContainers[6] !== undefined ? state.concentrationContainers[6].courses : []} name="elective" />
+                    </Accordion.Body>
+                </Accordion.Item>
 
-                </Accordion>
-            </div>
-            :
-            <div>
-            Concentration Unavailable
-            </div>
+            </Accordion>
+        </div>
     );
 };

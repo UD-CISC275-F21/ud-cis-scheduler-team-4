@@ -6,6 +6,8 @@ import { ListGroup } from "react-bootstrap";
 import { CourseInfo } from "./CourseInfo";
 import { AddCourse } from "./AddCourse";
 import { UseStateContext } from "../util/DispatchLogic/UseStateContext";
+import { UseDispatchContext } from "../util/DispatchLogic/UseDispatchContext";
+
 
 
 export const Course = (
@@ -18,10 +20,11 @@ export const Course = (
         ind: number; 
     }): JSX.Element => {
     const { state } = UseStateContext();
+    const { dispatch } = UseDispatchContext();
     const [courseInfoDisplay, setCourseInfoDisplay] = useState<boolean>(false);
     const [addCourseModalDisplay, setAddCourseModalDisplay] = useState<boolean>(false);
     const [addCourseButtonDisplay, setAddCourseButtonDisplay] = useState<boolean>(true);
-    
+
     useEffect(() => {
         const splitName = props.name.split("-")[0];
         const result = !state.currentSaveData.semesters.map((eachSemester) => eachSemester.courses.map(eachCourse => eachCourse.name)).flat(2).includes(splitName);
@@ -52,6 +55,19 @@ export const Course = (
                         buttonDisplay={addCourseButtonDisplay}
                         setButtonDisplay={setAddCourseButtonDisplay}
                     />
+                    }
+                    {!addCourseButtonDisplay &&
+                    <button
+                        className="remove-course-button"
+                        onClick={()=>{
+                            const containerIndex = state.currentSaveData.semesters.findIndex((eachSemester) => eachSemester.courses.map((eachCourse) => eachCourse.name).flat(2).includes(props.name.split("-")[0]));
+                            const courseIndex = state.currentSaveData.semesters[containerIndex].courses.findIndex((eachCourse) => eachCourse.name === props.name.split("-")[0]);
+                            dispatch({type: "removeCourse", payload: { ...state, sourceContainerIndex: containerIndex, sourceIndex: courseIndex } });
+                            setAddCourseButtonDisplay(!addCourseButtonDisplay);
+                        }}
+                    >
+                        <img src={`${process.env.PUBLIC_URL}/minusimage.png`} id="remove-course-image"></img>
+                    </button>
                     }
                     <button
                         data-testid="dotsButton"

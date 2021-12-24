@@ -14,19 +14,6 @@
 
     {
 
-        "name": "CISC101",
-        "title": "Principles of Computing",
-        "description": "Introduces students to the central ideas of computing and computer science including programs, algorithms, abstraction, the internet, and information systems. Instills ideas and practices of computational thinking and engages students in activities that show how computing and computer science change the world. Explores computing as a creative activity and empowers students to applycomputational thinking to all disciplines including the arts, humanities, business, social and physical sciences, health, and entertainment.",
-        "section": 70,
-        "prereqs": [],
-        "coreqs": [],
-        "credits": 3,
-        "lab": true
-
-    },
-
-    {
-
         "name": "CISC106",
         "title": "General CS for Engineers",
         "description": "Principles of computer science illustrated and applied through programming in a general-purpose language. Programming projects illustrate computational problems, styles, and issues that arise in engineering.",

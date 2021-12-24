@@ -55,7 +55,7 @@ export const onDragEndLogic = (
             const ind1 = semesters.findIndex(elem => elem.semesterNum === semester1Num);
             const ind2 = semesters.findIndex(elem => elem.semesterNum === semester2Num);
             const preReqCheckerResult = PreReqChecker(semesters, ind2, semesters[ind1].courses[sourceIndex], state, dispatch) && RevPreReqChecker(semesters, ind2, semesters[ind1].courses[sourceIndex], state, dispatch);
-            if (preReqCheckerResult) {
+            if (preReqCheckerResult || !state.preReqToggle) {
                 DropLogicExecutor(state, dispatch, "semesterToSemester", ind1, ind2, result.source.index, result.destination.index);
             }
         } else {
@@ -73,7 +73,7 @@ export const onDragEndLogic = (
         const concentrationContainerIndex = state.concentrationContainers.findIndex((eachContainer) => eachContainer.name === sourceId);
         const semesterCoursesIndex = semesters.findIndex((eachSemester) => eachSemester.semesterNum === semesterNum);
         const PreReqResult = PreReqChecker(semesters, semesterCoursesIndex, concentrationContainers[concentrationContainerIndex].courses[sourceIndex], state, dispatch);
-        if (PreReqResult) {
+        if (PreReqResult  || !state.preReqToggle) {
             DropLogicExecutor(state, dispatch, "concentrationToSemester", concentrationContainerIndex, semesterCoursesIndex, sourceIndex, dropIndex);
         }
     } else {
