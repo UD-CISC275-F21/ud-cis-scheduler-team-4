@@ -1,0 +1,132 @@
+[
+    {
+        "name":"AI and Robotics",
+        "core":["CISC108","CISC181","CISC210","CISC220","CISC260","CISC275","CISC303","CISC320","MATH210","MATH241","CISC355"],
+        "capstone":["CISC498","CISC499"],
+        "lab":["Lab Sequence 1", "Lab Sequence 2"],
+        "writing":["ENGL110","ENGL312","ENGL410"], 
+        "conc":{
+            "general":["CISC304","CISC442","CISC481","CISC483","CISC484"],
+            "stats":["MATH205","MATH350"],
+            "systems":["CISC361","CISC372"],
+            "elective":["Restricted Elective 1","Restricted Elective 2", "Restricted Elective 3", "Restricted Elective 4"],
+            "ochem":[""],
+            "data":[""],
+            "cybersecurity":[""],
+            "track":[""]
+        }
+    },
+
+    {
+        "name":"Bioinformatics",
+        "core":["CISC108","CISC181","CISC210","CISC220","CISC260","CISC275","CISC303","CISC320","MATH210","MATH241","CISC355"],
+        "capstone":["CISC498","CISC499"],
+        "lab":["CHEM103","CHEM104"],
+        "writing":["ENGL110","ENGL312","ENGL410"], 
+        "conc":{
+            "general":["BISC207","BISC208","BISC401","CISC372","CISC436","MATH242","MATH349"],
+            "stats":["MATH205","MATH350"],
+            "systems":[""],
+            "elective":["Restricted Elective 1","Restricted Elective 2"],
+            "ochem":["CHEM213","CHEM215","CHEM321","CHEM325"],
+            "data":["CISC483","CISC484"],
+            "cybersecurity":[""],
+            "track":[""]
+        }
+
+    },
+
+    {
+        "name":"Cybersecurity",
+        "core":["CISC108","CISC181","CISC210","CISC220","CISC260","CISC275","CISC303","CISC320","MATH210","MATH241","CISC355"],
+        "capstone":["CISC498","CISC499"],
+        "lab":["Lab Sequence 1", "Lab Sequence 2"],
+        "writing":["ENGL110","ENGL312","ENGL410"], 
+        "conc":{
+            "general":["CISC361","CISC372","CISC450","CISC464","CISC465","CPEG494"],
+            "stats":["MATH205","MATH350"],
+            "systems":[""],
+            "elective":["Restricted Elective 1","Restricted Elective 2"],
+            "ochem":[""],
+            "data":[""],
+            "cybersecurity":["CPEG472","CPEG473","CPEG475","CPEG476","CPEG495"],
+            "track":[""]
+        }
+
+    },
+
+    {
+        "name":"Data Science",
+        "core":["CISC108","CISC181","CISC210","CISC220","CISC260","CISC275","CISC303","CISC320","MATH210","MATH241","CISC355"],
+        "capstone":["CISC498","CISC499"],
+        "lab":["Lab Sequence 1", "Lab Sequence 2"],
+        "writing":["ENGL110","ENGL312","ENGL410"], 
+        "conc":{
+            "general":["CISC304","CISC372","CISC437","CISC481","MATH205","MATH242","MATH243","MATH349"],
+            "stats":["CISC410","MATH302","MATH350"],
+            "systems":[""],
+            "elective":["Restricted Elective 1"],
+            "ochem":[""],
+            "data":["CISC483", "CISC484"],
+            "cybersecurity":[""],
+            "track":[""]
+        }
+    },
+
+    {
+        "name":"High-Performance Computing",
+        "core":["CISC108","CISC181","CISC210","CISC220","CISC260","CISC275","CISC303","CISC320","MATH210","MATH241","CISC355"],
+        "capstone":["CISC498","CISC499"],
+        "lab":["Lab Sequence 1", "Lab Sequence 2"],
+        "writing":["ENGL110","ENGL312","ENGL410"], 
+        "conc":{
+            "general":["CISC360","CISC361","CISC372","CISC450","CISC471","MATH242","MATH243"],
+            "stats":["MATH205", "MATH350"],
+            "systems":[""],
+            "elective":["Restricted Elective 1"],
+            "ochem":["Restricted Elective 1", "MATH302", "MATH349", "MATH351", "MATH535"],
+            "data":["MATH351", "MATH428"],
+            "cybersecurity":["CISC483", "CISC484"],
+            "track":["CISC437", "MATH350", "MATH450"]
+        }
+
+    },
+
+    {
+        "name":"Networks and Systems",
+        "core":["CISC108","CISC181","CISC210","CISC220","CISC260","CISC275","CISC303","CISC320","MATH210","MATH241","CISC355"],
+        "capstone":["CISC498","CISC499"],
+        "lab":["Lab Sequence 1", "Lab Sequence 2"],
+        "writing":["ENGL110","ENGL312","ENGL410"], 
+        "conc":{
+            "general":["CISC360","CISC361","CISC372","CISC450","CISC471"],
+            "stats":["MATH205","MATH350"],
+            "systems":["CISC437","CISC453","CISC459","CISC464","CISC474","CISC475","CISC479","CPEG473","CPEG497"],
+            "elective":["Restricted Elective 1","Restricted Elective 2"],
+            "ochem":[""],
+            "data":[""],
+            "cybersecurity":["CISC464","CISC465","CPEG470","CPEG473","CPEG475","CPEG476","CPEG497"],
+            "track":[""]
+        }
+
+    },
+
+    {
+        "name":"Theory of Computation",
+        "core":["CISC108","CISC181","CISC210","CISC220","CISC260","CISC275","CISC303","CISC320","MATH210","MATH241"],
+        "capstone":["CISC498","CISC499"],
+        "lab":["Lab Sequence 1", "Lab Sequence 2"],
+        "writing":["ENGL110","ENGL312","ENGL410"], 
+        "conc":{
+            "general":["CISC304","CISC401","MATH242","MATH349"],
+            "stats":["MATH205","MATH350"],
+            "systems":[""],
+            "elective":[""],
+            "ochem":[""],
+            "data":[""],
+            "cybersecurity":["MATH243", "MATH302", "MATH535", "MATH426"],
+            "track":["CISC404", "MATH245", "MATH315", "MATH451"]
+        }
+
+    }
+]

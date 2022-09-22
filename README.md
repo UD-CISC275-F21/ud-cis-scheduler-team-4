@@ -1,20 +1,23 @@
-# 275 Final Project Starter Repo
-Hello! This repository has been pre-configured with eslint and gh-pages to automatically deploy your app when you push to the main branch. 
+# UDCIS Course Scheduling Tool
+A web application designed to enable Computer Science students at the University of Delaware to be able plan out the courses they will take. 
 
-You will, however, need to finish setting up the deployment.
+## Developers
+Cameron Thacker, Luke Halko, and Kurt Hammen
 
-## Setting Up the Deployment
+## Features
+### Drag and Drop
+--> Users can drag desired course items from a pool of vrious courses into the desired semester.
 
-### 1. Generate a personal access token
-Click on your picture -> settings in the top right of Github. Then, scroll to "Developer Settings" and click "Personal access tokens." Generate a new token with "repo" access and no expiration date. Make sure you copy the created token as you will not be able to see it after this.
+### Visualize Unfulfilled Degree Requirements
+--> Users can select one of 7 concentrations that exist as a part of the CS degree, and the course list will dynamically different courses based on what requirements you have yet to fill for a given concentration.
 
-### 2. Add a secret to the forked repo
-Go to settings -> secrets and click "New repository secret." Name the secret "GH_TOKEN" and paste in the value you copied in the previous step. 
+### Edit Courses
+--> Users can edit the name and description of a course.
 
-### 3. Test your deployment
+### Export Degree Plans
+--> Upon completion, students can export their course schedules as a CSV files which they can share with advisors or use for future reference. 
 
-Make a change in `src/App.tsx`. Commit and push the change to the main branch and see if your deployment was successful. 
-
-In the future, you will no longer need to use the `npm run deploy` command - you just need to have a successful push to the `main` branch and it'll automatically deploy!
-
-All your teammates will additionally need to make feature branches to add your names to the site, merging them as Pull Requests to main. Follow the instructions in the Canvas Assignment for more details.
+## Technologies
+### ReactJS +Hooks
+### TypeScript
+### Bootstrap

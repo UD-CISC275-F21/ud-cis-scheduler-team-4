@@ -1,19 +1,13 @@
 import React from "react";
-import logo from "./logo.svg";
+import "bootswatch/dist/lux/bootstrap.min.css";
+import { MainPage } from "./components/MainPage";
 import "./App.css";
 
-function App(): JSX.Element {
+export const App = (): JSX.Element => {
     return (
         <div className="App">
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
-                UD CIS Scheduler
-                <p>
-                    Edit <code>src/App.tsx</code> and save to reload.
-                </p>
-            </header>
+            <MainPage />
         </div>
     );
-}
-
+};
 export default App;
